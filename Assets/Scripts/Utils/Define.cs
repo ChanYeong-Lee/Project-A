@@ -5,6 +5,8 @@ public class Define
     // 상수(const)
     // 열거형(Enum)
     // 정리
+
+    public const string RecipeDataPath = "ScriptableObject/Recipe/";
     
     public enum SceneType
     {

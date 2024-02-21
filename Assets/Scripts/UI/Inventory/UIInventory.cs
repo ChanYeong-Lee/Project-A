@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UIInventory : MonoBehaviour
+public class UIInventory : UIBase
 {
-    private List<UIInvenSlot> slots = new List<UIInvenSlot>();
+    private List<UISlot> slots = new List<UISlot>();
 
     // TODO : 인벤토리 참조는 Managers.Game.Player.inventory로 바꾸기
     [SerializeField] private Inventory inventory;
     [SerializeField] private RectTransform content;
-    [SerializeField] private UIInvenSlot slotPrefab;
+    [SerializeField] private UISlot slotPrefab;
     [SerializeField] private GameObject itemInfo;
-    private int slotCount;
+    
     private UISlot selectSlot;
     private UISlot focusedSlot;
 
@@ -22,7 +22,7 @@ public class UIInventory : MonoBehaviour
     
     private void OnEnable()
     {
-        foreach (UIInvenSlot slot in slots)
+        foreach (UISlot slot in slots)
         {
             Managers.Pool.Push(slot.gameObject);
         }
@@ -31,8 +31,9 @@ public class UIInventory : MonoBehaviour
         
         foreach (var item in inventory.ItemDataDic)
         {
-            var slot = Managers.Pool.Pop(slotPrefab.gameObject, content).GetComponent<UIInvenSlot>();
-            
+            var slot = Managers.Pool.Pop(slotPrefab.gameObject, content).GetComponent<UISlot>();
+
+            slot.SlotType = SlotType.InventoryMenu;
             slots.Add(slot);
             slot.ItemData = item.Key;
             slot.Text.text = $"{item.Key.ItemName} X{item.Value}";
@@ -44,6 +45,12 @@ public class UIInventory : MonoBehaviour
         if (selectSlot == null)
             return;
 
-        itemInfo.GetComponentInChildren<TextMeshProUGUI>().text = selectSlot.ItemData.ItemName;
+        UpdateItemInfo(selectSlot);
+    }
+
+    private void UpdateItemInfo(UISlot slot)
+    {
+        itemInfo.GetComponentInChildren<TextMeshProUGUI>().text = slot.ItemData.ItemName;
+        // itemInfo.GetComponentInChildren<Image>().sprite = slot.ItemData.
     }
 }

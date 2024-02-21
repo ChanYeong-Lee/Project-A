@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    protected GameObject drop;
+    [SerializeField] protected List<Item> dropItem;
     
-    public GameObject Drop { get => drop; set => drop = value; }
+    public List<Item> DropItemList { get => dropItem; set => dropItem = value; }
     
     
     public override void Init()
     {
         base.Init();
     }
+
 
     public void Farming()
     {

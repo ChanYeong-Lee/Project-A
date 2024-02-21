@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6961430155465075965}
-  - component: {fileID: 1591626848637432024}
+  - component: {fileID: 7554612405593214536}
   - component: {fileID: 5530133043805773850}
   - component: {fileID: 5065341797631931848}
   m_Layer: 5
-  m_Name: InvenSlot
+  m_Name: Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 480, y: -150}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1591626848637432024
+--- !u!114 &7554612405593214536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 353169808588022802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235cfa41459645a3b6d8774e4d6ddedb, type: 3}
+  m_Script: {fileID: 11500000, guid: 602d03deae354dd58f72c6d4878286f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!222 &5530133043805773850

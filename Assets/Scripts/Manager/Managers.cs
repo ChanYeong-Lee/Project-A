@@ -57,5 +57,6 @@ public class Managers : MonoBehaviour
     private void Awake()
     {
         Game.Init();
+        Data.Init();
     }
 }
