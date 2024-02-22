@@ -1,7 +1,7 @@
 ﻿public class Tree : Environment
 {
-    public override void Farming()
+    public override (ItemData, int) Farming()
     {
-        base.Farming();
+        return base.Farming();
     }
 }

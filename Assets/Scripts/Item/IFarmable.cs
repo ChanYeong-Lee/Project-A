@@ -2,7 +2,7 @@
 
 public interface IFarmable
 {
-    public List<Item> DropItemList { get; set; }
+    public List<ItemData> DropItemList { get; }
 
-    public void Farming();
+    public (ItemData, int) Farming();
 }

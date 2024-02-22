@@ -3,19 +3,19 @@ using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    [SerializeField] protected List<Item> dropItem;
+    [SerializeField] protected List<ItemData> dropItem;
     
-    public List<Item> DropItemList { get => dropItem; set => dropItem = value; }
-    
-    
+    public List<ItemData> DropItemList => dropItem;
+
+
     public override void Init()
     {
         base.Init();
     }
 
 
-    public void Farming()
+    public (ItemData, int) Farming()
     {
-        // 캐릭터 인벤에 드롭아이템 추가
+        return (dropItem[0], 0);
     }
 }
