@@ -8,13 +8,11 @@ public abstract class Monster : Creature, IFarmable
     
     public DropTableData DropItem => dropItem;
     public float FarmingTime { get => farmingTime; set => farmingTime = value; }
-
-
+    
     public override void Init()
     {
         base.Init();
     }
-
 
     public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {

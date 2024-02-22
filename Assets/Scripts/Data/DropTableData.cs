@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Drop Data", menuName = "ScriptableObject/Drop Data", order = 0)]
+[CreateAssetMenu(fileName = "New Drop Data", menuName = "ScriptableObject/Drop Data")]
 public class DropTableData : ScriptableObject
 {
     [Header("Drop Info")] 

@@ -5,30 +5,25 @@ using UnityEngine.Serialization;
 
 public abstract class Creature : MonoBehaviour
 {
-    [SerializeField] protected string creatureName;
-    [SerializeField] protected List<Stat> statData;
+    [SerializeField] protected StatData statData;
+    [SerializeField] protected int currentLevel;
+    
     protected Stat currentStat;
     
-    public string Name { get => creatureName; set => creatureName = value; }
-
-    public List<Stat> StatData => statData;
+    public StatData StatData => statData;
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
     public Stat CurrentStat { get => currentStat; set => currentStat = value; }
 
-    
-    
+    private void Start()
+    {
+        Init();
+    }
+
     public virtual void Init()
     {
+        if (currentLevel < statData.Stats[0].Level || currentLevel > statData.Stats[^1].Level) 
+            currentLevel = 1;
         
+        currentStat = statData.Stats[currentLevel];
     }
-    
-}
-
-
-[Serializable]
-public class Stat
-{
-    [SerializeField] private int level;
-    [SerializeField] private int healthPoint;
-    [SerializeField] private int speed;
-    
 }
