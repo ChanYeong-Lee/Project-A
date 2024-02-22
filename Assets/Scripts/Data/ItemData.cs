@@ -9,10 +9,12 @@ public class ItemData : ScriptableObject
     [SerializeField] protected string itemName;
     [SerializeField] protected Define.ItemType itemType;
     [SerializeField] [TextArea(1, 3)] protected string description;
+    [SerializeField] protected Sprite icon;
     
-    public int ItemID { get => id; set => id = value; }
-    public string Path { get => path; set => path = value; }
-    public string ItemName { get => itemName; set => itemName = value; }
-    public Define.ItemType ItemType { get => itemType; set => itemType = value; }
-    public string Description { get => description; set => description = value; }
+    public int ItemID => id;
+    public string Path => path;
+    public string ItemName => itemName;
+    public Define.ItemType ItemType => itemType;
+    public string Description => description;
+    public Sprite Icon => icon;
 }

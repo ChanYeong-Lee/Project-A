@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Blood
   itemType: 2
   description: "\uBAAC\uC2A4\uD130 \uD608\uC561\n"
-  attribute: 0
+  icon: {fileID: 0}
+  farmingType: 4

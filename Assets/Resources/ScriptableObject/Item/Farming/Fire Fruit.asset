@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Fire Fruit
   itemType: 2
   description: "\uBD88\uAF43 \uC5F4\uB9E4"
-  attribute: 5
+  icon: {fileID: 0}
+  farmingType: 1

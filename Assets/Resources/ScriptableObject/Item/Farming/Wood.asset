@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Wood
   itemType: 2
   description: "\uB098\uBB34"
-  attribute: 0
+  icon: {fileID: 0}
+  farmingType: 2

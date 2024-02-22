@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Bomb Fruit
   itemType: 2
   description: "\uD3ED\uD0C4 \uC5F4\uB9E4"
-  attribute: 2
+  icon: {fileID: 0}
+  farmingType: 1

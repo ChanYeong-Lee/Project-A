@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Electric Fruit
   itemType: 2
   description: "\uC804\uAE30 \uC5F4\uB9E4"
-  attribute: 6
+  icon: {fileID: 0}
+  farmingType: 1

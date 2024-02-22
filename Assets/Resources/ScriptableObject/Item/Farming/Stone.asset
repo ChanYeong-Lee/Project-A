@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffc81cbfc04492f96f7a1a22b134333, type: 3}
-  m_Name: Arrow3
+  m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
+  m_Name: Stone
   m_EditorClassIdentifier: 
-  id: 1003
-  path: Prefabs/Arrow3
-  itemName: Arrow3
+  id: 0
+  path: Prefabs/...
+  itemName: Stone
   itemType: 2
-  description: "\uAE30\uBCF8 \uD654\uC0B43"
-  attribute: 0
+  description: "\uB3CC"
+  icon: {fileID: 0}
+  farmingType: 3

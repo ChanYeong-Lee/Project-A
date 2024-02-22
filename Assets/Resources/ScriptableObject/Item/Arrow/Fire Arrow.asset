@@ -18,3 +18,4 @@ MonoBehaviour:
   itemType: 2
   description: "\uBD88 \uD654\uC0B4"
   attribute: 5
+  arrowDamage: 10

@@ -5,5 +5,5 @@ public class PotionData : ItemData
 {
     [SerializeField] private int healingPoint;
     
-    public int HealingPoint { get => healingPoint; }
+    public int HealingPoint => healingPoint;
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 public class ArrowData : ItemData
 {
     [SerializeField] private Define.AttributeType attribute;
+    [SerializeField] private int arrowDamage;
 
-    public Define.AttributeType Attribute { get => attribute; set => attribute = value; }
+    public Define.AttributeType Attribute => attribute;
+    public int ArrowDamage => arrowDamage;
 }

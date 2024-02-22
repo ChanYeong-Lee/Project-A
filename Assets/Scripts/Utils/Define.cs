@@ -35,4 +35,13 @@ public class Define
         Electric,       // 전기 - 모든 부위 전부 타격시 일시 마비
         Etc
     }
+    
+    public enum FarmingType
+    {
+        None,           // 기본
+        Gathering,      // 채집
+        Felling,        // 벌목
+        Mining,         // 채광
+        Dismantling     // 분해(몬스터 채집)
+    }
 }

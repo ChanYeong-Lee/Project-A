@@ -10,8 +10,8 @@ public class UICraftMenu : UIBase
 {
     private List<UISlot> slots = new List<UISlot>();
 
-    // TODO : ÀÎº¥Åä¸® ÂüÁ¶´Â Managers.Game.Player.inventory·Î ¹Ù²Ù±â
-    // TODO : UIManager »ı±â¸é ´Ù½Ã Á¤¸®
+    // TODO : ì¸ë²¤í† ë¦¬ ì°¸ì¡°ëŠ” Managers.Game.Player.inventoryë¡œ ë°”ê¾¸ê¸°
+    // TODO : UIManager ìƒê¸°ë©´ ë‹¤ì‹œ ì •ë¦¬
     [SerializeField] private Inventory inventory;
     [SerializeField] private RectTransform content;
     [SerializeField] private TextMeshProUGUI text;
@@ -51,23 +51,23 @@ public class UICraftMenu : UIBase
 
         UpdateCraftItemInfo(selectSlot);
       
-        // ¾ÆÀÌÅÛ Á¦ÀÛ Å° ÀÔ·Â Ã¼Å©
+        // ì•„ì´í…œ ì œì‘ í‚¤ ì…ë ¥ ì²´í¬
         if (Input.GetKeyDown(KeyCode.F) && IsCheckCraftItem(selectSlot.ItemData))
         {
-            Debug.Log("Á¦ÀÛ");
+            Debug.Log("ì œì‘");
             inventory.CraftingItem(FindItemRecipe(selectSlot.ItemData));
             UpdateSlot(selectSlot);
         }
     }
     
-    // Á¦ÀÛ ¾ÆÀÌÅÛ Á¤º¸Ã¢ ¾÷µ¥ÀÌÆ® ¸Ş¼Òµå
+    // ì œì‘ ì•„ì´í…œ ì •ë³´ì°½ ì—…ë°ì´íŠ¸ ë©”ì†Œë“œ
     private void UpdateCraftItemInfo(UISlot slot)
     {
         var recipeData = FindItemRecipe(slot.ItemData);
         StringBuilder sb = new StringBuilder();
         
         sb.Append($"{recipeData.ItemData.ItemName} X{recipeData.ItemCount}\n");
-        sb.Append("Àç·á\n");
+        sb.Append("ì¬ë£Œ\n");
 
         for (var i = 0; i < recipeData.CraftItemData.Count; i++)
         {
@@ -81,7 +81,7 @@ public class UICraftMenu : UIBase
         text.text = sb.ToString();
     }
     
-    // Á¦ÀÛ ¾ÆÀÌÅÛ ½½·Ô ¾÷µ¥ÀÌÆ® ¸Ş¼Òµå
+    // ì œì‘ ì•„ì´í…œ ìŠ¬ë¡¯ ì—…ë°ì´íŠ¸ ë©”ì†Œë“œ
     private void UpdateSlot(UISlot slot)
     {
         var recipeData = FindItemRecipe(slot.ItemData);
@@ -97,7 +97,7 @@ public class UICraftMenu : UIBase
         return recipeData == null ? null : recipeData;
     }
     
-    // Á¦ÀÛ °¡´ÉÇÑ ¾ÆÀÌÅÛ È®ÀÎ ¸Ş¼Òµå
+    // ì œì‘ ê°€ëŠ¥í•œ ì•„ì´í…œ í™•ì¸ ë©”ì†Œë“œ
     private bool IsCheckCraftItem(ItemData itemData)
     {
         var recipeData = FindItemRecipe(itemData);
