@@ -17,7 +17,9 @@ public abstract class Environment : MonoBehaviour, IFarmable
         
     }
 
-
+    // TODO : 파밍 -> 오브젝트 삭제 -> 일정 시간 이후 재생성
+    // TODO : 파밍 -> 드랍템 획득  
+    
     public virtual void Farming()
     {
         
