@@ -8,12 +8,13 @@ public abstract class Environment : MonoBehaviour, IFarmable
     [SerializeField] protected string envName;
     [SerializeField] protected bool isFarmable = true;
     [SerializeField] protected DropTableData dropItem;
-    private IFarmable farmableImplementation;
-
+    [SerializeField] protected float farmingTime;
+    
     public string EnvName => envName;
     public bool IsFarmable => isFarmable;
     public DropTableData DropItem => dropItem;
-
+    public float FarmingTime { get => farmingTime; set => farmingTime = value; }
+    
     private void Start()
     {
         Init();
@@ -27,7 +28,6 @@ public abstract class Environment : MonoBehaviour, IFarmable
 
     // TODO : 파밍 -> 오브젝트 삭제 -> 일정 시간 이후 재생성
     // TODO : 파밍 -> 드랍템 획득  
-
     public virtual Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
         farmingType = Define.FarmingType.None;
@@ -39,9 +39,7 @@ public abstract class Environment : MonoBehaviour, IFarmable
             return null;
 
         farmingType = dropItem.FarmingType;
-
-        Managers.Pool.Push(gameObject);
-
+        
         return dropItem.GetDropItem();
     }
 }

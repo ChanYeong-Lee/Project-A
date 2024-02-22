@@ -4,8 +4,10 @@ using UnityEngine;
 public abstract class Monster : Creature, IFarmable
 {
     [SerializeField] protected DropTableData dropItem;
+    [SerializeField] protected float farmingTime;
     
     public DropTableData DropItem => dropItem;
+    public float FarmingTime { get => farmingTime; set => farmingTime = value; }
 
 
     public override void Init()

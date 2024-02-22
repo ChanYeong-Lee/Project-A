@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
         {
             Farming();
         }
@@ -30,17 +30,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private float time = 0;
     private void Farming()
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
         int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
-
-        Debug.Log($"{detectCount}");
+        
         for (int i = 0; i < detectCount; i++)
         {
             var other = detectedColliders[i];
-
+            
             Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
+            
+            float farmingTime = other.GetComponent<IFarmable>().FarmingTime;
 
             // 파밍 관련 애니메이션이나 기타 등등 스위치 문
             switch (farmingType)
@@ -60,12 +62,19 @@ public class PlayerController : MonoBehaviour
             }
 
             Debug.Log($"{farmingType} : {other.name}");
+
+            time += Time.deltaTime;
+            if (farmingTime > time)
+                return;
             
             foreach (var data in dataDic)
             {
                 inventory.TryGainItem(data.Key, data.Value);
                 Debug.Log($"{data.Key} : {data.Value}");
             }
+
+            Managers.Pool.Push(other.gameObject);
+            time = 0;
         }
     }
 }
