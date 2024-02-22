@@ -3,9 +3,9 @@ using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    [SerializeField] protected List<ItemData> dropItem;
+    [SerializeField] protected DropTableData dropItem;
     
-    public List<ItemData> DropItemList => dropItem;
+    public DropTableData DropItem => dropItem;
 
 
     public override void Init()
@@ -14,8 +14,10 @@ public abstract class Monster : Creature, IFarmable
     }
 
 
-    public (ItemData, int) Farming()
+    public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
-        return (dropItem[0], 0);
+        farmingType = dropItem.FarmingType;
+        
+        return null;
     }
 }

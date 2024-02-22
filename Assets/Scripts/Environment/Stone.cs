@@ -1,7 +1,9 @@
-﻿public class Stone : Environment
+﻿using System.Collections.Generic;
+
+public class Stone : Environment
 {
-    public override (ItemData, int) Farming()
+    public override Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
-        return base.Farming();
+        return base.Farming(out farmingType);
     }
 }

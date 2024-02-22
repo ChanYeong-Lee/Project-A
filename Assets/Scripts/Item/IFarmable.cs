@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public interface IFarmable
 {
-    public List<ItemData> DropItemList { get; }
+    public DropTableData DropItem { get; }
 
-    public (ItemData, int) Farming();
+    public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType);
 }

@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Environment : MonoBehaviour, IFarmable
 {
     [SerializeField] protected string envName;
     [SerializeField] protected bool isFarmable = true;
-    [SerializeField] protected List<ItemData> dropItemList;
-    
+    [SerializeField] protected DropTableData dropItem;
+    private IFarmable farmableImplementation;
+
     public string EnvName => envName;
     public bool IsFarmable => isFarmable;
-    public List<ItemData> DropItemList => dropItemList;
+    public DropTableData DropItem => dropItem;
 
     private void Start()
     {
@@ -19,20 +21,27 @@ public abstract class Environment : MonoBehaviour, IFarmable
 
     public virtual void Init()
     {
+        if (dropItem == null) 
+            isFarmable = false;
     }
 
     // TODO : 파밍 -> 오브젝트 삭제 -> 일정 시간 이후 재생성
     // TODO : 파밍 -> 드랍템 획득  
-    
-    public virtual (ItemData, int) Farming()
+
+    public virtual Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
-        if (!isFarmable)
-            return (null, 0);
+        farmingType = Define.FarmingType.None;
         
-        Debug.Log($"{envName}");
+        if (!isFarmable)
+            return null;
+
+        if (dropItem == null)
+            return null;
+
+        farmingType = dropItem.FarmingType;
 
         Managers.Pool.Push(gameObject);
 
-        return (dropItemList[0], 1);
+        return dropItem.GetDropItem();
     }
 }

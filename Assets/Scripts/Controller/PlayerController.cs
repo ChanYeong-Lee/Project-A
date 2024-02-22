@@ -17,19 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("입력");
-            Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
-            int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
-
-            Debug.Log($"{detectCount}");
-            for (int i = 0; i < detectCount; i++)
-            {
-                var other = detectedColliders[i];
-                Debug.Log($"{other.gameObject.layer}, {other.gameObject.name}");
-                (ItemData, int) itemData = other.GetComponent<IFarmable>().Farming();
-
-                inventory.TryGainItem(itemData.Item1, itemData.Item2);
-            }
+            Farming();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -41,7 +29,43 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
-    
-        
+
+    private void Farming()
+    {
+        Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
+        int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
+
+        Debug.Log($"{detectCount}");
+        for (int i = 0; i < detectCount; i++)
+        {
+            var other = detectedColliders[i];
+
+            Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
+
+            // 파밍 관련 애니메이션이나 기타 등등 스위치 문
+            switch (farmingType)
+            {
+                case Define.FarmingType.None:
+                    break;
+                case Define.FarmingType.Gathering:
+                    break;
+                case Define.FarmingType.Felling:
+                    break;
+                case Define.FarmingType.Mining:
+                    break;
+                case Define.FarmingType.Dismantling:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Debug.Log($"{farmingType} : {other.name}");
+            
+            foreach (var data in dataDic)
+            {
+                inventory.TryGainItem(data.Key, data.Value);
+                Debug.Log($"{data.Key} : {data.Value}");
+            }
+        }
+    }
 }

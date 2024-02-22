@@ -1,7 +1,20 @@
-﻿public class Tree : Environment
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class Tree : Environment
 {
-    public override (ItemData, int) Farming()
+    private void Start()
     {
-        return base.Farming();
+    }
+
+    public override void Init()
+    {
+        if (string.IsNullOrEmpty(envName)) 
+            envName = "나무";
+    }
+    
+    public override Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
+    {
+        return base.Farming(out farmingType);
     }
 }
