@@ -30,6 +30,10 @@ public class Inventory : MonoBehaviour
             for (int i = 0; i < recipeData.CraftItemData.Count; i++)
             {
                 itemDataDic[recipeData.CraftItemData[i]] -= recipeData.CraftItemCount[i];
+                if (itemDataDic[recipeData.CraftItemData[i]] <= 0)
+                {
+                    itemDataDic.Remove(recipeData.CraftItemData[i]);
+                }
             }
         }
     }

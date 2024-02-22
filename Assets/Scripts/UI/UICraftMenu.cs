@@ -56,7 +56,9 @@ public class UICraftMenu : UIBase
         {
             Debug.Log("제작");
             inventory.CraftingItem(FindItemRecipe(selectSlot.ItemData));
-            UpdateSlot(selectSlot);
+
+            foreach (UISlot slot in slots) 
+                UpdateSlot(slot);
         }
     }
     
