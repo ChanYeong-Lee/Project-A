@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnvSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> treeList;
+    [SerializeField] private List<GameObject> treeList;
+    [SerializeField] private List<GameObject> stoneList;
     
     private void Start()
     {

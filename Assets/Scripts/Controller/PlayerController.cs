@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F))
         {
+            Debug.Log("F 입력");
             Farming();
         }
 

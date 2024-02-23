@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012523122978}
+  - component: {fileID: -4017763445069928373}
   - component: {fileID: 205000013733710172}
   - component: {fileID: 136000012230939912}
   - component: {fileID: 208779752760032894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FAE_Pine_A_Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,6 +39,19 @@ Transform:
   - {fileID: 4000014153811012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4017763445069928373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011250910608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
 --- !u!205 &205000013733710172
 LODGroup:
   m_ObjectHideFlags: 0
@@ -119,7 +133,7 @@ GameObject:
   - component: {fileID: 4000012758816714}
   - component: {fileID: 33000012080160558}
   - component: {fileID: 23000013277286684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FAE_Pine_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +217,7 @@ GameObject:
   - component: {fileID: 4000011797282588}
   - component: {fileID: 33000011549053856}
   - component: {fileID: 23000011964538050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FAE_Pine_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +301,7 @@ GameObject:
   - component: {fileID: 4000010647187216}
   - component: {fileID: 33000012120887476}
   - component: {fileID: 23000010695216190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FAE_Pine_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +385,7 @@ GameObject:
   - component: {fileID: 4000014153811012}
   - component: {fileID: 33000010581754288}
   - component: {fileID: 23000012524483472}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FAE_Pine_A_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
