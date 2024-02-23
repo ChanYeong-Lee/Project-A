@@ -86,9 +86,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"{data.Key} : {data.Value}");
             }
 
-            // GameManager 쪽으로 옮길 예정
-            StartCoroutine(other.GetComponentInParent<EnvSpawner>().CoRespawn(other.GetComponent<Environment>()));
-            Managers.Pool.Push(other.gameObject);
+            other.GetComponentInParent<EnvSpawner>().Despawn(other.GetComponent<Environment>());
         }
     }
 }
