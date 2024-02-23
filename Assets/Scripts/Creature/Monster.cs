@@ -3,20 +3,17 @@ using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    [SerializeField] protected DropTableData dropItem;
-    [SerializeField] protected float farmingTime;
-    
-    public DropTableData DropItem => dropItem;
-    public float FarmingTime { get => farmingTime; set => farmingTime = value; }
+    private MonsterData monsterData;
     
     public override void Init()
     {
         base.Init();
+        monsterData = creatureData as MonsterData;
     }
 
     public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
-        farmingType = dropItem.FarmingType;
+        farmingType = monsterData.DropItem.FarmingType;
         
         return null;
     }

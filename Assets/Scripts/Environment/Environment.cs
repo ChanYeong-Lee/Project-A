@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public abstract class Environment : MonoBehaviour, IFarmable
+public class Environment : MonoBehaviour, IFarmable
 {
-    [SerializeField] protected string envName;
-    [SerializeField] protected bool isFarmable = true;
-    [SerializeField] protected DropTableData dropItem;
-    [SerializeField] protected float farmingTime;
-    
-    public string EnvName => envName;
-    public bool IsFarmable => isFarmable;
-    public DropTableData DropItem => dropItem;
-    public float FarmingTime { get => farmingTime; set => farmingTime = value; }
+    [SerializeField] protected EnvironmentData envData;
+
+    public EnvironmentData EnvData => envData;
     
     private void Start()
     {
@@ -22,8 +16,6 @@ public abstract class Environment : MonoBehaviour, IFarmable
 
     public virtual void Init()
     {
-        if (dropItem == null) 
-            isFarmable = false;
     }
 
     // TODO : 파밍 -> 오브젝트 삭제 -> 일정 시간 이후 재생성
@@ -32,14 +24,14 @@ public abstract class Environment : MonoBehaviour, IFarmable
     {
         farmingType = Define.FarmingType.None;
         
-        if (!isFarmable)
+        if (!envData.IsFarmable)
             return null;
 
-        if (dropItem == null)
+        if (envData.DropItem == null)
             return null;
 
-        farmingType = dropItem.FarmingType;
+        farmingType = envData.DropItem.FarmingType;
         
-        return dropItem.GetDropItem();
+        return envData.DropItem.GetDropItem();
     }
 }

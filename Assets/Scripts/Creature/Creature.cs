@@ -5,12 +5,12 @@ using UnityEngine.Serialization;
 
 public abstract class Creature : MonoBehaviour
 {
-    [SerializeField] protected StatData statData;
+    [SerializeField] protected CreatureData creatureData;
     [SerializeField] protected int currentLevel;
     
     protected Stat currentStat;
     
-    public StatData StatData => statData;
+    public CreatureData CreatureData => creatureData;
     public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
     public Stat CurrentStat { get => currentStat; set => currentStat = value; }
 
@@ -21,9 +21,9 @@ public abstract class Creature : MonoBehaviour
 
     public virtual void Init()
     {
-        if (currentLevel < statData.Stats[0].Level || currentLevel > statData.Stats[^1].Level) 
+        if (currentLevel < creatureData.Stats[0].Level || currentLevel > creatureData.Stats[^1].Level) 
             currentLevel = 1;
         
-        currentStat = statData.Stats[currentLevel];
+        currentStat = creatureData.Stats[currentLevel];
     }
 }

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Collider[] detectedColliders;
+    [SerializeField] private PlayerData playerData;
     [SerializeField] private LayerMask gatheringLayerMask;
     [SerializeField] private Inventory inventory;
+    private Collider[] detectedColliders;
+    
+    private float time = 0;
 
     private void Awake()
     {
         detectedColliders = new Collider[1];
+        playerData = Managers.Resource.Load<PlayerData>("ScriptableObject/Creature/Player Data");
     }
 
     private void Update()
@@ -18,6 +22,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.F))
         {
             Farming();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            time = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -30,7 +39,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private float time = 0;
     private void Farming()
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
@@ -41,8 +49,8 @@ public class PlayerController : MonoBehaviour
             var other = detectedColliders[i];
             
             Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
-            
-            float farmingTime = other.GetComponent<IFarmable>().FarmingTime;
+
+            float farmingTime = playerData.FarmingTime;
 
             // 파밍 관련 애니메이션이나 기타 등등 스위치 문
             switch (farmingType)
@@ -74,7 +82,6 @@ public class PlayerController : MonoBehaviour
             }
 
             Managers.Pool.Push(other.gameObject);
-            time = 0;
         }
     }
 }

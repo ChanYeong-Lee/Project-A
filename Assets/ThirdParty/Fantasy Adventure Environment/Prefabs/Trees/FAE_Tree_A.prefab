@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012627607500}
-  - component: {fileID: 229967814658620924}
+  - component: {fileID: 1024646754817376694}
   - component: {fileID: 205000013684822512}
   - component: {fileID: 136000012140789234}
   - component: {fileID: 208637063591023984}
@@ -290,7 +290,7 @@ Transform:
   - {fileID: 450670}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &229967814658620924
+--- !u!114 &1024646754817376694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,13 +299,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013527354224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 607191dc986c45bf8885cf154b4da6eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  envName: "\uB098\uBB34A"
-  isFarmable: 1
-  dropItemList:
-  - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
 --- !u!205 &205000013684822512
 LODGroup:
   m_ObjectHideFlags: 0

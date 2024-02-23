@@ -14,7 +14,6 @@ public class Define
         GameScene,      // 게임 씬
     }
     
-    
     // 아이템
     public enum ItemType
     {
@@ -24,6 +23,7 @@ public class Define
         Etc
     }
     
+    // 화살 속성
     public enum AttributeType
     {
         None,           // 기본
@@ -36,6 +36,7 @@ public class Define
         Etc
     }
     
+    // 파밍 타입
     public enum FarmingType
     {
         None,           // 기본
