@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1374899979308180033}
   - component: {fileID: 1374899979309507169}
   - component: {fileID: 1374899979310473377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birch_02_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1374899979308180035}
   - component: {fileID: 1374899979309507171}
   - component: {fileID: 1374899979310473379}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birch_02_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 1374899979309507173}
   - component: {fileID: 1374899979310473381}
   - component: {fileID: 7483030028000263920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birch_02_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 1374899979308180039}
   - component: {fileID: 1374899979309507175}
   - component: {fileID: 1374899979310473383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birch_02_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 1374899979308180045}
   - component: {fileID: 7489247138279337354}
   - component: {fileID: 1374899979325667045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prefab_Birch_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

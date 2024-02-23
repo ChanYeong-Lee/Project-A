@@ -6,8 +6,12 @@ public class Define
     // 열거형(Enum)
     // 정리
 
+    // 레시피 데이터 주소 값
     public const string RecipeDataPath = "ScriptableObject/Recipe/";
     
+    // Env 성장 시간 : 프래임 * 시간
+    public const int GrowthTime = 60 * 10;
+
     public enum SceneType
     {
         LobbyScene,     // 로비 씬

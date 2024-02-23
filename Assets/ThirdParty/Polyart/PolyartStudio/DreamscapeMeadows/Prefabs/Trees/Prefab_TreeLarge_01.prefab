@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2118840309929652337}
   - component: {fileID: 2118840309928882263}
   - component: {fileID: 2118840309927883415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_Large_01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2118840309929652339}
   - component: {fileID: 2118840309928882257}
   - component: {fileID: 2118840309927883409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_Large_01_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2118840309929652341}
   - component: {fileID: 6192136821070121399}
   - component: {fileID: 2118840309912462549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prefab_TreeLarge_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 2118840309928882261}
   - component: {fileID: 2118840309927883413}
   - component: {fileID: 1832786868803237015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_Large_01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 2118840309929652349}
   - component: {fileID: 2118840309928882259}
   - component: {fileID: 2118840309927883411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_Large_01_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

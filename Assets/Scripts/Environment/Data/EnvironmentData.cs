@@ -5,10 +5,10 @@ public class EnvironmentData : ScriptableObject
 {
     [Header("Environment Info")]
     [SerializeField] private string envName;
-    [SerializeField] private bool isFarmable;
+    [SerializeField] private float respawnTime;
     [SerializeField] private DropTableData dropItem;
 
     public string EnvName => envName;
-    public bool IsFarmable => isFarmable;
+    public float RespawnTime => respawnTime;
     public DropTableData DropItem => dropItem;
 }

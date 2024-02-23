@@ -47,10 +47,14 @@ public class PlayerController : MonoBehaviour
         
         for (int i = 0; i < detectCount; i++)
         {
-            var other = detectedColliders[i];
-            
+            Collider other = detectedColliders[i];
             Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
+            // 자식용
+            // Dictionary<FarmingItemData, int> dataDic = other.GetComponentInParent<IFarmable>().Farming(out var farmingType);
 
+            if (dataDic == null)
+                return;
+            
             float farmingTime = playerData.FarmingTime;
 
             // 파밍 관련 애니메이션이나 기타 등등 스위치 문
@@ -82,6 +86,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"{data.Key} : {data.Value}");
             }
 
+            // GameManager 쪽으로 옮길 예정
+            StartCoroutine(other.GetComponentInParent<EnvSpawner>().CoRespawn(other.GetComponent<Environment>()));
             Managers.Pool.Push(other.gameObject);
         }
     }

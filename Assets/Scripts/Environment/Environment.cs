@@ -6,8 +6,11 @@ using UnityEngine.Serialization;
 public class Environment : MonoBehaviour, IFarmable
 {
     [SerializeField] protected EnvironmentData envData;
+    [SerializeField] private bool isFarmable;
 
     public EnvironmentData EnvData => envData;
+
+    public bool IsFarmable { get => isFarmable; set => isFarmable = value; }
     
     private void Start()
     {
@@ -16,6 +19,8 @@ public class Environment : MonoBehaviour, IFarmable
 
     public virtual void Init()
     {
+        if (envData == null) 
+            isFarmable = false;
     }
 
     // TODO : 파밍 -> 오브젝트 삭제 -> 일정 시간 이후 재생성
@@ -24,7 +29,7 @@ public class Environment : MonoBehaviour, IFarmable
     {
         farmingType = Define.FarmingType.None;
         
-        if (!envData.IsFarmable)
+        if (!isFarmable)
             return null;
 
         if (envData.DropItem == null)
