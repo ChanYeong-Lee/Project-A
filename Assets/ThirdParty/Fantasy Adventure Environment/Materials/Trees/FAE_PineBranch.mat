@@ -41,13 +41,13 @@ Material:
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - GEOM_TYPE_LEAF
   - _ALPHATEST_ON
   - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
-  m_InvalidKeywords:
-  - GEOM_TYPE_LEAF
   - _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
@@ -229,7 +229,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 4, g: 4, b: 4, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
