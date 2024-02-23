@@ -50,15 +50,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CoverageAlbedo:
-        m_Texture: {fileID: 2800000, guid: 6dc430d5c113ab14c91065b0117acafb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2c9a5d1ccb8feb24fabae7a84dd499cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoverageMap:
-        m_Texture: {fileID: 2800000, guid: f372ecf27e5c4954c8bf0015e21ca538, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f066435241bad04b9536e3214d73f14, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoverageNormals:
-        m_Texture: {fileID: 2800000, guid: 51954d6e0de971a43ac1ba884c6836f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: f520cd20275b2ea409783c8ced5a73bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Detailnormal:
@@ -114,7 +114,7 @@ Material:
     - _BlendMode: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CoverageAmount: 1
-    - _CoverageTiling: 8
+    - _CoverageTiling: 1
     - _CullMode: 2
     - _CullModeForward: 2
     - _DepthOffsetEnable: 0
@@ -127,7 +127,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
     - _Float4: 0.13
-    - _Globaltiling: 0.163
+    - _Globaltiling: 0.13
     - _MaskClipValue: 0.5
     - _OpaqueCullMode: 2
     - _QueueControl: 0
@@ -170,8 +170,8 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlobalColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ObjectColor: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
+    - _GlobalColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    - _ObjectColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5755184914755180880
 MonoBehaviour:

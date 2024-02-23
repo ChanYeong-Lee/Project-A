@@ -6,20 +6,21 @@ public class PoolManager
 {
     private Dictionary<string, Pool> pools = new Dictionary<string, Pool>();
 
-    private void CreatePool(GameObject original, Transform parent = null)
+    private void CreatePool(GameObject original)
     {
-        Pool pool = new Pool(original) { Parent = parent };
+        Pool pool = new Pool(original);
         pools.Add(original.name, pool);
     }
 
     public GameObject Pop(GameObject prefab, Transform parent = null)
     {
-        if (!pools.ContainsKey(prefab.name))
-        {
-            CreatePool(prefab, parent);
-        }
+        if (!pools.ContainsKey(prefab.name)) 
+            CreatePool(prefab);
 
-        return pools[prefab.name].Pop();
+        Pool pool = pools[prefab.name];
+        pool.Parent = parent;
+        
+        return pool.Pop();
     }
 
     public bool Push(GameObject go)

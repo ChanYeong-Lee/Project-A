@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Light Arrow
   itemType: 2
   description: "\uBE5B \uD654\uC0B4"
-  attribute: 0
+  attribute: 1
+  arrowDamage: 10

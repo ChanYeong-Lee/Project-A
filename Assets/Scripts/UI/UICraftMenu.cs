@@ -6,32 +6,37 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class UICraftMenu : MonoBehaviour
+public class UICraftMenu : UIBase
 {
-    private List<UICraftSlot> slots = new List<UICraftSlot>();
+    private List<UISlot> slots = new List<UISlot>();
 
-    // TODO : ÀÎº¥Åä¸® ÂüÁ¶´Â Managers.Game.Player.inventory·Î ¹Ù²Ù±â
-    // TODO : UIManager »ı±â¸é ´Ù½Ã Á¤¸®
+    // TODO : ì¸ë²¤í† ë¦¬ ì°¸ì¡°ëŠ” Managers.Game.Player.inventoryë¡œ ë°”ê¾¸ê¸°
+    // TODO : UIManager ìƒê¸°ë©´ ë‹¤ì‹œ ì •ë¦¬
     [SerializeField] private Inventory inventory;
-    [SerializeField] private List<ItemRecipeData> recipeDataList;
     [SerializeField] private RectTransform content;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private UICraftSlot slotPrefab;
-    private UICraftSlot selectSlot;
-
-    public UICraftSlot SelectSlot { get => selectSlot; set => selectSlot = value; }
+    [SerializeField] private UISlot slotPrefab;
+    
+    private UISlot selectSlot;
+    private List<ItemRecipeData> recipeDataList = new List<ItemRecipeData>();
+    
+    public UISlot SelectSlot { get => selectSlot; set => selectSlot = value; }
     
     private void OnEnable()
     {
-        foreach (UICraftSlot slot in slots) 
+        recipeDataList = Managers.Data.RecipeDataList;
+        
+        foreach (UISlot slot in slots) 
             Managers.Pool.Push(slot.gameObject);
         
         slots.Clear();
         
         foreach (var recipeData in recipeDataList)
         {
-            var slot = Managers.Pool.Pop(slotPrefab.gameObject, content).GetComponent<UICraftSlot>();
-            slot.RecipeData = recipeData;
+            var slot = Managers.Pool.Pop(slotPrefab.gameObject, content).GetComponent<UISlot>();
+            
+            slot.SlotType = SlotType.CraftMenu;
+            slot.ItemData = recipeData.ItemData;
             
             slots.Add(slot);
 
@@ -46,48 +51,63 @@ public class UICraftMenu : MonoBehaviour
 
         UpdateCraftItemInfo(selectSlot);
       
-        // ¾ÆÀÌÅÛ Á¦ÀÛ Å° ÀÔ·Â Ã¼Å©
-        if (Input.GetKeyDown(KeyCode.F) && IsCheckCreateItem(selectSlot.RecipeData))
+        // ì•„ì´í…œ ì œì‘ í‚¤ ì…ë ¥ ì²´í¬
+        if (Input.GetKeyDown(KeyCode.F) && IsCheckCraftItem(selectSlot.ItemData))
         {
-            Debug.Log("Á¦ÀÛ");
-            inventory.CraftingItem(selectSlot.RecipeData);
-            UpdateSlot(selectSlot);
+            Debug.Log("ì œì‘");
+            inventory.CraftingItem(FindItemRecipe(selectSlot.ItemData));
+
+            foreach (UISlot slot in slots) 
+                UpdateSlot(slot);
         }
     }
     
-    // Á¦ÀÛ ¾ÆÀÌÅÛ Á¤º¸Ã¢ ¾÷µ¥ÀÌÆ® ¸Ş¼Òµå
-    private void UpdateCraftItemInfo(UICraftSlot slot)
+    // ì œì‘ ì•„ì´í…œ ì •ë³´ì°½ ì—…ë°ì´íŠ¸ ë©”ì†Œë“œ
+    private void UpdateCraftItemInfo(UISlot slot)
     {
+        var recipeData = FindItemRecipe(slot.ItemData);
         StringBuilder sb = new StringBuilder();
+        
+        sb.Append($"{recipeData.ItemData.ItemName} X{recipeData.ItemCount}\n");
+        sb.Append("ì¬ë£Œ\n");
 
-        sb.Append($"{slot.RecipeData.ItemData.ItemName} X{slot.RecipeData.ItemCount}\n");
-        sb.Append("Àç·á\n");
-
-        for (var i = 0; i < slot.RecipeData.CraftItemData.Count; i++)
+        for (var i = 0; i < recipeData.CraftItemData.Count; i++)
         {
-            var itemData = slot.RecipeData.CraftItemData[i];
-            var itemCount = slot.RecipeData.CraftItemCount[i];
-            sb.Append($"{itemData.ItemName} : {inventory.ItemDataDic[itemData]}/{itemCount}\n");
+            var itemData = recipeData.CraftItemData[i];
+            var itemCount = recipeData.CraftItemCount[i];
+            int currentItemCount = inventory.ItemDataDic.GetValueOrDefault(itemData, 0);
+            
+            sb.Append($"{itemData.ItemName} : {currentItemCount}/{itemCount}\n");
         }
+
+        text.text = sb.ToString();
     }
     
-    // Á¦ÀÛ ¾ÆÀÌÅÛ ½½·Ô ¾÷µ¥ÀÌÆ® ¸Ş¼Òµå
-    private void UpdateSlot(UICraftSlot slot)
+    // ì œì‘ ì•„ì´í…œ ìŠ¬ë¡¯ ì—…ë°ì´íŠ¸ ë©”ì†Œë“œ
+    private void UpdateSlot(UISlot slot)
     {
-        slot.Text.color = IsCheckCreateItem(slot.RecipeData) ? Color.blue : Color.red;
-        slot.Text.text = $"{slot.RecipeData.ItemData.ItemName} X{slot.RecipeData.ItemCount}";
+        var recipeData = FindItemRecipe(slot.ItemData);
+        
+        slot.Text.color = IsCheckCraftItem(slot.ItemData) ? Color.blue : Color.red;
+        slot.Text.text = $"{slot.ItemData.ItemName} X{recipeData.ItemCount}";
     }
 
-    // Á¦ÀÛ °¡´ÉÇÑ ¾ÆÀÌÅÛ È®ÀÎ ¸Ş¼Òµå
-    private bool IsCheckCreateItem(ItemRecipeData recipeData)
+    private ItemRecipeData FindItemRecipe(ItemData itemData)
     {
+        var recipeData = recipeDataList.Find(recipe => itemData == recipe.ItemData);
+
+        return recipeData == null ? null : recipeData;
+    }
+    
+    // ì œì‘ ê°€ëŠ¥í•œ ì•„ì´í…œ í™•ì¸ ë©”ì†Œë“œ
+    private bool IsCheckCraftItem(ItemData itemData)
+    {
+        var recipeData = FindItemRecipe(itemData);
         var craftItemData = recipeData.CraftItemData;
         
         for (var i = 0; i < craftItemData.Count; i++)
         {
-            var itemData = craftItemData[i];
-
-            if (!inventory.ItemDataDic.TryGetValue(itemData, out int count) || count < recipeData.CraftItemCount[i])
+            if (!inventory.ItemDataDic.TryGetValue(craftItemData[i], out int count) || count < recipeData.CraftItemCount[i])
             {
                 return false;
             }

@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Light Fruit
   itemType: 2
   description: "\uAD11\uD718 \uC5F4\uB9E4"
-  attribute: 1
+  icon: {fileID: 0}
+  farmingType: 1

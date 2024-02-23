@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    protected GameObject drop;
-    
-    public GameObject Drop { get => drop; set => drop = value; }
-    
+    private MonsterData monsterData;
     
     public override void Init()
     {
         base.Init();
+        monsterData = creatureData as MonsterData;
     }
 
-    public void Farming()
+    public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
-        // 캐릭터 인벤에 드롭아이템 추가
+        farmingType = monsterData.DropItem.FarmingType;
+        
+        return null;
     }
 }

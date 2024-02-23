@@ -5,13 +5,14 @@ public class Define
     // 상수(const)
     // 열거형(Enum)
     // 정리
+
+    public const string RecipeDataPath = "ScriptableObject/Recipe/";
     
     public enum SceneType
     {
         LobbyScene,     // 로비 씬
         GameScene,      // 게임 씬
     }
-    
     
     // 아이템
     public enum ItemType
@@ -22,6 +23,7 @@ public class Define
         Etc
     }
     
+    // 화살 속성
     public enum AttributeType
     {
         None,           // 기본
@@ -32,5 +34,15 @@ public class Define
         Fire,           // 불 - 도트 데미지, 보스에 따라 내성 유무 차이
         Electric,       // 전기 - 모든 부위 전부 타격시 일시 마비
         Etc
+    }
+    
+    // 파밍 타입
+    public enum FarmingType
+    {
+        None,           // 기본
+        Gathering,      // 채집
+        Felling,        // 벌목
+        Mining,         // 채광
+        Dismantling     // 분해(몬스터 채집)
     }
 }

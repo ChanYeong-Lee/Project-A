@@ -89,7 +89,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":3.0,"y":3.0,"z":3.0}'
+      m_SerializableObject: '{"x":2.0,"y":2.0,"z":2.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -718,7 +718,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614583}
   - {fileID: 8926484042661614585}
   dataType: 0
-  capacity: 5000
+  capacity: 6000
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
@@ -1265,6 +1265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081ffb0090424ba4cb05370a42ead6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  opaqueRenderQueue: 0
+  transparentRenderQueue: 1
 --- !u!114 &8926484042661614593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,10 +1753,10 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614695}
       inputSlot: {fileID: 8926484042661614570}
-    position: {x: 720, y: 203}
+    position: {x: 705, y: 220}
     expandedSlots:
     - {fileID: 8926484042661614695}
-    expanded: 0
+    expanded: 1
 --- !u!114 &8926484042661614695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,9 +1936,9 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614700}
       inputSlot: {fileID: 8926484042661614575}
-    position: {x: 717, y: 296}
+    position: {x: 702, y: 416}
     expandedSlots: []
-    expanded: 0
+    expanded: 1
 --- !u!114 &8926484042661614700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,7 +1967,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":3.0,"y":3.0,"z":3.0}'
+      m_SerializableObject: '{"x":2.0,"y":2.0,"z":2.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -2165,7 +2173,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Transform, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":100.0,"y":10.0,"z":100.0}}'
+      m_SerializableObject: '{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":200.0,"y":10.0,"z":200.0}}'
     m_Space: 1
   m_Property:
     name: transform

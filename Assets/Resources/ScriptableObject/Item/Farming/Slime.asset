@@ -17,4 +17,5 @@ MonoBehaviour:
   itemName: Slime
   itemType: 2
   description: "\uC2AC\uB77C\uC784"
-  attribute: 3
+  icon: {fileID: 0}
+  farmingType: 4
