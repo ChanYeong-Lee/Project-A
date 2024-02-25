@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &976811243
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -502,6 +502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165376782775986722, guid: a54decb0487ae7e4ab8a23239c07504e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240890951778586424, guid: a54decb0487ae7e4ab8a23239c07504e,
         type: 3}

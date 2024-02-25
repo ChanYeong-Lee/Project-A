@@ -32,6 +32,7 @@ public class EnvSpawner : MonoBehaviour
     private GameObject Spawn(Environment env)
     {
         var go = Managers.Pool.Pop(envPrefabs[Random.Range(0, envPrefabs.Count)], transform);
+        
         go.transform.position = env.transform.position;
         go.transform.rotation = env.transform.rotation;
         go.transform.localScale = env.transform.lossyScale;

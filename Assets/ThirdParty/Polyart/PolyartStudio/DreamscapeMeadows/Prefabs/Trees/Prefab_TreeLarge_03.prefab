@@ -266,7 +266,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -337,6 +337,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 256a7f8f4f010c545bf70c9bee77efde, type: 2}
   - {fileID: 2100000, guid: 4863f36fbf7fbe740b49709e27b56f6e, type: 2}
+  - {fileID: 2100000, guid: 7452aed205cbd1f4281b71d36f8cb3bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
