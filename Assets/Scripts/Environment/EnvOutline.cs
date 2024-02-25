@@ -9,12 +9,11 @@ public class EnvOutline : MonoBehaviour
 
     private void OnEnable()
     {
-        outline.SetFloat("_Thickness", 23);
+        outline.SetFloat("_IsScanning", 1);
     }
 
     private void OnDisable()
     {
-        outline.SetFloat("_Thickness", 0);
-
+        outline.SetFloat("_IsScanning", 0);
     }
 }

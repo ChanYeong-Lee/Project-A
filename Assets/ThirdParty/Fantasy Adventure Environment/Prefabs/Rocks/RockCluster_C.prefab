@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011605300422}
+  - component: {fileID: -8243657712132174204}
   - component: {fileID: 980297250973494977}
   - component: {fileID: 4485239274392512397}
   - component: {fileID: -2732047780501957411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RockCluster_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,6 +37,20 @@ Transform:
   - {fileID: 2617587301429257197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8243657712132174204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012717408438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 0}
+  isFarmable: 1
 --- !u!205 &980297250973494977
 LODGroup:
   m_ObjectHideFlags: 0
@@ -109,7 +124,7 @@ GameObject:
   - component: {fileID: 3428434045787095089}
   - component: {fileID: 102569418279238216}
   - component: {fileID: 2572885299409914499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RockCluster_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +207,7 @@ GameObject:
   - component: {fileID: 2617587301429257197}
   - component: {fileID: 6452286976982968969}
   - component: {fileID: 6617796621438594730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RockCluster_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

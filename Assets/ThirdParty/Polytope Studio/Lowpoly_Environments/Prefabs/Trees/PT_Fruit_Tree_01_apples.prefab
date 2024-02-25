@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3315714296393109856}
   - component: {fileID: 7901795786038575910}
   - component: {fileID: 7525788340159858592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_apples_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2364243790871939078}
   - component: {fileID: 4604217538834115015}
   - component: {fileID: 6038074568851490021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_apples_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,10 +177,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6419187236850804161}
+  - component: {fileID: 7939604833028132220}
   - component: {fileID: 2256188382494855856}
   - component: {fileID: 6041280669062891749}
   - component: {fileID: 1733509708183360367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_apples
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +206,20 @@ Transform:
   - {fileID: 2364243790871939078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7939604833028132220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935278547815300987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
+  isFarmable: 1
 --- !u!205 &2256188382494855856
 LODGroup:
   m_ObjectHideFlags: 0
@@ -282,7 +297,7 @@ GameObject:
   - component: {fileID: 2123385224588831687}
   - component: {fileID: 4006941177706727810}
   - component: {fileID: 340751423047132367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_apples_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

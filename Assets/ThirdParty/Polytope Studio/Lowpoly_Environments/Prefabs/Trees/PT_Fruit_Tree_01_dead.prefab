@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1988025617893250342}
   - component: {fileID: 6759055787200995927}
-  m_Layer: 0
+  - component: {fileID: 6645794589642262803}
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215182899609276316}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,7 +35,6 @@ Transform:
   - {fileID: 7117508975715571117}
   - {fileID: 1799755330681518831}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6759055787200995927
 LODGroup:
@@ -62,6 +63,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4772830539911952586}
   m_Enabled: 1
+--- !u!114 &6645794589642262803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215182899609276316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 0}
+  isFarmable: 0
 --- !u!1 &2110101974054781677
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +88,7 @@ GameObject:
   - component: {fileID: 1799755330681518831}
   - component: {fileID: 3631142874527198405}
   - component: {fileID: 4772830539911952586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_dead_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,13 +102,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110101974054781677}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -0.0016458168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988025617893250342}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3631142874527198405
 MeshFilter:
@@ -156,7 +171,7 @@ GameObject:
   - component: {fileID: 7117508975715571117}
   - component: {fileID: 4919535853178116811}
   - component: {fileID: 4520285889721809477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_dead_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,13 +185,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7875350929978274829}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -0.0016458168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988025617893250342}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4919535853178116811
 MeshFilter:
@@ -239,7 +254,7 @@ GameObject:
   - component: {fileID: 355686686542058714}
   - component: {fileID: 7275367467134081096}
   - component: {fileID: 1814185510865685987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Fruit_Tree_01_dead_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,13 +268,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9055391635337348157}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -0.0016458168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988025617893250342}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7275367467134081096
 MeshFilter:

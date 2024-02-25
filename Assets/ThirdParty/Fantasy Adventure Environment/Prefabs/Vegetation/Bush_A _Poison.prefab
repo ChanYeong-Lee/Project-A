@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 474188}
   - component: {fileID: 3397580}
   - component: {fileID: 2349336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bush_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4000011197404242}
   - component: {fileID: 33000013714392080}
   - component: {fileID: 23000013661797390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bush_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,9 +175,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013528279170}
+  - component: {fileID: 9132171688985819917}
   - component: {fileID: 205000013782234198}
   - component: {fileID: 4341321036178012832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bush_A _Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +203,20 @@ Transform:
   - {fileID: 474188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9132171688985819917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011722847930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 0}
+  isFarmable: 1
 --- !u!205 &205000013782234198
 LODGroup:
   m_ObjectHideFlags: 0
@@ -263,7 +278,7 @@ GameObject:
   - component: {fileID: 4000012873527926}
   - component: {fileID: 33000011516991906}
   - component: {fileID: 23000014116341678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bush_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

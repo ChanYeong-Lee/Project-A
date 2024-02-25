@@ -24,10 +24,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // ìƒí˜¸ì‘ìš©
+        // »óÈ£ÀÛ¿ë
         if (Input.GetKey(KeyCode.F))
         {
-            Debug.Log("F ì…ë ¥");
+            Debug.Log("F ÀÔ·Â");
             Farming();
         }
 
@@ -36,17 +36,17 @@ public class PlayerController : MonoBehaviour
             farmingTime = 0;
         }
 
-        // ì¸ë²¤ ì²´í¬
+        // ÀÎº¥ Ã¼Å©
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log("ì¸ë²¤ ì•„ì´í…œ ì²´í¬");
+            Debug.Log("ÀÎº¥ ¾ÆÀÌÅÛ Ã¼Å©");
             foreach (KeyValuePair<ItemData, int> item in inventory.GetComponent<Inventory>().ItemDataDic)
             {
                 Debug.Log($"{item.Key.ItemName} : {item.Value}");
             }
         }
 
-        // ìŠ¤ìºë„ˆ
+        // ½ºÄ³³Ê
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartCoroutine(Scanning());
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             Collider other = detectedColliders[i];
             Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
-            // ìì‹ìš©
+            // ÀÚ½Ä¿ë
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponentInParent<IFarmable>().Farming(out var farmingType);
 
             if (dataDic == null)
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             
             float farmingTime = playerData.FarmingTime;
 
-            // íŒŒë° ê´€ë ¨ ì• ë‹ˆë©”ì´ì…˜ì´ë‚˜ ê¸°íƒ€ ë“±ë“± ìŠ¤ìœ„ì¹˜ ë¬¸
+            // ÆÄ¹Ö °ü·Ã ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ³ª ±âÅ¸ µîµî ½ºÀ§Ä¡ ¹®
             switch (farmingType)
             {
                 case Define.FarmingType.None:

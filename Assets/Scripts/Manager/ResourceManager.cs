@@ -1,4 +1,4 @@
-ï»¿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceManager
@@ -32,7 +32,7 @@ public class ResourceManager
         return objects;
     }
 
-    // ì£¼ì†Œê°’ìœ¼ë¡œ ìƒì„±
+    // ÁÖ¼Ò°ªÀ¸·Î »ı¼º
     public GameObject Instantiate(string key, Transform parent = null, bool pooling = false)
     {
         GameObject prefab = Load<GameObject>($"{key}");
@@ -50,7 +50,7 @@ public class ResourceManager
         return go;
     }
 
-    // í”„ë¦¬íŒ¹ìœ¼ë¡œ ìƒì„±
+    // ÇÁ¸®ÆÕÀ¸·Î »ı¼º
     public GameObject Instantiate(GameObject prefab, Transform parent = null, bool pooling = false)
     {
         if (prefab == null)

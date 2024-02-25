@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1268050992877243359}
   - component: {fileID: 6323926895507881134}
-  m_Layer: 0
+  - component: {fileID: 1509810496565919429}
+  m_Layer: 7
   m_Name: PT_Pine_Tree_03_dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932841404346126693}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,7 +35,6 @@ Transform:
   - {fileID: 2534358327882011202}
   - {fileID: 5340731949621571375}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6323926895507881134
 LODGroup:
@@ -62,6 +63,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4328895901199877293}
   m_Enabled: 1
+--- !u!114 &1509810496565919429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932841404346126693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 0}
+  isFarmable: 0
 --- !u!1 &3362487869812425040
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +88,7 @@ GameObject:
   - component: {fileID: 2809133384829089810}
   - component: {fileID: 2927318667073144412}
   - component: {fileID: 728806381982184805}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Pine_Tree_03_dead_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,13 +102,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3362487869812425040}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1268050992877243359}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2927318667073144412
 MeshFilter:
@@ -156,7 +171,7 @@ GameObject:
   - component: {fileID: 5340731949621571375}
   - component: {fileID: 2617870471872453413}
   - component: {fileID: 4328895901199877293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Pine_Tree_03_dead_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,13 +185,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4723611995488449968}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1268050992877243359}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2617870471872453413
 MeshFilter:
@@ -239,7 +254,7 @@ GameObject:
   - component: {fileID: 2534358327882011202}
   - component: {fileID: 6272690288195183828}
   - component: {fileID: 7058119992877278399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Pine_Tree_03_dead_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,13 +268,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6476640290302085614}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1268050992877243359}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6272690288195183828
 MeshFilter:

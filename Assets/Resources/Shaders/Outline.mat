@@ -38,13 +38,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeEndDistance: 57.17
-    - _FadeStartDistance: 1.65
+    - _FadeEndDistance: 20
+    - _FadeStartDistance: 0
+    - _Float: 0
+    - _ISSCANNING: 0
+    - _IsScanning: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0
+    - _Thickness: 10
     m_Colors:
-    - _Color: {r: 3.9999995, g: 0.18438523, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.8104147, b: 4.7422953, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3971444277079646373
 MonoBehaviour:

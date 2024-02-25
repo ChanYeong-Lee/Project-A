@@ -21,8 +21,8 @@ public class Arrow : Item
         }
     }
     
-    // TODO : ë³´ìŠ¤ ëª¬ìŠ¤í„° ë° ëª¬ìŠ¤í„° êµ¬í˜„ í›„ íš¨ê³¼ ë©”ì†Œë“œ êµ¬í˜„ ì˜ˆì •
-    // í™”ì‚´ íš¨ê³¼ ë°œë™ ë©”ì†Œë“œ
+    // TODO : º¸½º ¸ó½ºÅÍ ¹× ¸ó½ºÅÍ ±¸Çö ÈÄ È¿°ú ¸Þ¼Òµå ±¸Çö ¿¹Á¤
+    // È­»ì È¿°ú ¹ßµ¿ ¸Þ¼Òµå
     private void Activate()
     {
         switch (arrowData.Attribute)

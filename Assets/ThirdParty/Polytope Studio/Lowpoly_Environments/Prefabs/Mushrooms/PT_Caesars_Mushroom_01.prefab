@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6360628377774826359}
+  - component: {fileID: 5114030818935421067}
   - component: {fileID: 8064440990309985490}
   - component: {fileID: 5192176564893538328}
   - component: {fileID: 4471855482396545146}
   - component: {fileID: 3114041379672895645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT_Caesars_Mushroom_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,6 +37,20 @@ Transform:
   - {fileID: 5934103654962770873}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5114030818935421067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984911598340929997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
+  isFarmable: 1
 --- !u!33 &8064440990309985490
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -139,7 +154,7 @@ GameObject:
   - component: {fileID: 5934103654962770873}
   - component: {fileID: 2493447948795980891}
   - component: {fileID: 6228110704471423551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT+Caesars_Mushroom_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
