@@ -17,6 +17,7 @@ MonoBehaviour:
   itemCount: 3
   craftItemID: e903000065000000
   craftItemData:
-  - {fileID: 11400000, guid: e833bc3c3ea0d874594a968fe4847593, type: 2}
+  - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+  - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
   - {fileID: 11400000, guid: 425034b01535a0b479bae2e7eafcd61d, type: 2}
-  craftItemCount: 0300000001000000
+  craftItemCount: 030000000300000001000000

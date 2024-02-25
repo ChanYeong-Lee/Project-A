@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  envData: {fileID: 0}
+  envData: {fileID: 11400000, guid: 8691f7fca362e0242b13e1cacff252c5, type: 2}
   isFarmable: 1
 --- !u!205 &205000011793690292
 LODGroup:

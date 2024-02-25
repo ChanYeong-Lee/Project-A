@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Tree Data
   m_EditorClassIdentifier: 
   envName: "\uB098\uBB34"
-  isFarmable: 1
   respawnTime: 1
-  dropItem: {fileID: 11400000, guid: b86d809377e8aad42a51d90a1e0c6630, type: 2}
+  dropItem: {fileID: 11400000, guid: f95169da98d0c6b4786ecb468ccafa8f, type: 2}

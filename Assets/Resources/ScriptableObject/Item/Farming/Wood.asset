@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   path: Prefabs/...
-  itemName: Wood
+  itemName: "\uB098\uBB34"
   itemType: 2
   description: "\uB098\uBB34"
   icon: {fileID: 0}
-  farmingType: 2
+  farmingType: 0

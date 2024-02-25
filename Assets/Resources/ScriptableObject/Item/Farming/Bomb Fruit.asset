@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 101
   path: Prefabs/...
-  itemName: Bomb Fruit
+  itemName: "\uD3ED\uD0C4 \uC5F4\uB9E4"
   itemType: 2
-  description: "\uD3ED\uD0C4 \uC5F4\uB9E4"
+  description: "\uD3ED\uD0C4 \uC5F4\uB9E4\n\uD130\uC9C4\uB2E4"
   icon: {fileID: 0}
-  farmingType: 1
+  farmingType: 0

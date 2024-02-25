@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 102
   path: Prefabs/...
-  itemName: Electric Fruit
+  itemName: "\uC804\uAE30 \uC5F4\uB9E4"
   itemType: 2
-  description: "\uC804\uAE30 \uC5F4\uB9E4"
+  description: "\uC804\uAE30 \uC5F4\uB9E4\n\uAC10\uC804\uB41C\uB2E4\n\uC790\uC791\uB098\uBB34\uC5D0\uC11C
+    \uC5BB\uC744 \uC218 \uC788\uB2E4"
   icon: {fileID: 0}
-  farmingType: 1
+  farmingType: 0

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c51799ebd08429eb291d8b4d0b7bba1, type: 3}
+  m_Name: Apple Tree Drop Table
+  m_EditorClassIdentifier: 
+  id: 0
+  farmingType: 2
+  dropItemList:
+  - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+  - {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
+  dropItemMinCount: 0500000001000000
+  dropItemMaxCount: 0a00000003000000
+  dropItemRate: 6400000050000000

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   path: Prefabs/...
-  itemName: Stone
+  itemName: "\uB3CC"
   itemType: 2
-  description: "\uB3CC"
+  description: "\uB3CC\n\uB3CC\uBA69\uC774"
   icon: {fileID: 0}
-  farmingType: 3
+  farmingType: 0

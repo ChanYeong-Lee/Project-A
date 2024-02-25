@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
+  isFarmable: 1
 --- !u!205 &205000011467595164
 LODGroup:
   m_ObjectHideFlags: 0

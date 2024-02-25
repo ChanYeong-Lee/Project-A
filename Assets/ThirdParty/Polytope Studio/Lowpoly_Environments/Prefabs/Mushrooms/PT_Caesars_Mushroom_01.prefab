@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
+  envData: {fileID: 11400000, guid: b245f468b780f2f4c9a40f209e3bfcc8, type: 2}
   isFarmable: 1
 --- !u!33 &8064440990309985490
 MeshFilter:
