@@ -107,7 +107,6 @@ public class PlayerController : MonoBehaviour
 
         scanner.transform.position = transform.position;
 
-
         if (ps != null)
         {
             var main = ps.main;
