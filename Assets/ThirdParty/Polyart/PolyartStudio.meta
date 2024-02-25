@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 6da0467f1fd958d47901446f88c328fa
+<<<<<<<< HEAD:Assets/ThirdParty/Malbers Animations/Animals Packs/01 Forest Pack/Tiger/Tiger Base Demo.unity.meta
+guid: 54268cb651b43dd4d904e1bade9cf469
+========
+guid: 22222ee575fb6b7479bbf556a9be7385
 folderAsset: yes
+>>>>>>>> temp:Assets/ThirdParty/Polyart/PolyartStudio.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

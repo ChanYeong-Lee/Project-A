@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 1886321769886696720}
   - component: {fileID: 1886321769885369654}
   - component: {fileID: 1886321769884403702}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tree_Large_03_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1886321769886696720
 Transform:
@@ -95,12 +95,12 @@ GameObject:
   - component: {fileID: 1886321769886696722}
   - component: {fileID: 1886321769885369648}
   - component: {fileID: 1886321769884403696}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tree_Large_03_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1886321769886696722
 Transform:
@@ -177,15 +177,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1886321769886696724}
-  - component: {fileID: 6336871616252826089}
   - component: {fileID: 1886321769901461940}
-  - component: {fileID: 3344722486866284671}
-  m_Layer: 7
+  - component: {fileID: 6730228950438155907}
+  m_Layer: 0
   m_Name: Prefab_TreeLarge_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1886321769886696724
 Transform:
@@ -206,20 +205,6 @@ Transform:
   - {fileID: 1886321769886696732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6336871616252826089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1886321769886341428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
-  isFarmable: 1
 --- !u!205 &1886321769901461940
 LODGroup:
   m_ObjectHideFlags: 0
@@ -251,7 +236,7 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1886321769884403698}
   m_Enabled: 1
---- !u!136 &3344722486866284671
+--- !u!136 &6730228950438155907
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,11 +251,11 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.87
+  m_Radius: 2
   m_Height: 10.8
   m_Direction: 1
   m_Center: {x: 0.01, y: 3.84, z: -0.019579768}
@@ -285,12 +270,12 @@ GameObject:
   - component: {fileID: 1886321769886696726}
   - component: {fileID: 1886321769885369652}
   - component: {fileID: 1886321769884403700}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tree_Large_03_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1886321769886696726
 Transform:
@@ -337,7 +322,6 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 256a7f8f4f010c545bf70c9bee77efde, type: 2}
   - {fileID: 2100000, guid: 4863f36fbf7fbe740b49709e27b56f6e, type: 2}
-  - {fileID: 2100000, guid: 7452aed205cbd1f4281b71d36f8cb3bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,12 +354,12 @@ GameObject:
   - component: {fileID: 1886321769886696732}
   - component: {fileID: 1886321769885369650}
   - component: {fileID: 1886321769884403698}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tree_Large_03_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1886321769886696732
 Transform:

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 270549bedcce8394493d1bc370ca57d9
+<<<<<<<< HEAD:Assets/Scenes/New Scene.unity.meta
+guid: 33a487a0060275e4698ad9ed55dc250e
+========
+guid: c96807c915f12ba47a3d4250feed1b15
 folderAsset: yes
+>>>>>>>> temp:Assets/ThirdParty/Polyart.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

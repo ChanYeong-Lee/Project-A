@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4000010197599048}
   - component: {fileID: 33000012364526508}
   - component: {fileID: 23000014067296124}
-  - component: {fileID: 208581023628783114}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FAE_Birch_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,22 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &208581023628783114
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010328881802}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.25, y: 7, z: 0.25}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 7, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1000010976156036
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +95,7 @@ GameObject:
   - component: {fileID: 4000013995100308}
   - component: {fileID: 33000010860999460}
   - component: {fileID: 23000010468743566}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FAE_Birch_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +179,7 @@ GameObject:
   - component: {fileID: 4000011566051328}
   - component: {fileID: 33000014157850100}
   - component: {fileID: 23000012511815736}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FAE_Birch_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +263,7 @@ GameObject:
   - component: {fileID: 4000012094155886}
   - component: {fileID: 33000013414857438}
   - component: {fileID: 23000012355488576}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FAE_Birch_B_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,11 +344,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010432572490}
-  - component: {fileID: 590987065465813740}
   - component: {fileID: 205000011793690292}
   - component: {fileID: 136000012051260984}
   - component: {fileID: 208700246294110446}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FAE_Birch_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,9 +362,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013451787930}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.83679116, y: 0.8367911, z: 0.83679116}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000010197599048}
@@ -391,19 +373,6 @@ Transform:
   - {fileID: 4000012094155886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &590987065465813740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013451787930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecb3749396a46a1b8fc48b8b4b38b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  envData: {fileID: 11400000, guid: 6927eb7c9c2ae4942aa9f52ceb7111e3, type: 2}
 --- !u!205 &205000011793690292
 LODGroup:
   m_ObjectHideFlags: 0
