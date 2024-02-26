@@ -2,10 +2,13 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Merchant : NPC
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] public State state;
+    [SerializeField] private NavMeshAgent agent;
 
     public enum State
     {
@@ -14,7 +17,8 @@ public class Merchant : NPC
         RunAway,
         Interact,
     }
-    
+
+   
 
     private void Update()
     {
@@ -24,21 +28,36 @@ public class Merchant : NPC
 
     public override void Init()
     {
-        animator = GetComponent<Animator>();
 
         base.Init();
-        stateMachine.AddState(State.Idle, new MerchantState(this));
-        stateMachine.AddState(State.Wander, new MerchantState(this));
-        stateMachine.AddState(State.RunAway, new MerchantState(this));
-        stateMachine.AddState(State.Interact, new MerchantState(this));
+        stateMachine.AddState(State.Idle, new IdleState(this));
+        stateMachine.AddState(State.Wander, new WanderState(this));
+        stateMachine.AddState(State.RunAway, new RnuAwayState(this));
+        stateMachine.AddState(State.Interact, new InteractState(this));
         stateMachine.InitState(State.Idle);
         print("A");
 
-        
+        agent = GetComponent<NavMeshAgent>();
 
         moveSpeed = 3;
         sprintSpeed = 5;
         curSpeed = moveSpeed;
+
+        agent.nextPosition = new Vector3(Random.Range(-10,10), 0, Random.Range(-10,10));
+        agent.autoRepath = true;
+    }
+
+    protected void SwitchAnimation(State state, float value)
+    {
+        anim.SetFloat(state.ToString(), value);
+    }
+    protected void SwitchAnimation(State state, bool value)
+    {
+        anim.SetBool(state.ToString(), value);
+    }
+    protected void SwitchAnimation(State state)
+    {
+        anim.SetTrigger(state.ToString());
     }
 
     #region State
@@ -62,8 +81,10 @@ public class Merchant : NPC
 
         public override void Enter()
         {
-        
+            Debug.Log("Idle Enter");
             ChangeState(State.Wander);
+            
+
         }
         public override void Transition()
         {
@@ -80,11 +101,14 @@ public class Merchant : NPC
         public WanderState(Creature owner) : base(owner) { }
         public override void Enter()
         {
+            Debug.Log("Wander Enter");
             CurSpeed = merchant.moveSpeed;
-            
+            merchant.SwitchAnimation(State.Wander, CurSpeed);
+
         }
         public override void Update()
         {
+            Debug.Log("Wander Update");
             Move();
         }
         public override void Transition()

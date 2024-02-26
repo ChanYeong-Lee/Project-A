@@ -17,15 +17,8 @@ public abstract class NPC : Creature
     public override void Init()
     {
         base.Init();
-        
         npcData = creatureData as NPCData;
     }
-
-    void Start()
-    {
-        
-    }
-
  
     void Update()
     {
@@ -35,9 +28,6 @@ public abstract class NPC : Creature
     protected class NPCState : CreatureState
     {
         protected GameObject target;
-
-  
-
         public NPCState(Creature owner) : base(owner)
         {
         }

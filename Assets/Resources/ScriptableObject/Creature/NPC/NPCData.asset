@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ee769131f22204a9a8107fddbc8151, type: 3}
   m_Name: NPCData
   m_EditorClassIdentifier: 
-  creatureName: 
-  stats: []
+  creatureName: Merchandiser
+  stats:
+  - level: 1
+    healthPoint: 10
+    attack: 1
+    defence: 1
+  - level: 2
+    healthPoint: 20
+    attack: 2
+    defence: 2
+  - level: 3
+    healthPoint: 30
+    attack: 3
+    defence: 3
   moveSpeed: 3
   sprintSpeed: 5

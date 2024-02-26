@@ -14,7 +14,7 @@ public class HorseController : MonoBehaviour
 
     private float accelation = 0.0f;
     private float velocity = 0.0f;
-    private float gravity = 15.0f;
+    
 
     private bool isGround;
 
