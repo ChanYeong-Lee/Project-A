@@ -3,8 +3,11 @@ using UnityEngine;
 
 public abstract class Monster : Creature, IFarmable
 {
-    private MonsterData monsterData;
-    
+    protected MonsterData monsterData;
+    protected GameObject target;
+
+    // 스폰 위치 -
+
     public override void Init()
     {
         base.Init();
@@ -14,7 +17,16 @@ public abstract class Monster : Creature, IFarmable
     public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
         farmingType = monsterData.DropItem.FarmingType;
-        
+
         return null;
+    }
+
+    protected class MonsterState : CreatureState
+    {
+        protected GameObject target;
+        
+        public MonsterState(Creature owner) : base(owner)
+        {
+        }
     }
 }
