@@ -7,10 +7,7 @@ public class Moose : Monster
 {
     [SerializeField] public State state;
     [SerializeField] public float time;
-
-    /// <summary>
-    ///  test
-    /// </summary>
+    
     private void Update()
     {
         time = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
@@ -22,8 +19,6 @@ public class Moose : Monster
         Patrol,
         Trace,
         Attack,
-        Seat,
-        Sleep
     }
     
     public override void Init()
@@ -33,19 +28,39 @@ public class Moose : Monster
         stateMachine.AddState(State.Patrol, new PatrolState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Attack, new AttackState(this));
-        stateMachine.AddState(State.Seat, new SeatState(this));
-        stateMachine.AddState(State.Sleep, new SleepState(this));
         stateMachine.InitState(State.Idle);
-        Debug.Log("init");
     }
 
     #region State
 
     private class MooseState : MonsterState
     {
-        public Moose moose => owner as Moose;
+        protected Moose moose => owner as Moose;
+        protected float randTime;
+        protected float vertical;
+        protected float horizontal;
+        protected bool isStand;
+        protected int idInt;
         
         public MooseState(Creature owner) : base(owner) { }
+
+        public override void Update()
+        {
+            randTime -= Time.deltaTime;
+            if (randTime < 0) 
+                RandVariable();
+        }
+
+        // 랜덤 값 생성
+        // TODO : 패트롤일 때 달리기보다 옆으로 돌기만 해서 수치 조정 필요
+        protected void RandVariable()
+        {
+            randTime = Random.Range(1f, 10f);
+            isStand = Random.value > 0.5f;
+            vertical = Random.Range(-1f, 3f);
+            horizontal = Random.Range(-2f, 2f);
+            idInt = Random.Range(-1, 11);
+        }
     }
     
     private class IdleState : MooseState
@@ -55,24 +70,21 @@ public class Moose : Monster
         public override void Enter()
         {
             anim.SetBool("Stand", true);
+            
+            moose.state = State.Idle;
         }
         
         public override void Update()
         {
-            int IDInt = Random.Range(-1, 11);
-            anim.SetInteger("IDInt", IDInt);
+            base.Update();
             
-            // test
-            moose.state = State.Idle;
+            anim.SetInteger("IDInt", idInt);
         }
 
         public override void Transition()
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-                return;
-
-            // if (Random.Range(0, 2) == 1) 
-                ChangeState(State.Seat);
+            if (isStand && anim.IsInTransition(0)) 
+                ChangeState(State.Patrol);
         }
 
         public override void Exit()
@@ -80,29 +92,36 @@ public class Moose : Monster
             anim.SetBool("Stand", false);
         }
     }
-
+    
     private class PatrolState : MooseState
     {
         public PatrolState(Creature owner) : base(owner) { }
 
         public override void Enter()
         {
+            RandVariable();
+            
             anim.SetBool("Stand", false);
-            anim.SetFloat("Vertical", Random.Range(-1f, 3f));
-            anim.SetFloat("Horizontal", Random.Range(-2f, 2f));
+            
+            moose.state = State.Patrol;
         }
 
         public override void Update()
         {
-            // test
-            moose.state = State.Patrol;
+            base.Update();
+            
+            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
+            anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.deltaTime));
         }
 
         public override void Transition()
         {
-            
+            if (isStand)
+            {
+                ChangeState(State.Idle);
+                Debug.Log("stand");
+            }
         }
-        
     }
     
     private class TraceState : MooseState
@@ -125,57 +144,7 @@ public class Moose : Monster
         }
     }
 
-    private class SeatState : MooseState
-    {
-        public SeatState(Creature owner) : base(owner) { }
 
-        public override void Enter()
-        {
-            anim.SetBool("Stand", true);
-            anim.SetInteger("IDInt", -100);
-        }
-
-        public override void Update()
-        {
-            // test
-            moose.state = State.Seat;
-        }
-
-        public override void Transition()
-        {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-                return;
-
-            // if (Random.Range(0, 2) == 1) 
-                ChangeState(State.Sleep);
-        }
-    }
-    
-    private class SleepState : MooseState
-    {
-        public SleepState(Creature owner) : base(owner) { }
-
-        public override void Enter()
-        {
-            anim.SetInteger("IDInt", -101);
-            moose.state = State.Sleep;
-
-        }
-
-        public override void Update()
-        {
-        }
-
-        public override void Transition()
-        {
-            ChangeState(State.Idle);
-        }
-
-        public override void Exit()
-        {
-            anim.SetBool("Stand", false);
-        }
-    }
     
     #endregion
 }
