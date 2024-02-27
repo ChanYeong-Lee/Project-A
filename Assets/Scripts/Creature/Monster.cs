@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class Monster : Creature, IFarmable
 {
     protected MonsterData monsterData;
-    protected GameObject target;
+    [SerializeField]
+    protected Transform target;
 
     // 스폰 위치 -
 
@@ -23,7 +24,8 @@ public abstract class Monster : Creature, IFarmable
 
     protected class MonsterState : CreatureState
     {
-        protected GameObject target;
+        protected Monster monster => owner as Monster;
+        protected Transform target => monster.target;
         
         public MonsterState(Creature owner) : base(owner)
         {

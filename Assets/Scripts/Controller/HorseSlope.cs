@@ -130,7 +130,10 @@ public class HorseSlope : MonoBehaviour
 
             //print($"{deltaX}, {deltaY}, pitch = {pitch}");
         }
-        pitch = 0.0f;
+        else
+        {
+            pitch = 0.0f;
+        }
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-pitch, transform.rotation.eulerAngles.y, 0), Time.deltaTime * rotateSpeed);
         //else
         //{
