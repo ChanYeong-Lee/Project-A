@@ -20,10 +20,7 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Idle':\n\tLeftLowerLeg
-      average position error 6.3 mm and maximum position error 21.6 mm at time 3:19
-      (73.0%) Frame 109\n\tLeftFoot average position error 0.5 mm and maximum position
-      error 1.1 mm at time 3:21 (74.3%) Frame 111\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0

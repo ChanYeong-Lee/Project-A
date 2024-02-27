@@ -11,8 +11,8 @@ public abstract class Creature : MonoBehaviour
 
     protected Stat currentStat;
 
-    protected Animator anim;
-    protected StateMachine stateMachine;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected StateMachine stateMachine;
 
     public CreatureData CreatureData => creatureData;
     public Vector3 SpawnPos { get => spawnPos; set => spawnPos = value; }
