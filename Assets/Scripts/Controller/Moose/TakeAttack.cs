@@ -22,9 +22,7 @@ namespace MooseController
 
         public override void Transition()
         {
-            ChangeState(Vector3.Distance(target.transform.position, moose.transform.position) < 3
-                ? State.Attack
-                : State.Trace);
+            ChangeState(distanceToTarget < 5 ? State.Attack : State.Trace);
         }
 
         public override void Exit()

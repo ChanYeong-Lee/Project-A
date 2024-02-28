@@ -33,11 +33,15 @@ namespace MooseController
             if (target is not null && isUnderAttack) 
                 ChangeState(State.Attack);
             
-            if (Vector3.Distance(target.transform.position, moose.transform.position) < 10) 
+            if (!moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.ViewDistance) 
                 ChangeState(State.Run);
             
+            if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
+                ChangeState(State.Trace);
+                    
             if (isChangedState) 
                 ChangeState(State.Patrol);
+            
         }
 
         public override void Exit()

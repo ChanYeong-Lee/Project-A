@@ -35,11 +35,12 @@ namespace MooseController
 
         public override void Transition()
         {
-            base.Transition();
-            
             // Idle
             if (isChangedState) 
                 ChangeState(State.Idle);
+
+            if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
+                ChangeState(State.Trace);
         }
 
         private void Move()

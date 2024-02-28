@@ -652,11 +652,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moose
       objectReference: {fileID: 0}
-    - target: {fileID: 6848288480469920760, guid: 4578ead0e0fda394c8bd6590d2b3c672,
-        type: 3}
-      propertyPath: m_UpdateMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8247692286798069618, guid: 4578ead0e0fda394c8bd6590d2b3c672,
         type: 3}
       propertyPath: target

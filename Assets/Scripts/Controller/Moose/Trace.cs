@@ -18,19 +18,27 @@ namespace MooseController
             base.Update();
 
             // 거리에 따른 속도값 조절 필요
-            vertical = distanceToTarget / 2 > 3 ? 3 : distanceToTarget / 2;
+            if (distanceToTarget > moose.MonsterData.AttackRange)
+                vertical = 3;
+            else if (distanceToTarget > moose.MonsterData.AttackRange / 2)
+                vertical = distanceToTarget / 2;
+            else
+                vertical = 0;
+        }
 
-            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
-            
+        public override void FixedUpdate()
+        {
             FixedHorizontal(30);
+            
+            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
         }
 
         public override void Transition()
         {
-            if (Vector3.Distance(target.transform.position, moose.transform.position) < 5 && attackCooldown < 0.0f) 
+            if (distanceToTarget < moose.MonsterData.AttackRange && attackCooldown < 0) 
                 ChangeState(State.Attack);
             
-            if (Vector3.Distance(target.transform.position, moose.transform.position) > 100) 
+            if (distanceToTarget > 100) 
                 ChangeState(State.Patrol);
         }
     }

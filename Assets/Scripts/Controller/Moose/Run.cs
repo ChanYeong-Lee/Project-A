@@ -25,7 +25,7 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (target is null || Vector3.Distance(target.transform.position, moose.transform.position) > 100)
+            if (target is null || distanceToTarget > 50)
             {
                 ChangeState(State.Idle);
             }

@@ -1010,6 +1010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1543272457757018624}
+  - component: {fileID: 7378101466631355805}
   m_Layer: 20
   m_Name: Collider
   m_TagString: Untagged
@@ -1032,6 +1033,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4898944642192483869}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!64 &7378101466631355805
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986563698502127480}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300012, guid: 35f8fcd388a18654693cddf8f1ad9905, type: 3}
 --- !u!1 &4129064090506880333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,10 +1428,9 @@ MonoBehaviour:
   currentLevel: 1
   target: {fileID: 0}
   eyes: {fileID: 2391980585498172653}
-  body: {fileID: 0}
-  layerMask:
+  detection:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 0
   state: 0
   time: 0
 --- !u!54 &4955735013237341495

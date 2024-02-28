@@ -34,7 +34,6 @@ namespace MooseController
             {
                 anim.SetInteger("IDInt", idInt);
                 anim.SetBool("Attack", true);
-                Debug.Log($"id int = {idInt}, anim Attack = {anim.GetBool("Attack")}, attack motion");
             }
             else if (angleToTarget is > 150 or < -150)
             {
@@ -47,13 +46,13 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (target == null)
+            if (target is null)
                 ChangeState(State.Idle);
             
-            if (distanceToTarget > 100) 
+            if (distanceToTarget > moose.MonsterData.TrackingDistance) 
                 ChangeState(State.Patrol);
 
-            if(isChangedState || distanceToTarget > 5) 
+            if(isChangedState || distanceToTarget > moose.MonsterData.AttackRange) 
                 ChangeState(State.Trace);
         }
 
