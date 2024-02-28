@@ -22,11 +22,6 @@ public class Moose : Monster
         Attack,
     }
 
-    private void Update()
-    {
-        print(Mathf.Atan2(transform.forward.x, transform.forward.z) * Mathf.Rad2Deg);
-    }
-
     public override void Init()
     {
         base.Init();
@@ -36,7 +31,8 @@ public class Moose : Monster
         stateMachine.AddState(State.TakeAttack, new TakeAttackState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Attack, new AttackState(this));
-        stateMachine.InitState(State.Idle);
+        // stateMachine.InitState(State.Idle);
+        stateMachine.InitState(State.Trace);
     }
 
     #region State
@@ -250,21 +246,57 @@ public class Moose : Monster
             base.Update();
             
             anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
-            if (Vector3.Dot(moose.transform.forward, moose.transform.position - target.transform.position) > moose.transform.forward.magnitude * 0.9f)
+            // if (Vector3.Dot(moose.transform.forward, target.transform.position - moose.transform.position) > moose.transform.forward.magnitude * 0.9f)
+            // {
+            //     anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.deltaTime));
+            // }
+            // else
+            // {
+            //     float angle = Vector3.SignedAngle(moose.transform.forward,
+            //         target.transform.position - moose.transform.position, Vector3.up);
+            //
+            //
+            //     if (angle < 5 || angle > -5)
+            //     {
+            //         anim.SetFloat("Horizontal", 0);
+            //     }
+            //     else if (angle > 5)
+            //     {
+            //         anim.SetFloat("Horizontal", 2);
+            //         Debug.Log($"각도 : {angle}");
+            //     }
+            //     else if (angle < -5)
+            //     {
+            //         anim.SetFloat("Horizontal", -2);
+            //         Debug.Log($"각도 : {angle}");
+            //     }
+            // }
+            
+            float angle = Vector3.SignedAngle(moose.transform.forward,
+                target.transform.position - moose.transform.position, Vector3.up);
+            
+            if (angle is < 5 and > -5)
             {
-                anim.SetFloat("Horizontal", 0);
-            }
-            else
-            {
-                anim.SetFloat("Horizontal", 0);
+                anim.SetFloat("Horizontal",  Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.deltaTime));
+                Debug.Log($"각도 : {angle}");
 
+            }
+            else if (angle > 5)
+            {
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 2, Time.deltaTime));
+                Debug.Log($"각도 : {angle}");
+            }
+            else if (angle < -5)
+            {
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.deltaTime));
+                Debug.Log($"각도 : {angle}");
             }
             
         }
 
         public override void Transition()
         {
-            if (Vector3.Distance(target.transform.position, moose.transform.position) < 3) 
+            if (Vector3.Distance(target.transform.position, moose.transform.position) < 5) 
                 ChangeState(State.Attack);
             
             if (Vector3.Distance(target.transform.position, moose.transform.position) > 100) 
@@ -281,6 +313,10 @@ public class Moose : Monster
             anim.SetBool("Attack", true);
             idInt = Random.Range(1, 4);
             anim.SetInteger("IDInt", idInt);
+            // anim.SetBool("Attack", false);
+
+            moose.state = State.Attack;
+            Debug.Log("attack");
         }
 
         public override void Update()
@@ -292,17 +328,22 @@ public class Moose : Monster
 
         public override void Transition()
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-                return;
+            // if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            //     return;
             
             if (target == null) 
                 ChangeState(State.Idle);
 
             if (Vector3.Distance(target.transform.position, moose.transform.position) > 100) 
                 ChangeState(State.Patrol);
-
+            
             if (Vector3.Distance(target.transform.position, moose.transform.position) > 3) 
                 ChangeState(State.Trace);
+        }
+
+        public override void Exit()
+        {
+            anim.SetBool("Attack", false);
         }
     }
     
