@@ -18,6 +18,11 @@ public class StateMachine : MonoBehaviour
         currentState.Transition();
     }
 
+    private void FixedUpdate()
+    {
+        currentState.FixedUpdate();
+    }
+
     public void InitState(string stateName)
     {
         currentState = stateDic[stateName];
@@ -71,7 +76,6 @@ public abstract class BaseState
         ChangeState(stateType.ToString());
     }
     
-
     public virtual void Enter()
     {
     }
@@ -80,6 +84,10 @@ public abstract class BaseState
     {
     }
 
+    public virtual void FixedUpdate()
+    {
+    }
+    
     public virtual void Exit()
     {
     }

@@ -35,21 +35,21 @@ public abstract class Creature : MonoBehaviour
         
         currentStat = creatureData.Stats[currentLevel];
     }
+}
 
-    #region State
-
-    protected abstract class CreatureState : BaseState
+// 코드 길어지면 분리
+namespace CreatureController
+{
+    public abstract class CreatureState : BaseState
     {
         protected Creature owner;
         protected Animator anim => owner.Anim;
         protected Vector3 spawnPos => owner.SpawnPos;
-        
+
         public CreatureState(Creature owner)
         {
             this.owner = owner;
         }
     }
-
-    #endregion
 }
 

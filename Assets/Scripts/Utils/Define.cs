@@ -49,4 +49,15 @@ public class Define
         Mining,         // 채광
         Dismantling     // 분해(몬스터 채집)
     }
+    
+    // Moose State
+    public enum MooseState
+    {
+        Idle,
+        Patrol,
+        Run,
+        TakeAttack,
+        Trace,
+        Attack,
+    }
 }

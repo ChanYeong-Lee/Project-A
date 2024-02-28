@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Monster Data", menuName = "ScriptableObject/Creature Data/Monster Data")]
 public class MonsterData : CreatureData
 {
     [Header("Monster Info")]
-    [Tooltip("이동 속도")] 
-    [SerializeField] private float moveSpeed;
+    [Tooltip("공격 쿨타임")]
+    [SerializeField] private float attackCooldown;
     [Tooltip("드랍 아이템 테이블 데이터")] 
     [SerializeField] private DropTableData dropItem;
     [Tooltip("드랍 경험치")]
     [SerializeField] private List<int> dropExpList;
 
-    public float MoveSpeed => moveSpeed;
+    public float AttackCooldown => attackCooldown;
     public DropTableData DropItem => dropItem;
     public List<int> DropExpList
     {

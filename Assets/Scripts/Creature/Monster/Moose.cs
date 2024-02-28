@@ -2,25 +2,20 @@
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using MooseController;
+using UnityEngine.Serialization;
+using State = Define.MooseState;
 
 public class Moose : Monster
 {
     [SerializeField] private Transform eyes;
-    [SerializeField] private Transform body;
-    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask detection;
     
     [SerializeField] public State state;
     [SerializeField] public float time;
 
-    public enum State
-    {
-        Idle,
-        Patrol,
-        Run,
-        TakeAttack,
-        Trace,
-        Attack,
-    }
+    public Transform Eyes => eyes;
+    public LayerMask Detection => detection;
 
     public override void Init()
     {
@@ -35,14 +30,15 @@ public class Moose : Monster
         stateMachine.InitState(State.Trace);
     }
 
-    #region State
+    /*#region State
 
     private class MooseState : MonsterState
     {
         protected Moose moose => monster as Moose;
+        protected float randTime;
         protected bool isChangedState;
         protected bool isUnderAttack;
-        protected float randTime;
+        protected float attackTimedown;
         protected float vertical;
         protected float horizontal;
         protected int idInt;
@@ -51,7 +47,8 @@ public class Moose : Monster
 
         public override void Update()
         {
-            randTime -= Time.deltaTime;
+            randTime -= Time.deltaTime;            
+            attackTimedown -= Time.deltaTime;
 
             // if (Physics.Raycast(moose.body.position, Vector3.down, out RaycastHit hit))
             // {
@@ -237,7 +234,7 @@ public class Moose : Monster
         public override void Enter()
         {
             vertical = 3;
-
+            attackTimedown = moose.monsterData.AttackCooldown;
             moose.state = State.Trace;
         }
 
@@ -291,12 +288,11 @@ public class Moose : Monster
                 anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.deltaTime));
                 Debug.Log($"각도 : {angle}");
             }
-            
         }
 
         public override void Transition()
         {
-            if (Vector3.Distance(target.transform.position, moose.transform.position) < 5) 
+            if (Vector3.Distance(target.transform.position, moose.transform.position) < 5 && attackTimedown < 0.0f) 
                 ChangeState(State.Attack);
             
             if (Vector3.Distance(target.transform.position, moose.transform.position) > 100) 
@@ -314,7 +310,8 @@ public class Moose : Monster
             idInt = Random.Range(1, 4);
             anim.SetInteger("IDInt", idInt);
             // anim.SetBool("Attack", false);
-
+            attackTimedown = 1f;
+            
             moose.state = State.Attack;
             Debug.Log("attack");
         }
@@ -322,15 +319,14 @@ public class Moose : Monster
         public override void Update()
         {
             base.Update();
-            
+
+
+            anim.SetBool("Attack", false);
             // TODO : 공격 로직
         }
 
         public override void Transition()
         {
-            // if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            //     return;
-            
             if (target == null) 
                 ChangeState(State.Idle);
 
@@ -343,9 +339,9 @@ public class Moose : Monster
 
         public override void Exit()
         {
-            anim.SetBool("Attack", false);
+            
         }
     }
     
-    #endregion
+    #endregion*/
 }
