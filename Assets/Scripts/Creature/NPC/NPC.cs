@@ -2,6 +2,7 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CreatureController;
 
 public abstract class NPC : Creature
 {
@@ -20,7 +21,7 @@ public abstract class NPC : Creature
     }
 }
 
-namespace CreatureController
+namespace NpcController
 {
     public class NPCState : CreatureState
     {

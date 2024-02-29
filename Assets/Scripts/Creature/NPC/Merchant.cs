@@ -11,8 +11,6 @@ using MerchantController;
 using System.Linq;
 using static UnityEngine.UI.GridLayoutGroup;
 
-
-
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 

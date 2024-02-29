@@ -20,14 +20,55 @@ namespace MooseController
         public override void Update()
         {
             base.Update();
-            
-            Collider[] colliders = new Collider[1];
-            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.3f, colliders, moose.Detection);
+        }
 
-            if (count != 0)
-                Turn();
+        public override void FixedUpdate()
+        {
+            Collider[] colliders = new Collider[2];
+            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.7f, colliders, moose.Detection);
+            
+            
+ 
+            if (count == 0)
+            {
+                anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.deltaTime));
+            }
+            else if (count == 1)
+            {
+                var collisionAngle = Vector3.SignedAngle(moose.transform.forward,
+                    colliders[0].transform.position - moose.transform.position, Vector3.up);
+
+                Debug.Log("patrol turn");
+                switch (collisionAngle)
+                {
+                    case < 90 and > 45:
+                        anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.fixedDeltaTime));
+                        anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), 0, Time.fixedDeltaTime * 10));
+                        break;
+                    case < 45 and > 0:
+                        anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.fixedDeltaTime));
+                        anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), -1, Time.fixedDeltaTime * 10));
+                        break;
+                    case > -45 and < 0:
+                        anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 2, Time.fixedDeltaTime));
+                        anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), -1, Time.fixedDeltaTime * 10));
+                        break;
+                    case > -90 and < -45:
+                        anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 2, Time.fixedDeltaTime));
+                        anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), 0, Time.fixedDeltaTime * 10));
+                        break;
+                }
+            }
             else
-                Move();
+            {
+                var collisionAngle = Vector3.SignedAngle(moose.transform.forward,
+                    colliders[0].transform.position - moose.transform.position, Vector3.up);
+                
+                anim.SetFloat("Vertical", -1);
+                anim.SetFloat("Horizontal", collisionAngle > 0 ? 2 : -2);
+            }
+
 
             if (randTime < 0) 
                 RandVariable(1f,2f, 0.3f);
@@ -41,12 +82,6 @@ namespace MooseController
 
             if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
                 ChangeState(State.Trace);
-        }
-
-        private void Move()
-        {
-            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
-            anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.deltaTime));
         }
         
         private void Turn()
