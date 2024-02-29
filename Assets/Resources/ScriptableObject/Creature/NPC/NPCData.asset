@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ee769131f22204a9a8107fddbc8151, type: 3}
+  m_Name: NPCData
+  m_EditorClassIdentifier: 
+  creatureName: Merchandiser
+  stats:
+  - level: 1
+    healthPoint: 10
+    attack: 1
+    defence: 1
+  - level: 2
+    healthPoint: 20
+    attack: 2
+    defence: 2
+  - level: 3
+    healthPoint: 30
+    attack: 3
+    defence: 3
+  moveSpeed: 3
+  sprintSpeed: 5

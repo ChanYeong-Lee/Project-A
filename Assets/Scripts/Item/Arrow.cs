@@ -33,7 +33,7 @@ public class Arrow : Item
                 break;
             case Define.AttributeType.Bomb:
                 break;
-            case Define.AttributeType.Goo:
+            case Define.AttributeType.Glue:
                 break;
             case Define.AttributeType.Poison:
                 break;
