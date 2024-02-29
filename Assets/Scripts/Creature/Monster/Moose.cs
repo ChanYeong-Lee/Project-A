@@ -9,12 +9,17 @@ using State = Define.MooseState;
 public class Moose : Monster
 {
     [SerializeField] private Transform eyes;
+    [SerializeField] private Transform body;
     [SerializeField] private LayerMask detection;
     
     [SerializeField] public State state;
     [SerializeField] public float time;
+    [SerializeField] public float distance;
+    [SerializeField] public float angle;
+    [SerializeField] public Vector3 v3;
 
     public Transform Eyes => eyes;
+    public Transform Body => body;
     public LayerMask Detection => detection;
 
     public override void Init()

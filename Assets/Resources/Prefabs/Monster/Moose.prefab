@@ -1017,7 +1017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1543272457757018624
 Transform:
   m_ObjectHideFlags: 0
@@ -1361,10 +1361,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4898944642192483869}
-  - component: {fileID: 6848288480469920760}
   - component: {fileID: 8247692286798069618}
+  - component: {fileID: 6848288480469920760}
   - component: {fileID: 4955735013237341495}
-  - component: {fileID: 5014299475406447759}
   m_Layer: 20
   m_Name: Moose
   m_TagString: Animal
@@ -1390,6 +1389,29 @@ Transform:
   - {fileID: 7237803193682246200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8247692286798069618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488465847894699506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a17c3ab8207495798f49331f17c177b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureData: {fileID: 11400000, guid: 55983f9d25250724a969996237d360cd, type: 2}
+  spawnPos: {x: 0, y: 0, z: 0}
+  currentLevel: 1
+  target: {fileID: 0}
+  eyes: {fileID: 2391980585498172653}
+  detection:
+    serializedVersion: 2
+    m_Bits: 129
+  state: 0
+  time: 0
+  distance: 0
 --- !u!95 &6848288480469920760
 Animator:
   serializedVersion: 5
@@ -1411,28 +1433,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8247692286798069618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488465847894699506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a17c3ab8207495798f49331f17c177b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureData: {fileID: 11400000, guid: 55983f9d25250724a969996237d360cd, type: 2}
-  spawnPos: {x: 0, y: 0, z: 0}
-  currentLevel: 1
-  target: {fileID: 0}
-  eyes: {fileID: 2391980585498172653}
-  detection:
-    serializedVersion: 2
-    m_Bits: 0
-  state: 0
-  time: 0
 --- !u!54 &4955735013237341495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1460,33 +1460,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &5014299475406447759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488465847894699506}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b2ba7e23a121847a1519cc1fade32d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontLeftHoe: {fileID: 8263345705122925517}
-  frontRightHoe: {fileID: 5358095759792133508}
-  rearLeftHoe: {fileID: 9079719309740945044}
-  rearRightHoe: {fileID: 7980409436203176531}
-  frontLeftGround: 0
-  frontRightGround: 0
-  rearLeftGround: 0
-  rearRightGround: 0
-  isGround: 0
-  groundOffset: -0.14
-  groundDistance: 0.28
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  rotateSpeed: 1
 --- !u!1 &5525420295170889339
 GameObject:
   m_ObjectHideFlags: 0

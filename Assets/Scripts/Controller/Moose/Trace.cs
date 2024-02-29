@@ -28,9 +28,11 @@ namespace MooseController
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
+            
             FixedHorizontal(30);
             
-            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
+            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.fixedDeltaTime));
         }
 
         public override void Transition()

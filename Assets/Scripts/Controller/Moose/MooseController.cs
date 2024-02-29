@@ -30,6 +30,7 @@ namespace MooseController
                 distanceToTarget = Vector3.Distance(target.transform.position, moose.transform.position);
                 angleToTarget = Vector3.SignedAngle(moose.transform.forward,
                     target.transform.position - moose.transform.position, Vector3.up);
+                moose.distance = distanceToTarget;
             }
 
             // TODO : 충돌 검사
@@ -41,6 +42,19 @@ namespace MooseController
             
             // 인스펙터 확인용 코드
             moose.time = randTime;
+        }
+
+        public override void LateUpdate()
+        {
+            if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, Mathf.Infinity))
+            {
+                Vector3 normal = hit.normal;
+                var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
+                // moose.transform.rotation = Quaternion.Euler(/*Mathf.Lerp(moose.transform.rotation.eulerAngles.x, angle, Time.fixedDeltaTime)*/moose.transform.rotation.eulerAngles.x, moose.transform.rotation.eulerAngles.y, moose.transform.rotation.eulerAngles.z);
+
+                moose.v3 = normal;
+                moose.angle = angle;
+            }
         }
 
         // 랜덤 값 생성
@@ -62,11 +76,11 @@ namespace MooseController
             }
             
             if (angleToTarget  < angle && angleToTarget > -angle)
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.deltaTime));
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.fixedDeltaTime));
             else if (angleToTarget > angle)
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.deltaTime));
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.fixedDeltaTime));
             else if (angleToTarget < -angle) 
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -horizontal, Time.deltaTime));
+                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -horizontal, Time.fixedDeltaTime));
         }
     }
 }

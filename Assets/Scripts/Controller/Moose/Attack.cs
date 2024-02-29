@@ -22,6 +22,8 @@ namespace MooseController
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
+            
             if (anim.GetBool("Attack")) 
                 isChangedState = true;
             

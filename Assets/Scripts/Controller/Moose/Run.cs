@@ -14,18 +14,30 @@ namespace MooseController
             moose.state = State.Run;
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
-            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
-            anim.SetFloat("Horizontal",
-                Vector3.Dot(moose.transform.forward, moose.transform.position - target.transform.position) < 0
-                    ? Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.deltaTime)
-                    : Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.deltaTime));
+            base.FixedUpdate();
+            
+            anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.fixedDeltaTime));
+
+            // TODO : 이 로직 활용하면 충돌 검사 후 회전시키고 이동하기 기능할수도?
+            switch (angleToTarget)
+            {
+                case < 90 and > 0:
+                    anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -2, Time.fixedDeltaTime));
+                    break;
+                case > -90 and < 0:
+                    anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 2, Time.fixedDeltaTime));
+                    break;
+                default:
+                    anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.fixedDeltaTime));
+                    break;
+            }
         }
 
         public override void Transition()
         {
-            if (target is null || distanceToTarget > 50)
+            if (target is null || distanceToTarget > moose.MonsterData.TrackingDistance)
             {
                 ChangeState(State.Idle);
             }

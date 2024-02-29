@@ -15,3 +15,8 @@ MapScene 2
 
 
  - "Assets/ThirdParty/Fantasy Adventure Environment/Prefabs/Trees" 경로에 있는 나무 프리랩에 테스트용 Env Data 들어가있음
+
+
+Monster 
+ - 
+ - 

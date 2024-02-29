@@ -23,6 +23,11 @@ public class StateMachine : MonoBehaviour
         currentState.FixedUpdate();
     }
 
+    protected void LateUpdate()
+    {
+        currentState.LateUpdate();
+    }
+
     public void InitState(string stateName)
     {
         currentState = stateDic[stateName];
@@ -76,23 +81,15 @@ public abstract class BaseState
         ChangeState(stateType.ToString());
     }
     
-    public virtual void Enter()
-    {
-    }
+    public virtual void Enter() { }
 
-    public virtual void Update()
-    {
-    }
+    public virtual void Update() { }
 
-    public virtual void FixedUpdate()
-    {
-    }
+    public virtual void FixedUpdate() { }
+
+    public virtual void LateUpdate() { }
     
-    public virtual void Exit()
-    {
-    }
+    public virtual void Exit() { }
 
-    public virtual void Transition()
-    {
-    }
+    public virtual void Transition() { }
 }
