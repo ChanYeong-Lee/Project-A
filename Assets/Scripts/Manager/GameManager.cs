@@ -1,12 +1,12 @@
 using UnityEngine;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager
 {
     // Game System
     private bool isPause;
     private bool isFullScreen;
-    [Range(1f, 16f)] public float gameSpeed = 1f ;
+    private float gameSpeed;
     
     public bool IsPause
     {
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = isPause ? 0 : 1;
         }
     }
-    
     public bool IsFullScreenMode
     {
         get => isFullScreen;
@@ -27,10 +26,17 @@ public class GameManager : MonoBehaviour
             Screen.fullScreen = isFullScreen;
         }
     }
-    private void Update()
+
+    public float GameSpeed
     {
-        
+        get => gameSpeed;
+        set
+        {
+            gameSpeed = value;
+            Time.timeScale = gameSpeed;
+        }
     }
+
     public void Init()
     {
         

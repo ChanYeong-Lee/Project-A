@@ -80,7 +80,7 @@ internal class Pool
     private GameObject OnCreate()
     {
         GameObject go = GameObject.Instantiate(prefab);
-        go.transform.SetParent(Parent);
+        go.transform.SetParent(parent);
         go.name = prefab.name;
 
         return go;

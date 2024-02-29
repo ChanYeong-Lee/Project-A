@@ -37,18 +37,22 @@ namespace MooseController
             }
         }
 
-        // public override void LateUpdate()
-        // {
-        //     if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, Mathf.Infinity))
-        //     {
-        //         Vector3 normal = hit.normal;
-        //         var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
-        //         // moose.transform.rotation = Quaternion.Euler(/*Mathf.Lerp(moose.transform.rotation.eulerAngles.x, angle, Time.fixedDeltaTime)*/moose.transform.rotation.eulerAngles.x, moose.transform.rotation.eulerAngles.y, moose.transform.rotation.eulerAngles.z);
-        //
-        //         moose.v3 = normal;
-        //         moose.angle = angle;
-        //     }
-        // }
+        public override void LateUpdate()
+        {
+            if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, 1f))
+            {
+                Vector3 normal = hit.normal;
+                var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
+                
+                moose.GetComponent<Rigidbody>().constraints =
+                    RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            }
+            else
+            {
+                moose.transform.rotation = Quaternion.Euler(0, moose.transform.rotation.eulerAngles.y, 0);
+                moose.GetComponent<Rigidbody>().freezeRotation = true;
+            }
+        }
         
         // 랜덤 값 생성
         // 랜덤 수치 값 일부 조정 가능한 함수(최소 시간, 최대 시간, 상태 머신 바뀔 확률)

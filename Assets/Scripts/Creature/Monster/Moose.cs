@@ -9,13 +9,16 @@ using State = Define.MooseState;
 public class Moose : Monster
 {
     [SerializeField] private Transform eyes;
+    [SerializeField] private Transform body;
     [SerializeField] private LayerMask detection;
     
     // 인스펙터 확인용
     public State state;
     public float distance;
+    public float angle;
 
     public Transform Eyes => eyes;
+    public Transform Body => body;
     public LayerMask Detection => detection;
 
     public override void Init()
