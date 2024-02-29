@@ -8,9 +8,9 @@ public abstract class Creature : MonoBehaviour
     [SerializeField] protected CreatureData creatureData;
     [SerializeField] protected Vector3 spawnPos;
     [SerializeField] protected int currentLevel = 1;
-    
-    protected Stat currentStat;
 
+    protected Stat currentStat;
+     
     protected Animator anim;
     protected StateMachine stateMachine;
 
@@ -35,7 +35,7 @@ public abstract class Creature : MonoBehaviour
 
         currentStat = creatureData.Stats[currentLevel];
     }
-
+}
 // 코드 길어지면 분리
 namespace CreatureController
 {

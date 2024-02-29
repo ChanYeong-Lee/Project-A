@@ -24,15 +24,16 @@ public abstract class NPC : Creature
     {
         
     }
+}
 
-    protected class NPCState : CreatureState
+namespace CreatureController
+{
+    public class NPCState : CreatureState
     {
         protected GameObject target;
         public NPCState(Creature owner) : base(owner)
         {
+
         }
-
-       
     }
-
 }

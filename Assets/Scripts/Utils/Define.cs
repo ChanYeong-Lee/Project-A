@@ -60,4 +60,12 @@ public class Define
         Trace,
         Attack,
     }
+    public enum MerchantState
+    {
+        Idle,
+        Wander,
+        RunAway,
+        Interact,
+    }
+
 }

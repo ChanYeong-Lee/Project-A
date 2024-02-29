@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
+using State = Define.MerchantState;
+using MerchantController;
+
 
 
 [DisallowMultipleComponent]
@@ -22,13 +26,7 @@ public class Merchant : NPC
     public Vector2 smoothDeltaPos;
     [Space(2f)]
     [Range(0f, 3f)] public float waitDelay = 1f;
-    public enum State
-    {
-        Idle,
-        Wander,
-        RunAway,
-        Interact,
-    }
+    
     private void OnAnimatorMove()
     {
         Vector3 rootPosition = anim.rootPosition;
@@ -58,7 +56,7 @@ public class Merchant : NPC
         SynchronizeAnimatiorAndAgent();
     }
 
-    protected void RoamingAround()
+    public void RoamingAround()
     {
         _=StartCoroutine(MoveToRandomPos());
     }
@@ -130,9 +128,6 @@ public class Merchant : NPC
         anim.SetFloat("vely", vel.y);
 
     }
-
-    
-
     protected void SwitchAnimation(State state, float value)
     {
         anim.SetFloat(state.ToString(), value);
@@ -145,91 +140,5 @@ public class Merchant : NPC
     {
         anim.SetTrigger(state.ToString());
     }
-
-    #region State
-
-    private class MerchantState : NPCState
-    {
-        public Merchant Owner => base.owner as Merchant;
-        protected float CurSpeed
-        {
-            get { return Owner.CurSpeed; }
-            set { Owner.CurSpeed = value; }
-        }
-
-        public MerchantState(Creature owner) : base(owner) { }
-    }
-
-    private class IdleState : MerchantState
-    {
-        public IdleState(Creature owner) : base(owner) { }
-
-        public override void Enter()
-        {
-            Debug.Log("Idle Enter");
-            ChangeState(State.Wander);
-      
-
-        }
-        public override void Transition()
-        {
-           
-        }
-        public override void Exit()
-        {
-           
-        }
-    }
-
-    private class WanderState : MerchantState
-    { 
-        public WanderState(Creature owner) : base(owner) { }
-        public override void Enter()
-        {
-            
-        }
-        public override void Update()
-        {
-            Owner.RoamingAround();
-
-
-        }
-        public override void Transition()
-        {
-
-        }
-
-    }
-
-    private class RnuAwayState : MerchantState
-    {
-        public RnuAwayState(Creature owner) : base(owner) { }
-
-        public override void Transition()
-        {
-            ChangeState(State.RunAway);
-        }
-        public override void Update()
-        {
-
-        }
-    }
-
-    private class InteractState : MerchantState
-    {
-        public InteractState(Creature owner) : base(owner) { }
-
-        public override void Update()
-        {
-          
-        }
-
-        public override void Transition()
-        {
-            ChangeState(State.Interact);
-
-        }
-    }
-    #endregion
 
 }
