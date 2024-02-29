@@ -9,8 +9,6 @@ using Random = UnityEngine.Random;
 using State = Define.MerchantState;
 using MerchantController;
 
-
-
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 

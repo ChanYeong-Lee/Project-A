@@ -41,7 +41,6 @@ namespace MooseController
                     
             if (isChangedState) 
                 ChangeState(State.Patrol);
-            
         }
 
         public override void Exit()

@@ -2,6 +2,7 @@ using CreatureController;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NpcController;
 
 namespace MerchantController 
 {

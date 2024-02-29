@@ -25,38 +25,31 @@ namespace MooseController
             randTime -= Time.deltaTime;            
             attackCooldown -= Time.deltaTime;
             
-            if (target is not null)
+            if (target != null)
             {
                 distanceToTarget = Vector3.Distance(target.transform.position, moose.transform.position);
                 angleToTarget = Vector3.SignedAngle(moose.transform.forward,
-                    target.transform.position - moose.transform.position, Vector3.up);
-                moose.distance = distanceToTarget;
+                    target.transform.position - moose.transform.position, Vector3.up);            
             }
-
-            // TODO : 충돌 검사
-            // if (Physics.Raycast(moose.body.position, Vector3.down, out RaycastHit hit))
-            // {
-            //     Vector3 normal = hit.normal;
-            //     Vector3.Angle(moose.GetComponent<Transform>().position, normal);
-            // }
-            
-            // 인스펙터 확인용 코드
-            moose.time = randTime;
-        }
-
-        public override void LateUpdate()
-        {
-            if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, Mathf.Infinity))
+            else
             {
-                Vector3 normal = hit.normal;
-                var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
-                // moose.transform.rotation = Quaternion.Euler(/*Mathf.Lerp(moose.transform.rotation.eulerAngles.x, angle, Time.fixedDeltaTime)*/moose.transform.rotation.eulerAngles.x, moose.transform.rotation.eulerAngles.y, moose.transform.rotation.eulerAngles.z);
-
-                moose.v3 = normal;
-                moose.angle = angle;
+                distanceToTarget = 100; 
             }
         }
 
+        // public override void LateUpdate()
+        // {
+        //     if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, Mathf.Infinity))
+        //     {
+        //         Vector3 normal = hit.normal;
+        //         var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
+        //         // moose.transform.rotation = Quaternion.Euler(/*Mathf.Lerp(moose.transform.rotation.eulerAngles.x, angle, Time.fixedDeltaTime)*/moose.transform.rotation.eulerAngles.x, moose.transform.rotation.eulerAngles.y, moose.transform.rotation.eulerAngles.z);
+        //
+        //         moose.v3 = normal;
+        //         moose.angle = angle;
+        //     }
+        // }
+        
         // 랜덤 값 생성
         // 랜덤 수치 값 일부 조정 가능한 함수(최소 시간, 최대 시간, 상태 머신 바뀔 확률)
         protected void RandVariable(float minTime = 1f, float maxTime = 10f, float rateToChange = 0.5f)
@@ -71,9 +64,7 @@ namespace MooseController
         protected void FixedHorizontal(float angle = 5, float horizontal = 2)
         {
             if (distanceToTarget < 2)
-            {
                 return;
-            }
             
             if (angleToTarget  < angle && angleToTarget > -angle)
                 anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.fixedDeltaTime));
