@@ -3,24 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using State = Define.MerchantState;
 
-namespace MerchantController { 
-public class WanderState : MerchantState
+namespace MerchantController
 {
-    public WanderState(Creature owner) : base(owner) { }
-    public override void Enter()
+    public class WanderState : MerchantState
     {
 
+        public WanderState(Creature owner) : base(owner) { }
+        public override void Enter()
+        {
+            Owner.RoamingAround();
+            
+        }
+        public override void Update()
+        {
+            CheckInteractibleArea();
+        }
+        public override void Transition()
+        {
+           
+        }
+        public void EnemyCheck()
+        {
+
+        }
+        public void CheckInteractibleArea()
+        {
+
+            Collider[] cols = Physics.OverlapBox(Owner.transform.position + Owner.transform.up,
+                Owner.overlapBoxSize * 0.5f, Owner.transform.rotation,
+                (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Player")));
+            foreach (Collider col in cols)
+            {
+                if (col.gameObject.layer == 9/*PlayerLayer*/)
+                {
+                    Debug.Log(col.name);
+                    Owner.StopMoving();
+                    ChangeState(State.Interact);
+                }
+                else if (col.gameObject.layer == 6/*EnemyLayer*/)
+                {
+                    Debug.Log(col.name);
+                    Owner.StopMoving();
+                    ChangeState(State.RunAway);
+                }
+            }
+        }
     }
-    public override void Update()
-    {
-        Owner.RoamingAround();
-
-
-    }
-    public override void Transition()
-    {
-
-    }
-
-}
 }

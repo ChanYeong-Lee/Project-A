@@ -14,7 +14,6 @@ namespace MerchantController
         }
         public override void Update()
         {
-            Owner.RoamingAround();
 
         }
         public override void Transition()

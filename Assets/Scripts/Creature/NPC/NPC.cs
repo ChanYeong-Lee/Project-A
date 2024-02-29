@@ -6,13 +6,7 @@ using UnityEngine;
 public abstract class NPC : Creature
 {
     protected NPCData npcData;
-    protected GameObject target;
-
-    [SerializeField] protected float moveSpeed;
-    [SerializeField] protected float sprintSpeed;
-    [SerializeField] protected float curSpeed;
-
-    public float CurSpeed { get => curSpeed; set => curSpeed = value; }
+    public GameObject target;
 
     public override void Init()
     {
@@ -30,7 +24,7 @@ namespace CreatureController
 {
     public class NPCState : CreatureState
     {
-        protected GameObject target;
+        public GameObject target;
         public NPCState(Creature owner) : base(owner)
         {
 

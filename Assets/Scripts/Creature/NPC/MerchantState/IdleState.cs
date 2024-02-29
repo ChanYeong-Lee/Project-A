@@ -11,7 +11,6 @@ namespace MerchantController
 
         public override void Enter()
         {
-            Debug.Log("Idle Enter");
             ChangeState(State.Wander);
 
 

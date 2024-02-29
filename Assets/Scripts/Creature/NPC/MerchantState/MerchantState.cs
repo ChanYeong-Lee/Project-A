@@ -8,10 +8,11 @@ namespace MerchantController
 public class MerchantState : NPCState
     {
         public Merchant Owner => base.owner as Merchant;
-        protected float CurSpeed
+       
+        protected GameObject Target
         {
-            get { return Owner.CurSpeed; }
-            set { Owner.CurSpeed = value; }
+            get { return Owner.target; }
+            set { Owner.target = value; }
         }
 
         public MerchantState(Creature owner) : base(owner) { }

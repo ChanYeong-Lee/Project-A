@@ -8,6 +8,8 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using State = Define.MerchantState;
 using MerchantController;
+using System.Linq;
+using static UnityEngine.UI.GridLayoutGroup;
 
 
 
@@ -18,15 +20,21 @@ public class Merchant : NPC
 {
     [Space(2f)]
     [SerializeField] public State state;
+    public string currentState;
     [SerializeField] private NavMeshAgent agent;
     protected NavMeshTriangulation triangulation;
 
+    [Header("이동 관련 자료형")]
     [Space(2f)]
     public Vector2 vel;
     public Vector2 smoothDeltaPos;
     [Space(2f)]
     [Range(0f, 3f)] public float waitDelay = 1f;
-    
+
+    [Header("상호작용 관련 자료형")]
+    public Vector3 overlapBoxSize = new Vector3(2, 2, 2);
+
+
     private void OnAnimatorMove()
     {
         Vector3 rootPosition = anim.rootPosition;
@@ -34,7 +42,18 @@ public class Merchant : NPC
         transform.position = rootPosition;
         agent.nextPosition = rootPosition;
     }
+    private void Update()
+    {
+        SynchronizeAnimatiorAndAgent();
+       
+    }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(Vector3.up, overlapBoxSize);
+    }
     public override void Init()
     {
         base.Init();
@@ -51,43 +70,39 @@ public class Merchant : NPC
         agent.updatePosition = false;
         agent.updateRotation = true;
     }
-    private void Update()
-    {
-        SynchronizeAnimatiorAndAgent();
-    }
 
     public void RoamingAround()
     {
-        _=StartCoroutine(MoveToRandomPos());
+        _ = StartCoroutine(MoveToRandomPos());
     }
 
     public void SetRandomPos()
     {
-        int index = UnityEngine.Random.Range(1, triangulation.vertices.Length - 1);
+        int index = Random.Range(1, triangulation.vertices.Length - 1);
         agent.SetDestination(Vector3.Lerp(triangulation.vertices[index],
-                            triangulation.vertices[index + (UnityEngine.Random.value > 0.5f ? -1 : 1)], UnityEngine.Random.value));
+                            triangulation.vertices[index + (Random.value > 0.5f ? -1 : 1)], Random.value));
     }
 
     private IEnumerator MoveToRandomPos()
     {
         agent.enabled = true;
         agent.isStopped = false;
-       
+
         WaitForSeconds wait = new WaitForSeconds(waitDelay);
-       
+
         while (true)
         {
-            int index = UnityEngine.Random.Range(1, triangulation.vertices.Length - 1);
-            agent.SetDestination(Vector3.Lerp(triangulation.vertices[index], 
-                triangulation.vertices[index + (UnityEngine.Random.value > 0.5f ? -1 : 1)], UnityEngine.Random.value));
-           
+            int index = Random.Range(1, triangulation.vertices.Length - 1);
+            agent.SetDestination(Vector3.Lerp(triangulation.vertices[index],
+                triangulation.vertices[index + (Random.value > 0.5f ? -1 : 1)], Random.value));
+
             yield return null;
-            yield return new WaitUntil(()=> agent.remainingDistance <= agent.stoppingDistance);
+            yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance);
             yield return wait;
         }
     }
 
-    protected void StopMoving()
+    public void StopMoving()
     {
         agent.isStopped = true;
         StopAllCoroutines();
@@ -114,12 +129,12 @@ public class Merchant : NPC
         smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
 
         //프레임간 이동량
-         vel = smoothDeltaPos / Time.deltaTime;
-       
+        vel = smoothDeltaPos / Time.deltaTime;
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             vel = Vector2.Lerp(Vector2.zero, vel, agent.remainingDistance);
-        } 
+        }
 
         bool shouldMove = vel.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance;
 
@@ -128,6 +143,8 @@ public class Merchant : NPC
         anim.SetFloat("vely", vel.y);
 
     }
+
+    #region ChangeAnimation
     protected void SwitchAnimation(State state, float value)
     {
         anim.SetFloat(state.ToString(), value);
@@ -140,5 +157,5 @@ public class Merchant : NPC
     {
         anim.SetTrigger(state.ToString());
     }
-
+    #endregion
 }
