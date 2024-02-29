@@ -138,7 +138,7 @@ Material:
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.49019608}
   m_BuildTextureStacks: []
---- !u!114 &2073554382612462061
+--- !u!114 &1184040088528475322
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

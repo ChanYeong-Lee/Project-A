@@ -5,7 +5,6 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private Dictionary<ItemData, int> itemDataDic = new Dictionary<ItemData, int>();
-    
     public Dictionary<ItemData, int> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
 
     // æ∆¿Ã≈€ »πµÊ ∏ﬁº“µÂ
