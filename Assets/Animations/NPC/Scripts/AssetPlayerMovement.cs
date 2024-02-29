@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent))]
-public class PlayerMovement : MonoBehaviour
+public class AssetPlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private Camera Camera = null;

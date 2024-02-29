@@ -4,7 +4,7 @@ using System.Collections;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
-public class EnemyMovement : MonoBehaviour
+public class AssetEnemyMovement : MonoBehaviour
 {
     private NavMeshTriangulation Triangulation;
     private NavMeshAgent Agent;
