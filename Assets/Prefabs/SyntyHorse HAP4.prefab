@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 3239071764652024769}
   - component: {fileID: 4388857156338484135}
   - component: {fileID: 3047865154800698710}
-  - component: {fileID: 4425663622264639532}
   m_Layer: 0
   m_Name: SyntyHorse HAP4
   m_TagString: Player
@@ -272,75 +271,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 5824564936743011862}
     m_Active: 1
   m_Effectors: []
---- !u!114 &4425663622264639532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188535033643411473}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 7269315697529707004}
-  - {fileID: 8924026739849631671}
-  - {fileID: 4252942167880154973}
-  - {fileID: 8406457243087664543}
-  - {fileID: 1139658628555971017}
-  - {fileID: 5795999239631587980}
-  - {fileID: 5836970336715294367}
-  - {fileID: 7430247749751653427}
-  - {fileID: 4062086663864200800}
-  - {fileID: 6663644992597494986}
-  - {fileID: 2238836962544541359}
-  - {fileID: 3006901890033652968}
-  - {fileID: 8228724446764513817}
-  - {fileID: 2224484788899066506}
-  - {fileID: 8792396852768088434}
-  - {fileID: 1289766515301646665}
-  - {fileID: 5474707437930478937}
-  - {fileID: 3836442097470084617}
-  - {fileID: 2988752343756370709}
-  - {fileID: 4368756302798473848}
-  - {fileID: 1174199152137733371}
-  - {fileID: 2116263343518925348}
-  - {fileID: 1250956407929717678}
-  - {fileID: 215839295886366230}
-  - {fileID: 8213355645612833297}
-  - {fileID: 8963093521405692025}
-  - {fileID: 5522389677342248906}
-  - {fileID: 1766613556384767032}
-  - {fileID: 504550693536046879}
-  - {fileID: 751998574790602247}
-  - {fileID: 1234360018609431700}
-  - {fileID: 5043713210152619550}
-  - {fileID: 3399338303505820840}
-  - {fileID: 1928065657702699228}
-  - {fileID: 2728751748853599177}
-  - {fileID: 8956475172804001204}
-  - {fileID: 1561756793700226994}
-  - {fileID: 8659387554908242865}
-  - {fileID: 5393250283285005442}
-  - {fileID: 4872989504688751677}
-  - {fileID: 927677388070526976}
-  - {fileID: 6512109630315583751}
-  - {fileID: 156043360859690431}
-  - {fileID: 790099762329288384}
-  - {fileID: 3889726989274565015}
-  - {fileID: 5462465793479656217}
-  - {fileID: 7993141595135373587}
-  - {fileID: 7132464895695554477}
-  - {fileID: 7904737944893816004}
-  - {fileID: 8856959050159651473}
 --- !u!1 &244090829267878350
 GameObject:
   m_ObjectHideFlags: 0

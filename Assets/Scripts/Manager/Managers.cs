@@ -35,18 +35,20 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             instance = go.GetComponent<Managers>();
         }
+
+        
     }
 
     #endregion
 
-    private GameManager game = new GameManager();
+    private static GameManager game;
     private PoolManager pool = new PoolManager();
     private SceneLoadManager scene = new SceneLoadManager();
     private ResourceManager resource = new ResourceManager();
     private UIManager ui = new UIManager();
     private DataManager data = new DataManager();
 
-    public static GameManager Game => Instance?.game;
+    public static GameManager Game => game;
     public static PoolManager Pool => Instance?.pool;
     public static SceneLoadManager Scene => Instance?.scene;
     public static ResourceManager Resource => Instance?.resource;
@@ -56,6 +58,9 @@ public class Managers : MonoBehaviour
 
     private void Awake()
     {
+        game = new GameObject("GameManager").AddComponent<GameManager>();
+        game.transform.SetParent(Instance.transform);
+
         Game.Init();
         Data.Init();
     }

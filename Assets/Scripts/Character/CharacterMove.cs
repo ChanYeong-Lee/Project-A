@@ -196,7 +196,7 @@ public class CharacterMove : MonoBehaviour
         if (input.move != Vector2.zero)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                              tpsCam.transform.eulerAngles.y;
+                              Camera.main.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity,
                 rotationSmoothTime);
 
