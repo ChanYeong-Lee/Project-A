@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 3379882188090781084}
   - component: {fileID: 8696212917422890047}
   - component: {fileID: 8851589506771142089}
-  - component: {fileID: 4123440157479781253}
   - component: {fileID: 3239071764652024769}
   - component: {fileID: 4388857156338484135}
   - component: {fileID: 3047865154800698710}
@@ -181,19 +180,19 @@ MonoBehaviour:
   rearLeftHoe: {fileID: 1928065657702699228}
   rearRightHoe: {fileID: 3889726989274565015}
   footPrint: {fileID: 11741435091977491, guid: 1b5363ef7ed6fe3448519b84b1ccb55d, type: 3}
+  groundOffset: 0.5
+  groundDistance: 0.6
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 24
+  groundTimeout: 0.25
+  groundTimeoutDelta: 0
   frontLeftGround: 0
   frontRightGround: 0
   rearLeftGround: 0
   rearRightGround: 0
   isGround: 0
   canRotate: 0
-  groundOffset: 0.5
-  groundDistance: 0.6
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  groundTimeout: 0.25
-  groundTimeoutDelta: 0
 --- !u!143 &8851589506771142089
 CharacterController:
   m_ObjectHideFlags: 0
@@ -220,21 +219,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.1, z: 0.5}
---- !u!114 &4123440157479781253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188535033643411473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d71cc92a966c5349b64b83bf0f50595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {x: 0, y: 0}
-  sprint: 0
-  jump: 0
 --- !u!114 &3239071764652024769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,9 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  input: {fileID: 0}
-  characterAnimator: {fileID: 0}
-  jumpHeight: 3
+  lastState: 0
   frontLeftHoe: {fileID: 2728751748853599177}
   frontRightHoe: {fileID: 7993141595135373587}
   frontLeftHoeTarget: {fileID: 2446750006704725551}
@@ -297,7 +279,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188535033643411473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -1525,7 +1507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3437130073309948285}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000842937, y: 0.00000014901163, z: -0.000000052683532, w: 1}
+  m_LocalRotation: {x: 0.0000000842937, y: 0.00000014901163, z: -0.000000052683532,
+    w: 1}
   m_LocalPosition: {x: -0, y: -0.7, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1556,7 +1539,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3518502177331928797}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000016255475, y: -0.000000003727154, z: 0.0011451197, w: 0.99999934}
+  m_LocalRotation: {x: -0.0000000016255475, y: -0.000000003727154, z: 0.0011451197,
+    w: 0.99999934}
   m_LocalPosition: {x: -0.42670292, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -6,8 +6,8 @@ public class CameraController : MonoBehaviour
     public enum State { Character, Horse }
     public State state;
 
-    private PlayerMove playerMove;
-    private HorseMoveWithStateMachine horseMove;
+    private CharacterMove playerMove;
+    private HorseMove horseMove;
 
     private CinemachineVirtualCamera vCam;
 
@@ -34,8 +34,8 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        playerMove = FindObjectOfType<PlayerMove>();
-        horseMove = FindObjectOfType<HorseMoveWithStateMachine>();
+        playerMove = FindObjectOfType<CharacterMove>();
+        horseMove = FindObjectOfType<HorseMove>();
     }
 
     private void Update()

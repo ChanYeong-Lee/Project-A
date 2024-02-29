@@ -9,20 +9,27 @@ public class HorseSlope : MonoBehaviour
     [SerializeField] private Transform frontRightHoe;
     [SerializeField] private Transform rearLeftHoe;
     [SerializeField] private Transform rearRightHoe;
+
     [SerializeField] private GameObject footPrint;
+
+    [Header("Ground Check")]
+    [SerializeField] private float groundOffset = 0.5f;
+    [SerializeField] private float groundDistance = 0.55f;
+    [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private float groundTimeout = 0.25f;
+    [SerializeField] private float groundTimeoutDelta = 0.0f;
 
     private GameObject frontRightFootPrint;
     private GameObject rearRightFootPrint;
     private GameObject frontLeftFootPrint;
     private GameObject rearLeftFootPrint;
 
-    private HorseMoveWithStateMachine move;
-    private CharacterController controller;
+    private HorseMove move;
 
-    RaycastHit frontLeftHit;
-    RaycastHit frontRightHit;
-    RaycastHit rearLeftHit;
-    RaycastHit rearRightHit;
+    private RaycastHit frontLeftHit;
+    private RaycastHit frontRightHit;
+    private RaycastHit rearLeftHit;
+    private RaycastHit rearRightHit;
 
     public bool frontLeftGround = false;
     public bool frontRightGround = false;
@@ -37,6 +44,7 @@ public class HorseSlope : MonoBehaviour
     private float posHeight = 0.0f;
     private float frontHoeHeight = 0.0f;
 
+    // properties
     public float Pitch => pitch;
     public float Height => posHeight;
     public float HoeHeight => frontHoeHeight;
@@ -45,18 +53,14 @@ public class HorseSlope : MonoBehaviour
 
     public bool canRotate;
 
-    [SerializeField] private float groundOffset = 0.5f;
-    [SerializeField] private float groundDistance = 0.55f;
-    [SerializeField] private LayerMask groundLayers;
+    
 
-    [SerializeField] private float groundTimeout = 0.25f;
-    [SerializeField] private float groundTimeoutDelta = 0.0f;
-
+    private Vector3 p1 = Vector3.zero;
+    private Vector3 p2 = Vector3.zero;
 
     private void Awake()
     {
-        move = GetComponent<HorseMoveWithStateMachine>();
-        controller = GetComponent<CharacterController>();
+        move = GetComponent<HorseMove>();
     }
 
     private void OnEnable()
@@ -69,10 +73,6 @@ public class HorseSlope : MonoBehaviour
         canRotate = true;
     }
 
-    private void OnDisable()
-    {
-    }
-    // Update is called once per frame
     private void Update()
     {
         CheckHeight();
@@ -136,39 +136,6 @@ public class HorseSlope : MonoBehaviour
         {
             rearRightGround = false;
         }
-
-        if (frontLeftGround || frontRightGround || rearLeftGround || rearRightGround)
-        {
-            groundTimeoutDelta = groundTimeout;
-            isGround = true;
-        }
-        else
-        {
-            groundTimeoutDelta -= Time.deltaTime;
-            if (groundTimeoutDelta < 0.0f)
-            {
-                isGround = false;
-            }
-
-            if (0.5f < posHeight)
-            {
-                isGround = false;
-            }
-        }
-
-        //if (controller.isGrounded)
-        //{
-        //    groundTimeoutDelta = groundTimeout;
-        //    isGround = true;
-        //}
-        //else
-        //{
-        //    groundTimeoutDelta -= Time.deltaTime;
-        //    if (groundTimeoutDelta < 0.0f)
-        //    {
-        //        isGround = false;
-        //    }
-        //}
     }
 
     private void CheckHeight()
@@ -190,89 +157,49 @@ public class HorseSlope : MonoBehaviour
         {
             frontHoeHeight = 0.0f;
         }
+     
         print(frontHoeHeight);
-        //height *= 0.5f;
-
-        
-
-        //print(height);
     }
 
     private void CheckGround()
     {
-        //if (height < 0.05f)
-        //{
-        //    groundTimeoutDelta = groundTimeout;
-        //    isGround = true;
-        //}
-        //else
-        //{
-        //    groundTimeoutDelta -= Time.deltaTime;
-        //    if (groundTimeoutDelta < 0.0f)
-        //    {
-        //        isGround = false;
-        //    }
-        //}
+        if (isGround)
+        {
+            groundTimeoutDelta = groundTimeout;
+        }
+        
+        if (frontLeftGround || frontRightGround || rearLeftGround || rearRightGround)
+        {
+            isGround = true;
+        }
+        else
+        {
+            groundTimeoutDelta -= Time.deltaTime;
+            if (groundTimeoutDelta < 0.0f)
+            {
+                isGround = false;
+            }
+
+            if (0.5f < posHeight)
+            {
+                isGround = false;
+            }
+        }
     }
 
     private void RotateBody()
     {
-        //if (isGround && (int)move.state <= 1)
-        //{
-        //    Vector3 forward = transform.forward;
-        //    forward.y = 0;
-        //    forward.Normalize();
-
-        //    float deltaX = Vector3.Dot(forward, frontPoint - rearPoint);
-        //    float deltaY = frontPoint.y - rearPoint.y;
-
-        //    //if (deltaX < 0.0f)
-        //    //{
-        //    //    deltaX *= -1.0f;
-        //    //    deltaY *= -1.0f;
-        //    //}
-        //    if (0.0f < deltaX)
-        //    {
-        //        pitch = Mathf.Atan2(deltaY, deltaX) * Mathf.Rad2Deg;
-        //    }
-
-        //    //print($"{deltaX}, {deltaY}");
-
-        //    //if (Physics.Raycast(transform.position + transform.forward * 0.5f + Vector3.up, Vector3.down, out RaycastHit hit, 2.0f, groundLayers))
-        //    //{
-        //    //    pitch = Mathf.Atan2(hit.normal.y, hit.normal.z);
-        //    //    print(pitch);
-        //    //}
-
-        //    print($"{deltaX}, {deltaY}, pitch = {pitch}");
-        //    pitch = Mathf.Clamp(pitch, -40, 40);
-
-        //}
-        //else
-        //{
-        //    pitch = 0.0f;
-        //}
-
         CheckSlope();
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-pitch, transform.rotation.eulerAngles.y, 0), Time.deltaTime);
+
+        float rotateSpeed = 2 + move.MoveSpeed;
+
         if (canRotate)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-pitch, transform.rotation.eulerAngles.y, 0), Time.deltaTime * (2 + move.MoveSpeed));
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-pitch, transform.rotation.eulerAngles.y, 0), rotateSpeed * Time.deltaTime);
         }
-        //else
-        //{
-        //    pitch += Time.deltaTime;
-        //}
-
-
     }
 
-    private bool CheckHoeIsGround(Transform hoePos, out RaycastHit hit)
-    {
-        return Physics.Raycast(hoePos.position + Vector3.up * groundOffset, -Vector3.up, out hit, groundDistance, groundLayers);
-    }
-    private Vector3 p1;
-    private Vector3 p2;
+    
 
     private void CheckSlope()
     {
@@ -301,5 +228,10 @@ public class HorseSlope : MonoBehaviour
             //pitch -= 40.0f * Time.deltaTime;
         }
         pitch = Mathf.Clamp(pitch, -40.0f, 40.0f);
+    }
+
+    private bool CheckHoeIsGround(Transform hoePos, out RaycastHit hit)
+    {
+        return Physics.Raycast(hoePos.position + Vector3.up * groundOffset, -Vector3.up, out hit, groundDistance, groundLayers);
     }
 }

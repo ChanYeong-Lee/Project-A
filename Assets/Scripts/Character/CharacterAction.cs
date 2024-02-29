@@ -3,8 +3,6 @@ using UnityEngine.Animations.Rigging;
 
 public class CharacterAction : MonoBehaviour
 {
-    [SerializeField] private Transform bowTransform;
-
     [SerializeField] private Rig bodyAimRig;
     [SerializeField] private Rig bowPosRig;
     [SerializeField] private Rig mountHeadAimRig;
@@ -14,9 +12,9 @@ public class CharacterAction : MonoBehaviour
     [SerializeField] private Transform bowPosMountTarget;
 
     private Animator animator;
-    private PlayerMove move;
-    
+    private CharacterMove move;
     private CharacterMount mount;
+    
     private float bodyAimRigVelocity = 0.0f;
     private float bowPosRigVelocity = 0.0f;
     private float mountHeadAimRigVelocity = 0.0f;
@@ -25,7 +23,7 @@ public class CharacterAction : MonoBehaviour
 
     private void Awake()
     {
-        move = GetComponent<PlayerMove>();
+        move = GetComponent<CharacterMove>();
         mount = GetComponent<CharacterMount>();
         animator = GetComponent<Animator>();
     }
@@ -39,7 +37,7 @@ public class CharacterAction : MonoBehaviour
 
     private void Update()
     {
-        if (move.state == PlayerMove.State.Aim)
+        if (move.IsAim)
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 1.0f, ref bodyAimRigVelocity, 0.2f);
             bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.0f, ref bowPosRigVelocity, 0.2f);

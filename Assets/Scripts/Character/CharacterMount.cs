@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.Windows;
 
 public class CharacterMount : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class CharacterMount : MonoBehaviour
     [SerializeField] private TwoBoneIKConstraint leftFootIK;
     [SerializeField] private TwoBoneIKConstraint rightFootIK;
 
-    private PlayerMove move;
+    private CharacterMove move;
     private Animator animator;
     private CharacterController characterController;
 
@@ -18,13 +19,13 @@ public class CharacterMount : MonoBehaviour
 
     private bool isMount = false;
 
-    float ratio = 0.0f;
-    Vector3 originPos;
-    Quaternion originRot;
+    private float ratio = 0.0f;
+    private Vector3 originPos;
+    private Quaternion originRot;
 
     private void Awake()
     {
-        move = GetComponent<PlayerMove>();
+        move = GetComponent<CharacterMove>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
@@ -36,7 +37,7 @@ public class CharacterMount : MonoBehaviour
 
     private void Update()
     {
-        if (move.GetComponent<PlayerInput>().state == PlayerInput.State.Mount)
+        if (move.GetComponent<PlayerInputAsset>().state == PlayerInputAsset.State.Mount)
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
@@ -84,38 +85,11 @@ public class CharacterMount : MonoBehaviour
             }
         }
        
-        //move.GetComponent<StarterAssetsInputs>().state = StarterAssetsInputs.State.Mount;
-        move.isMount = true;
+        move.SetMount(true);
 
-        horse.GetComponent<HorseMoveWithStateMachine>().enabled = true;
-        //horse.GetComponent<HorseMove>().enabled = true;
-        //horse.GetComponent<HorseMove>().input = move.PInput;
-        horse.GetComponent<HorseMoveWithStateMachine>().input = move.PInput;
-        horse.GetComponent<HorseMoveWithStateMachine>().characterAnimator = move.PAnimator;
+        horse.GetComponent<HorseMove>().enabled = true;
+        horse.GetComponent<HorseMove>().Mount(move.PInput, animator);
     }
 
-    //private void OnAnimatorIK(int layerIndex)
-    //{
-    //    if (isMount && ratio <= 1.0f)
-    //    {
-    //        ratio += Time.deltaTime / mountTime;
 
-    //        transform.position = Vector3.Lerp(originPos, horse.MountPoint.position, ratio);
-    //        transform.rotation = Quaternion.Slerp(originRot, horse.MountPoint.rotation, ratio);
-
-    //        //animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, ratio);
-    //        //animator.SetIKHintPositionWeight(AvatarIKHint.LeftKnee, ratio);
-    //        //animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, ratio);
-    //        //animator.SetIKHintPositionWeight(AvatarIKHint.RightKnee, ratio);
-
-    //        //animator.SetIKPosition(AvatarIKGoal.LeftFoot, horse.MountPointIKs[(int)Horse.MountIK.LeftFoot].position);
-    //        //animator.SetIKHintPosition(AvatarIKHint.LeftKnee, horse.MountPointIKs[(int)Horse.MountIK.LeftKnee].position);
-    //        //animator.SetIKPosition(AvatarIKGoal.RightFoot, horse.MountPointIKs[(int)Horse.MountIK.RightFoot].position);
-    //        //animator.SetIKHintPosition(AvatarIKHint.RightKnee, horse.MountPointIKs[(int)Horse.MountIK.RightKnee].position);
-    //    }
-    //    else
-    //    {
-    //        ratio = 10.0f;
-    //    }
-    //}
 }
