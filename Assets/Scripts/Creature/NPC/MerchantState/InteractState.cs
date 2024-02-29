@@ -9,6 +9,10 @@ namespace MerchantController
     {
         public InteractState(Creature owner) : base(owner) { }
 
+        public override void Enter()
+        {
+            Owner.state = State.Interact;
+        }
         public override void Update()
         {
 
@@ -16,7 +20,6 @@ namespace MerchantController
 
         public override void Transition()
         {
-            ChangeState(State.Interact);
 
         }
     }

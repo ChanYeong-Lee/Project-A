@@ -10,6 +10,9 @@ using State = Define.MerchantState;
 using MerchantController;
 using System.Linq;
 using static UnityEngine.UI.GridLayoutGroup;
+using JetBrains.Annotations;
+using System.Linq.Expressions;
+using static UnityEditor.PlayerSettings;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
@@ -19,7 +22,7 @@ public class Merchant : NPC
     [Space(2f)]
     [SerializeField] public State state;
     public string currentState;
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] public NavMeshAgent agent;
     protected NavMeshTriangulation triangulation;
 
     [Header("이동 관련 자료형")]
@@ -31,7 +34,12 @@ public class Merchant : NPC
 
     [Header("상호작용 관련 자료형")]
     public Vector3 overlapBoxSize = new Vector3(2, 2, 2);
+    [SerializeField] private LayerMask interactable;
+    public LayerMask Interactable => interactable;
 
+    [Header("RunAwawy 상태 관련 자료")]
+    public List<Transform> safezones;
+ 
 
     private void OnAnimatorMove()
     {
@@ -43,7 +51,7 @@ public class Merchant : NPC
     private void Update()
     {
         SynchronizeAnimatiorAndAgent();
-       
+
     }
 
     private void OnDrawGizmos()
@@ -58,6 +66,7 @@ public class Merchant : NPC
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         triangulation = NavMesh.CalculateTriangulation();
+
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Wander, new WanderState(this));
         stateMachine.AddState(State.RunAway, new RnuAwayState(this));
@@ -67,7 +76,10 @@ public class Merchant : NPC
         anim.applyRootMotion = true;
         agent.updatePosition = false;
         agent.updateRotation = true;
+        agent.enabled = true;
+
     }
+   
 
     public void RoamingAround()
     {
@@ -83,7 +95,7 @@ public class Merchant : NPC
 
     private IEnumerator MoveToRandomPos()
     {
-        agent.enabled = true;
+        
         agent.isStopped = false;
 
         WaitForSeconds wait = new WaitForSeconds(waitDelay);
@@ -105,8 +117,13 @@ public class Merchant : NPC
         agent.isStopped = true;
         StopAllCoroutines();
     }
+    public void KeepMoving()
+    {
+        agent.isStopped = false;
+        if (false == agent.enabled) { agent.enabled = true; }
+    }
 
-    private void SynchronizeAnimatiorAndAgent()
+    private void SynchronizeAnimatiorAndAgent() 
     {
         Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
         worldDeltaPosition.y = 0;
