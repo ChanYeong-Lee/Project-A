@@ -9,7 +9,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> monsterPrefabs;
     [SerializeField] private List<int> spawnCount;
     [SerializeField] private List<Vector3> spawnPosition;
-
+    
     private List<GameObject> monsterList = new List<GameObject>();
     
     private void Start()
@@ -17,14 +17,15 @@ public class MonsterSpawner : MonoBehaviour
         SpawnMonster();
     }
 
+    // Test Code
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SpawnMonster();
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             for (int i = 0; i < 5; i++)
             {
@@ -33,7 +34,7 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             foreach (GameObject monster in monsterList)
             {
@@ -56,8 +57,12 @@ public class MonsterSpawner : MonoBehaviour
         for (int i = 0; i < spawnCount[prefabNum]; i++)
         {
             GameObject monster = Managers.Resource.Instantiate(prefab, transform, true);
+            
             monster.transform.position = transform.position + spawnPosition[prefabNum] + new Vector3(Random.value * 30,  5, Random.value * 30);
 
+            if (Managers.Game.Player != null) 
+                monster.GetComponent<Monster>().Target = Managers.Game.Player.transform;
+            
             monsterList.Add(monster);
         }
     }

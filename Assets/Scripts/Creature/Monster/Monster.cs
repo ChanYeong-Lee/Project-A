@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using CreatureController;
 
@@ -8,8 +8,8 @@ public abstract class Monster : Creature, IFarmable
     [SerializeField] protected Transform target;
     
     public MonsterData MonsterData => monsterData;
-    public Transform Target => target;
-    
+    public Transform Target { get => target; set => target = value; }
+
     public override void Init()
     {
         base.Init();

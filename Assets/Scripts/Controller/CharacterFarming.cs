@@ -22,6 +22,11 @@ public class CharacterFarming : MonoBehaviour
         playerData = Managers.Resource.Load<PlayerData>("ScriptableObject/Creature/Player Data");
     }
 
+    private void Start()
+    {
+        inventory = GetComponentInChildren<Inventory>();
+    }
+
     private void Update()
     {
         // 상호작용

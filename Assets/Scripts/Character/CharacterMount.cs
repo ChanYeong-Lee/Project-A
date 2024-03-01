@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -28,6 +29,12 @@ public class CharacterMount : MonoBehaviour
         move = GetComponent<CharacterMove>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        if (horse == null) 
+            horse = Managers.Game.Horse.GetComponent<Horse>();
     }
 
     private void OnEnable()

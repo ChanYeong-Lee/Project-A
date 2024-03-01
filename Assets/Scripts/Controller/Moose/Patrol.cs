@@ -24,8 +24,10 @@ namespace MooseController
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
+            
             Collider[] colliders = new Collider[2];
-            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.7f, colliders, moose.Detection);
+            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.5f, colliders, moose.Detection);
             
             
  

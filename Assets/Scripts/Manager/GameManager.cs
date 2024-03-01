@@ -26,7 +26,6 @@ public class GameManager
             Screen.fullScreen = isFullScreen;
         }
     }
-
     public float GameSpeed
     {
         get => gameSpeed;
@@ -37,9 +36,41 @@ public class GameManager
         }
     }
 
+    // Player
+    private GameObject player;
+    private GameObject horse;
+    private CameraController cam;
+
+    public GameObject Player { get => player; set => player = value; }
+    public GameObject Horse { get => horse; set => horse = value; }
+    public CameraController Cam { get => cam; set => cam = value; }
+    
+    
+    // Monster
+    private MonsterSpawner monsterSpawner;
+
+    public MonsterSpawner MonsterSpawner { get => monsterSpawner; set => monsterSpawner = value; }
+    
+    
     public void Init()
     {
-        
+        CreatePlayer();
+        CreateMonster();
     }
     
+    private void CreatePlayer()
+    {
+        player = Managers.Resource.Instantiate("Prefabs/Player/Character");
+        horse = Managers.Resource.Instantiate("Prefabs/Player/Horse");
+        cam = Managers.Resource.Instantiate("Prefabs/Player/TPSCam").GetComponent<CameraController>();
+    }
+
+    private void CreateMonster()
+    {
+        monsterSpawner = Managers.Resource.Instantiate("Prefabs/Monster/Monster Spawner").GetComponent<MonsterSpawner>();
+    }
+
+    private void PlayerSettings()
+    {
+    }
 }

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefabs:
   - {fileID: 5488465847894699506, guid: 4578ead0e0fda394c8bd6590d2b3c672, type: 3}
-  spawnCount: 0a000000
+  - {fileID: 5488465847894699506, guid: 0bf41d5cee7ed904cacac235700bb84c, type: 3}
+  spawnCount: 0300000003000000
   spawnPosition:
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

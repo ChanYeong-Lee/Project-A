@@ -9,6 +9,7 @@ namespace MooseController
 
         public override void Enter()
         {
+            isUnderAttack = true;
             anim.SetBool("Damaged", true);
         }
 

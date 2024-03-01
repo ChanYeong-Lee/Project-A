@@ -61,7 +61,7 @@ public class Managers : MonoBehaviour
         // game = new GameObject("GameManager").AddComponent<GameManager>();
         // game.transform.SetParent(Instance.transform);
 
-        Game.Init();
-        Data.Init();
+        // Game.Init();
+        // Data.Init();
     }
 }

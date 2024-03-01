@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class GameScene : MonoBehaviour
 {
-    [Range(1f, 16f)] public float gameSpeed = 1f ;
+    [Range(0f, 16f)] public float gameSpeed = 1f ;
 
-    private void Start()
+    private void Awake()
     {
-        
+        Managers.Game.Init();
+        Managers.Data.Init();
     }
 
     private void Update()
