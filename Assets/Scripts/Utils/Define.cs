@@ -68,4 +68,11 @@ public class Define
         Interact,
     }
 
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 }
