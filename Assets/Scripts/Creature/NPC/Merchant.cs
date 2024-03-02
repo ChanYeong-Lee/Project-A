@@ -115,6 +115,7 @@ public class Merchant : NPC
     public void StopMoving()
     {
         agent.isStopped = true;
+        agent.enabled = false;
         StopAllCoroutines();
     }
     public void KeepMoving()

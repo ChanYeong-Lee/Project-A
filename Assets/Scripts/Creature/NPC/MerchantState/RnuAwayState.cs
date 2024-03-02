@@ -42,9 +42,9 @@ namespace MerchantController
             }
             if (neariestZone != null)
             {
-
-                Owner.KeepMoving();
                 Owner.Anim.SetTrigger("FaceEnemy");
+                
+                Owner.KeepMoving();
                 Owner.agent.SetDestination(neariestZone.position);
 
             }
