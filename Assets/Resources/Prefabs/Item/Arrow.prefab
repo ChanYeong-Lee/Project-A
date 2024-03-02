@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7927893779147099156}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,8 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 0}
   count: 1
-  material: {fileID: 0}
-  vfx: {fileID: 0}
 --- !u!33 &3579854045100015332
 MeshFilter:
   m_ObjectHideFlags: 0

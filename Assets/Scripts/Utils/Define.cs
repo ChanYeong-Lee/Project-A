@@ -59,6 +59,7 @@ public class Define
         TakeAttack,
         Trace,
         Attack,
+        Dead,
     }
     public enum MerchantState
     {

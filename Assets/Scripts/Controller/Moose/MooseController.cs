@@ -10,7 +10,7 @@ namespace MooseController
         
         protected float randTime;
         protected bool isChangedState;
-        protected bool isUnderAttack;
+        // protected bool isUnderAttack;
         protected float attackCooldown;
         protected float vertical;
         protected float horizontal;
@@ -34,7 +34,7 @@ namespace MooseController
             }
             else
             {
-                distanceToTarget = 100; 
+                distanceToTarget = moose.MonsterData.TrackingDistance * 2; 
             }
         }
 
@@ -49,28 +49,10 @@ namespace MooseController
                 moose.transform.localRotation = Quaternion.Slerp(moose.transform.localRotation,
                     Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 100, 0), Time.fixedDeltaTime);
             }
+
+            // isUnderAttack = anim.GetBool("Damaged");
         }
-        
-        // public override void LateUpdate()
-        // {
-        //     if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, 1f))
-        //     {
-        //         // Vector3 normal = hit.normal;
-        //         // var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
-        //         
-        //         moose.GetComponent<Rigidbody>().constraints =
-        //             RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        //     }
-        //     else
-        //     {
-        //         Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit2, Mathf.Infinity);
-        //         Vector3 normal = hit.normal;
-        //         var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
-        //         moose.transform.rotation = Quaternion.Euler(angle, moose.transform.rotation.eulerAngles.y, 0);
-        //         moose.GetComponent<Rigidbody>().constraints =
-        //             /*RigidbodyConstraints.FreezeRotationY | */RigidbodyConstraints.FreezeRotationZ;            }
-        // }
-        
+
         // 랜덤 값 생성
         // 랜덤 수치 값 일부 조정 가능한 함수(최소 시간, 최대 시간, 상태 머신 바뀔 확률)
         protected void RandVariable(float minTime = 1f, float maxTime = 10f, float rateToChange = 0.5f)

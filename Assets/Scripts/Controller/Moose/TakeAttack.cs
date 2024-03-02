@@ -9,26 +9,26 @@ namespace MooseController
 
         public override void Enter()
         {
-            isUnderAttack = true;
             anim.SetBool("Damaged", true);
-        }
 
-        public override void Update()
-        {
-            base.Update();
+            // moose.CurrentStat.HealthPoint -= target.
             
-            // TODO : 대미지 받는 로직
-            
+            moose.state = State.TakeAttack;
+            Debug.Log($"TakeAttack {moose.CurrentStat.HealthPoint}");
         }
 
         public override void Transition()
         {
-            ChangeState(distanceToTarget < 5 ? State.Attack : State.Trace);
+            if (moose.CurrentStat.HealthPoint <= 0) 
+                ChangeState(State.Dead);
+            
+            ChangeState(distanceToTarget < moose.MonsterData.AttackRange ? State.Attack : State.Trace);
         }
 
         public override void Exit()
         {
             anim.SetBool("Damaged", false);
+            // isUnderAttack = false;
         }
     }
 

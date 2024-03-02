@@ -30,6 +30,15 @@ public class Moose : Monster
         stateMachine.AddState(State.TakeAttack, new TakeAttackState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Attack, new AttackState(this));
+        stateMachine.AddState(State.Dead, new DeadState(this));
         stateMachine.InitState(State.Idle);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            stateMachine.ChangeState(State.TakeAttack);
+        }
     }
 }

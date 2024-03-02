@@ -30,8 +30,8 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (target is not null && isUnderAttack) 
-                ChangeState(State.Attack);
+            // if (isUnderAttack) 
+            //     ChangeState(State.TakeAttack);
             
             if (!moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.ViewDistance) 
                 ChangeState(State.Run);

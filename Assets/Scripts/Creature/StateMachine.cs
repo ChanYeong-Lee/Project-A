@@ -24,7 +24,7 @@ public class StateMachine : MonoBehaviour
         currentState.FixedUpdate();
     }
 
-    protected void LateUpdate()
+    private void LateUpdate()
     {
         currentState.LateUpdate();
     }

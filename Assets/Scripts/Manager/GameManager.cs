@@ -33,9 +33,11 @@ public class GameManager
         {
             gameSpeed = value;
             Time.timeScale = gameSpeed;
+            isPause = gameSpeed == 0;
         }
     }
 
+    
     // Player
     private GameObject player;
     private GameObject horse;
@@ -63,11 +65,16 @@ public class GameManager
         player = Managers.Resource.Instantiate("Prefabs/Player/Character");
         horse = Managers.Resource.Instantiate("Prefabs/Player/Horse");
         cam = Managers.Resource.Instantiate("Prefabs/Player/TPSCam").GetComponent<CameraController>();
+        
+        // 생성될 위치 입력
+        
     }
 
     private void CreateMonster()
     {
         monsterSpawner = Managers.Resource.Instantiate("Prefabs/Monster/Monster Spawner").GetComponent<MonsterSpawner>();
+        // Vector3(-105.138504,9.34560871,95.6413116)
+        monsterSpawner.transform.position = new Vector3(-105, 3, 95);
     }
 
     private void PlayerSettings()

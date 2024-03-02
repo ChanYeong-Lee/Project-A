@@ -78,10 +78,12 @@ namespace MooseController
 
         public override void Transition()
         {
-            // Idle
             if (isChangedState) 
                 ChangeState(State.Idle);
-
+            
+            // if (isUnderAttack) 
+            //     ChangeState(State.TakeAttack);
+            
             if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
                 ChangeState(State.Trace);
         }
