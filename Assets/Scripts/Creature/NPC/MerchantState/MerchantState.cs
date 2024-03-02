@@ -11,12 +11,9 @@ public class MerchantState : NPCState
     {
         public Merchant Owner => base.owner as Merchant;
         
-        protected GameObject Target
-        {
-            get { return Owner.target; }
-            set { Owner.target = value; }
+        public MerchantState(Creature owner) : base(owner)
+        { 
+        
         }
-
-        public MerchantState(Creature owner) : base(owner) { }
     }
 }

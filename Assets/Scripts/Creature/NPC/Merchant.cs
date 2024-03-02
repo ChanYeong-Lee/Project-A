@@ -21,26 +21,28 @@ public class Merchant : NPC
 {
     [Space(2f)]
     [SerializeField] public State state;
-    public string currentState;
     [SerializeField] public NavMeshAgent agent;
-    protected NavMeshTriangulation triangulation;
+    [HideInInspector] protected NavMeshTriangulation triangulation;
 
-    [Header("ÀÌµ¿ °ü·Ã ÀÚ·áÇü")]
+
+    [Header("ì´ë™ ê´€ë ¨ ìë£Œí˜•")]
     [Space(2f)]
     public Vector2 vel;
     public Vector2 smoothDeltaPos;
     [Space(2f)]
     [Range(0f, 3f)] public float waitDelay = 1f;
 
-    [Header("»óÈ£ÀÛ¿ë °ü·Ã ÀÚ·áÇü")]
-    public Vector3 overlapBoxSize = new Vector3(2, 2, 2);
+    [Header("ìƒí˜¸ì‘ìš© ê´€ë ¨ ìë£Œí˜•")]
+    [HideInInspector] public Vector3 overlapBoxSize = new Vector3(10, 2, 10);
     [SerializeField] private LayerMask interactable;
     public LayerMask Interactable => interactable;
+    [HideInInspector] public Collider interactionCol;
+    public Collider[] cols;
 
-    [Header("RunAwawy »óÅÂ °ü·Ã ÀÚ·á")]
+
+    [Header("RunAwawy ìƒíƒœ ê´€ë ¨ ìë£Œ")]
     public List<Transform> safezones;
  
-
     private void OnAnimatorMove()
     {
         Vector3 rootPosition = anim.rootPosition;
@@ -51,20 +53,22 @@ public class Merchant : NPC
     private void Update()
     {
         SynchronizeAnimatiorAndAgent();
-
+        Overlap();
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(overlapBoxSize);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(Vector3.up, overlapBoxSize);
+        Gizmos.DrawWireCube(new Vector3(0, 0.5f, 0), Vector3.one);
     }
+
     public override void Init()
     {
         base.Init();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        interactionCol = GetComponentInChildren<CapsuleCollider>();
         triangulation = NavMesh.CalculateTriangulation();
 
         stateMachine.AddState(State.Idle, new IdleState(this));
@@ -77,7 +81,7 @@ public class Merchant : NPC
         agent.updatePosition = false;
         agent.updateRotation = true;
         agent.enabled = true;
-
+        CollisionToggle();
     }
    
 
@@ -91,6 +95,13 @@ public class Merchant : NPC
         int index = Random.Range(1, triangulation.vertices.Length - 1);
         agent.SetDestination(Vector3.Lerp(triangulation.vertices[index],
                             triangulation.vertices[index + (Random.value > 0.5f ? -1 : 1)], Random.value));
+    }
+
+    public void Overlap()
+    {
+        cols = Physics.OverlapBox(transform.position + transform.up,
+                          overlapBoxSize * 0.5f, transform.rotation, interactable);
+        
     }
 
     private IEnumerator MoveToRandomPos()
@@ -120,8 +131,15 @@ public class Merchant : NPC
     }
     public void KeepMoving()
     {
-        agent.isStopped = false;
         if (false == agent.enabled) { agent.enabled = true; }
+        agent.isStopped = false;
+    }
+
+    //ìƒíƒœë¨¸ì‹ ì˜ ê²½ë¡œë¥¼ ì •í• ë•Œ ì‚¬ìš©
+    public void SetDestination(Vector3 target)
+    {
+        KeepMoving();
+        agent.SetDestination(target);
     }
 
     private void SynchronizeAnimatiorAndAgent() 
@@ -131,20 +149,20 @@ public class Merchant : NPC
 
         //Map worldDeltaPos to local space
 
-        //dx: ÇöÀç À§Ä¡¿¡¼­ xÃàÀ¸·Î 1¸¸Å­ °¡±â À§ÇØ¼­ ½ÇÁ¦·Î ÀÌµ¿ÇÒ °Å¸®
+        //dx: í˜„ì¬ ìœ„ì¹˜ì—ì„œ xì¶•ìœ¼ë¡œ 1ë§Œí¼ ê°€ê¸° ìœ„í•´ì„œ ì‹¤ì œë¡œ ì´ë™í•  ê±°ë¦¬
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
-        //dy: ÇöÀç À§Ä¡¿¡¼­ zÃàÀ¸·Î 1¸¸Å­ ´õ °¡±â À§ÇØ¼­ ½ÇÁ¦·Î ÀÌµ¿ÇÒ °Å¸®.
+        //dy: í˜„ì¬ ìœ„ì¹˜ì—ì„œ zì¶•ìœ¼ë¡œ 1ë§Œí¼ ë” ê°€ê¸° ìœ„í•´ì„œ ì‹¤ì œë¡œ ì´ë™í•  ê±°ë¦¬.
         float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
 
-        //dx, dy¸¸Å­ °¡±â À§ÇØ¼­ÀÇ ÀÌµ¿ ¹éÅÍ(¹æÇâ°ú °Å¸®¸¦ Æ÷ÇÔ)
+        //dx, dyë§Œí¼ ê°€ê¸° ìœ„í•´ì„œì˜ ì´ë™ ë°±í„°(ë°©í–¥ê³¼ ê±°ë¦¬ë¥¼ í¬í•¨)
         Vector2 deltaPosition = new Vector2(dx, dy);
 
         // Low-pass filter the deltaMove
         float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
-        // filter¸¦ °ÅÄ£ ÇöÀç ÇöÀç¿¡¼­ ÀÌµ¿ ¹éÅÍ¸¸Å­ º¸°£ °ª
+        // filterë¥¼ ê±°ì¹œ í˜„ì¬ í˜„ì¬ì—ì„œ ì´ë™ ë°±í„°ë§Œí¼ ë³´ê°„ ê°’
         smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
 
-        //ÇÁ·¹ÀÓ°£ ÀÌµ¿·®
+        //í”„ë ˆì„ê°„ ì´ë™ëŸ‰
         vel = smoothDeltaPos / Time.deltaTime;
 
         if (agent.remainingDistance <= agent.stoppingDistance)
@@ -158,6 +176,11 @@ public class Merchant : NPC
         anim.SetFloat("velx", vel.x);
         anim.SetFloat("vely", vel.y);
 
+    }
+
+    public void CollisionToggle()
+    {
+        interactionCol.enabled = !interactionCol.enabled;
     }
 
     #region ChangeAnimation
