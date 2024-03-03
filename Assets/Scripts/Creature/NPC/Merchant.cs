@@ -8,11 +8,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using State = Define.MerchantState;
 using MerchantController;
-using System.Linq;
-using static UnityEngine.UI.GridLayoutGroup;
-using JetBrains.Annotations;
-using System.Linq.Expressions;
-using static UnityEditor.PlayerSettings;
+
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
@@ -33,11 +29,11 @@ public class Merchant : NPC
     [Range(0f, 3f)] public float waitDelay = 1f;
 
     [Header("상호작용 관련 자료형")]
-    [HideInInspector] public Vector3 overlapBoxSize = new Vector3(10, 2, 10);
+    [HideInInspector] public Vector3 interactionBounds = new Vector3(10, 2, 10);
     [SerializeField] private LayerMask interactable;
     public LayerMask Interactable => interactable;
-    [HideInInspector] public Collider interactionCol;
-    public Collider[] cols;
+    [HideInInspector] public Collider interactibleCollider;
+    public Collider[] nearbyColliders;
 
 
     [Header("RunAwawy 상태 관련 자료")]
@@ -58,7 +54,7 @@ public class Merchant : NPC
 
     private void OnDrawGizmos()
     {
-        Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(overlapBoxSize);
+        Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(interactionBounds);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(new Vector3(0, 0.5f, 0), Vector3.one);
     }
@@ -70,7 +66,7 @@ public class Merchant : NPC
         base.Init();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        interactionCol = GetComponentInChildren<CapsuleCollider>();
+        interactibleCollider = GetComponentInChildren<CapsuleCollider>();
         triangulation = NavMesh.CalculateTriangulation();
 
         stateMachine.AddState(State.Idle, new IdleState(this));
@@ -87,13 +83,13 @@ public class Merchant : NPC
     }
    
 
-    public void RoamingAround()
+    public void BeginWandering()
     {
-        KeepMoving();
+        EnableAgentMovement();
         _ = StartCoroutine(MoveToRandomPos());
     }
 
-    public void SetRandomPos()
+    public void SetRandomWaypoint()
     {
         int index = Random.Range(1, triangulation.vertices.Length - 1);
         agent.SetDestination(Vector3.Lerp(triangulation.vertices[index],
@@ -102,8 +98,8 @@ public class Merchant : NPC
 
     public void Overlap()
     {
-        cols = Physics.OverlapBox(transform.position + transform.up,
-                          overlapBoxSize * 0.5f, transform.rotation, interactable);
+        nearbyColliders = Physics.OverlapBox(transform.position + transform.up,
+                          interactionBounds * 0.5f, transform.rotation, interactable);
         
     }
 
@@ -126,13 +122,13 @@ public class Merchant : NPC
         }
     }
 
-    public void StopMoving()
+    public void DisableAgentMovement()
     {
+        agent.ResetPath();
         agent.isStopped = true;
-        //agent.enabled = false;
         StopAllCoroutines();
     }
-    public void KeepMoving()
+    public void EnableAgentMovement()
     {
         if (false == agent.enabled) { agent.enabled = true; }
         agent.isStopped = false;
@@ -141,7 +137,7 @@ public class Merchant : NPC
     //상태머신의 경로를 정할때 사용
     public void SetDestination(Vector3 target)
     {
-        KeepMoving();
+        EnableAgentMovement();
         agent.SetDestination(target);
     }
 
@@ -168,6 +164,7 @@ public class Merchant : NPC
             smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
 
             //프레임간 이동량
+
             vel = smoothDeltaPos / Time.deltaTime;
 
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -187,11 +184,11 @@ public class Merchant : NPC
 
     public void CollisionOn()
     {
-        if (!interactionCol.enabled) {interactionCol.enabled = true; }
+        if (!interactibleCollider.enabled) {interactibleCollider.enabled = true; }
     }
     public void CollisionOff()
     {
-        if (interactionCol.enabled) { interactionCol.enabled = false; }
+        if (interactibleCollider.enabled) { interactibleCollider.enabled = false; }
     }
 
     #region ChangeAnimation

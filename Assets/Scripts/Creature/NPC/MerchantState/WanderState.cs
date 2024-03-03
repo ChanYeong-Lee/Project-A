@@ -14,12 +14,12 @@ namespace MerchantController
         {
             Debug.Log("WanderState Enter");
             Owner.state = State.Wander;
-            Owner.RoamingAround();
+            Owner.BeginWandering();
 
         }
         public override void Update()
         {
-            CheckInteractibleObj();
+            HandleNearbyObjects();
         }
         public override void Transition()
         {
@@ -29,10 +29,10 @@ namespace MerchantController
         {
 
         }
-        public void CheckInteractibleObj()
+        public void HandleNearbyObjects()
         {
-            if (Owner.cols.Count() == 0) return;
-            foreach (Collider col in Owner.cols)
+            if (Owner.nearbyColliders.Count() == 0) return;
+            foreach (Collider col in Owner.nearbyColliders)
             {
                 if (col.gameObject.layer == LayerMask.NameToLayer("Player") /*9 PlayerLayer*/)
                 {
@@ -42,7 +42,7 @@ namespace MerchantController
                 }
                 else if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") /*6 EnemyLayer*/)
                 {
-                    Owner.StopMoving();
+                    Owner.DisableAgentMovement();
                     Owner.target = col.gameObject;
                     ChangeState(State.RunAway);
                 }

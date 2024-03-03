@@ -66,13 +66,13 @@ namespace MerchantController
         //없을 경우 Idle로 전환
         public void CheckEnemy()
         {//TODO: if 문 수정 예정. 
-            if (Owner.cols.Count() == 0)
+            if (Owner.nearbyColliders.Count() == 0)
             {
                 neariestZone = null;
                 ChangeState(State.Idle);
                 return;
             }
-            foreach (Collider col in Owner.cols)
+            foreach (Collider col in Owner.nearbyColliders)
             {
                 if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {

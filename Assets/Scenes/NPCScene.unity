@@ -1991,8 +1991,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Height: 2
+  m_Radius: 2.5
+  m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &900278668
@@ -2513,7 +2513,7 @@ Transform:
   m_GameObject: {fileID: 1140263417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.37, y: 1.54, z: 0.25}
+  m_LocalPosition: {x: 13.53, y: 1.256, z: -5.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9651,12 +9651,12 @@ MonoBehaviour:
   vel: {x: 0, y: 0}
   smoothDeltaPos: {x: 0, y: 0}
   waitDelay: 1
-  overlapBoxSize: {x: 10, y: 2, z: 10}
+  interactionBounds: {x: 10, y: 2, z: 10}
   interactable:
     serializedVersion: 2
     m_Bits: 832
-  interactionCol: {fileID: 0}
-  cols: []
+  interactibleCollider: {fileID: 0}
+  nearbyColliders: []
   safezones:
   - {fileID: 1798736590}
   - {fileID: 209427510}
