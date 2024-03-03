@@ -63,6 +63,8 @@ public class Merchant : NPC
         Gizmos.DrawWireCube(new Vector3(0, 0.5f, 0), Vector3.one);
     }
 
+  
+
     public override void Init()
     {
         base.Init();
@@ -81,12 +83,13 @@ public class Merchant : NPC
         agent.updatePosition = false;
         agent.updateRotation = true;
         agent.enabled = true;
-        CollisionToggle();
+        CollisionOn();
     }
    
 
     public void RoamingAround()
     {
+        KeepMoving();
         _ = StartCoroutine(MoveToRandomPos());
     }
 
@@ -126,7 +129,7 @@ public class Merchant : NPC
     public void StopMoving()
     {
         agent.isStopped = true;
-        agent.enabled = false;
+        //agent.enabled = false;
         StopAllCoroutines();
     }
     public void KeepMoving()
@@ -144,55 +147,63 @@ public class Merchant : NPC
 
     private void SynchronizeAnimatiorAndAgent() 
     {
-        Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
-        worldDeltaPosition.y = 0;
-
-        //Map worldDeltaPos to local space
-
-        //dx: 현재 위치에서 x축으로 1만큼 가기 위해서 실제로 이동할 거리
-        float dx = Vector3.Dot(transform.right, worldDeltaPosition);
-        //dy: 현재 위치에서 z축으로 1만큼 더 가기 위해서 실제로 이동할 거리.
-        float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
-
-        //dx, dy만큼 가기 위해서의 이동 백터(방향과 거리를 포함)
-        Vector2 deltaPosition = new Vector2(dx, dy);
-
-        // Low-pass filter the deltaMove
-        float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
-        // filter를 거친 현재 현재에서 이동 백터만큼 보간 값
-        smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
-
-        //프레임간 이동량
-        vel = smoothDeltaPos / Time.deltaTime;
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.enabled == true)
         {
-            vel = Vector2.Lerp(Vector2.zero, vel, agent.remainingDistance);
+            Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
+            worldDeltaPosition.y = 0;
+
+            //Map worldDeltaPos to local space
+
+            //dx: 현재 위치에서 x축으로 1만큼 가기 위해서 실제로 이동할 거리
+            float dx = Vector3.Dot(transform.right, worldDeltaPosition);
+            //dy: 현재 위치에서 z축으로 1만큼 더 가기 위해서 실제로 이동할 거리.
+            float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
+
+            //dx, dy만큼 가기 위해서의 이동 백터(방향과 거리를 포함)
+            Vector2 deltaPosition = new Vector2(dx, dy);
+
+            // Low-pass filter the deltaMove
+            float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
+            // filter를 거친 현재 현재에서 이동 백터만큼 보간 값
+            smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
+
+            //프레임간 이동량
+            vel = smoothDeltaPos / Time.deltaTime;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                vel = Vector2.Lerp(Vector2.zero, vel, agent.remainingDistance);
+            }
+
+            bool shouldMove = vel.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance;
+
+            anim.SetBool("move", shouldMove);
+            anim.SetFloat("velx", vel.x);
+            anim.SetFloat("vely", vel.y);
         }
-
-        bool shouldMove = vel.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance;
-
-        anim.SetBool("move", shouldMove);
-        anim.SetFloat("velx", vel.x);
-        anim.SetFloat("vely", vel.y);
+       
 
     }
 
-    public void CollisionToggle()
+    public void CollisionOn()
     {
-        interactionCol.enabled = !interactionCol.enabled;
+        if (!interactionCol.enabled) {interactionCol.enabled = true; }
+    }
+    public void CollisionOff()
+    {
+        if (interactionCol.enabled) { interactionCol.enabled = false; }
     }
 
     #region ChangeAnimation
-    protected void SwitchAnimation(State state, float value)
+    public void SwitchAnimation(State state, float value)
     {
         anim.SetFloat(state.ToString(), value);
     }
-    protected void SwitchAnimation(State state, bool value)
+    public void SwitchAnimation(State state, bool value)
     {
         anim.SetBool(state.ToString(), value);
     }
-    protected void SwitchAnimation(State state)
+    public void SwitchAnimation(State state)
     {
         anim.SetTrigger(state.ToString());
     }

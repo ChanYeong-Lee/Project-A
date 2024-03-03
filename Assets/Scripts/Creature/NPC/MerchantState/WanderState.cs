@@ -36,14 +36,12 @@ namespace MerchantController
             {
                 if (col.gameObject.layer == LayerMask.NameToLayer("Player") /*9 PlayerLayer*/)
                 {
-                   
-                    Owner.StopMoving();
+                    //Owner.StopMoving();
                     Owner.target = col.gameObject;
-                    ChangeState(State.Interact);
+                    ChangeState(State.Idle);
                 }
                 else if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") /*6 EnemyLayer*/)
                 {
-                    
                     Owner.StopMoving();
                     Owner.target = col.gameObject;
                     ChangeState(State.RunAway);
