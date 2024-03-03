@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7091,7 +7091,7 @@ GameObject:
   - component: {fileID: 2144436199}
   - component: {fileID: 2135396357}
   - component: {fileID: 2144822633}
-  - component: {fileID: 2144822632}
+  - component: {fileID: 2144822634}
   m_Layer: 0
   m_Name: Dude
   m_TagString: Untagged
@@ -7293,19 +7293,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2144822632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144789447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730b56d69f7bc1c4ea48ed20aa0494c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaitDelay: 1
 --- !u!195 &2144822633
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7328,6 +7315,34 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2144822634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144789447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb797d168dd3cd408f46d58db86a711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureData: {fileID: 0}
+  spawnPos: {x: 0, y: 0, z: 0}
+  currentLevel: 1
+  target: {fileID: 0}
+  state: 0
+  agent: {fileID: 0}
+  vel: {x: 0, y: 0}
+  smoothDeltaPos: {x: 0, y: 0}
+  waitDelay: 1
+  interactionBounds: {x: 10, y: 2, z: 10}
+  interactable:
+    serializedVersion: 2
+    m_Bits: 0
+  interactibleCollider: {fileID: 0}
+  nearbyColliders: []
+  safezones: []
 --- !u!33 &2145730501
 MeshFilter:
   m_ObjectHideFlags: 0
