@@ -12,14 +12,17 @@ public class Moose : Monster
     [SerializeField] private Transform body;
     [SerializeField] private LayerMask detection;
     
+    private int receivedDamage;
+    
     // 인스펙터 확인용
     public State state;
     public float distance;
     public float angle;
-
+    
     public Transform Eyes => eyes;
     public Transform Body => body;
     public LayerMask Detection => detection;
+    public int ReceivedDamage => receivedDamage;
 
     public override void Init()
     {
@@ -34,11 +37,43 @@ public class Moose : Monster
         stateMachine.InitState(State.Idle);
     }
 
-    private void OnTriggerEnter(Collider other)
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Arrow"))
+    //     {
+    //         stateMachine.ChangeState(State.TakeAttack);
+    //     }
+    // }
+
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Arrow"))
         {
-            stateMachine.ChangeState(State.TakeAttack);
+            if (currentStat.HealthPoint <= 0)
+                return;
+            
+            var arrow = other.gameObject.GetComponent<Arrow>();
+            
+            // 데미지 공식
+            receivedDamage = arrow.ArrowData.ArrowTrueDamage + (arrow.ArrowData.ArrowDamage - currentStat.Defence > 0
+                ? arrow.ArrowData.ArrowDamage - currentStat.Defence
+                : 0);
+
+            if (state != State.Dead)
+            {
+                target = Managers.Game.Player.transform;
+                stateMachine.ChangeState(State.TakeAttack);
+            }
+
+            Managers.Pool.Push(other.gameObject);
         }
+
+        // TODO : 이걸로 부위별 공격 데미지 계산하면 될듯
+        // foreach (ContactPoint point in other.contacts)
+        // {
+        //     var o = point.otherCollider.gameObject;
+        //
+        //     Debug.Log($"{o.gameObject.name}");
+        // }
     }
 }

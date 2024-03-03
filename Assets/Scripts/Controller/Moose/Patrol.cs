@@ -84,7 +84,7 @@ namespace MooseController
             // if (isUnderAttack) 
             //     ChangeState(State.TakeAttack);
             
-            if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
+            if (moose.Data.IsAggressive && distanceToTarget < moose.Data.TrackingDistance) 
                 ChangeState(State.Trace);
         }
         

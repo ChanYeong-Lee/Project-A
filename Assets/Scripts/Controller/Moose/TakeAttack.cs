@@ -11,10 +11,10 @@ namespace MooseController
         {
             anim.SetBool("Damaged", true);
 
-            // moose.CurrentStat.HealthPoint -= target.
+            monster.CurrentStat.HealthPoint -= moose.ReceivedDamage;   
             
             moose.state = State.TakeAttack;
-            Debug.Log($"TakeAttack {moose.CurrentStat.HealthPoint}");
+            Debug.Log($"hp : {moose.CurrentStat.HealthPoint}, ReceivedDamage : {moose.ReceivedDamage}");
         }
 
         public override void Transition()
@@ -22,7 +22,7 @@ namespace MooseController
             if (moose.CurrentStat.HealthPoint <= 0) 
                 ChangeState(State.Dead);
             
-            ChangeState(distanceToTarget < moose.MonsterData.AttackRange ? State.Attack : State.Trace);
+            ChangeState(distanceToTarget < moose.Data.AttackRange ? State.Attack : State.Trace);
         }
 
         public override void Exit()

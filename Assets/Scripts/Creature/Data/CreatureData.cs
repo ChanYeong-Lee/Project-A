@@ -28,4 +28,12 @@ public class Stat
     public int HealthPoint { get => healthPoint; set => healthPoint = value; }
     public int Attack { get => attack; set => attack = value; }
     public int Defence { get => defence; set => defence = value; }
+
+    public Stat(Stat stat)
+    {
+        level = stat.level;
+        healthPoint = stat.healthPoint;
+        attack = stat.attack;
+        defence = stat.defence;
+    }
 }

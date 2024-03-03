@@ -4,18 +4,18 @@ using CreatureController;
 
 public abstract class Monster : Creature, IFarmable
 {
-    protected MonsterData monsterData;
+    protected MonsterData data;
     [SerializeField] protected Transform target;
     [SerializeField] protected bool isFarmable;
     
-    public MonsterData MonsterData => monsterData;
+    public MonsterData Data => data;
     public Transform Target { get => target; set => target = value; }
     public bool IsFarmable { get => isFarmable; set => isFarmable = value; }
 
     public override void Init()
     {
         base.Init();
-        monsterData = creatureData as MonsterData;
+        data = creatureData as MonsterData;
     }
 
     public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
@@ -25,12 +25,12 @@ public abstract class Monster : Creature, IFarmable
         if (!isFarmable)
             return null;
 
-        if (monsterData.DropItem == null)
+        if (data.DropItem == null)
             return null;
         
-        farmingType = monsterData.DropItem.FarmingType;
+        farmingType = data.DropItem.FarmingType;
 
-        return monsterData.DropItem.GetDropItem();
+        return data.DropItem.GetDropItem();
     }
 }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 public class Arrow : Item
 {
     private ArrowData arrowData;
+
+    public ArrowData ArrowData => arrowData;
     
     private void Start()
     {
@@ -48,31 +50,33 @@ public class Arrow : Item
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Animal"))
-        {
-            
-            Activate();
-            Debug.Log($"{other.gameObject.name}");
-            var monster = other.gameObject.GetComponent<Monster>();
-
-            var damage = arrowData.ArrowDamage - monster.CurrentStat.Defence + arrowData.ArrowTrueDamage;
-            monster.CurrentStat.HealthPoint -= damage;
-        }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Animal"))
-        {
-            
-            Activate();
-            Debug.Log($"{other.gameObject.name}");
-            var monster = other.gameObject.GetComponent<Monster>();
-    
-            var damage = arrowData.ArrowDamage - monster.CurrentStat.Defence + arrowData.ArrowTrueDamage;
-            monster.CurrentStat.HealthPoint -= damage;
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Animal"))
+    //     {
+    //         
+    //         Activate();
+    //         Debug.Log($"{other.gameObject.name}");
+    //         var monster = other.gameObject.GetComponent<Monster>();
+    //
+    //         var damage = arrowData.ArrowDamage - monster.CurrentStat.Defence + arrowData.ArrowTrueDamage;
+    //         monster.CurrentStat.HealthPoint -= damage;
+    //     }
+    // }
+    //
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("Animal"))
+    //     {
+    //         
+    //         Activate();
+    //         Debug.Log($"{other.gameObject.name}");
+    //         var monster = other.gameObject.GetComponent<Monster>();
+    //         
+    //         var damage = arrowData.ArrowTrueDamage + (arrowData.ArrowDamage - monster.CurrentStat.Defence > 0
+    //             ? arrowData.ArrowDamage - monster.CurrentStat.Defence
+    //             : 0);
+    //         monster.CurrentStat.HealthPoint -= damage;
+    //     }
+    // }
 }

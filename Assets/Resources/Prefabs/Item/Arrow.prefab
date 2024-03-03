@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3128813468954690962}
   - component: {fileID: 3579854045100015332}
   - component: {fileID: 7927893779147099156}
+  - component: {fileID: 1950785908635425123}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Arrow
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38782c4984e74af8a6bcdd37aa425b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: e833bc3c3ea0d874594a968fe4847593, type: 2}
   count: 1
 --- !u!33 &3579854045100015332
 MeshFilter:
@@ -98,3 +99,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1950785908635425123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165376782775986722}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.61242104, y: 19.541084, z: 0.567753}
+  m_Center: {x: 0.018975511, y: 0.00011253357, z: -1.0641805}

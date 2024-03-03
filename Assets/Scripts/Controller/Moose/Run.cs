@@ -37,7 +37,7 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (target is null || distanceToTarget > moose.MonsterData.TrackingDistance)
+            if (target is null || distanceToTarget > moose.Data.TrackingDistance)
             {
                 ChangeState(State.Idle);
             }

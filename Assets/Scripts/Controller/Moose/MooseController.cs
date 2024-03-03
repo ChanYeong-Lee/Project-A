@@ -34,7 +34,7 @@ namespace MooseController
             }
             else
             {
-                distanceToTarget = moose.MonsterData.TrackingDistance * 2; 
+                distanceToTarget = moose.Data.TrackingDistance * 2; 
             }
         }
 

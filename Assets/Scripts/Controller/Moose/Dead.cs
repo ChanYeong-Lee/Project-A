@@ -1,17 +1,25 @@
 ﻿using MooseController;
+using State = Define.MooseState;
 
-public class DeadState : MooseState
+namespace MooseController
 {
-    public DeadState(Creature owner) : base(owner) { }
-
-    public override void Enter()
+    public class DeadState : MooseState
     {
-        moose.IsFarmable = true;
+        public DeadState(Creature owner) : base(owner) { }
 
-        anim.SetBool("Death", true);
+        public override void Enter()
+        {
+            moose.IsFarmable = true;
+
+            anim.SetTrigger("Death");
+            // anim.SetBool("Death", true);
+            moose.state = State.Dead;
         
-        // TODO : 경험치 획득
+            // TODO : 경험치 획득
+        }
+
+        public override void Update() { }
+
+        public override void FixedUpdate() { }
     }
-    
-    
 }

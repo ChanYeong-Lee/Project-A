@@ -18,6 +18,9 @@ namespace MooseController
         public override void Update()
         {
             base.Update();
+            
+            // TODO : 공격 로직
+
         }
 
         public override void FixedUpdate()
@@ -43,7 +46,6 @@ namespace MooseController
                 anim.SetInteger("IDInt", 4);
                 Debug.Log("back attack");
             }
-            // TODO : 공격 로직
         }
 
         public override void Transition()
@@ -51,10 +53,10 @@ namespace MooseController
             if (target is null)
                 ChangeState(State.Idle);
             
-            if (distanceToTarget > moose.MonsterData.TrackingDistance) 
+            if (distanceToTarget > moose.Data.TrackingDistance) 
                 ChangeState(State.Patrol);
 
-            if(isChangedState || distanceToTarget > moose.MonsterData.AttackRange) 
+            if(isChangedState || distanceToTarget > moose.Data.AttackRange) 
                 ChangeState(State.Trace);
         }
 
