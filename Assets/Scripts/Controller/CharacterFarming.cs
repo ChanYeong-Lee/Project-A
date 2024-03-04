@@ -57,7 +57,7 @@ public class CharacterFarming : MonoBehaviour
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
         int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
-        
+
         for (int i = 0; i < detectCount; i++)
         {
             Collider other = detectedColliders[i];
@@ -67,7 +67,7 @@ public class CharacterFarming : MonoBehaviour
 
             if (dataDic == null)
                 return;
-            
+
             float farmingTime = playerData.FarmingTime;
 
             // 파밍 관련 애니메이션이나 기타 등등 스위치 문
@@ -92,9 +92,19 @@ public class CharacterFarming : MonoBehaviour
             this.farmingTime += Time.deltaTime;
             if (farmingTime > this.farmingTime)
                 return;
-            
-            foreach (var data in dataDic) 
+
+            foreach (var data in dataDic)
+            {
                 inventory.TryGainItem(data.Key, data.Value);
+                switch (data.Key.ItemName)
+                {
+                    case "나무":
+                        GameEventsManager.instance.miscEvents.WoodCollected(data.Value);
+                        break;
+                }
+                
+                
+            }
 
             other.GetComponentInParent<EnvSpawner>().Despawn(other.GetComponent<Environment>());
         }

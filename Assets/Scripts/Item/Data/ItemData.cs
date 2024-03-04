@@ -17,4 +17,5 @@ public class ItemData : ScriptableObject
     public Define.ItemType ItemType => itemType;
     public string Description => description;
     public Sprite Icon => icon;
+
 }
