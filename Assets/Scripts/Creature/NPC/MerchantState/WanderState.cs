@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using State = Define.MerchantState;
 
@@ -11,39 +12,38 @@ namespace MerchantController
         public WanderState(Creature owner) : base(owner) { }
         public override void Enter()
         {
-            Owner.RoamingAround();
-            
+            Debug.Log("WanderState Enter");
+            Owner.state = State.Wander;
+            Owner.BeginWandering();
+
         }
         public override void Update()
         {
-            CheckInteractibleArea();
+            HandleNearbyObjects();
         }
         public override void Transition()
         {
-           
+
         }
         public void EnemyCheck()
         {
 
         }
-        public void CheckInteractibleArea()
+        public void HandleNearbyObjects()
         {
-
-            Collider[] cols = Physics.OverlapBox(Owner.transform.position + Owner.transform.up,
-                Owner.overlapBoxSize * 0.5f, Owner.transform.rotation,
-                (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Player")));
-            foreach (Collider col in cols)
+            if (Owner.nearbyColliders.Count() == 0) return;
+            foreach (Collider col in Owner.nearbyColliders)
             {
-                if (col.gameObject.layer == 9/*PlayerLayer*/)
+                if (col.gameObject.layer == LayerMask.NameToLayer("Player") /*9 PlayerLayer*/)
                 {
-                    Debug.Log(col.name);
-                    Owner.StopMoving();
-                    ChangeState(State.Interact);
+                    //Owner.StopMoving();
+                    Owner.target = col.gameObject;
+                    ChangeState(State.Idle);
                 }
-                else if (col.gameObject.layer == 6/*EnemyLayer*/)
+                else if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") /*6 EnemyLayer*/)
                 {
-                    Debug.Log(col.name);
-                    Owner.StopMoving();
+                    Owner.DisableAgentMovement();
+                    Owner.target = col.gameObject;
                     ChangeState(State.RunAway);
                 }
             }

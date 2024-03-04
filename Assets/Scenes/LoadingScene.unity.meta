@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/LoadingScene.unity.meta
 guid: 6a60d565e9c01f44789e20101bfff10a
+========
+guid: 9edb4ba0140a3ba4eaea6791cfaec7ba
+>>>>>>>> origin/NPC:Assets/ThirdParty/Polyart/PolyartStudio/DreamscapeMeadows/URP Install Click Here/Meadows_URP_2021.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

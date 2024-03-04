@@ -19,4 +19,5 @@ public class ItemData : ScriptableObject
     public int Price => price;
     public string Description => description;
     public Sprite Icon => icon;
+
 }

@@ -8,8 +8,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using State = Define.MerchantState;
 using MerchantController;
-using System.Linq;
-using static UnityEngine.UI.GridLayoutGroup;
+
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
@@ -18,21 +17,28 @@ public class Merchant : NPC
 {
     [Space(2f)]
     [SerializeField] public State state;
-    public string currentState;
-    [SerializeField] private NavMeshAgent agent;
-    protected NavMeshTriangulation triangulation;
+    [SerializeField] public NavMeshAgent agent;
+    [HideInInspector] protected NavMeshTriangulation triangulation;
 
-    [Header("¿Ãµø ∞¸∑√ ¿⁄∑·«¸")]
+
+    [Header("Ïù¥Îèô Í¥ÄÎ†® ÏûêÎ£åÌòï")]
     [Space(2f)]
     public Vector2 vel;
     public Vector2 smoothDeltaPos;
     [Space(2f)]
     [Range(0f, 3f)] public float waitDelay = 1f;
 
-    [Header("ªÛ»£¿€øÎ ∞¸∑√ ¿⁄∑·«¸")]
-    public Vector3 overlapBoxSize = new Vector3(2, 2, 2);
+    [Header("ÏÉÅÌò∏ÏûëÏö© Í¥ÄÎ†® ÏûêÎ£åÌòï")]
+    [HideInInspector] public Vector3 interactionBounds = new Vector3(10, 2, 10);
+    [SerializeField] private LayerMask interactable;
+    public LayerMask Interactable => interactable;
+    [HideInInspector] public Collider interactibleCollider;
+    public Collider[] nearbyColliders;
 
 
+    [Header("RunAwawy ÏÉÅÌÉú Í¥ÄÎ†® ÏûêÎ£å")]
+    public List<Transform> safezones;
+ 
     private void OnAnimatorMove()
     {
         Vector3 rootPosition = anim.rootPosition;
@@ -43,21 +49,26 @@ public class Merchant : NPC
     private void Update()
     {
         SynchronizeAnimatiorAndAgent();
-       
+        Overlap();
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(interactionBounds);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(Vector3.up, overlapBoxSize);
+        Gizmos.DrawWireCube(new Vector3(0, 0.5f, 0), Vector3.one);
     }
+
+  
+
     public override void Init()
     {
         base.Init();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        interactibleCollider = GetComponentInChildren<CapsuleCollider>();
         triangulation = NavMesh.CalculateTriangulation();
+
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Wander, new WanderState(this));
         stateMachine.AddState(State.RunAway, new RnuAwayState(this));
@@ -67,23 +78,34 @@ public class Merchant : NPC
         anim.applyRootMotion = true;
         agent.updatePosition = false;
         agent.updateRotation = true;
+        agent.enabled = true;
+        CollisionOn();
     }
+   
 
-    public void RoamingAround()
+    public void BeginWandering()
     {
+        EnableAgentMovement();
         _ = StartCoroutine(MoveToRandomPos());
     }
 
-    public void SetRandomPos()
+    public void SetRandomWaypoint()
     {
         int index = Random.Range(1, triangulation.vertices.Length - 1);
         agent.SetDestination(Vector3.Lerp(triangulation.vertices[index],
                             triangulation.vertices[index + (Random.value > 0.5f ? -1 : 1)], Random.value));
     }
 
+    public void Overlap()
+    {
+        nearbyColliders = Physics.OverlapBox(transform.position + transform.up,
+                          interactionBounds * 0.5f, transform.rotation, interactable);
+        
+    }
+
     private IEnumerator MoveToRandomPos()
     {
-        agent.enabled = true;
+        
         agent.isStopped = false;
 
         WaitForSeconds wait = new WaitForSeconds(waitDelay);
@@ -100,58 +122,85 @@ public class Merchant : NPC
         }
     }
 
-    public void StopMoving()
+    public void DisableAgentMovement()
     {
+        agent.ResetPath();
         agent.isStopped = true;
         StopAllCoroutines();
     }
-
-    private void SynchronizeAnimatiorAndAgent()
+    public void EnableAgentMovement()
     {
-        Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
-        worldDeltaPosition.y = 0;
+        if (false == agent.enabled) { agent.enabled = true; }
+        agent.isStopped = false;
+    }
 
-        //Map worldDeltaPos to local space
+    //ÏÉÅÌÉúÎ®∏Ïã†Ïùò Í≤ΩÎ°úÎ•º Ï†ïÌï†Îïå ÏÇ¨Ïö©
+    public void SetDestination(Vector3 target)
+    {
+        EnableAgentMovement();
+        agent.SetDestination(target);
+    }
 
-        //dx: «ˆ¿Á ¿ßƒ°ø°º≠ x√‡¿∏∑Œ 1∏∏≈≠ ∞°±‚ ¿ß«ÿº≠ Ω«¡¶∑Œ ¿Ãµø«“ ∞≈∏Æ
-        float dx = Vector3.Dot(transform.right, worldDeltaPosition);
-        //dy: «ˆ¿Á ¿ßƒ°ø°º≠ z√‡¿∏∑Œ 1∏∏≈≠ ¥ı ∞°±‚ ¿ß«ÿº≠ Ω«¡¶∑Œ ¿Ãµø«“ ∞≈∏Æ.
-        float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
-
-        //dx, dy∏∏≈≠ ∞°±‚ ¿ß«ÿº≠¿« ¿Ãµø πÈ≈Õ(πÊ«‚∞˙ ∞≈∏Æ∏¶ ∆˜«‘)
-        Vector2 deltaPosition = new Vector2(dx, dy);
-
-        // Low-pass filter the deltaMove
-        float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
-        // filter∏¶ ∞≈ƒ£ «ˆ¿Á «ˆ¿Áø°º≠ ¿Ãµø πÈ≈Õ∏∏≈≠ ∫∏∞£ ∞™
-        smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
-
-        //«¡∑π¿”∞£ ¿Ãµø∑Æ
-        vel = smoothDeltaPos / Time.deltaTime;
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
+    private void SynchronizeAnimatiorAndAgent() 
+    {
+        if (agent.enabled == true)
         {
-            vel = Vector2.Lerp(Vector2.zero, vel, agent.remainingDistance);
+            Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
+            worldDeltaPosition.y = 0;
+
+            //Map worldDeltaPos to local space
+
+            //dx: ÌòÑÏû¨ ÏúÑÏπòÏóêÏÑú xÏ∂ïÏúºÎ°ú 1ÎßåÌÅº Í∞ÄÍ∏∞ ÏúÑÌï¥ÏÑú Ïã§Ï†úÎ°ú Ïù¥ÎèôÌï† Í±∞Î¶¨
+            float dx = Vector3.Dot(transform.right, worldDeltaPosition);
+            //dy: ÌòÑÏû¨ ÏúÑÏπòÏóêÏÑú zÏ∂ïÏúºÎ°ú 1ÎßåÌÅº Îçî Í∞ÄÍ∏∞ ÏúÑÌï¥ÏÑú Ïã§Ï†úÎ°ú Ïù¥ÎèôÌï† Í±∞Î¶¨.
+            float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
+
+            //dx, dyÎßåÌÅº Í∞ÄÍ∏∞ ÏúÑÌï¥ÏÑúÏùò Ïù¥Îèô Î∞±ÌÑ∞(Î∞©Ìñ•Í≥º Í±∞Î¶¨Î•º Ìè¨Ìï®)
+            Vector2 deltaPosition = new Vector2(dx, dy);
+
+            // Low-pass filter the deltaMove
+            float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
+            // filterÎ•º Í±∞Ïπú ÌòÑÏû¨ ÌòÑÏû¨ÏóêÏÑú Ïù¥Îèô Î∞±ÌÑ∞ÎßåÌÅº Î≥¥Í∞Ñ Í∞í
+            smoothDeltaPos = Vector2.Lerp(smoothDeltaPos, deltaPosition, smooth);
+
+            //ÌîÑÎ†àÏûÑÍ∞Ñ Ïù¥ÎèôÎüâ
+
+            vel = smoothDeltaPos / Time.deltaTime;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                vel = Vector2.Lerp(Vector2.zero, vel, agent.remainingDistance);
+            }
+
+            bool shouldMove = vel.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance;
+
+            anim.SetBool("move", shouldMove);
+            anim.SetFloat("velx", vel.x);
+            anim.SetFloat("vely", vel.y);
         }
+       
 
-        bool shouldMove = vel.magnitude > 0.5f && agent.remainingDistance > agent.stoppingDistance;
+    }
 
-        anim.SetBool("move", shouldMove);
-        anim.SetFloat("velx", vel.x);
-        anim.SetFloat("vely", vel.y);
-
+    public void CollisionOn()
+    {
+        if (!interactibleCollider.enabled) {interactibleCollider.enabled = true; }
+    }
+    public void CollisionOff()
+    {
+        if (interactibleCollider.enabled) { interactibleCollider.enabled = false; }
     }
 
     #region ChangeAnimation
-    protected void SwitchAnimation(State state, float value)
+    public void SwitchAnimation(State state, float value)
     {
         anim.SetFloat(state.ToString(), value);
     }
-    protected void SwitchAnimation(State state, bool value)
+    public void SwitchAnimation(State state, bool value)
     {
         anim.SetBool(state.ToString(), value);
     }
-    protected void SwitchAnimation(State state)
+    public void SwitchAnimation(State state)
     {
         anim.SetTrigger(state.ToString());
     }

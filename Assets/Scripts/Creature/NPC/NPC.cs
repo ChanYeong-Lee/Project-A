@@ -14,11 +14,6 @@ public abstract class NPC : Creature
         base.Init();
         npcData = creatureData as NPCData;
     }
- 
-    void Update()
-    {
-        
-    }
 }
 
 namespace NpcController
@@ -28,7 +23,7 @@ namespace NpcController
         public GameObject target;
         public NPCState(Creature owner) : base(owner)
         {
-
+      
         }
     }
 }

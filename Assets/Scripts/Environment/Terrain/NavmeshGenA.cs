@@ -134,7 +134,7 @@ public class NavMeshGenA : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-
+                    print(e);
                 }
             }
         }
