@@ -9,8 +9,7 @@ public class ContentElement : MonoBehaviour
 
     public MenuType Type => type;
     public RectTransform Rect => Rect;
-
-
+    
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
