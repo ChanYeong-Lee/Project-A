@@ -1,5 +1,4 @@
-﻿using MooseController;
-using State = Define.MooseState;
+﻿using State = Define.MooseState;
 
 namespace MooseController
 {
@@ -15,7 +14,8 @@ namespace MooseController
             // anim.SetBool("Death", true);
             moose.state = State.Dead;
         
-            // TODO : 경험치 획득
+            // TODO : 경험치 획득 - 
+            target.GetComponent<Player>().Exp += moose.Data.DropExpList[moose.CurrentLevel];
         }
 
         public override void Update() { }

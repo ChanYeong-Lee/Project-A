@@ -65,6 +65,7 @@ public class Moose : Monster
                 stateMachine.ChangeState(State.TakeAttack);
             }
 
+            // TODO : 플레이어 공격 및 화살 발사 끝나면 수정 필요
             Managers.Pool.Push(other.gameObject);
         }
 
