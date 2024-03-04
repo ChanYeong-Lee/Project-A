@@ -113,10 +113,5 @@ public class HorseController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, transform.right * 0.8f + transform.up * 0.15f + transform.forward * 0.8f);
         Gizmos.color = tmp;
     }
-    private void OnApplicationFocus(bool focus)
-    {
-        Cursor.visible = !focus;
-        Cursor.lockState = focus ? CursorLockMode.Locked : CursorLockMode.None;
-    }
-
+  
 }

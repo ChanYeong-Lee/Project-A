@@ -157,8 +157,6 @@ public class HorseSlope : MonoBehaviour
         {
             frontHoeHeight = 0.0f;
         }
-     
-        print(frontHoeHeight);
     }
 
     private void CheckGround()

@@ -17,5 +17,6 @@ MonoBehaviour:
   itemName: Light Arrow
   itemType: 2
   description: "\uBE5B \uD654\uC0B4"
-  attribute: 1
+  icon: {fileID: 21300000, guid: fc78d2e45a3af4342959c91ad53bde12, type: 3}
+  attribute: 5
   arrowDamage: 10

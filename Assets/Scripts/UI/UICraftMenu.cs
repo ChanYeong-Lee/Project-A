@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class UICraftMenu : UIBase
+public class UICraftMenu : ContentElement
 {
     private List<UISlot> slots = new List<UISlot>();
 

@@ -17,5 +17,6 @@ MonoBehaviour:
   itemName: Poison Arrow
   itemType: 2
   description: "\uB3C5 \uD654\uC0B4"
-  attribute: 4
+  icon: {fileID: 21300000, guid: aa1d54c8b34b6e048b5900b33daec31f, type: 3}
+  attribute: 6
   arrowDamage: 10

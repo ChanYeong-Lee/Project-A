@@ -17,5 +17,6 @@ MonoBehaviour:
   itemName: Goo Arrow
   itemType: 2
   description: "\uB048\uC801\uB048\uC801 \uD654\uC0B4"
-  attribute: 3
+  icon: {fileID: 21300000, guid: 814f6ebcc43788c4db4e316d1da76064, type: 3}
+  attribute: 4
   arrowDamage: 10

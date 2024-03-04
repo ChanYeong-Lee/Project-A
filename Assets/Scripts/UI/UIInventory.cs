@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UIInventory : UIBase
+public class UIInventory : ContentElement
 {
     private List<UISlot> slots = new List<UISlot>();
 

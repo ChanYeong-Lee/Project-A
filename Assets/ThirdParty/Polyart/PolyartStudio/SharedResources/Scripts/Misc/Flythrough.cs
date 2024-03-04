@@ -26,6 +26,12 @@ namespace Polyart
         void Start()
         {
             mycamera.fieldOfView = defaultFov;
+
+
+
+
+
+
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
             baseSunTransform = sun.transform.rotation;

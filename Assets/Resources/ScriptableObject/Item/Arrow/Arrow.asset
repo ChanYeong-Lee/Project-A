@@ -17,5 +17,6 @@ MonoBehaviour:
   itemName: Basic Arrow
   itemType: 2
   description: "\uAE30\uBCF8 \uD654\uC0B4"
+  icon: {fileID: 21300000, guid: ec6c5ee6b070f534ca4d82d1d71a4c64, type: 3}
   attribute: 0
   arrowDamage: 10
