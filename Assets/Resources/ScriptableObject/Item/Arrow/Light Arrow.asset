@@ -16,6 +16,9 @@ MonoBehaviour:
   path: Prefabs/Arrow
   itemName: Light Arrow
   itemType: 2
+  price: 0
   description: "\uBE5B \uD654\uC0B4"
-  attribute: 1
+  icon: {fileID: 0}
+  attribute: 0
   arrowDamage: 10
+  arrowTrueDamage: 0

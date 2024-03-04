@@ -16,6 +16,9 @@ MonoBehaviour:
   path: Prefabs/Arrow
   itemName: Goo Arrow
   itemType: 2
+  price: 0
   description: "\uB048\uC801\uB048\uC801 \uD654\uC0B4"
-  attribute: 3
+  icon: {fileID: 0}
+  attribute: 0
   arrowDamage: 10
+  arrowTrueDamage: 0

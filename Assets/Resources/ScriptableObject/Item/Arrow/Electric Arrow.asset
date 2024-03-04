@@ -16,6 +16,9 @@ MonoBehaviour:
   path: Prefabs/Arrow
   itemName: Electric Arrow
   itemType: 2
+  price: 0
   description: "\uC804\uAE30 \uD654\uC0B4"
-  attribute: 6
+  icon: {fileID: 0}
+  attribute: 0
   arrowDamage: 10
+  arrowTrueDamage: 0
