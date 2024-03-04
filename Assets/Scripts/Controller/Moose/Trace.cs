@@ -9,7 +9,7 @@ namespace MooseController
 
         public override void Enter()
         {
-            attackCooldown = moose.MonsterData.AttackCooldown;
+            attackCooldown = moose.Data.AttackCooldown;
             moose.state = State.Trace;
         }
 
@@ -18,9 +18,9 @@ namespace MooseController
             base.Update();
 
             // 거리에 따른 속도값 조절 필요
-            if (distanceToTarget > moose.MonsterData.AttackRange)
+            if (distanceToTarget > moose.Data.AttackRange)
                 vertical = 3;
-            else if (distanceToTarget > moose.MonsterData.AttackRange / 2)
+            else if (distanceToTarget > moose.Data.AttackRange / 2)
                 vertical = distanceToTarget / 2;
             else
                 vertical = 0;
@@ -37,12 +37,11 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (distanceToTarget < moose.MonsterData.AttackRange && attackCooldown < 0) 
+            if (distanceToTarget < moose.Data.AttackRange && attackCooldown < 0) 
                 ChangeState(State.Attack);
             
-            if (distanceToTarget > 100) 
+            if (distanceToTarget > moose.Data.TrackingDistance) 
                 ChangeState(State.Patrol);
         }
     }
-
 }

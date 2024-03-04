@@ -8,13 +8,15 @@ public class ItemData : ScriptableObject
     [SerializeField] protected string path;
     [SerializeField] protected string itemName;
     [SerializeField] protected Define.ItemType itemType;
-    [SerializeField] [TextArea(1, 3)] protected string description; 
+    [SerializeField] protected int price;
+    [SerializeField] [TextArea(1, 3)] protected string description;
     [SerializeField] protected Sprite icon;
     
     public int ItemID => id;
     public string Path => path;
     public string ItemName => itemName;
     public Define.ItemType ItemType => itemType;
+    public int Price => price;
     public string Description => description;
     public Sprite Icon => icon;
 }

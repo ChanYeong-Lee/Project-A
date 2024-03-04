@@ -36,6 +36,11 @@ public class CameraController : MonoBehaviour
     {
         playerMove = FindObjectOfType<CharacterMove>();
         horseMove = FindObjectOfType<HorseMove>();
+        
+        if (vCam.Follow == null)
+        {
+            vCam.Follow = GameObject.Find("CamTarget").transform;
+        }
     }
 
     private void Update()

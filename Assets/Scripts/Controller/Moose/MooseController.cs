@@ -7,9 +7,10 @@ namespace MooseController
     public class MooseState : MonsterState
     {
         protected Moose moose => monster as Moose;
+        
         protected float randTime;
         protected bool isChangedState;
-        protected bool isUnderAttack;
+        // protected bool isUnderAttack;
         protected float attackCooldown;
         protected float vertical;
         protected float horizontal;
@@ -33,23 +34,28 @@ namespace MooseController
             }
             else
             {
-                distanceToTarget = 100; 
+                distanceToTarget = moose.Data.TrackingDistance * 2;
             }
         }
 
-        // public override void LateUpdate()
-        // {
-        //     if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit, Mathf.Infinity))
-        //     {
-        //         Vector3 normal = hit.normal;
-        //         var angle = Vector3.SignedAngle(moose.Body.transform.up, normal, moose.Body.transform.right);
-        //         // moose.transform.rotation = Quaternion.Euler(/*Mathf.Lerp(moose.transform.rotation.eulerAngles.x, angle, Time.fixedDeltaTime)*/moose.transform.rotation.eulerAngles.x, moose.transform.rotation.eulerAngles.y, moose.transform.rotation.eulerAngles.z);
-        //
-        //         moose.v3 = normal;
-        //         moose.angle = angle;
-        //     }
-        // }
-        
+        public override void FixedUpdate()
+        {
+            if (moose.state == State.Idle)
+                return;
+            
+            if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit))
+            {
+                Vector3 normal = hit.normal;
+                var angle = Vector3.SignedAngle(moose.Body.transform.forward, normal, moose.Body.transform.right) + 90;
+
+                moose.angle = angle;
+                moose.transform.localRotation = Quaternion.Slerp(moose.transform.localRotation,
+                    Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 100 + moose.transform.rotation.eulerAngles.y, 0), Time.fixedDeltaTime);
+            }
+
+            // isUnderAttack = anim.GetBool("Damaged");
+        }
+
         // 랜덤 값 생성
         // 랜덤 수치 값 일부 조정 가능한 함수(최소 시간, 최대 시간, 상태 머신 바뀔 확률)
         protected void RandVariable(float minTime = 1f, float maxTime = 10f, float rateToChange = 0.5f)

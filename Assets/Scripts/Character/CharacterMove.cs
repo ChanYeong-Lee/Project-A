@@ -80,7 +80,6 @@ public class CharacterMove : MonoBehaviour
     public bool IsMount => isMount;
     public bool IsAim => isAim;
 
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -90,6 +89,9 @@ public class CharacterMove : MonoBehaviour
 
     private void Start()
     {
+        if (tpsCam == null) 
+            tpsCam = Managers.Game.Cam.gameObject;
+        
         camTargetYaw = camTarget.transform.rotation.eulerAngles.y;
 
         AssignAnimationIDs();

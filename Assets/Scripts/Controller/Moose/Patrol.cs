@@ -24,11 +24,11 @@ namespace MooseController
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
+            
             Collider[] colliders = new Collider[2];
-            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.7f, colliders, moose.Detection);
+            int count = Physics.OverlapSphereNonAlloc(moose.Eyes.position, 0.5f, colliders, moose.Detection);
             
-            
- 
             if (count == 0)
             {
                 anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.deltaTime));
@@ -76,11 +76,13 @@ namespace MooseController
 
         public override void Transition()
         {
-            // Idle
             if (isChangedState) 
                 ChangeState(State.Idle);
-
-            if (moose.MonsterData.IsAggressive && distanceToTarget < moose.MonsterData.TrackingDistance) 
+            
+            // if (isUnderAttack) 
+            //     ChangeState(State.TakeAttack);
+            
+            if (moose.Data.IsAggressive && distanceToTarget < moose.Data.TrackingDistance) 
                 ChangeState(State.Trace);
         }
         

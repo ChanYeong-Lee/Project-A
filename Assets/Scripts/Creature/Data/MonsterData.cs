@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "New Monster Data", menuName = "ScriptableObject/Creature Data/Monster Data")]
 public class MonsterData : CreatureData
 {
+    [Space(10)]
     [Header("Monster Info")] 
     [Tooltip("공격 범위")]
     [SerializeField] private float attackRange;
@@ -16,6 +17,9 @@ public class MonsterData : CreatureData
     [SerializeField] private float viewDistance;
     [Tooltip("추적 거리")] 
     [SerializeField] private float trackingDistance;
+    
+    [Space(10)]
+    [Header("Drop Info")]
     [Tooltip("드랍 아이템 테이블 데이터")] 
     [SerializeField] private DropTableData dropItem;
     [Tooltip("드랍 경험치")]

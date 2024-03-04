@@ -4,6 +4,8 @@ using UnityEngine;
 public class Arrow : Item
 {
     private ArrowData arrowData;
+
+    public ArrowData ArrowData => arrowData;
     
     private void Start()
     {

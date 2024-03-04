@@ -36,7 +36,7 @@ MonoBehaviour:
     defence: 0
   attackRange: 5
   attackCooldown: 3
-  isAggressive: 1
+  isAggressive: 0
   viewDistance: 10
   trackingDistance: 50
   dropItem: {fileID: 11400000, guid: b86d809377e8aad42a51d90a1e0c6630, type: 2}

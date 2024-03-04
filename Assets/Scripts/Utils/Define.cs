@@ -58,7 +58,21 @@ public class Define
         TakeAttack,
         Trace,
         Attack,
+        Dead,
     }
+    
+    public enum BearState
+    {
+        Idle,
+        // Patrol,
+        // Run,
+        TakeAttack,
+        Trace,
+        Attack,
+        Return,
+        Dead,
+    }
+    
     public enum MerchantState
     {
         Idle,

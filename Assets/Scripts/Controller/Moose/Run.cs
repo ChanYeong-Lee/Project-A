@@ -16,6 +16,8 @@ namespace MooseController
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
+            
             anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.fixedDeltaTime));
 
             // TODO : 이 로직 활용하면 충돌 검사 후 회전시키고 이동하기 기능할수도?
@@ -35,7 +37,7 @@ namespace MooseController
 
         public override void Transition()
         {
-            if (target is null || distanceToTarget > moose.MonsterData.TrackingDistance)
+            if (target is null || distanceToTarget > moose.Data.TrackingDistance)
             {
                 ChangeState(State.Idle);
             }
