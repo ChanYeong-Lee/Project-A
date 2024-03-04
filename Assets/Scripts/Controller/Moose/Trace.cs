@@ -40,9 +40,8 @@ namespace MooseController
             if (distanceToTarget < moose.Data.AttackRange && attackCooldown < 0) 
                 ChangeState(State.Attack);
             
-            if (distanceToTarget > 100) 
+            if (distanceToTarget > moose.Data.TrackingDistance) 
                 ChangeState(State.Patrol);
         }
     }
-
 }

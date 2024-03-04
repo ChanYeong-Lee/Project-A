@@ -34,12 +34,15 @@ namespace MooseController
             }
             else
             {
-                distanceToTarget = moose.Data.TrackingDistance * 2; 
+                distanceToTarget = moose.Data.TrackingDistance * 2;
             }
         }
 
         public override void FixedUpdate()
         {
+            if (moose.state == State.Idle)
+                return;
+            
             if (Physics.Raycast(moose.Body.transform.position, Vector3.down, out var hit))
             {
                 Vector3 normal = hit.normal;
@@ -47,7 +50,7 @@ namespace MooseController
 
                 moose.angle = angle;
                 moose.transform.localRotation = Quaternion.Slerp(moose.transform.localRotation,
-                    Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 100, 0), Time.fixedDeltaTime);
+                    Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 100 + moose.transform.rotation.eulerAngles.y, 0), Time.fixedDeltaTime);
             }
 
             // isUnderAttack = anim.GetBool("Damaged");

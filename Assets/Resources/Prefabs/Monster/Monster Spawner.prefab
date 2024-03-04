@@ -47,7 +47,11 @@ MonoBehaviour:
   monsterPrefabs:
   - {fileID: 5488465847894699506, guid: 4578ead0e0fda394c8bd6590d2b3c672, type: 3}
   - {fileID: 5488465847894699506, guid: 0bf41d5cee7ed904cacac235700bb84c, type: 3}
-  spawnCount: 0300000003000000
+  - {fileID: 5488465847894699506, guid: 1dbbd93a843636a419bdf30740d05808, type: 3}
+  - {fileID: 2062433513791857765, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
+  spawnCount: 0a000000050000000a00000001000000
   spawnPosition:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -105, y: 3, z: 95}
+  - {x: 245, y: 3, z: 171}
+  - {x: 236, y: 70, z: 658}
+  - {x: 475, y: 81, z: 47}

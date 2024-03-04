@@ -44,11 +44,4 @@ namespace MonsterController
             
         public MonsterState(Creature owner) : base(owner) { }
     }
-
-    public class AttackState : MonsterState
-    {
-        public AttackState(Creature owner) : base(owner)
-        {
-        }
-    }
 }

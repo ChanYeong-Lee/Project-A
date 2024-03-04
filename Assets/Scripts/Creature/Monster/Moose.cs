@@ -37,14 +37,6 @@ public class Moose : Monster
         stateMachine.InitState(State.Idle);
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.gameObject.CompareTag("Arrow"))
-    //     {
-    //         stateMachine.ChangeState(State.TakeAttack);
-    //     }
-    // }
-
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Arrow"))
