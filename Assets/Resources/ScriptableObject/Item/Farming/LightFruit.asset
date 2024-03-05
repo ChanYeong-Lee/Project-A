@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
+  m_Name: LightFruit
+  m_EditorClassIdentifier: 
+  id: LightFruit
+  path: Prefabs/...
+  itemName: "\uAD11\uD718 \uC5F4\uB9E4"
+  itemType: 2
+  price: 0
+  description: "\uAD11\uD718 \uC5F4\uB9E4\n\uC5B4\uB450\uC6B4 \uACF3\uC5D0\uC11C
+    \uBE5B\uB09C"
+  icon: {fileID: 0}
+  farmingType: 0

@@ -88,4 +88,15 @@ public class Define
         Left,
         Right
     }
+
+    public enum QuestState
+    {
+        RequiredNotMet,
+        CanStart,
+        InProgress,
+        CanFinish,
+        Finished
+    
+    }
+
 }

@@ -101,10 +101,14 @@ public class CharacterFarming : MonoBehaviour
             foreach (var data in dataDic)
             {
                 inventory.TryGainItem(data.Key, data.Value);
-                switch (data.Key.ItemName)
+                //TODO: 퀘스트가 있는 시점에서만 switch문 진행할 것
+                switch (data.Key.ItemID)
                 {
-                    case "나무":
-                        GameEventsManager.instance.miscEvents.WoodCollected(data.Value);
+                    case "Wood":
+                        GameEventsManager.Instance.miscEvents.WoodCollected(data.Value);
+                        break;
+                    case "":
+
                         break;
                 }
                 

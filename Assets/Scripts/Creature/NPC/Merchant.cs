@@ -38,6 +38,9 @@ public class Merchant : NPC
 
     [Header("RunAwawy 상태 관련 자료")]
     public List<Transform> safezones;
+
+    [Header("퀘스트 관련 자료형")]
+    public Collider col;
  
     private void OnAnimatorMove()
     {
@@ -66,6 +69,7 @@ public class Merchant : NPC
         base.Init();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        col = GetComponentInChildren<CapsuleCollider>();
         interactibleCollider = GetComponentInChildren<CapsuleCollider>();
         triangulation = NavMesh.CalculateTriangulation();
 
@@ -79,7 +83,7 @@ public class Merchant : NPC
         agent.updatePosition = false;
         agent.updateRotation = true;
         agent.enabled = true;
-        CollisionOn();
+        //CollisionOn();
     }
    
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5185e2221fb462c933ebc13cc79de82, type: 3}
+  m_Name: MediumPotion
+  m_EditorClassIdentifier: 
+  id: MediumPotion
+  path: Prefabs/...
+  itemName: Medium Potion
+  itemType: 2
+  price: 0
+  description: "\uC911\uD615 \uD3EC\uC158\nhp 50 \uD68C\uBCF5"
+  icon: {fileID: 0}
+  healingPoint: 50
