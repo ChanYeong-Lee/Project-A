@@ -236,7 +236,8 @@ MonoBehaviour:
   m_text: "\uD654\uC0B4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
-  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
+  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -522,7 +523,8 @@ MonoBehaviour:
   m_text: 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
-  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
+  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -656,7 +658,8 @@ MonoBehaviour:
   m_text: "\uBD88 \uD654\uC0B4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
-  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0, type: 2}
+  m_sharedMaterial: {fileID: -4960621716034961598, guid: 71bd9d8074f23b24d9d1a2a7ef7e28e0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -780,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6710846, g: 0.8679245, b: 0.65913135, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -22,8 +22,9 @@ public class Define
     public enum ItemType
     {
         None,           //
-        Equipment,      // 장비 아이템
+        Arrow,          // 화살 아이템
         Consumption,    // 소모 아이템
+        Ingredients,    // 재료 아이템
         Etc
     }
     

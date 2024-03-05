@@ -13,6 +13,9 @@ public class CompassUI : MonoBehaviour
 
     void Start()
     {
+        if (target == null) 
+            target = GameObject.Find("CamTarget");
+        
         startPos = indicator.position;
         rationAngleToPixel = numberOfPixelsNorthToNorth / 360.0f;
     }

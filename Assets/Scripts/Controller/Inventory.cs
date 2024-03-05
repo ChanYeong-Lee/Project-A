@@ -13,10 +13,8 @@ public class Inventory : MonoBehaviour
         if (itemData == null)
             return false;
         
-        if (itemDataDic.ContainsKey(itemData) && itemData.ItemType != Define.ItemType.Equipment)
+        if (!itemDataDic.TryAdd(itemData, count))
             itemDataDic[itemData] += count;
-        else
-            itemDataDic.Add(itemData, count);
 
         return true;
     }

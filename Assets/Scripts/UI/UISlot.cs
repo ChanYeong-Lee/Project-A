@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UISlot : MonoBehaviour, IPointerClickHandler
+public class UISlot : UIBase, IPointerClickHandler
 {
     // TODO : UI에 따라 slot이 가지고 있는 item 값 바꿀 필요 있음.
     private ItemData itemData;
@@ -14,8 +14,9 @@ public class UISlot : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI Text { get => text; set => text = value; }
     public SlotType SlotType { get => slotType; set => slotType = value; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
     

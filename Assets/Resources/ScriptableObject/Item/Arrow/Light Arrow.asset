@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1002
   path: Prefabs/Arrow
-  itemName: Light Arrow
-  itemType: 2
+  itemName: "\uBE5B \uD654\uC0B4"
+  itemType: 1
+  price: 0
   description: "\uBE5B \uD654\uC0B4"
   icon: {fileID: 21300000, guid: fc78d2e45a3af4342959c91ad53bde12, type: 3}
   attribute: 5
   arrowDamage: 10
+  arrowTrueDamage: 0

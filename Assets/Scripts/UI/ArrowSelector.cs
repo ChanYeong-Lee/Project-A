@@ -16,13 +16,13 @@ public class ArrowSelector : MonoBehaviour
 
     private void Awake()
     {
-        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
         centerRadius = centerIndicator.rectTransform.rect.width / 2.0f;
     }
 
 
     private void Update()
     {
+        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
         Vector3 mousePos = Input.mousePosition;
 
         if (centerRadius < Vector3.Distance(screenCenter, mousePos))

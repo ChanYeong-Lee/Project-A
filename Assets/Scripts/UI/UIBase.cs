@@ -11,6 +11,9 @@ public class UIBase : MonoBehaviour
     protected Dictionary<string, Image> images;
     // TODO : add ui component
 
+    public Dictionary<string, Image> Images { get => images; set => images = value; }
+    public Dictionary<string, TMP_Text> Texts { get => texts; set => texts = value; }
+
     protected virtual void Awake()
     {
         BindChildren();

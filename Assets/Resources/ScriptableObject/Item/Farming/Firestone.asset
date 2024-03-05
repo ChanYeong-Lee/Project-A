@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 103
   path: Prefabs/...
   itemName: "\uBD80\uC2EF\uB3CC"
-  itemType: 2
+  itemType: 3
+  price: 0
   description: "\uBD80\uC2EF\uB3CC\n\uBD88\uC744 \uBD99\uC77C \uB54C \uC0AC\uC6A9\uD55C"
   icon: {fileID: 0}
   farmingType: 0

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 104
   path: Prefabs/...
   itemName: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C"
-  itemType: 2
+  itemType: 3
+  price: 0
   description: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C\n\uBAAC\uC2A4\uD130\uB97C
     \uC8FD\uC774\uBA74 \uB098\uC624\uB294 \uBD80\uC0B0"
   icon: {fileID: 0}
