@@ -4,19 +4,19 @@ using UnityEngine.Animations.Rigging;
 public class CharacterAction : MonoBehaviour
 {
     [SerializeField] private Rig bodyAimRig;
-    [SerializeField] private Rig bowPosRig;
+    //[SerializeField] private Rig bowPosRig;
     [SerializeField] private Rig mountHeadAimRig;
-    [SerializeField] private TwoBoneIKConstraint bowPosIK;
-    [SerializeField] private Transform bowPosTarget;
-    [SerializeField] private Transform bowPosDefaultTarget;
-    [SerializeField] private Transform bowPosMountTarget;
+    //[SerializeField] private TwoBoneIKConstraint bowPosIK;
+    //[SerializeField] private Transform bowPosTarget;
+    //[SerializeField] private Transform bowPosDefaultTarget;
+    //[SerializeField] private Transform bowPosMountTarget;
 
     private Animator animator;
     private CharacterMove move;
     private CharacterMount mount;
     
     private float bodyAimRigVelocity = 0.0f;
-    private float bowPosRigVelocity = 0.0f;
+    //private float bowPosRigVelocity = 0.0f;
     private float mountHeadAimRigVelocity = 0.0f;
 
     private bool isMount = false;
@@ -31,7 +31,7 @@ public class CharacterAction : MonoBehaviour
     private void OnEnable()
     {
         bodyAimRig.weight = 0.0f;
-        bowPosRig.weight = 0.75f;
+        //bowPosRig.weight = 0.75f;
         mountHeadAimRig.weight = 0.0f;
     }
 
@@ -40,7 +40,7 @@ public class CharacterAction : MonoBehaviour
         if (move.IsAim)
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 1.0f, ref bodyAimRigVelocity, 0.2f);
-            bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.0f, ref bowPosRigVelocity, 0.2f);
+            //bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.0f, ref bowPosRigVelocity, 0.2f);
             if (isMount)
             {
                 mountHeadAimRig.weight = Mathf.SmoothDamp(mountHeadAimRig.weight, 0.0f, ref mountHeadAimRigVelocity, 0.2f);
@@ -53,7 +53,7 @@ public class CharacterAction : MonoBehaviour
         else
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 0.0f, ref bodyAimRigVelocity, 0.2f);
-            bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.75f, ref bowPosRigVelocity, 0.2f);
+            //bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.75f, ref bowPosRigVelocity, 0.2f);
             if (isMount)
             {
                 mountHeadAimRig.weight = Mathf.SmoothDamp(mountHeadAimRig.weight, 1.0f, ref mountHeadAimRigVelocity, 0.2f);
@@ -64,8 +64,8 @@ public class CharacterAction : MonoBehaviour
             }
         }
 
-        bowPosTarget.position = isMount ? bowPosMountTarget.position : bowPosDefaultTarget.position;
-        bowPosTarget.rotation = isMount ? bowPosMountTarget.rotation : bowPosDefaultTarget.rotation;
+        //bowPosTarget.position = isMount ? bowPosMountTarget.position : bowPosDefaultTarget.position;
+        //bowPosTarget.rotation = isMount ? bowPosMountTarget.rotation : bowPosDefaultTarget.rotation;
 
         if (Input.GetKeyDown(KeyCode.F))
         {

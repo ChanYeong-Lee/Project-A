@@ -176,14 +176,14 @@ public class HorseMove : MonoBehaviour
 
         if (vertical <= 4.0f - 0.2f)
         {
-            vertical = Mathf.Lerp(vertical, targetSpeed, Time.deltaTime * 0.5f);
+            vertical = Mathf.Lerp(vertical, targetSpeed, Time.deltaTime);
         }
 
         if(4.0f - 0.2f < vertical) 
         {
             if (0.0f < inputDir.magnitude && input.sprint)
             {
-                vertical += Time.deltaTime * 0.1f * (1.0f - Mathf.Abs(horizontal) * 2.0f);
+                vertical += Time.deltaTime * 0.2f * (1.0f - Mathf.Abs(horizontal) * 2.0f);
             }
             else
             {

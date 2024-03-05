@@ -11,8 +11,11 @@ public class PlayerInputAsset : MonoBehaviour
     [Header("Character Input Values")]
     public Vector2 move;
     public Vector2 look;
+    public Vector2 mousePos;
     public bool jump;
     public bool sprint;
+    public bool leftClick;
+    public bool rightClick;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -21,69 +24,42 @@ public class PlayerInputAsset : MonoBehaviour
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM
     public void OnMove(InputValue value)
     {
-        if (state == State.None)
-        {
-            MoveInput(value.Get<Vector2>());
-        }
-        else
-        {
-            MoveInput(Vector2.zero);
-        }
+        move = value.Get<Vector2>().normalized;
     }
 
     public void OnLook(InputValue value)
     {
         if (cursorInputForLook)
         {
-            LookInput(value.Get<Vector2>());
+            look = value.Get<Vector2>();
         }
     }
 
     public void OnJump(InputValue value)
     {
-        if (state == State.None)
-        {
-            JumpInput(value.isPressed);
-        }
-        else
-        {
-            JumpInput(false);
-        }
+        jump = value.isPressed;
     }
 
     public void OnSprint(InputValue value)
     {
-        if (state == State.None)
-        {
-            SprintInput(value.isPressed);
-        }
-        else
-        {
-            SprintInput(false);
-        }
-    }
-#endif
-
-    public void MoveInput(Vector2 newMoveDirection)
-    {
-        move = newMoveDirection;
+        sprint = value.isPressed;
     }
 
-    public void LookInput(Vector2 newLookDirection)
+    public void OnLeftClick(InputValue value)
     {
-        look = newLookDirection;
+        leftClick = value.isPressed;    
+    } 
+
+    public void OnRightClick(InputValue value)
+    {
+        rightClick = value.isPressed;
     }
 
-    public void JumpInput(bool newJumpState)
+    public void OnMousePos(InputValue value)
     {
-        jump = newJumpState;
+        mousePos= value.Get<Vector2>();
     }
 
-    public void SprintInput(bool newSprintState)
-    {
-        sprint = newSprintState;
-    }
 }

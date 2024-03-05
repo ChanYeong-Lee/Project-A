@@ -1,120 +1,338 @@
 fileFormatVersion: 2
 guid: 1bfaa99f80a97894a86ae1b7184af995
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Back
-    100002: CG
-    100004: Chest
-    100006: Ear L
-    100008: Ear R
-    100010: Head
-    100012: Horse
-    100014: Horse_Reins
-    100016: Horse_Saddle
-    100018: Jaw
-    100020: L Calf
-    100022: L Clavicle
-    100024: L Finger0
-    100026: L Foot
-    100028: L Forearm
-    100030: L Hand
-    100032: L HorseLink
-    100034: L Thigh
-    100036: L Toe0
-    100038: L UpperArm
-    100040: Neck
-    100042: Neck1
-    100044: Neck2
-    100046: Pelvis
-    100048: R Calf
-    100050: R Clavicle
-    100052: R Finger0
-    100054: R Foot
-    100056: R Forearm
-    100058: R Hand
-    100060: R HorseLink
-    100062: R Thigh
-    100064: R Toe0
-    100066: R UpperArm
-    100068: Reins_Bn_Hand_L
-    100070: Reins_Bn_Hand_R
-    100072: Reins_Bn_Head_L
-    100074: Reins_Bn_Head_R
-    100076: Reins_Bn_Neck_L
-    100078: Reins_Bn_Neck_R
-    100080: Root1
-    100082: Spine
-    100084: Spine1
-    100086: Spine2
-    100088: //RootNode
-    100090: Tail01
-    100092: Tail02
-    100094: Tail03
-    100096: Tail04
-    100098: Tail05
-    400000: Back
-    400002: CG
-    400004: Chest
-    400006: Ear L
-    400008: Ear R
-    400010: Head
-    400012: Horse
-    400014: Horse_Reins
-    400016: Horse_Saddle
-    400018: Jaw
-    400020: L Calf
-    400022: L Clavicle
-    400024: L Finger0
-    400026: L Foot
-    400028: L Forearm
-    400030: L Hand
-    400032: L HorseLink
-    400034: L Thigh
-    400036: L Toe0
-    400038: L UpperArm
-    400040: Neck
-    400042: Neck1
-    400044: Neck2
-    400046: Pelvis
-    400048: R Calf
-    400050: R Clavicle
-    400052: R Finger0
-    400054: R Foot
-    400056: R Forearm
-    400058: R Hand
-    400060: R HorseLink
-    400062: R Thigh
-    400064: R Toe0
-    400066: R UpperArm
-    400068: Reins_Bn_Hand_L
-    400070: Reins_Bn_Hand_R
-    400072: Reins_Bn_Head_L
-    400074: Reins_Bn_Head_R
-    400076: Reins_Bn_Neck_L
-    400078: Reins_Bn_Neck_R
-    400080: Root1
-    400082: Spine
-    400084: Spine1
-    400086: Spine2
-    400088: //RootNode
-    400090: Tail01
-    400092: Tail02
-    400094: Tail03
-    400096: Tail04
-    400098: Tail05
-    2100000: 03 - Default
-    4300000: Horse
-    4300002: Horse_Reins
-    4300004: Horse_Saddle
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Horse
-    13700002: Horse_Reins
-    13700004: Horse_Saddle
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Back
+  - first:
+      1: 100002
+    second: CG
+  - first:
+      1: 100004
+    second: Chest
+  - first:
+      1: 100006
+    second: Ear L
+  - first:
+      1: 100008
+    second: Ear R
+  - first:
+      1: 100010
+    second: Head
+  - first:
+      1: 100012
+    second: Horse
+  - first:
+      1: 100014
+    second: Horse_Reins
+  - first:
+      1: 100016
+    second: Horse_Saddle
+  - first:
+      1: 100018
+    second: Jaw
+  - first:
+      1: 100020
+    second: L Calf
+  - first:
+      1: 100022
+    second: L Clavicle
+  - first:
+      1: 100024
+    second: L Finger0
+  - first:
+      1: 100026
+    second: L Foot
+  - first:
+      1: 100028
+    second: L Forearm
+  - first:
+      1: 100030
+    second: L Hand
+  - first:
+      1: 100032
+    second: L HorseLink
+  - first:
+      1: 100034
+    second: L Thigh
+  - first:
+      1: 100036
+    second: L Toe0
+  - first:
+      1: 100038
+    second: L UpperArm
+  - first:
+      1: 100040
+    second: Neck
+  - first:
+      1: 100042
+    second: Neck1
+  - first:
+      1: 100044
+    second: Neck2
+  - first:
+      1: 100046
+    second: Pelvis
+  - first:
+      1: 100048
+    second: R Calf
+  - first:
+      1: 100050
+    second: R Clavicle
+  - first:
+      1: 100052
+    second: R Finger0
+  - first:
+      1: 100054
+    second: R Foot
+  - first:
+      1: 100056
+    second: R Forearm
+  - first:
+      1: 100058
+    second: R Hand
+  - first:
+      1: 100060
+    second: R HorseLink
+  - first:
+      1: 100062
+    second: R Thigh
+  - first:
+      1: 100064
+    second: R Toe0
+  - first:
+      1: 100066
+    second: R UpperArm
+  - first:
+      1: 100068
+    second: Reins_Bn_Hand_L
+  - first:
+      1: 100070
+    second: Reins_Bn_Hand_R
+  - first:
+      1: 100072
+    second: Reins_Bn_Head_L
+  - first:
+      1: 100074
+    second: Reins_Bn_Head_R
+  - first:
+      1: 100076
+    second: Reins_Bn_Neck_L
+  - first:
+      1: 100078
+    second: Reins_Bn_Neck_R
+  - first:
+      1: 100080
+    second: Root1
+  - first:
+      1: 100082
+    second: Spine
+  - first:
+      1: 100084
+    second: Spine1
+  - first:
+      1: 100086
+    second: Spine2
+  - first:
+      1: 100088
+    second: //RootNode
+  - first:
+      1: 100090
+    second: Tail01
+  - first:
+      1: 100092
+    second: Tail02
+  - first:
+      1: 100094
+    second: Tail03
+  - first:
+      1: 100096
+    second: Tail04
+  - first:
+      1: 100098
+    second: Tail05
+  - first:
+      4: 400000
+    second: Back
+  - first:
+      4: 400002
+    second: CG
+  - first:
+      4: 400004
+    second: Chest
+  - first:
+      4: 400006
+    second: Ear L
+  - first:
+      4: 400008
+    second: Ear R
+  - first:
+      4: 400010
+    second: Head
+  - first:
+      4: 400012
+    second: Horse
+  - first:
+      4: 400014
+    second: Horse_Reins
+  - first:
+      4: 400016
+    second: Horse_Saddle
+  - first:
+      4: 400018
+    second: Jaw
+  - first:
+      4: 400020
+    second: L Calf
+  - first:
+      4: 400022
+    second: L Clavicle
+  - first:
+      4: 400024
+    second: L Finger0
+  - first:
+      4: 400026
+    second: L Foot
+  - first:
+      4: 400028
+    second: L Forearm
+  - first:
+      4: 400030
+    second: L Hand
+  - first:
+      4: 400032
+    second: L HorseLink
+  - first:
+      4: 400034
+    second: L Thigh
+  - first:
+      4: 400036
+    second: L Toe0
+  - first:
+      4: 400038
+    second: L UpperArm
+  - first:
+      4: 400040
+    second: Neck
+  - first:
+      4: 400042
+    second: Neck1
+  - first:
+      4: 400044
+    second: Neck2
+  - first:
+      4: 400046
+    second: Pelvis
+  - first:
+      4: 400048
+    second: R Calf
+  - first:
+      4: 400050
+    second: R Clavicle
+  - first:
+      4: 400052
+    second: R Finger0
+  - first:
+      4: 400054
+    second: R Foot
+  - first:
+      4: 400056
+    second: R Forearm
+  - first:
+      4: 400058
+    second: R Hand
+  - first:
+      4: 400060
+    second: R HorseLink
+  - first:
+      4: 400062
+    second: R Thigh
+  - first:
+      4: 400064
+    second: R Toe0
+  - first:
+      4: 400066
+    second: R UpperArm
+  - first:
+      4: 400068
+    second: Reins_Bn_Hand_L
+  - first:
+      4: 400070
+    second: Reins_Bn_Hand_R
+  - first:
+      4: 400072
+    second: Reins_Bn_Head_L
+  - first:
+      4: 400074
+    second: Reins_Bn_Head_R
+  - first:
+      4: 400076
+    second: Reins_Bn_Neck_L
+  - first:
+      4: 400078
+    second: Reins_Bn_Neck_R
+  - first:
+      4: 400080
+    second: Root1
+  - first:
+      4: 400082
+    second: Spine
+  - first:
+      4: 400084
+    second: Spine1
+  - first:
+      4: 400086
+    second: Spine2
+  - first:
+      4: 400088
+    second: //RootNode
+  - first:
+      4: 400090
+    second: Tail01
+  - first:
+      4: 400092
+    second: Tail02
+  - first:
+      4: 400094
+    second: Tail03
+  - first:
+      4: 400096
+    second: Tail04
+  - first:
+      4: 400098
+    second: Tail05
+  - first:
+      21: 2100000
+    second: 03 - Default
+  - first:
+      43: 4300000
+    second: Horse
+  - first:
+      43: 4300002
+    second: Horse_Reins
+  - first:
+      43: 4300004
+    second: Horse_Saddle
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Horse
+  - first:
+      137: 13700002
+    second: Horse_Reins
+  - first:
+      137: 13700004
+    second: Horse_Saddle
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -123,6 +341,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -146,32 +365,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -181,14 +417,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: CG
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

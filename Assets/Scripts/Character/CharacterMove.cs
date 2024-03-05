@@ -102,7 +102,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
-        float angle = transform.eulerAngles.y - tpsCam.transform.eulerAngles.y;
+        float angle = transform.eulerAngles.y - Camera.main.transform.eulerAngles.y;
         angle = Mathf.Abs(angle);
         angle = ClampAngle(angle, 0.0f, 360.0f);
 
@@ -197,8 +197,7 @@ public class CharacterMove : MonoBehaviour
 
         if (input.move != Vector2.zero)
         {
-            targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                              Camera.main.transform.eulerAngles.y;
+            targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity,
                 rotationSmoothTime);
 
