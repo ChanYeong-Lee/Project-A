@@ -16,19 +16,17 @@ public class ArrowSelector : MonoBehaviour
 
     private void Awake()
     {
-        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
         centerRadius = centerIndicator.rectTransform.rect.width / 2.0f;
     }
 
-
     private void Update()
     {
+        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
         Vector3 mousePos = Input.mousePosition;
 
         if (centerRadius < Vector3.Distance(screenCenter, mousePos))
         {
             float angle = Mathf.Atan2(mousePos.y - screenCenter.y, mousePos.x - screenCenter.x) * Mathf.Rad2Deg;
-
             if (angle < 0.0f)
             {
                 angle = 360.0f + angle;
@@ -42,6 +40,8 @@ public class ArrowSelector : MonoBehaviour
             {
                 angle = 450.0f - angle;
             }
+
+            print(angle);
 
             int index = (int)(angle / 45.0f);
 

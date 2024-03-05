@@ -102,7 +102,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
-        float angle = transform.eulerAngles.y - tpsCam.transform.eulerAngles.y;
+        float angle = transform.eulerAngles.y - Camera.main.transform.eulerAngles.y;
         angle = Mathf.Abs(angle);
         angle = ClampAngle(angle, 0.0f, 360.0f);
 

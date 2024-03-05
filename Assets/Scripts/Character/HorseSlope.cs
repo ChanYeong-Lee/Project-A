@@ -87,7 +87,7 @@ public class HorseSlope : MonoBehaviour
         {
             frontPoint = frontLeftHit.point;
             frontRightFootPrint.transform.position = frontPoint;
-            frontRightFootPrint.transform.rotation = Quaternion.LookRotation(frontLeftHit.normal);
+            frontRightFootPrint.transform.forward =frontLeftHit.normal;
             frontLeftGround = true;
         }
         else
@@ -99,7 +99,8 @@ public class HorseSlope : MonoBehaviour
         {
             frontPoint = frontRightHit.point;
             frontLeftFootPrint.transform.position = frontPoint;
-            frontLeftFootPrint.transform.rotation = frontRightHoe.rotation;
+            frontLeftFootPrint.transform.forward = frontRightHit.normal;
+      
             frontRightGround = true;
         }
         else
@@ -117,7 +118,7 @@ public class HorseSlope : MonoBehaviour
         {
             rearPoint = rearLeftHit.point;
             rearLeftFootPrint.transform.position = rearPoint;
-            rearLeftFootPrint.transform.rotation = Quaternion.LookRotation(frontLeftHit.normal);
+            rearLeftFootPrint.transform.forward = rearLeftHit.normal;
             rearLeftGround = true;
         }
         else
@@ -129,7 +130,7 @@ public class HorseSlope : MonoBehaviour
         {
             rearPoint = rearRightHit.point;
             rearRightFootPrint.transform.position = rearPoint;
-            rearRightFootPrint.transform.rotation = Quaternion.LookRotation(frontLeftHit.normal);
+            rearRightFootPrint.transform.forward = rearRightHit.normal;
             rearRightGround = true;
         }
         else
