@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 0
   path: Prefabs/...
   itemName: "\uB3CC"
-  itemType: 2
+  itemType: 3
+  price: 0
   description: "\uB3CC\n\uB3CC\uBA69\uC774"
   icon: {fileID: 0}
   farmingType: 0

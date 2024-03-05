@@ -39,7 +39,7 @@ namespace MooseController
                 var collisionAngle = Vector3.SignedAngle(moose.transform.forward,
                     colliders[0].transform.position - moose.transform.position, Vector3.up);
 
-                Debug.Log("patrol turn");
+                // Debug.Log("patrol turn");
                 switch (collisionAngle)
                 {
                     case < 90 and > 45:

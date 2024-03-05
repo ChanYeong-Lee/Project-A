@@ -67,15 +67,16 @@ public class CharacterAction : MonoBehaviour
         //bowPosTarget.position = isMount ? bowPosMountTarget.position : bowPosDefaultTarget.position;
         //bowPosTarget.rotation = isMount ? bowPosMountTarget.rotation : bowPosDefaultTarget.rotation;
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            isMount = !isMount;
-            animator.SetBool("Mount", isMount);
-            animator.SetTrigger("MountTrigger");
-            if (isMount)
-            {
-                mount.StartMount();
-            }
-        }
+        // TODO : UI 인벤토리 확인을 위해 잠시 주석 처리
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     isMount = !isMount;
+        //     animator.SetBool("Mount", isMount);
+        //     animator.SetTrigger("MountTrigger");
+        //     if (isMount)
+        //     {
+        //         mount.StartMount();
+        //     }
+        // }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5523fe487314780b140fb1d9c92c361, type: 3}
   m_Name: Bear Data
   m_EditorClassIdentifier: 
-  creatureName: 
+  creatureName: "\uACF0"
   stats:
   - level: 1
     healthPoint: 30

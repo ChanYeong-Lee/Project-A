@@ -13,7 +13,7 @@ namespace BearController
 
             RandVariable(1f, 5f, 0);
             anim.SetBool("Stand", true);
-            Debug.Log("IDLE");
+            // Debug.Log("IDLE");
         }
         
         public override void Update()

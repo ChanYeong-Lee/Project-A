@@ -9,6 +9,7 @@ public class GameScene : MonoBehaviour
     {
         Managers.Game.Init();
         Managers.Data.Init();
+        Managers.UI.Init();
     }
 
     private void Update()

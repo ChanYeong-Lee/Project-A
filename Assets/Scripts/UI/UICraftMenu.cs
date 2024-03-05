@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -10,49 +11,48 @@ public class UICraftMenu : ContentElement
 {
     private List<UISlot> slots = new List<UISlot>();
 
-    // TODO : 인벤토리 참조는 Managers.Game.Player.inventory로 바꾸기
     // TODO : UIManager 생기면 다시 정리
-    [SerializeField] private Inventory inventory;
     [SerializeField] private RectTransform content;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private UISlot slotPrefab;
+    [FormerlySerializedAs("text")] [SerializeField] private GameObject craftInfo;
     
-    private UISlot selectSlot;
     private List<ItemRecipeData> recipeDataList = new List<ItemRecipeData>();
+    private Inventory inventory;
+    private UISlot slotPrefab;
+    private UISlot selectSlot;
     
     public UISlot SelectSlot { get => selectSlot; set => selectSlot = value; }
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void OnEnable()
     {
         recipeDataList = Managers.Data.RecipeDataList;
         
-        foreach (UISlot slot in slots) 
-            Managers.Pool.Push(slot.gameObject);
+        if (inventory == null) 
+            inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
         
-        slots.Clear();
-        
-        foreach (var recipeData in recipeDataList)
-        {
-            var slot = Managers.Pool.Pop(slotPrefab.gameObject, content).GetComponent<UISlot>();
-            
-            slot.SlotType = SlotType.CraftMenu;
-            slot.ItemData = recipeData.ItemData;
-            
-            slots.Add(slot);
+        buttons["All"].onClick.AddListener(() => UpdateCraft(Define.ItemType.None));
+        buttons["Arrows"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Arrow));
+        buttons["Consumptions"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Consumption));
 
-            UpdateSlot(slot);
-        }
+        UpdateCraft();
     }
     
     private void Update()
     {
         if (selectSlot == null)
+        {
+            UpdateCraftItemInfo(slots[0]);
             return;
+        }
 
         UpdateCraftItemInfo(selectSlot);
       
         // 아이템 제작 키 입력 체크
-        if (Input.GetKeyDown(KeyCode.F) && IsCheckCraftItem(selectSlot.ItemData))
+        if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectSlot.ItemData) > 0)
         {
             Debug.Log("제작");
             inventory.CraftingItem(FindItemRecipe(selectSlot.ItemData));
@@ -62,36 +62,61 @@ public class UICraftMenu : ContentElement
         }
     }
     
-    // 제작 아이템 정보창 업데이트 메소드
-    private void UpdateCraftItemInfo(UISlot slot)
+    // 정렬할 itemType을 넣으면 정렬
+    // None이면 전체
+    private void UpdateCraft(Define.ItemType itemType = Define.ItemType.None)
     {
-        var recipeData = FindItemRecipe(slot.ItemData);
-        StringBuilder sb = new StringBuilder();
+        foreach (UISlot slot in slots) 
+            Managers.Pool.Push(slot.gameObject);
         
-        sb.Append($"{recipeData.ItemData.ItemName} X{recipeData.ItemCount}\n");
-        sb.Append("재료\n");
+        slots.Clear();
 
-        for (var i = 0; i < recipeData.CraftItemData.Count; i++)
+        int i = 0;
+        foreach (var recipeData in recipeDataList)
         {
-            var itemData = recipeData.CraftItemData[i];
-            var itemCount = recipeData.CraftItemCount[i];
-            int currentItemCount = inventory.ItemDataDic.GetValueOrDefault(itemData, 0);
+            if (itemType != Define.ItemType.None && itemType != recipeData.ItemData.ItemType)
+                continue;
             
-            sb.Append($"{itemData.ItemName} : {currentItemCount}/{itemCount}\n");
-        }
+            var slot = Managers.Resource.Instantiate("Prefabs/UI/CraftSlot", content, true).GetComponent<UISlot>();
 
-        text.text = sb.ToString();
+            slot.transform.SetSiblingIndex(i++);
+            slot.SlotType = SlotType.CraftMenu;
+            slot.ItemData = recipeData.ItemData;
+            slots.Add(slot);
+
+            UpdateSlot(slot);
+        }
     }
     
     // 제작 아이템 슬롯 업데이트 메소드
     private void UpdateSlot(UISlot slot)
     {
-        var recipeData = FindItemRecipe(slot.ItemData);
-        
-        slot.Text.color = IsCheckCraftItem(slot.ItemData) ? Color.blue : Color.red;
-        slot.Text.text = $"{slot.ItemData.ItemName} X{recipeData.ItemCount}";
-    }
+        var craftableAmount = CraftableAmount(slot.ItemData);
 
+        slot.Images["Icon"].sprite = slot.ItemData.Icon;
+        slot.Texts["NameText"].text = $"{slot.ItemData.ItemName}";
+        slot.Texts["CraftableAmountText"].text = $"{craftableAmount}";
+        // 보유하고 있는 아이템 개수
+        slot.Texts["AmountText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.ItemData, 0)}";
+    }
+        
+    // 제작 아이템 정보창 업데이트 메소드
+    private void UpdateCraftItemInfo(UISlot slot)
+    {
+        var recipeData = FindItemRecipe(slot.ItemData);
+
+        images["IconImage"].sprite = slot.ItemData.Icon;
+        texts["NameText"].text = $"{slot.ItemData.ItemName}";
+        texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
+        texts["DescriptionText"].text = $"{slot.ItemData.Description}";
+
+        for (var i = 0; i < recipeData.CraftItemData.Count; i++)
+        {
+            images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Icon;
+            texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemCount[i]}";
+        }
+    }
+    
     private ItemRecipeData FindItemRecipe(ItemData itemData)
     {
         var recipeData = recipeDataList.Find(recipe => itemData == recipe.ItemData);
@@ -100,19 +125,14 @@ public class UICraftMenu : ContentElement
     }
     
     // 제작 가능한 아이템 확인 메소드
-    private bool IsCheckCraftItem(ItemData itemData)
+    private int CraftableAmount(ItemData itemData)
     {
         var recipeData = FindItemRecipe(itemData);
-        var craftItemData = recipeData.CraftItemData;
+        List<int> craftableAmountList = new List<int>();
         
-        for (var i = 0; i < craftItemData.Count; i++)
-        {
-            if (!inventory.ItemDataDic.TryGetValue(craftItemData[i], out int count) || count < recipeData.CraftItemCount[i])
-            {
-                return false;
-            }
-        }
+        for (int i = 0; i < recipeData.CraftItemData.Count; i++) 
+            craftableAmountList.Add(inventory.ItemDataDic.GetValueOrDefault(recipeData.CraftItemData[i], 0) / recipeData.CraftItemCount[i]);
 
-        return true;
+        return craftableAmountList.Min();
     }
 }

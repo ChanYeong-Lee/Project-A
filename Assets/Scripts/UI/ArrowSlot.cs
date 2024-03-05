@@ -1,20 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ArrowSlot : UIBase
 {
     [SerializeField] private Define.AttributeType attributeType;
 
+    private void Update()
+    {
+        var itemData = Managers.Game.Player.GetComponentInChildren<Inventory>().ItemDataDic.FirstOrDefault(pair =>
+            pair.Key.ItemType == Define.ItemType.Arrow &&
+            ((ArrowData)pair.Key).Attribute == attributeType);
+        
+        UpdateArrowSlot(itemData.Value);
+    }
+
     public void UpdateArrowSlot(int amount)
     {
+        if (attributeType == Define.AttributeType.Default)
+        {
+            images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 1.0f);
+            texts["AmountText"].text = "¡Ä";
+            return;
+        }
+        
         if (amount == 0)
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 0.2f);
+            texts["AmountText"].text = $"{amount}°³";
         }
         else
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 1.0f);
+            texts["AmountText"].text = $"{amount}°³";
         }
     }
 

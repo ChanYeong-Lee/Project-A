@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 0
   path: 
   itemName: "\uC0AC\uACFC"
-  itemType: 2
+  itemType: 3
+  price: 0
   description: "\uC0AC\uACFC\n\uBB3C\uC57D \uC7AC\uB8CC"
   icon: {fileID: 21300000, guid: 2d0d76a85aef21f4b8f0fded48252288, type: 3}
   farmingType: 0
