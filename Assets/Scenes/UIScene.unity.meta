@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scenes/UIScene.unity.meta
-guid: a379208e7d48b764fb69ae6ba96fbd7b
-========
-guid: 39df563772be94b40a150930610daacf
-folderAsset: yes
->>>>>>>> origin/NPC:Assets/Scripts/Events.meta
+guid: f80965575c363774dbc0cb9ce1474850
 DefaultImporter:
   externalObjects: {}
   userData: 

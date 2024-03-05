@@ -18,5 +18,5 @@ MonoBehaviour:
   itemType: 3
   price: 0
   description: "\uB098\uBB34"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dc56a398ab0d36b42a32f6acfeff7013, type: 3}
   farmingType: 0

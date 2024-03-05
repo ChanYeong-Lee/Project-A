@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scenes/TitleScene.unity.meta
 guid: ddd639497cfefb140b1defb8d2e45cc9
-========
-guid: f0fb48fa1a635d54aa2853ec397aabdc
-folderAsset: yes
->>>>>>>> origin/NPC:Assets/Resources/ScriptableObject/Quest.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

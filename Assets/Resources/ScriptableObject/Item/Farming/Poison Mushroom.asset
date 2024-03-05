@@ -19,5 +19,5 @@ MonoBehaviour:
   price: 0
   description: "\uB3C5 \uBC84\uC12F\n\uADF8\uB0E5 \uBA39\uC73C\uBA74 \uB3C5 \uC0C1\uD0DC\uC5D0
     \uAC78\uB9B0\uB2E4"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 359378583400f684da992e7bb4fb2164, type: 3}
   farmingType: 0

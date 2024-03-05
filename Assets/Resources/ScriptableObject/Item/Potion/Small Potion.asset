@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   path: Prefabs/...
-  itemName: Small Potion
+  itemName: "\uC18C\uD615 \uD3EC\uC158"
   itemType: 2
+  price: 0
   description: "\uC18C\uD615 \uD3EC\uC158\nhp 10 \uD68C\uBCF5"
+  icon: {fileID: 21300000, guid: 08d200ffb5bf16041b1a87f3ba69091b, type: 3}
   healingPoint: 10

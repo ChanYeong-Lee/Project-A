@@ -11,8 +11,8 @@ public class QuestEvent : ScriptableObject
 
     public void Raise(QuestData quest)
     {
-        for (int i = listeners.Count - 1; i >= 0; i--)
-            listeners[i].OnQuestEventRaised(quest);
+        // for (int i = listeners.Count - 1; i >= 0; i--)
+        //     listeners[i].OnQuestEventRaised(quest);
         
     }
     public void RegisterListener(GameEventsManager listener)

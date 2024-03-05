@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
-  m_Name: Slime Mucus
+  m_Name: Monster Skin
   m_EditorClassIdentifier: 
   id: 104
   path: Prefabs/...
-  itemName: "\uC2AC\uB77C\uC784\uC758 \uC810\uC561"
+  itemName: "\uBAAC\uC2A4\uD130\uC758 \uAC00\uC8FD"
   itemType: 3
   price: 0
-  description: "\uC2AC\uB77C\uC784\uC758 \uC810\uC561\n\uC2AC\uB77C\uC784\uC744 \uC8FD\uC774\uACE0
-    \uB098\uC628 \uBD80\uC0B0\uBB3C"
-  icon: {fileID: 0}
-  farmingType: 0
+  description: "\uBAAC\uC2A4\uD130\uC758 \uAC00\uC8FD\n\uBAAC\uC2A4\uD130\uB97C \uC8FD\uC774\uBA74
+    \uB098\uC624\uB294 \uAC00\uC8FD "
+  icon: {fileID: 21300000, guid: e3853db0e113b68419e51a349db96ec3, type: 3}
+  farmingType: 4

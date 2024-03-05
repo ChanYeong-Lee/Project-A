@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
-  m_Name: Monster Byproduct
+  m_Name: Monster Bone
   m_EditorClassIdentifier: 
   id: 104
   path: Prefabs/...
-  itemName: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C"
+  itemName: "\uBAAC\uC2A4\uD130\uC758 \uBF08"
   itemType: 3
   price: 0
-  description: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C\n\uBAAC\uC2A4\uD130\uB97C
-    \uC8FD\uC774\uBA74 \uB098\uC624\uB294 \uBD80\uC0B0"
-  icon: {fileID: 0}
-  farmingType: 0
+  description: "\uBAAC\uC2A4\uD130\uC758 \uBF08\n\uBAAC\uC2A4\uD130\uB97C \uC8FD\uC774\uACE0
+    \uB098\uC628 \uBF08"
+  icon: {fileID: 21300000, guid: 748dbb588c167fc4c868a50039a01c46, type: 3}
+  farmingType: 4
