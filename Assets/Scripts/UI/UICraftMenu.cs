@@ -34,28 +34,20 @@ public class UICraftMenu : ContentElement
         if (inventory == null) 
             inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
         
-        foreach (UISlot slot in slots) 
-            Managers.Pool.Push(slot.gameObject);
-        
-        slots.Clear();
-        
-            foreach (var recipeData in recipeDataList)
-        {
-            var slot = Managers.Resource.Instantiate("Prefabs/UI/CraftSlot", content, true).GetComponent<UISlot>();
-            
-            slot.SlotType = SlotType.CraftMenu;
-            slot.ItemData = recipeData.ItemData;
-            
-            slots.Add(slot);
+        buttons["All"].onClick.AddListener(() => UpdateCraft(Define.ItemType.None));
+        buttons["Arrows"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Arrow));
+        buttons["Consumptions"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Consumption));
 
-            UpdateSlot(slot);
-        }
+        UpdateCraft();
     }
     
     private void Update()
     {
         if (selectSlot == null)
+        {
+            UpdateCraftItemInfo(slots[0]);
             return;
+        }
 
         UpdateCraftItemInfo(selectSlot);
       
@@ -70,19 +62,29 @@ public class UICraftMenu : ContentElement
         }
     }
     
-    // 제작 아이템 정보창 업데이트 메소드
-    private void UpdateCraftItemInfo(UISlot slot)
+    // 정렬할 itemType을 넣으면 정렬
+    // None이면 전체
+    private void UpdateCraft(Define.ItemType itemType = Define.ItemType.None)
     {
-        var recipeData = FindItemRecipe(slot.ItemData);
+        foreach (UISlot slot in slots) 
+            Managers.Pool.Push(slot.gameObject);
+        
+        slots.Clear();
 
-        images["IconImage"].sprite = slot.ItemData.Icon;
-        texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
-        texts["DescriptionText"].text = $"{recipeData.ItemData.Description}";
-
-        for (var i = 0; i < recipeData.CraftItemData.Count; i++)
+        int i = 0;
+        foreach (var recipeData in recipeDataList)
         {
-            images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Icon;
-            texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemCount[i]}";
+            if (itemType != Define.ItemType.None && itemType != recipeData.ItemData.ItemType)
+                continue;
+            
+            var slot = Managers.Resource.Instantiate("Prefabs/UI/CraftSlot", content, true).GetComponent<UISlot>();
+
+            slot.transform.SetSiblingIndex(i++);
+            slot.SlotType = SlotType.CraftMenu;
+            slot.ItemData = recipeData.ItemData;
+            slots.Add(slot);
+
+            UpdateSlot(slot);
         }
     }
     
@@ -97,7 +99,24 @@ public class UICraftMenu : ContentElement
         // 보유하고 있는 아이템 개수
         slot.Texts["AmountText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.ItemData, 0)}";
     }
+        
+    // 제작 아이템 정보창 업데이트 메소드
+    private void UpdateCraftItemInfo(UISlot slot)
+    {
+        var recipeData = FindItemRecipe(slot.ItemData);
 
+        images["IconImage"].sprite = slot.ItemData.Icon;
+        texts["NameText"].text = $"{slot.ItemData.ItemName}";
+        texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
+        texts["DescriptionText"].text = $"{slot.ItemData.Description}";
+
+        for (var i = 0; i < recipeData.CraftItemData.Count; i++)
+        {
+            images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Icon;
+            texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemCount[i]}";
+        }
+    }
+    
     private ItemRecipeData FindItemRecipe(ItemData itemData)
     {
         var recipeData = recipeDataList.Find(recipe => itemData == recipe.ItemData);

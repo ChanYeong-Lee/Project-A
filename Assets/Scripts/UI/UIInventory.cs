@@ -29,30 +29,43 @@ public class UIInventory : ContentElement
         if (inventory == null) 
             inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
         
-        foreach (UISlot slot in slots) 
-            Managers.Pool.Push(slot.gameObject);
+        buttons["All"].onClick.AddListener(() => UpdateInventory(Define.ItemType.None));
+        buttons["Arrows"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Arrow));
+        buttons["Consumptions"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Consumption));
+        buttons["Ingredients"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Ingredients));
         
-        slots.Clear();
-
         UpdateInventory();
     }
 
     private void Update()
     {
         if (selectSlot == null)
+        {
+            UpdateItemInfo(slots[0]);
             return;
-
+        }
+            
         UpdateItemInfo(selectSlot);
     }
 
-    private void UpdateInventory(Define.ItemType itemType = Define.ItemType.None)
+    // 정렬할 itemType을 넣으면 정렬
+    // None이면 전체
+    public void UpdateInventory(Define.ItemType itemType = Define.ItemType.None)
     {
+        foreach (UISlot slot in slots) 
+            Managers.Pool.Push(slot.gameObject);
+        
+        slots.Clear();
+
+        int i = 0;
         foreach (var item in inventory.ItemDataDic)
         {
             if (itemType != Define.ItemType.None && itemType != item.Key.ItemType)
                 continue;
             
             var slot = Managers.Resource.Instantiate("Prefabs/UI/InventorySlot", content.transform, true).GetComponent<UISlot>();
+            
+            slot.transform.SetSiblingIndex(i++);
             slot.SlotType = SlotType.InventoryMenu;
             slots.Add(slot);
             slot.ItemData = item.Key;
