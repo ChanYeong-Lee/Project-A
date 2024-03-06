@@ -41,8 +41,10 @@ public class UIInventory : ContentElement
     {
         if (selectSlot == null)
         {
-            UpdateItemInfo(slots[0]);
-            return;
+            if (slots.Count == 0)
+                return;
+
+            selectSlot = slots[0];
         }
             
         UpdateItemInfo(selectSlot);

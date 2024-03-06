@@ -34,4 +34,15 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void CraftingItem(ItemRecipeData recipeData, int count)
+    {
+        if (count < 1)
+            return;
+        
+        for (int i = 1; i <= count; i++)
+        {
+            CraftingItem(recipeData);
+        }
+    }
 }

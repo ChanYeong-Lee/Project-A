@@ -36,7 +36,7 @@ public abstract class Creature : MonoBehaviour
         if (currentLevel < creatureData.Stats[0].Level || currentLevel > creatureData.Stats[^1].Level)
             currentLevel = 1;
 
-        currentStat = new Stat(creatureData.Stats[currentLevel]);
+        currentStat = new Stat(creatureData.Stats.Find(stat => stat.Level == currentLevel));
     }
 }
 

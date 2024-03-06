@@ -66,10 +66,18 @@ public class CharacterFarming : MonoBehaviour
         for (int i = 0; i < detectCount; i++)
         {
             Collider other = detectedColliders[i];
-            Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
+            
+            // Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
             // 자식용
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponentInParent<IFarmable>().Farming(out var farmingType);
 
+            // 오류날 확률 높음, 정확한 테스트 필요
+            Dictionary<FarmingItemData, int> dataDic = new Dictionary<FarmingItemData, int>();
+
+            dataDic = other.gameObject.layer == LayerMask.NameToLayer("Enemy")
+                ? other.GetComponentInParent<IFarmable>().Farming(out var farmingType)
+                : other.GetComponent<IFarmable>().Farming(out farmingType);
+            
             if (dataDic == null)
                 return;
 
@@ -101,22 +109,10 @@ public class CharacterFarming : MonoBehaviour
             foreach (var data in dataDic)
             {
                 inventory.TryGainItem(data.Key, data.Value);
-                //TODO: 퀘스트가 있는 시점에서만 switch문 진행할 것
-                switch (data.Key.ItemID)
-                {
-                    case "Wood":
-                        GameEventsManager.Instance.miscEvents.WoodCollected(data.Value);
-                        break;
-                    case "":
-
-                        break;
-                }
-                
-                
             }
 
             if (farmingType == Define.FarmingType.Dismantling)
-                other.GetComponentInParent<MonsterSpawner>().Despawn(other.GetComponent<Monster>());
+                other.GetComponentInParent<MonsterSpawner>().Despawn(other.GetComponentInParent<Monster>());
             else
                 other.GetComponentInParent<EnvSpawner>().Despawn(other.GetComponent<Environment>());
         }

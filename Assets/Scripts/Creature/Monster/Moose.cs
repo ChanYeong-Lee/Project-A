@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using MooseController;
@@ -35,6 +36,12 @@ public class Moose : Monster
         stateMachine.AddState(State.Attack, new AttackState(this));
         stateMachine.AddState(State.Dead, new DeadState(this));
         stateMachine.InitState(State.Idle);
+    }
+
+    public override Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
+    {
+        Debug.Log("파밍 중");
+        return base.Farming(out farmingType);
     }
 
     private void OnCollisionEnter(Collision other)

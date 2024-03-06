@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c51799ebd08429eb291d8b4d0b7bba1, type: 3}
+  m_Name: Test Monster Drop Table
+  m_EditorClassIdentifier: 
+  id: 0
+  farmingType: 4
+  dropItemList:
+  - {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
+  - {fileID: 11400000, guid: 3e039e2f9c6a0c04d8865f805a9cb5fe, type: 2}
+  - {fileID: 11400000, guid: 6c5d867534e62b643a5823ba58d1271e, type: 2}
+  - {fileID: 11400000, guid: 425034b01535a0b479bae2e7eafcd61d, type: 2}
+  - {fileID: 11400000, guid: 2cceb512279fea14fb9e7c5309762c22, type: 2}
+  - {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
+  - {fileID: 11400000, guid: f01327b4bb3da4d48999afa5ecddb074, type: 2}
+  - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
+  - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+  dropItemMinCount: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  dropItemMaxCount: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
+  dropItemRate: 640000005a00000050000000460000003c00000032000000280000001e000000140000000a00000064000000
