@@ -10,7 +10,7 @@ public class ArrowSlot : UIBase
 
     private void Update()
     {
-        var itemData = Managers.Game.Player.GetComponentInChildren<Inventory>().ItemDataDic.FirstOrDefault(pair =>
+        var itemData = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair =>
             pair.Key.ItemType == Define.ItemType.Arrow &&
             ((ArrowData)pair.Key).Attribute == attributeType);
         

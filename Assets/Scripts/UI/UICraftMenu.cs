@@ -18,9 +18,7 @@ public class UICraftMenu : ContentElement
     
     private List<UISlot> slots = new List<UISlot>();
 
-    // TODO : UIManager 생기면 다시 정리
     [SerializeField] private RectTransform content;
-    [SerializeField] private GameObject craftInfo;
     
     private List<ItemRecipeData> recipeDataList = new List<ItemRecipeData>();
     private Inventory inventory;
@@ -35,22 +33,23 @@ public class UICraftMenu : ContentElement
     {
         base.Awake();
         
+        recipeDataList = Managers.Data.RecipeDataList;
+        
+        if (inventory == null) 
+            inventory = Managers.Game.Inventory;
+        
         BindButtons();
     }
 
     private void OnEnable()
     {
-        recipeDataList = Managers.Data.RecipeDataList;
-        
-        if (inventory == null) 
-            inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
-        
         UpdateCraft();
     }
     
     private void Update()
     {
-        UpdateCraftItemInfo(selectedSlot);
+        if (prevSelectedSlot != selectedSlot)
+            UpdateCraftItemInfo(selectedSlot);
       
         // 아이템 제작 키 입력 체크
         if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectedSlot.ItemData) > 0)
@@ -108,9 +107,8 @@ public class UICraftMenu : ContentElement
 
             UpdateSlot(slot);
         }
-
-        if (selectedSlot == null)
-            selectedSlot = content.transform.GetComponentInChildren<UISlot>();
+        
+        selectedSlot = content.transform.GetComponentInChildren<UISlot>();
     }
     
     // 제작 아이템 슬롯 업데이트 메소드
@@ -128,9 +126,6 @@ public class UICraftMenu : ContentElement
     // 제작 아이템 정보창 업데이트 메소드
     private void UpdateCraftItemInfo(UISlot slot)
     {
-        if (prevSelectedSlot == selectedSlot)
-            return;
-
         prevSelectedSlot = selectedSlot;
         
         var recipeData = FindItemRecipe(slot.ItemData);
@@ -185,7 +180,7 @@ public class UICraftMenu : ContentElement
                 craftAmount--;
                 break;
         }
-
+        
         int maxAmount = CraftableAmount(selectedSlot.ItemData);
         
         if (craftAmount < 0) 

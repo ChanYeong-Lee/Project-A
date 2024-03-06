@@ -26,9 +26,18 @@ public class UIManager
     private void CreateGameUI()
     {
         // HUD
-        hud = Managers.Resource.Instantiate("Prefabs/UI/HUDCanvas");
+        if (hud == null)
+        {
+            GameObject go = GameObject.Find("HUDCanvas");
+            hud = go == null ? Managers.Resource.Instantiate("Prefabs/UI/HUDCanvas") : go;
+        }
+        
         // MainCanvas
-        mainUI = Managers.Resource.Instantiate("Prefabs/UI/MainCanvas");
+        if (mainUI == null)
+        {
+            GameObject go = GameObject.Find("MainCanvas");
+            hud = go == null ? Managers.Resource.Instantiate("Prefabs/UI/MainCanvas") : go;
+        }
     }
 
     public void OpenMainUI()

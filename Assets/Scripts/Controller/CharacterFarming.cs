@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class CharacterFarming : MonoBehaviour
 {
-    [SerializeField] private PlayerData playerData;
     [SerializeField] private LayerMask gatheringLayerMask; 
-    [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject scannerPrefab;
     
+    private Inventory inventory;
     private Collider[] detectedColliders;
     
     private float farmingTime = 0;
@@ -19,12 +18,11 @@ public class CharacterFarming : MonoBehaviour
     private void Awake()
     {
         detectedColliders = new Collider[1];
-        playerData = Managers.Resource.Load<PlayerData>("ScriptableObject/Creature/Player Data");
     }
 
     private void Start()
     {
-        inventory = GetComponentInChildren<Inventory>();
+        inventory = Managers.Game.Inventory;
     }
 
     private void Update()
@@ -39,16 +37,6 @@ public class CharacterFarming : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F))
         {
             farmingTime = 0;
-        }
-
-        // 인벤 체크
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log("인벤 아이템 체크");
-            foreach (KeyValuePair<ItemData, int> item in inventory.GetComponent<Inventory>().ItemDataDic)
-            {
-                Debug.Log($"{item.Key.ItemName} : {item.Value}");
-            }
         }
 
         // 스캐너
@@ -81,7 +69,7 @@ public class CharacterFarming : MonoBehaviour
             if (dataDic == null)
                 return;
 
-            float farmingTime = playerData.FarmingTime;
+            float farmingTime = GetComponent<Player>().Data.FarmingTime;
 
             // 파밍 관련 애니메이션이나 기타 등등 스위치 문
             switch (farmingType)
