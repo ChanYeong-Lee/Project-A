@@ -2045,6 +2045,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &682381895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682381897}
+  - component: {fileID: 682381896}
+  m_Layer: 0
+  m_Name: UIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &682381896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682381895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f39648e18c2474da6dd5641a39f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 1140263425}
+--- !u!4 &682381897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682381895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &738464784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,8 +2640,8 @@ GameObject:
   - component: {fileID: 1140263419}
   - component: {fileID: 1140263418}
   - component: {fileID: 1140263422}
-  - component: {fileID: 1140263423}
   - component: {fileID: 1140263424}
+  - component: {fileID: 1140263425}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -2684,7 +2729,7 @@ Transform:
   m_GameObject: {fileID: 1140263417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.16, y: 0.62, z: -4.26}
+  m_LocalPosition: {x: 22.65, y: 0.62, z: -5.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2717,20 +2762,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1140263423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140263417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c01f4403f357424ea99b9cf1d2dadb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  inputValue: {x: 0, y: 0}
 --- !u!114 &1140263424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2756,12 +2787,108 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6bc1aaf4-b110-4ff7-891e-5b9fe6f32c4d
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2690c379-f54d-45be-a724-414123833eb4
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c4abdf8-4099-493a-aa1a-129acec7c3df
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 980e881e-182c-404c-8cbf-3d09fdb48fef
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b7a3cbdb-3a26-4558-b8ff-c472a223d49c
+    m_ActionName: Player/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a7ced296-c7aa-4ced-aed1-d814e0c2c1d5
+    m_ActionName: Player/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4e8412e4-5c42-4d6c-b57c-13cb6c6aa1a6
+    m_ActionName: Player/MousePos[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e7cd92c-b68f-4a3d-b529-abcb2621330a
+    m_ActionName: Player/HKey[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87ecbdc6-fcdc-473d-9c07-46c1a8ddcda7
+    m_ActionName: Player/EKey[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7645fc6f-2ce8-4ea7-bc91-4dd1bb8bcae5
+    m_ActionName: Player/IKey[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 930b8052-26d2-4104-806e-10b78d962aa4
+    m_ActionName: Player/CKey[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 666ac034-3a57-4d8f-be73-cba089c84056
+    m_ActionName: Player/ESC[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11136b8c-1d99-42a5-aae2-82ed11f6fa0c
+    m_ActionName: Player/QKey[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 07fef3c5-c0d7-4f86-b379-1f193308be16
+    m_ActionName: Player/MKey[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d93c9c51-105a-4439-994f-73b109cb2158
+    m_ActionName: Player/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a165d76-70cf-4535-8cd1-3d04239ca3fb
+    m_ActionName: Player/Tab[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1140263425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140263417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc393b9781e7b5c42ad4c0f2fa871bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  move: {x: 0, y: 0}
+  look: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0}
+  jump: 0
+  sprint: 0
+  leftClick: 0
+  rightClick: 0
+  hKey: 0
+  eKey: 0
+  iKey: 0
+  cKey: 0
+  qKey: 0
+  mKey: 0
+  enter: 0
+  tab: 0
+  esc: 0
+  analogMovement: 0
+  cursorLocked: 1
+  cursorInputForLook: 1
 --- !u!1 &1149123635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +3085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335570896}
+  - component: {fileID: 1335570897}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2982,6 +3110,18 @@ Transform:
   - {fileID: 1857324952}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335570897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335570895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb408d54c608b7348bd7e95df4d7f419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1347287640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,37 +3956,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1204882322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1803120899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1803120901}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1803120901
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803120899}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.3493886, y: 6.765574, z: -7.7912164}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1839839839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c1fea88221d9a4485f84a0aa296806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadQuestState: 1
+  loadQuestState: 0
 --- !u!4 &1857324952
 Transform:
   m_ObjectHideFlags: 0
@@ -10019,7 +10128,6 @@ SceneRoots:
   - {fileID: 1132671400}
   - {fileID: 209099649}
   - {fileID: 470585651}
-  - {fileID: 1803120901}
   - {fileID: 2144436199}
   - {fileID: 1782707697}
   - {fileID: 2089091016}
@@ -10029,3 +10137,4 @@ SceneRoots:
   - {fileID: 1204882322}
   - {fileID: 1335570896}
   - {fileID: 463118579}
+  - {fileID: 682381897}

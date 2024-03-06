@@ -80,6 +80,7 @@ public class PlayerInputAsset : MonoBehaviour
     public void OnEKey(InputValue value)
     {
         eKey = value.isPressed;
+        print("E Key");
     }
     public void OnIKey(InputValue value)
     {
@@ -93,6 +94,7 @@ public class PlayerInputAsset : MonoBehaviour
     {
         esc = value.isPressed;
     }
+
     public void OnQKey(InputValue value)
     {
         qKey = value.isPressed;

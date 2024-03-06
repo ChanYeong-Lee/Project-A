@@ -41,11 +41,12 @@ public class UIInventory : ContentElement
     {
         if (selectSlot == null)
         {
-            UpdateItemInfo(slots[0]);
+            //TODO: 인벤토리 작업
+            //UpdateItemInfo(slots[0]);
             return;
         }
             
-        UpdateItemInfo(selectSlot);
+      //  UpdateItemInfo(selectSlot);
     }
 
     // 정렬할 itemType을 넣으면 정렬

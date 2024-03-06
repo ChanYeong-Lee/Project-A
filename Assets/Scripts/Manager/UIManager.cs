@@ -30,4 +30,14 @@ public class UIManager
         // MainCanvas
         mainUI = Managers.Resource.Instantiate("Prefabs/UI/MainCanvas");
     }
+
+    public void OpenMainUI()
+    {
+        mainUI.GetComponentInChildren<MainUI>(true).gameObject.SetActive(true);
+    }
+
+    public void CloseMainUI()
+    {
+        mainUI.GetComponentInChildren<MainUI>(true).gameObject.SetActive(false);
+    }
 }
