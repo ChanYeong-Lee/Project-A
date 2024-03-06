@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939c9bb5bbb7a7b4581e9806c58c7575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 50
+  distance: 50
 --- !u!23 &8439845424918123830
 MeshRenderer:
   m_ObjectHideFlags: 0

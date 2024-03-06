@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
@@ -17,21 +18,17 @@ public class CharacterAttack : MonoBehaviour
     }
 
     private AttackState state;
-    public AttackState State => state;
 
-    [SerializeField] private Define.AttributeType arrowType;
-    public Define.AttributeType ArrowType => arrowType;
-
+    [SerializeField] private Define.AttributeType arrowAttribute;
     [SerializeField] private Transform arrowPos;
     [SerializeField] private Transform quiver;
     [SerializeField] private List<Arrow> arrowPrefabs;
-    [SerializeField] private CinemachineVirtualCamera tpsCam;
     [SerializeField] private float chargeTime = 2.0f;
+    
     [SerializeField] private AimTarget aimTarget;
 
-    private Animator animator;
     private Arrow arrow;
-
+    private Animator animator;
     private AttackPoint target;
 
     private float releaseTimeout = 0.25f;
@@ -40,9 +37,19 @@ public class CharacterAttack : MonoBehaviour
 
     private bool release;
     private RaycastHit hit;
+
+    // Properties
+    public AttackState State => state;
+    public Define.AttributeType ArrowAttribute => arrowAttribute;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        aimTarget.transform.parent = null;
     }
 
     private void Update()
@@ -65,6 +72,21 @@ public class CharacterAttack : MonoBehaviour
         animator.SetInteger("AimState", (int)state);
     }
 
+    // 화살 바꾸기
+    public void ChangeArrow(Define.AttributeType attribute)
+    {
+        if (arrow.ArrowData.Attribute != attribute)
+        {
+            Arrow newArrow = GenerateArrow(attribute);
+
+            newArrow.transform.parent = arrow.transform.parent;
+            newArrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            Managers.Pool.Push(arrow.gameObject);
+            arrow = newArrow;
+        }
+    }
+
     // 공격 가능 상태인지 확인
     private void CheckPrepared()
     {
@@ -80,6 +102,7 @@ public class CharacterAttack : MonoBehaviour
         prepared = forwardCheck && timeCheck;
     }
 
+    // 타겟 있는지 확인
     private void CheckTarget()
     {
         target = null;
@@ -93,6 +116,7 @@ public class CharacterAttack : MonoBehaviour
         }
     }
 
+    // 조준점 업데이트
     private void UpdateAimTarget()
     {
         if (target != null)
@@ -108,18 +132,28 @@ public class CharacterAttack : MonoBehaviour
         aimTarget.SetAngle(offset);
     }
 
+    // 화살이 있는지 확인
     private void CheckArrow()
     {
         if (arrow == null)
         {
-            Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == arrowType);
-            arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
-            arrow.transform.parent = quiver;
-            arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            arrow.gameObject.SetActive(true);
-            print("Reload Arrow");
+            arrow = GenerateArrow(arrowAttribute);
         }
     }
+
+    
+    // 화살 생성
+    private Arrow GenerateArrow(Define.AttributeType attribute)
+    {
+        Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == this.arrowAttribute);
+        Arrow arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
+        arrow.transform.parent = quiver;
+        arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        arrow.gameObject.SetActive(true);
+
+        return arrow;
+    }
+
 
     private void WaitUpdate()
     {
@@ -138,6 +172,8 @@ public class CharacterAttack : MonoBehaviour
 
     private void AimingUpdate()
     {
+        releaseTimeoutDelta = releaseTimeout;
+
         if (equipArrow == false /*&& Vector3.Distance(arrow.transform.position, arrowPos.transform.position) < 10.0f*/)
         {
             arrow.transform.parent = arrowPos;
@@ -148,6 +184,7 @@ public class CharacterAttack : MonoBehaviour
 
         chargedAmount += Time.deltaTime / chargeTime;
         chargedAmount = Mathf.Clamp(chargedAmount, 0.0f, 1.0f);
+
         //TODO : HUD update
 
         if (prepared == false)

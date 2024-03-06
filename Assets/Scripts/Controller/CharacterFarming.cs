@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterFarming : MonoBehaviour
 {
-    [SerializeField] private PlayerData playerData;
+    private PlayerData playerData;
     [SerializeField] private LayerMask gatheringLayerMask; 
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject scannerPrefab;

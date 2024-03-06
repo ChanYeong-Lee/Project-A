@@ -4,26 +4,63 @@ using UnityEngine;
 
 public class CompassUI : MonoBehaviour
 {
-    [SerializeField] private float numberOfPixelsNorthToNorth;
     [SerializeField] private RectTransform indicator;
+    [SerializeField] private RectTransform element;
     [SerializeField] private GameObject target;
 
+    private RectTransform rect;
     private Vector3 startPos;
-    private float rationAngleToPixel;
+    private float threshold;
+    private float angleChangeRate;
+    private float angle = 0.0f;
 
-    //void Start()
-    //{
-    //    if (target == null) 
-    //        target = GameObject.Find("CamTarget");
-        
-    //    startPos = indicator.position;
-    //    rationAngleToPixel = numberOfPixelsNorthToNorth / 360.0f;
-    //}
+    void Start()
+    {
+        if (target == null)
+            target = GameObject.Find("CamTarget");
 
-    //void Update()
-    //{
-    //    Vector3 perp = Vector3.Cross(Vector3.forward, target.transform.forward);
-    //    float dir = Vector3.Dot(perp, Vector3.up);
-    //    indicator.position = startPos + (new Vector3(Vector3.Angle(target.transform.forward, Vector3.forward) * Mathf.Sign(dir) * rationAngleToPixel, 0, 0));
-    //}
+        rect = GetComponent<RectTransform>();
+        threshold = (indicator.rect.width - rect.rect.width) * 0.5f;
+        startPos = indicator.position;
+        angleChangeRate = 50.0f / 90.0f;
+
+        Vector3 targetForward = target.transform.forward;
+        targetForward.y = 0;
+        angle = Vector3.SignedAngle(Vector3.forward, targetForward, Vector3.up);
+        angle = ClampAngle(angle);
+        indicator.anchoredPosition = new Vector2(75.0f - angle * angleChangeRate, 0.0f);
+    }
+
+    void Update()
+    {
+        if (120.0f < indicator.anchoredPosition.x)
+        {
+            indicator.anchoredPosition = new Vector2(indicator.anchoredPosition.x - 190.0f, 0.0f);
+        }
+        if (indicator.anchoredPosition.x < -120.0f)
+        {
+            indicator.anchoredPosition = new Vector2(indicator.anchoredPosition.x + 190.0f, 0.0f);
+        }
+
+        Vector3 targetForward = target.transform.forward;
+        targetForward.y = 0;
+
+        float nextAngle = Vector3.SignedAngle(Vector3.forward, targetForward, Vector3.up);
+        nextAngle = ClampAngle(nextAngle);
+        float deltaAngle = nextAngle - angle;
+        indicator.anchoredPosition = new Vector2(indicator.anchoredPosition.x - deltaAngle * angleChangeRate, 0.0f);
+        angle = nextAngle;
+        print($"angle = {angle}");
+    }
+
+    private float ClampAngle(float angle)
+    {
+        if (angle < 0.0f)
+        {
+            angle += 360.0f;
+        }
+
+        return angle;
+    }
 }
+

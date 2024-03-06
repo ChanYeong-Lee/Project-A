@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class ArrowSlot : UIBase
 {
-    [SerializeField] private Define.AttributeType attributeType;
-
+    [SerializeField] private Define.AttributeType attribute;
+    public Define.AttributeType Attribute;
     private void Update()
     {
         var itemData = Managers.Game.Player.GetComponentInChildren<Inventory>().ItemDataDic.FirstOrDefault(pair =>
             pair.Key.ItemType == Define.ItemType.Arrow &&
-            ((ArrowData)pair.Key).Attribute == attributeType);
+            ((ArrowData)pair.Key).Attribute == attribute);
         
         UpdateArrowSlot(itemData.Value);
     }
 
     public void UpdateArrowSlot(int amount)
     {
-        if (attributeType == Define.AttributeType.Default)
+        if (attribute == Define.AttributeType.Default)
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 1.0f);
             texts["AmountText"].text = "¡Ä";

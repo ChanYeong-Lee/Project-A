@@ -12,11 +12,23 @@ public class ArrowSelector : MonoBehaviour
     private Vector3 screenCenter;
     private float centerRadius;
     private ArrowSlot focusSlot;
-    private ArrowSlot prevSlot;
 
     private void Awake()
     {
         centerRadius = centerIndicator.rectTransform.rect.width / 2.0f;
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        if (focusSlot != null)
+        {
+            Managers.Game.Player.GetComponent<CharacterAttack>().ChangeArrow(focusSlot.Attribute);
+        }
     }
 
     private void Update()
@@ -65,10 +77,5 @@ public class ArrowSelector : MonoBehaviour
                 focusSlot = null;
             }
         }
-    }
-
-    public void SelectArrow()
-    {
-        // TODO : 플레이어의 현재 화살을 선택된 화살로 바꿈.
     }
 }

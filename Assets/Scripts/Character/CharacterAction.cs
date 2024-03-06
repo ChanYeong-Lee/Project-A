@@ -11,6 +11,8 @@ public class CharacterAction : MonoBehaviour
     //[SerializeField] private Transform bowPosDefaultTarget;
     //[SerializeField] private Transform bowPosMountTarget;
 
+    private Horse horse;
+
     private Animator animator;
     private CharacterMove move;
     private CharacterMount mount;
@@ -28,6 +30,11 @@ public class CharacterAction : MonoBehaviour
         mount = GetComponent<CharacterMount>();
         animator = GetComponent<Animator>();
         attack = GetComponent<CharacterAttack>();
+    }
+
+    private void Start()
+    {
+        horse = Managers.Game.Horse.GetComponent<Horse>();
     }
 
     private void OnEnable()

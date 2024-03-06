@@ -31,9 +31,6 @@ public class CharacterMount : MonoBehaviour
 
     private float mountTime = 1.667f;
 
-    private bool isMount = false;
-
-
     private void Awake()
     {
         move = GetComponent<CharacterMove>();
@@ -89,8 +86,6 @@ public class CharacterMount : MonoBehaviour
         characterController.enabled = false;
         transform.parent = horse.MountPoint;
 
-        isMount = true;
-
         float ratio = 0.0f;
         Vector3 originPos = transform.position;
         Quaternion originRot = transform.rotation;
@@ -135,8 +130,6 @@ public class CharacterMount : MonoBehaviour
 
         characterController.enabled = true;
         transform.parent = null;
-
-        isMount = false;
 
         float ratio = 0.0f;
         

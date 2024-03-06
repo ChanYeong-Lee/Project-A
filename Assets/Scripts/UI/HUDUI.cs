@@ -12,8 +12,16 @@ public class HUDUI : MonoBehaviour
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private ArrowSelector arrowSelector;
 
+   
     public void TurnOnArrowSelector()
     {
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
         arrowSelector.gameObject.SetActive(true);
+    }
+
+    public void TurnOffArrowSelector()
+    {
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
+        arrowSelector.gameObject.SetActive(false);
     }
 }

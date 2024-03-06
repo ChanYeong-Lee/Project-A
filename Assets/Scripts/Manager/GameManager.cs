@@ -48,7 +48,6 @@ public class GameManager
     public GameObject Horse { get => horse; set => horse = value; }
     public CameraController Cam { get => cam; set => cam = value; }
     
-    
     // Monster
     private MonsterSpawner monsterSpawner;
 
@@ -66,7 +65,7 @@ public class GameManager
         player = Managers.Resource.Instantiate("Prefabs/Player/Character");
         horse = Managers.Resource.Instantiate("Prefabs/Player/Horse");
         cam = Managers.Resource.Instantiate("Prefabs/Player/TPSCam").GetComponent<CameraController>();
-        
+
         // 생성될 위치 입력
         PlayerSettings();
     }
