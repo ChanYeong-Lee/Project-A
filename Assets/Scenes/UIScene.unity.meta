@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f80965575c363774dbc0cb9ce1474850
+=======
+<<<<<<<< HEAD:Assets/Scenes/UIScene.unity.meta
+guid: ed1a4e1ada8e09a46843f2f976ee476e
+========
+guid: 39df563772be94b40a150930610daacf
+folderAsset: yes
+>>>>>>>> origin/NPC:Assets/Scripts/Events.meta
+>>>>>>> origin/test-quest
 DefaultImporter:
   externalObjects: {}
   userData: 

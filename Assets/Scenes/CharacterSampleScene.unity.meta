@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/CharacterSampleScene.unity.meta
 guid: a2507da2f61e1b84f9837e3c0cb8310a
+========
+guid: 24bd57c7e8d85db4ba8833752f7471db
+folderAsset: yes
+>>>>>>>> origin/test-quest:Assets/WanzyeeStudio.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

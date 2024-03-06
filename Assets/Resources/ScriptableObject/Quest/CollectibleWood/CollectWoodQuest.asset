@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: CollectWoodQuest
   questName: "\uB098\uBB34\uB97C \uBAA8\uC73C\uC790!"
-  description: 
+  description: "\uB178\uB3D9 \uC2DC\uC791"
   isCompleted: 0
-  npcId: 
   requirementPlayerLevel: 0
   questPrerequisites: []
-  questStepPrefab: []
+  questStepPrefabs: []
   goldReward: 10
   expReward: 10

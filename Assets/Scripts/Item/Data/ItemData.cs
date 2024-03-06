@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     [Header("Item Info")] 
-    [SerializeField] protected int id;
+    [SerializeField] protected string id;
     [SerializeField] protected string path;
     [SerializeField] protected string itemName;
     [SerializeField] protected Define.ItemType itemType;
@@ -13,7 +13,7 @@ public class ItemData : ScriptableObject
     [SerializeField] [TextArea(1, 3)] protected string description;
     [SerializeField] protected Sprite icon;
     
-    public int ItemID => id;
+    public string ItemID => id;
     public string Path => path;
     public string ItemName => itemName;
     public Define.ItemType ItemType => itemType;

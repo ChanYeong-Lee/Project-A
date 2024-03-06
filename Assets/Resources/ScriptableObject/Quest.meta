@@ -1,4 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:Assets/Scenes/TitleScene.unity.meta
+guid: 0499c0cf4b163734eaffe867d4d22502
+========
+>>>>>>> origin/test-quest
 guid: f0fb48fa1a635d54aa2853ec397aabdc
 folderAsset: yes
 DefaultImporter:

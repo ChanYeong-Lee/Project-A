@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
+<<<<<<<< HEAD:Assets/Resources/ScriptableObject/Item/Farming/Monster Bone.asset
+  m_Name: Monster Bone
+========
+  m_Name: MonsterByproduct
+>>>>>>>> origin/test-quest:Assets/Resources/ScriptableObject/Item/Farming/MonsterByproduct.asset
+  m_EditorClassIdentifier: 
+  id: MonsterByproduct
+  path: Prefabs/...
+<<<<<<<< HEAD:Assets/Resources/ScriptableObject/Item/Farming/Monster Bone.asset
+  itemName: "\uBAAC\uC2A4\uD130\uC758 \uBF08"
+  itemType: 3
+  price: 0
+  description: "\uBAAC\uC2A4\uD130\uC758 \uBF08\n\uBAAC\uC2A4\uD130\uB97C \uC8FD\uC774\uACE0
+    \uB098\uC628 \uBF08"
+  icon: {fileID: 21300000, guid: 748dbb588c167fc4c868a50039a01c46, type: 3}
+  farmingType: 4
+========
+  itemName: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C"
+  itemType: 2
+  price: 0
+  description: "\uBAAC\uC2A4\uD130\uC758 \uBD80\uC0B0\uBB3C\n\uBAAC\uC2A4\uD130\uB97C
+    \uC8FD\uC774\uBA74 \uB098\uC624\uB294 \uBD80\uC0B0"
+  icon: {fileID: 0}
+  farmingType: 0
+>>>>>>>> origin/test-quest:Assets/Resources/ScriptableObject/Item/Farming/MonsterByproduct.asset
