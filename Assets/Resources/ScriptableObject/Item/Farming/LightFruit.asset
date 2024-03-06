@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
-  m_Name: Light Fruit
+  m_Name: LightFruit
   m_EditorClassIdentifier: 
-  id: 105
+  id: LightFruit
   path: Prefabs/...
   itemName: "\uAD11\uD718 \uC5F4\uB9E4"
   itemType: 3

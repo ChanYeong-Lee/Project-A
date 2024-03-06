@@ -18,9 +18,5 @@ MonoBehaviour:
   itemType: 2
   price: 0
   description: "\uB300\uD615 \uD3EC\uC158\nhp 100 \uD68C\uBCF5"
-<<<<<<< HEAD:Assets/Resources/ScriptableObject/Item/Potion/Large Potion.asset
   icon: {fileID: 21300000, guid: daa35851de4828c459655dedb343bff1, type: 3}
-=======
-  icon: {fileID: 0}
->>>>>>> origin/test-quest:Assets/Resources/ScriptableObject/Item/Potion/LargePotion.asset
   healingPoint: 100

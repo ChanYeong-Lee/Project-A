@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0449d5844b76431092671e5cc2f13b6a, type: 3}
-  m_Name: Bomb Fruit
+  m_Name: BombFruit
   m_EditorClassIdentifier: 
-  id: 101
+  id: BombFruit
   path: Prefabs/...
   itemName: "\uD3ED\uD0C4 \uC5F4\uB9E4"
   itemType: 3

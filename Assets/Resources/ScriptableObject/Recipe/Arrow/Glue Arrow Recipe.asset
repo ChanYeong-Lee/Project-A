@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca62ddad78224bb4b26809d6039ab807, type: 3}
-  m_Name: Goo Arrow Recipe
+  m_Name: Glue Arrow Recipe
   m_EditorClassIdentifier: 
   itemID: 1004
   itemData: {fileID: 11400000, guid: b4017128345b35b4ebc1c4b09fa09e38, type: 2}
@@ -19,5 +19,5 @@ MonoBehaviour:
   craftItemData:
   - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
   - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
-  - {fileID: 11400000, guid: 6be95f43a85cc4b45b9535dc933c372c, type: 2}
+  - {fileID: 11400000, guid: efe456e6055cada4a9ee26fb50b2bf56, type: 2}
   craftItemCount: 030000000300000001000000
