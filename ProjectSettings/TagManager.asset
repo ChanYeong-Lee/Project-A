@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Animal
+  - CinemachineTarget
+  - Arrow
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Env
   - NPC
   - Player
-  - 
+  - Arrow
   - 
   - 
   - 

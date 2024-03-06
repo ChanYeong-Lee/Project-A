@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour
 {
-    [SerializeField] private GameObject tpsCam;
-
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private float sprintSpeed = 5.335f;
@@ -68,13 +66,11 @@ public class CharacterMove : MonoBehaviour
     // components
     private Animator animator;
     private CharacterController controller;
-    private PlayerInputAsset input;
 
     private const float threshold = 0.01f;
     private bool hasAnimator;
 
     // properties
-    public PlayerInputAsset PInput => input;
     public Animator PAnimator => animator;
     public float Speed => speed;
     public bool IsMount => isMount;
@@ -84,14 +80,10 @@ public class CharacterMove : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        input = GetComponent<PlayerInputAsset>();
     }
 
     private void Start()
     {
-        if (tpsCam == null) 
-            tpsCam = Managers.Game.Cam.gameObject;
-        
         camTargetYaw = camTarget.transform.rotation.eulerAngles.y;
 
         AssignAnimationIDs();
@@ -105,19 +97,6 @@ public class CharacterMove : MonoBehaviour
         float angle = transform.eulerAngles.y - Camera.main.transform.eulerAngles.y;
         angle = Mathf.Abs(angle);
         angle = ClampAngle(angle, 0.0f, 360.0f);
-
-        if (Input.GetMouseButton(0) &&
-            ((0 <= angle && angle <= 145) ||
-            (215 <= angle && angle <= 360)))
-        {
-            isAim = true;
-        }
-        else
-        {
-            isAim = false;
-        }
-
-        animator.SetBool("Aim", isAim);
 
         if (isMount) { return; }
 
@@ -155,10 +134,10 @@ public class CharacterMove : MonoBehaviour
 
     private void CameraRotation()
     {
-        if (input.look.sqrMagnitude >= threshold && !lockCameraPosition)
+        if (Managers.Input.look.sqrMagnitude >= threshold && !lockCameraPosition)
         {
-            camTargetYaw += input.look.x;
-            camTargetPitch += input.look.y;
+            camTargetYaw += Managers.Input.look.x;
+            camTargetPitch += Managers.Input.look.y;
         }
 
         camTargetYaw = ClampAngle(camTargetYaw, float.MinValue, float.MaxValue);
@@ -169,19 +148,17 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
-        float targetSpeed = input.sprint ? sprintSpeed : moveSpeed;
-        if (input.move == Vector2.zero) targetSpeed = 0.0f;
+        float targetSpeed = Managers.Input.sprint ? sprintSpeed : moveSpeed;
+        if (Managers.Input.move == Vector2.zero) targetSpeed = 0.0f;
 
         float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
-        float inputMagnitude = input.analogMovement ? input.move.magnitude : 1f;
 
         if (currentHorizontalSpeed < targetSpeed - speedOffset ||
             currentHorizontalSpeed > targetSpeed + speedOffset)
         {
-            speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                Time.deltaTime * speedChangeRate);
+            speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * speedChangeRate);
 
             speed = Mathf.Round(speed * 1000f) / 1000f;
         }
@@ -193,13 +170,12 @@ public class CharacterMove : MonoBehaviour
         animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
         if (animationBlend < 0.01f) animationBlend = 0f;
 
-        Vector3 inputDirection = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
+        Vector3 inputDirection = new Vector3(Managers.Input.move.x, 0.0f, Managers.Input.move.y).normalized;
 
-        if (input.move != Vector2.zero)
+        if (Managers.Input.move != Vector2.zero)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity,
-                rotationSmoothTime);
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);
 
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
@@ -209,7 +185,7 @@ public class CharacterMove : MonoBehaviour
         controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
        
         animator.SetFloat(animIDSpeed, animationBlend);
-        animator.SetFloat(animIDMotionSpeed, inputMagnitude);
+        animator.SetFloat(animIDMotionSpeed, 1.0f);
     }
 
     private void JumpAndGravity()
@@ -226,7 +202,7 @@ public class CharacterMove : MonoBehaviour
                 verticalVelocity = -2f;
             }
 
-            if (input.jump && jumpTimeoutDelta <= 0.0f)
+            if (Managers.Input.jump && jumpTimeoutDelta <= 0.0f)
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 
@@ -251,7 +227,7 @@ public class CharacterMove : MonoBehaviour
                 animator.SetBool(animIDFreeFall, true);
             }
 
-            input.jump = false;
+            Managers.Input.jump = false;
         }
 
         if (verticalVelocity < terminalVelocity)

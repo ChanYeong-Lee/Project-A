@@ -10,4 +10,10 @@ public class HUDUI : MonoBehaviour
     [SerializeField] private HealthBar bossHelathBar;
     [SerializeField] private CompassUI compass;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private ArrowSelector arrowSelector;
+
+    public void TurnOnArrowSelector()
+    {
+        arrowSelector.gameObject.SetActive(true);
+    }
 }

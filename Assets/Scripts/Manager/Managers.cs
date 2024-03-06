@@ -47,6 +47,7 @@ public class Managers : MonoBehaviour
     private ResourceManager resource = new ResourceManager();
     private UIManager ui = new UIManager();
     private DataManager data = new DataManager();
+    private InputManager input;
 
     public static GameManager Game => Instance?.game;
     public static PoolManager Pool => Instance?.pool;
@@ -54,10 +55,12 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource => Instance?.resource;
     public static UIManager UI => Instance?.ui;
     public static DataManager Data => Instance?.data;
+    public static InputManager Input => Instance?.input;
 
 
     private void Awake()
     {
+        input = resource.Instantiate("Prefabs/Managers/InputManager", transform).GetComponent<InputManager>();
         // game = new GameObject("GameManager").AddComponent<GameManager>();
         // game.transform.SetParent(Instance.transform);
 

@@ -116,9 +116,8 @@ public class HorseMove : MonoBehaviour
         }
     }
 
-    public void Mount(PlayerInputAsset input, Animator characterAnimator)
+    public void Mount(Animator characterAnimator)
     {
-        this.input = input;
         this.characterAnimator = characterAnimator;
     }
 

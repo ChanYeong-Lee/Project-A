@@ -16,11 +16,10 @@ public class CharacterAttack : MonoBehaviour
         Aiming,
     }
 
-    private PlayerInputAsset input;
     private AttackState state;
     public AttackState State => state;
 
-    private Define.AttributeType arrowType;
+    [SerializeField] private Define.AttributeType arrowType;
     public Define.AttributeType ArrowType => arrowType;
 
     [SerializeField] private Transform arrowPos;
@@ -30,19 +29,20 @@ public class CharacterAttack : MonoBehaviour
     [SerializeField] private float chargeTime = 2.0f;
     [SerializeField] private AimTarget aimTarget;
 
+    private Animator animator;
     private Arrow arrow;
 
     private AttackPoint target;
 
     private float releaseTimeout = 0.25f;
     private float releaseTimeoutDelta = 0.0f;
-
     private float chargedAmount = 0.0f;
 
+    private bool release;
     private RaycastHit hit;
     private void Awake()
     {
-        input = GetComponent<PlayerInputAsset>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -61,6 +61,8 @@ public class CharacterAttack : MonoBehaviour
                 AimingUpdate();
                 break;
         }
+
+        animator.SetInteger("AimState", (int)state);
     }
 
     // 공격 가능 상태인지 확인
@@ -111,7 +113,8 @@ public class CharacterAttack : MonoBehaviour
         if (arrow == null)
         {
             Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == arrowType);
-            arrow = Managers.Pool.Pop(arrowPrefab.gameObject, quiver).GetComponent<Arrow>();
+            arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
+            arrow.transform.parent = quiver;
             arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             arrow.gameObject.SetActive(true);
             print("Reload Arrow");
@@ -127,7 +130,7 @@ public class CharacterAttack : MonoBehaviour
             releaseTimeoutDelta -= Time.deltaTime;
         }
 
-        if (prepared && input.leftClick)
+        if (prepared && Managers.Input.leftClick)
         {
             state = AttackState.Aiming;
         }
@@ -155,7 +158,7 @@ public class CharacterAttack : MonoBehaviour
             state = AttackState.Wait;
         }
 
-        if (input.leftClick == false)
+        if (Managers.Input.leftClick == false)
         {
             if (1.00f == chargedAmount)
             {
@@ -178,6 +181,8 @@ public class CharacterAttack : MonoBehaviour
             arrow.transform.parent = null;
             arrow.Shot(target);
             arrow = null;
+
+            animator.SetTrigger("Release");
         }
         else
         {

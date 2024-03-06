@@ -6,6 +6,9 @@ public class AimTarget : MonoBehaviour
 {
     [SerializeField] private float distance;
 
+
+    private Vector3 targetPos;
+
     private Transform target;
     private float offset = 0.0f;
     private float angle = 0.0f;
@@ -16,13 +19,15 @@ public class AimTarget : MonoBehaviour
         {
             float targetDistance = Vector3.Distance(transform.position, target.position);
             offset = targetDistance * Mathf.Tan(angle * Mathf.Deg2Rad);
-            transform.position = target.position + offset * Vector3.up;
+            targetPos = target.position + offset * Vector3.up;
         }
         else
         {
             offset = distance * Mathf.Tan(angle * Mathf.Deg2Rad);
-            transform.position = Camera.main.transform.position + Camera.main.transform.forward * distance + offset * Vector3.up;
+            targetPos = Camera.main.transform.position + Camera.main.transform.forward * distance + offset * Vector3.up;
         }
+
+        transform.position = Vector3.Lerp(transform.position, targetPos, 5.0f * Time.deltaTime);
     }
 
     public void SetAngle(float angle)

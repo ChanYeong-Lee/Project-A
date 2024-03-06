@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7790876276570208380}
   - component: {fileID: 3321610213351473525}
   - component: {fileID: 7718770312507649651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6491403563451943615}
   - component: {fileID: -4275889650027899992}
-  m_Layer: 0
+  - component: {fileID: -4750530535044546315}
+  m_Layer: 10
   m_Name: DefaultArrow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +136,31 @@ MonoBehaviour:
   moveSpeed: 50
   trail: {fileID: 4985702084311297096}
   arrowHead: {fileID: 5494861438088926651}
+  explosionParticle: []
+  trailParticle: []
+--- !u!136 &-4750530535044546315
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386419161165756955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.43}
 --- !u!1 &6692552415202124215
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5494861438088926651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArrowHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6353915877488752011}
   - component: {fileID: 4985702084311297096}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

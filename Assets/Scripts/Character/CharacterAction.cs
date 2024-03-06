@@ -14,7 +14,8 @@ public class CharacterAction : MonoBehaviour
     private Animator animator;
     private CharacterMove move;
     private CharacterMount mount;
-    
+    private CharacterAttack attack;
+
     private float bodyAimRigVelocity = 0.0f;
     //private float bowPosRigVelocity = 0.0f;
     private float mountHeadAimRigVelocity = 0.0f;
@@ -26,6 +27,7 @@ public class CharacterAction : MonoBehaviour
         move = GetComponent<CharacterMove>();
         mount = GetComponent<CharacterMount>();
         animator = GetComponent<Animator>();
+        attack = GetComponent<CharacterAttack>();
     }
 
     private void OnEnable()
@@ -37,7 +39,7 @@ public class CharacterAction : MonoBehaviour
 
     private void Update()
     {
-        if (move.IsAim)
+        if (attack.State == CharacterAttack.AttackState.Aiming)
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 1.0f, ref bodyAimRigVelocity, 0.2f);
             //bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.0f, ref bowPosRigVelocity, 0.2f);
