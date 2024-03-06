@@ -9,22 +9,33 @@ using UnityEngine.Serialization;
 
 public class UICraftMenu : ContentElement
 {
+    private enum CraftAmountButton
+    {
+        Default,
+        Up,
+        Down,
+    }
+    
     private List<UISlot> slots = new List<UISlot>();
 
     // TODO : UIManager 생기면 다시 정리
     [SerializeField] private RectTransform content;
-    [FormerlySerializedAs("text")] [SerializeField] private GameObject craftInfo;
+    [SerializeField] private GameObject craftInfo;
     
     private List<ItemRecipeData> recipeDataList = new List<ItemRecipeData>();
     private Inventory inventory;
     private UISlot slotPrefab;
-    private UISlot selectSlot;
+    private UISlot selectedSlot;
+    private UISlot prevSelectedSlot;
+    private int currentCraftAmount;
     
-    public UISlot SelectSlot { get => selectSlot; set => selectSlot = value; }
+    public UISlot SelectSlot { get => selectedSlot; set => selectedSlot = value; }
 
     protected override void Awake()
     {
         base.Awake();
+        
+        BindButtons();
     }
 
     private void OnEnable()
@@ -34,32 +45,43 @@ public class UICraftMenu : ContentElement
         if (inventory == null) 
             inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
         
-        buttons["All"].onClick.AddListener(() => UpdateCraft(Define.ItemType.None));
-        buttons["Arrows"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Arrow));
-        buttons["Consumptions"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Consumption));
-
         UpdateCraft();
     }
     
     private void Update()
     {
-        if (selectSlot == null)
-        {
-            UpdateCraftItemInfo(slots[0]);
-            return;
-        }
-
-        UpdateCraftItemInfo(selectSlot);
+        UpdateCraftItemInfo(selectedSlot);
       
         // 아이템 제작 키 입력 체크
-        if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectSlot.ItemData) > 0)
+        if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectedSlot.ItemData) > 0)
         {
             Debug.Log("제작");
-            inventory.CraftingItem(FindItemRecipe(selectSlot.ItemData));
+            inventory.CraftingItem(FindItemRecipe(selectedSlot.ItemData), currentCraftAmount);
 
             foreach (UISlot slot in slots) 
                 UpdateSlot(slot);
+        
+            ChangeCraftAmount();
         }
+    }
+
+    private void BindButtons()
+    {
+        buttons["All"].onClick.AddListener(() => UpdateCraft(Define.ItemType.None));
+        buttons["Arrows"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Arrow));
+        buttons["Consumptions"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Consumption));
+        buttons["UpButton"].onClick.AddListener(() => ChangeCraftAmount(CraftAmountButton.Up));
+        buttons["DownButton"].onClick.AddListener(() => ChangeCraftAmount(CraftAmountButton.Down));
+        buttons["CraftButton"].onClick.AddListener(() =>
+        {
+            Debug.Log("제작");
+            inventory.CraftingItem(FindItemRecipe(selectedSlot.ItemData), currentCraftAmount);
+            
+            foreach (UISlot slot in slots) 
+                UpdateSlot(slot);
+            
+            ChangeCraftAmount();
+        });
     }
     
     // 정렬할 itemType을 넣으면 정렬
@@ -86,6 +108,9 @@ public class UICraftMenu : ContentElement
 
             UpdateSlot(slot);
         }
+
+        if (selectedSlot == null)
+            selectedSlot = content.transform.GetComponentInChildren<UISlot>();
     }
     
     // 제작 아이템 슬롯 업데이트 메소드
@@ -103,18 +128,25 @@ public class UICraftMenu : ContentElement
     // 제작 아이템 정보창 업데이트 메소드
     private void UpdateCraftItemInfo(UISlot slot)
     {
+        if (prevSelectedSlot == selectedSlot)
+            return;
+
+        prevSelectedSlot = selectedSlot;
+        
         var recipeData = FindItemRecipe(slot.ItemData);
 
         images["IconImage"].sprite = slot.ItemData.Icon;
         texts["NameText"].text = $"{slot.ItemData.ItemName}";
         texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
         texts["DescriptionText"].text = $"{slot.ItemData.Description}";
-
+        
         for (var i = 0; i < recipeData.CraftItemData.Count; i++)
         {
             images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Icon;
             texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemCount[i]}";
         }
+
+        ChangeCraftAmount();
     }
     
     private ItemRecipeData FindItemRecipe(ItemData itemData)
@@ -134,5 +166,35 @@ public class UICraftMenu : ContentElement
             craftableAmountList.Add(inventory.ItemDataDic.GetValueOrDefault(recipeData.CraftItemData[i], 0) / recipeData.CraftItemCount[i]);
 
         return craftableAmountList.Min();
+    }
+
+    private void ChangeCraftAmount(CraftAmountButton button = CraftAmountButton.Default)
+    {
+        if (!int.TryParse(texts["CraftAmountText"].text, out int craftAmount))
+            craftAmount = 0;
+
+        switch (button)
+        {
+            case CraftAmountButton.Default:
+                craftAmount = 0;
+                break;
+            case CraftAmountButton.Up:
+                craftAmount++;
+                break;
+            case CraftAmountButton.Down:
+                craftAmount--;
+                break;
+        }
+
+        int maxAmount = CraftableAmount(selectedSlot.ItemData);
+        
+        if (craftAmount < 0) 
+            craftAmount = 0;
+        else if (craftAmount > maxAmount) 
+            craftAmount = maxAmount;
+
+        texts["CraftAmountText"].text = $"{craftAmount}";
+        
+        currentCraftAmount = craftAmount;
     }
 }
