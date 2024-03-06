@@ -21,8 +21,8 @@ namespace MooseController
         {
             if (moose.CurrentStat.HealthPoint <= 0) 
                 ChangeState(State.Dead);
-            
-            ChangeState(distanceToTarget < moose.Data.AttackRange ? State.Attack : State.Trace);
+            else
+                ChangeState(distanceToTarget < moose.Data.AttackRange ? State.Attack : State.Trace);
         }
 
         public override void Exit()

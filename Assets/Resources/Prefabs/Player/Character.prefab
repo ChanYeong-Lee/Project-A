@@ -4275,7 +4275,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: a39af1fd8d9a5374294462ed015f7153, type: 2}
   gatheringLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   inventory: {fileID: 0}
   scannerPrefab: {fileID: 1013772900667118320, guid: a8fa6941f5e72e244aa00f74fedec2d8,
     type: 3}

@@ -18,7 +18,7 @@ public abstract class Monster : Creature, IFarmable
         data = creatureData as MonsterData;
     }
 
-    public Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
+    public virtual Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
         farmingType = Define.FarmingType.None;
 
