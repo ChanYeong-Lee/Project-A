@@ -3954,6 +3954,7 @@ GameObject:
   - component: {fileID: 4110191519057239754}
   - component: {fileID: 6204636263887052598}
   - component: {fileID: 2176423773912331366}
+  - component: {fileID: -2619288577420961679}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -4210,12 +4211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyAimRig: {fileID: 4008621411126141474}
-  bowPosRig: {fileID: 8462306978884492374}
   mountHeadAimRig: {fileID: 3844676678894012411}
-  bowPosIK: {fileID: 2964012751132707836}
-  bowPosTarget: {fileID: 4061100624873054428}
-  bowPosDefaultTarget: {fileID: 2338590363873700185}
-  bowPosMountTarget: {fileID: 1538445414201694503}
 --- !u!114 &4110191519057239754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4247,8 +4243,20 @@ MonoBehaviour:
   state: 0
   move: {x: 0, y: 0}
   look: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  leftClick: 0
+  rightClick: 0
+  hKey: 0
+  eKey: 0
+  iKey: 0
+  cKey: 0
+  qKey: 0
+  mKey: 0
+  enter: 0
+  tab: 0
+  esc: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -4271,6 +4279,19 @@ MonoBehaviour:
   inventory: {fileID: 0}
   scannerPrefab: {fileID: 1013772900667118320, guid: a8fa6941f5e72e244aa00f74fedec2d8,
     type: 3}
+--- !u!114 &-2619288577420961679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610300530146504844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054b710d6ce148868e993a3099918444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: a39af1fd8d9a5374294462ed015f7153, type: 2}
 --- !u!1 &8728941524187044335
 GameObject:
   m_ObjectHideFlags: 0

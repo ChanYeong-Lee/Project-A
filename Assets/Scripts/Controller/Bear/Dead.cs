@@ -15,7 +15,7 @@ namespace BearController
             bear.state = State.Dead;
         
             // TODO : °æÇèÄ¡ È¹µæ - 
-            // target.GetComponent<Player>().Exp += moose.Data.DropExpList[moose.CurrentLevel];
+            target.GetComponent<Player>().GainExp(bear.Data.DropExpList[bear.CurrentLevel - 1]);
         }
 
         public override void Update() { }

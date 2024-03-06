@@ -15,7 +15,7 @@ namespace MooseController
             moose.state = State.Dead;
         
             // TODO : 경험치 획득 - 
-            // target.GetComponent<Player>().Exp += moose.Data.DropExpList[moose.CurrentLevel];
+            target.GetComponent<Player>().GainExp(moose.Data.DropExpList[moose.CurrentLevel - 1]);
         }
 
         public override void Update() { }
