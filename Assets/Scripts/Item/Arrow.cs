@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Arrow : Item
 {
@@ -8,22 +9,11 @@ public class Arrow : Item
     [SerializeField] private TrailRenderer trail;
     [SerializeField] private Transform arrowHead;
     public ArrowData ArrowData => data as ArrowData;
+    private Coroutine shotCoroutine;
 
-    //private void Start()
-    //{
-    //    Init();
-    //}
-
-    //private void Init()
-    //{
-    //    arrowData = data as ArrowData;
-
-    //    if (arrowData == null)
-    //    {
-    //        arrowData = Managers.Resource.Load<ArrowData>("ScriptableObject/Item/Arrow/Arrow");
-    //        data = arrowData;
-    //    }
-    //}
+    [SerializeField] protected UnityEvent onShotBegin;
+    [SerializeField] protected UnityEvent onShot;
+    [SerializeField] protected UnityEvent onShotEnd;
 
     // TODO : 보스 몬스터 및 몬스터 구현 후 효과 메소드 구현 예정
     // 화살 효과 발동 메소드
@@ -34,31 +24,44 @@ public class Arrow : Item
 
     protected virtual void OnEnable()
     {
+        trail.Clear();
         trail.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        if (shotCoroutine != null)
+        {
+            StopCoroutine(shotCoroutine);
+        }
     }
 
     public void Shot(AttackPoint target)
     {
-        StartCoroutine(ShotCoroutine(target));
+        transform.LookAt(target.transform);
+        shotCoroutine = StartCoroutine(ShotCoroutine(target));
     }
 
     protected IEnumerator ShotCoroutine(AttackPoint target)
     {
+        onShotBegin?.Invoke();
+
         trail.enabled = true;
-        float distance = Vector3.Distance(transform.position, target.transform.position);
+        float distance = Vector3.Distance(arrowHead.position, target.transform.position);
         
         while (true)
         {
-            float remainDistance = Vector3.Distance(transform.position, target.transform.position);
-            if (Vector3.Distance(transform.position, target.transform.position) < 1.0f)
+            if (Vector3.Distance(arrowHead.position, target.transform.position) < 1.0f)
             {
+                onShotEnd?.Invoke();
+                yield return null;
                 break;
             }
-            
-            Vector3 dir = (target.transform.position + Mathf.Sin(remainDistance / distance * Mathf.PI) * 5.0f * Vector3.up) - transform.position;
 
-            transform.forward = dir;
-            transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
+            onShot?.Invoke();
+
+            transform.LookAt(target.transform);
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
 
             yield return null;
         }

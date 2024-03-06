@@ -173,10 +173,9 @@ public class CharacterAttack : MonoBehaviour
 
     private void ReleaseArrow()
     {
-        arrow.transform.parent = null;
-
         if (target != null)
         {
+            arrow.transform.parent = null;
             arrow.Shot(target);
             arrow = null;
         }
