@@ -8,6 +8,8 @@ public class Define
 
     // 레시피 데이터 주소 값
     public const string RecipeDataPath = "ScriptableObject/Recipe/";
+
+    public const string questDataPath = "ScriptableObject/Quest/";
     
     // Env 성장 시간 : 프래임 * 시간
     public const int GrowthTime = 60 * 10;

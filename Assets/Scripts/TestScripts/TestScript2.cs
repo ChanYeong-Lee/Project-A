@@ -62,7 +62,11 @@ public class TestScript2 : MonoBehaviour
 
     void Update()
     {
-       
+       if(Input.GetKeyDown("F"))
+        {
+            SubmitPressed();
+            
+        }
     }
    
     private void OnMove(InputValue value)
@@ -72,6 +76,10 @@ public class TestScript2 : MonoBehaviour
     }
 
     private void OnInteract(InputValue value)
+    {
+
+    }
+    private void SubmitPressed()
     {
 
     }

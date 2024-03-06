@@ -47,7 +47,7 @@ public class UIInventory : ContentElement
             selectSlot = slots[0];
         }
             
-        UpdateItemInfo(selectSlot);
+      //  UpdateItemInfo(selectSlot);
     }
 
     // 정렬할 itemType을 넣으면 정렬

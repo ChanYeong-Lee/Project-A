@@ -31,6 +31,9 @@ public class UISlot : UIBase, IPointerClickHandler
             case SlotType.CraftMenu:
                 transform.GetComponentInParent<UICraftMenu>().SelectSlot = this;
                 break;
+            //case SlotType.QuestMenu:
+            //    transform.GetComponentInParent<UIQuestMenu>().SelectSlot = this;
+            //    break;
         }
     }
 }
@@ -39,4 +42,5 @@ public enum SlotType
 {
     InventoryMenu,
     CraftMenu,
+    //QuestMenu,
 }
