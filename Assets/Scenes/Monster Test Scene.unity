@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 140092307}
   - component: {fileID: 140092306}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 140092305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.7, y: 1.19, z: 6.7}
+  m_LocalPosition: {x: -190, y: 1.19, z: -262}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -329,7 +329,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -452,6 +452,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear Polar
       objectReference: {fileID: 0}
+    - target: {fileID: 5056597504326659983, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -502,6 +507,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8199589838623144631, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 140092309}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1343,6 +1353,6 @@ SceneRoots:
   - {fileID: 608629998}
   - {fileID: 778503014}
   - {fileID: 1212006846}
-  - {fileID: 140092309}
   - {fileID: 8962919126847548175}
   - {fileID: 622877054}
+  - {fileID: 140092309}
