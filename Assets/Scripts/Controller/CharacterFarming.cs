@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class CharacterFarming : MonoBehaviour
 {
-    private PlayerData playerData;
     [SerializeField] private LayerMask gatheringLayerMask; 
-    [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject scannerPrefab;
     
+    private Inventory inventory;
     private Collider[] detectedColliders;
     
     private float farmingTime = 0;
@@ -19,20 +18,19 @@ public class CharacterFarming : MonoBehaviour
     private void Awake()
     {
         detectedColliders = new Collider[1];
-        playerData = Managers.Resource.Load<PlayerData>("ScriptableObject/Creature/Player Data");
     }
 
     private void Start()
     {
-        inventory = GetComponentInChildren<Inventory>();
+        inventory = Managers.Game.Inventory;
     }
 
     private void Update()
     {
-        // »óÈ£ÀÛ¿ë
+        // ï¿½ï¿½È£ï¿½Û¿ï¿½
         if (Input.GetKey(KeyCode.F))
         {
-            Debug.Log("F ÀÔ·Â");
+            Debug.Log("F ï¿½Ô·ï¿½");
             Farming();
         }
 
@@ -41,17 +39,7 @@ public class CharacterFarming : MonoBehaviour
             farmingTime = 0;
         }
 
-        // ÀÎº¥ Ã¼Å©
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log("ÀÎº¥ ¾ÆÀÌÅÛ Ã¼Å©");
-            foreach (KeyValuePair<ItemData, int> item in inventory.GetComponent<Inventory>().ItemDataDic)
-            {
-                Debug.Log($"{item.Key.ItemName} : {item.Value}");
-            }
-        }
-
-        // ½ºÄ³³Ê
+        // ï¿½ï¿½Ä³ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartCoroutine(Scanning());
@@ -68,10 +56,10 @@ public class CharacterFarming : MonoBehaviour
             Collider other = detectedColliders[i];
             
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
-            // ÀÚ½Ä¿ë
+            // ï¿½Ú½Ä¿ï¿½
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponentInParent<IFarmable>().Farming(out var farmingType);
 
-            // ¿À·ù³¯ È®·ü ³ôÀ½, Á¤È®ÇÑ Å×½ºÆ® ÇÊ¿ä
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½È®ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½Ê¿ï¿½
             Dictionary<FarmingItemData, int> dataDic = new Dictionary<FarmingItemData, int>();
 
             dataDic = other.gameObject.layer == LayerMask.NameToLayer("Enemy")
@@ -81,9 +69,9 @@ public class CharacterFarming : MonoBehaviour
             if (dataDic == null)
                 return;
 
-            float farmingTime = playerData.FarmingTime;
+            float farmingTime = GetComponent<Player>().Data.FarmingTime;
 
-            // ÆÄ¹Ö °ü·Ã ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ³ª ±âÅ¸ µîµî ½ºÀ§Ä¡ ¹®
+            // ï¿½Ä¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½Ì³ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½
             switch (farmingType)
             {
                 case Define.FarmingType.None:

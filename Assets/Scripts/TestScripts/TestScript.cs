@@ -6,13 +6,13 @@ using UnityEngine.Serialization;
 
 public class TestScript : MonoBehaviour
 {
-    private Inventory inven;
+    private Inventory inventory;
     
     public List<ItemData> itemList;
 
     private void Start()
     {
-        inven = Managers.Game.Player.GetComponentInChildren<Inventory>();
+        inventory = Managers.Game.Inventory;
     }
 
     private void Update()
@@ -20,7 +20,7 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F2))
         {
             Debug.Log("인벤 아이템 체크");
-            foreach (KeyValuePair<ItemData, int> item in inven.ItemDataDic)
+            foreach (KeyValuePair<ItemData, int> item in inventory.ItemDataDic)
             {
                 Debug.Log($"{item.Key.ItemName} : {item.Value}");
             }
@@ -30,7 +30,7 @@ public class TestScript : MonoBehaviour
         {
             foreach (var item in itemList)
             {
-                inven.TryGainItem(item, 1);
+                inventory.TryGainItem(item, 1);
             }
         }
     }

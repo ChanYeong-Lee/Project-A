@@ -41,11 +41,13 @@ public class GameManager
     
     // Player
     private GameObject player;
+    private Inventory inventory;
     private GameObject horse;
     private CameraController cam;
     private AimTarget aimTarget;
 
     public GameObject Player { get => player; set => player = value; }
+    public Inventory Inventory { get => inventory; set => inventory = value; }
     public GameObject Horse { get => horse; set => horse = value; }
     public CameraController Cam { get => cam; set => cam = value; }
     
@@ -63,10 +65,32 @@ public class GameManager
     
     private void CreatePlayer()
     {
-        player = Managers.Resource.Instantiate("Prefabs/Player/Character");
-        horse = Managers.Resource.Instantiate("Prefabs/Player/Horse");
-        cam = Managers.Resource.Instantiate("Prefabs/Player/TPSCam").GetComponent<CameraController>();
+        if (player == null)
+        {
+            GameObject go = GameObject.Find("Character");
+            player = go == null ? Managers.Resource.Instantiate("Prefabs/Test/Character") : go;
 
+            inventory = player.GetComponentInChildren<Inventory>();
+            if (inventory == null)
+            {
+                inventory = new GameObject("Inventory").AddComponent<Inventory>();
+                inventory.transform.parent = player.transform;
+            }
+        }
+
+        if (horse == null)
+        {
+            GameObject go = GameObject.Find("Horse");
+            horse = go == null ? Managers.Resource.Instantiate("Prefabs/Test/Horse") : go;
+        }
+
+        if (cam == null)
+        {
+            GameObject go = GameObject.Find("TPSCam");
+            cam = (go == null ? Managers.Resource.Instantiate("Prefabs/Test/TPSCam") : go)
+                .GetComponent<CameraController>();
+        }
+        
         // 생성될 위치 입력
         PlayerSettings();
     }

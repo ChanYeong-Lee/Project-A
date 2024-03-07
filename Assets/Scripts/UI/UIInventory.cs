@@ -10,49 +10,45 @@ public class UIInventory : ContentElement
     private List<UISlot> slots = new List<UISlot>();
 
     [SerializeField] private RectTransform content;
-    [SerializeField] private GameObject itemInfo;
     
     private Inventory inventory;
     private UISlot slotPrefab;
-    private UISlot selectSlot;
+    private UISlot selectedSlot;
     private UISlot focusedSlot;
 
-    public UISlot SelectSlot { get => selectSlot; set => selectSlot = value; }
+    public UISlot SelectSlot { get => selectedSlot; set => selectedSlot = value; }
 
     protected override void Awake()
     {
         base.Awake();
+        
+        if (inventory == null) 
+            inventory = Managers.Game.Inventory;
+        
+        BindButtons();
     }
 
     private void OnEnable()
     {
-        if (inventory == null) 
-            inventory = Managers.Game.Player.GetComponentInChildren<Inventory>();
-        
-        buttons["All"].onClick.AddListener(() => UpdateInventory(Define.ItemType.None));
-        buttons["Arrows"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Arrow));
-        buttons["Consumptions"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Consumption));
-        buttons["Ingredients"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Ingredients));
-        
         UpdateInventory();
     }
 
     private void Update()
     {
-        if (selectSlot == null)
-        {
-            if (slots.Count == 0)
-                return;
+        UpdateItemInfo(selectedSlot);
+    }
 
-            selectSlot = slots[0];
-        }
-            
-      //  UpdateItemInfo(selectSlot);
+    private void BindButtons()
+    {
+        buttons["All"].onClick.AddListener(() => UpdateInventory(Define.ItemType.None));
+        buttons["Arrows"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Arrow));
+        buttons["Consumptions"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Consumption));
+        buttons["Ingredients"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Ingredients));
     }
 
     // 정렬할 itemType을 넣으면 정렬
     // None이면 전체
-    public void UpdateInventory(Define.ItemType itemType = Define.ItemType.None)
+    private void UpdateInventory(Define.ItemType itemType = Define.ItemType.None)
     {
         foreach (UISlot slot in slots) 
             Managers.Pool.Push(slot.gameObject);
@@ -77,10 +73,18 @@ public class UIInventory : ContentElement
             slot.Texts["TypeText"].text = $"{item.Key.ItemTypeName}";
             slot.Texts["AmountText"].text = $"{item.Value}";
         }
+        
+        if (slots.Count == 0)
+            return;
+        
+        selectedSlot = content.transform.GetComponentInChildren<UISlot>();
     }
 
     private void UpdateItemInfo(UISlot slot)
     {
+        if (slot == null)
+            return;
+        
         images["IconImage"].sprite = slot.ItemData.Icon;
         texts["AmountLabelText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.ItemData, 0)}";
         texts["NameText"].text = $"{slot.ItemData.ItemName}";
