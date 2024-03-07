@@ -49,6 +49,11 @@ public class CharacterAttack : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        Managers.UI.HUD.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
+    }
+
     private void Update()
     {
         CheckPrepared();
@@ -83,6 +88,7 @@ public class CharacterAttack : MonoBehaviour
             newArrow.transform.position = arrow.transform.position;
 
             Managers.Pool.Push(arrow.gameObject);
+            Managers.UI.HUD.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
             arrow = newArrow;
         }
     }

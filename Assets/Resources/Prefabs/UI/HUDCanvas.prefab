@@ -393,6 +393,7 @@ MonoBehaviour:
   compass: {fileID: 8384744874542927786}
   gameOverUI: {fileID: 1967917955971800130}
   arrowSelector: {fileID: 509522145368710121}
+  arrowPanel: {fileID: 6779604324774198491}
 --- !u!1 &593452297346882067
 GameObject:
   m_ObjectHideFlags: 0

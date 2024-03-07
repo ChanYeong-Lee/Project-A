@@ -6,20 +6,18 @@ using UnityEngine.UI;
 
 public class ArrowPanel : UIBase
 {
-    private Define.AttributeType attribute;
     [SerializeField] private Image[] arrowImages;
 
-    private void Update()
+    public void ChangeAttribute(Define.AttributeType attribute)
     {
-        attribute = Managers.Game.Player.GetComponent<CharacterAttack>().ArrowAttribute;
-
         for (int i = 0; i < arrowImages.Length; i++)
         {
             if (i == (int)attribute)
             {
                 var itemData = Managers.Game.Player.GetComponentInChildren<Inventory>().ItemDataDic.FirstOrDefault(pair =>
            pair.Key.ItemType == Define.ItemType.Arrow && ((ArrowData)pair.Key).Attribute == attribute);
-                
+
+                //texts["ArrowNameText"].text = itemData.Key.ItemName;
                 arrowImages[i].gameObject.SetActive(true);
 
                 if (i == 0)
@@ -37,4 +35,5 @@ public class ArrowPanel : UIBase
             }
         }
     }
+
 }

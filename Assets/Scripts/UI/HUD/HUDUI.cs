@@ -11,8 +11,10 @@ public class HUDUI : MonoBehaviour
     [SerializeField] private CompassUI compass;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private ArrowSelector arrowSelector;
+    [SerializeField] private ArrowPanel arrowPanel;
 
     public AimUI AimUI => aimUI;
+    public ArrowPanel ArrowPanel => arrowPanel;
 
     public void TurnOnArrowSelector()
     {
