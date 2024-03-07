@@ -1,23 +1,32 @@
 /****
+
 NOTE NOTE NOTE
+
 1. Add this component to a terrain
 2. Set your area ID's to be what you want the agent to think each surface in your terrain is (eg, Grass, Path), in the same order as the textures assigned in the terrain textures
 3. Set "Defaultarea" to be whatever texture you expect to be the "most" common terrain texture. Generall this will be the first texture you assigned in step 1, eg "Grass"
+
+
 IF THIS IS STILL TO SLOW:
 - Adjust step to 2, 5, 10 or something higher
+
 */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /** If this script seems to take forever, CHECK THE LAYERS YOUR NAV AGENT IS USING and filter out all the crap you don't need */
 [RequireComponent(typeof(NavMeshSurface))]
 public class NavMeshGenA : MonoBehaviour
 
 {
+    public Button button;
+
     Terrain terrain;
     TerrainData terrainData;
     Vector3 terrainPos;
@@ -35,11 +44,9 @@ public class NavMeshGenA : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenMeshes();
     }
 
-    
-    void GenMeshes()
+    public void GenMeshes()
     {
         terrain = GetComponent<Terrain>();
         terrainData = terrain.terrainData;
@@ -134,7 +141,7 @@ public class NavMeshGenA : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    print(e);
+                    Debug.LogError(e.ToString());
                 }
             }
         }

@@ -55,8 +55,8 @@ public class Quest
     public void InstantiateCurrentQuestStep(Transform parentTransform)
     {
         GameObject questStepPrefab = GetCurrentQuestPrefab();
-        if (questStepPrefab != null) 
-        { 
+        if (questStepPrefab != null)
+        {
             QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
             questStep.InitializedQuestStep(questInfo.id, currentQuestStepIndex, questStepStates[currentQuestStepIndex].state);
         }
@@ -64,7 +64,7 @@ public class Quest
     private GameObject GetCurrentQuestPrefab()
     {
         GameObject questStepPrefab = null;
-        if(CurrentStepExists())
+        if (CurrentStepExists())
         {
             questStepPrefab = questInfo.questStepPrefabs[currentQuestStepIndex];
         }
@@ -81,7 +81,7 @@ public class Quest
         if (stepIndex < questStepStates.Length)
         {
             questStepStates[stepIndex].state = questStepState.state;
-           
+
         }
         else
         {
@@ -93,5 +93,42 @@ public class Quest
     public QuestData GetQuestData()
     {
         return new QuestData(state, currentQuestStepIndex, questStepStates);
+    }
+    public string GetFullStatusText()
+    {
+        string fullStatus = "";
+
+        if (state == QuestState.RequiredNotMet)
+        {
+            fullStatus = "Requirements are not yet met to start this quest.";
+        }
+        else if (state == QuestState.CanStart)
+        {
+            fullStatus = "This quest can be started!";
+        }
+        else
+        {
+            // display all previous quests with strikethroughs
+            for (int i = 0; i < currentQuestStepIndex; i++)
+            {
+                fullStatus += "<s>" + questStepStates[i].state + "</s>\n";
+            }
+            // display the current step, if it exists
+            if (CurrentStepExists())
+            {
+                fullStatus += questStepStates[currentQuestStepIndex].state;
+            }
+            // when the quest is completed or turned in
+            if (state == QuestState.CanFinish)
+            {
+                fullStatus += "The quest is ready to be turned in.";
+            }
+            else if (state == QuestState.Finished)
+            {
+                fullStatus += "The quest has been completed!";
+            }
+        }
+
+        return fullStatus;
     }
 }
