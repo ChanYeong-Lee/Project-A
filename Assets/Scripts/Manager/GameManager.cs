@@ -68,7 +68,7 @@ public class GameManager
         if (player == null)
         {
             GameObject go = GameObject.Find("Character");
-            player = go == null ? Managers.Resource.Instantiate("Prefabs/Test/Character") : go;
+            player = go == null ? Managers.Resource.Instantiate("Prefabs/Player/Character") : go;
 
             inventory = player.GetComponentInChildren<Inventory>();
             if (inventory == null)
@@ -81,13 +81,13 @@ public class GameManager
         if (horse == null)
         {
             GameObject go = GameObject.Find("Horse");
-            horse = go == null ? Managers.Resource.Instantiate("Prefabs/Test/Horse") : go;
+            horse = go == null ? Managers.Resource.Instantiate("Prefabs/Player/Horse") : go;
         }
 
         if (cam == null)
         {
             GameObject go = GameObject.Find("TPSCam");
-            cam = (go == null ? Managers.Resource.Instantiate("Prefabs/Test/TPSCam") : go)
+            cam = (go == null ? Managers.Resource.Instantiate("Prefabs/Player/TPSCam") : go)
                 .GetComponent<CameraController>();
         }
         
