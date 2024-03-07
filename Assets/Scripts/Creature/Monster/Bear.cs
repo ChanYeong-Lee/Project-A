@@ -1,6 +1,7 @@
 using BearController;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using State = Define.BearState;
 
 public class Bear : Monster
@@ -14,7 +15,7 @@ public class Bear : Monster
     // 인스펙터 확인용
     public State state;
     public float distance;
-    public float angle;
+    public float slopeAngle;
     public float angleToTarget;
     public float traceAngle;
     public Vector3 rootMotion;

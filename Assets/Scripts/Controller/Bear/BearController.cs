@@ -63,12 +63,15 @@ namespace BearController
                 bear.rootMotion = Vector3.zero;
                 bear.rootRotation = Quaternion.identity;
 
-               
-                
-                bear.angle = angle;
+                bear.slopeAngle = angle;
                 bear.transform.localRotation = Quaternion.Slerp(bear.transform.localRotation,
                     Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 180.0f + bear.transform.rotation.eulerAngles.y,
                         0), Time.fixedDeltaTime);
+            }
+            else
+            {
+                bear.rootMotion = Vector3.zero;
+                bear.rootRotation = Quaternion.identity;
             }
 
             // isUnderAttack = anim.GetBool("Damaged");
