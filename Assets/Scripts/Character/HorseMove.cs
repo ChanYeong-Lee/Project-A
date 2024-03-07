@@ -20,7 +20,6 @@ public class HorseMove : MonoBehaviour
     [SerializeField] private Transform frontRightHoeTarget;
     [SerializeField] private Rig frontHoesRig;
 
-    private PlayerInputAsset input;
     private Animator characterAnimator;
 
     private CharacterController controller;
@@ -61,11 +60,6 @@ public class HorseMove : MonoBehaviour
 
     private void Update()
     {
-        if (input == null)
-        {
-            return;
-        }
-
         if (slope.IsGround)
         {
             gravityVelocity = 2.0f;
@@ -125,12 +119,12 @@ public class HorseMove : MonoBehaviour
     {
         controller.Move(gravityVelocity * Vector3.down * Time.deltaTime);
 
-        if (slope.IsGround && input.move != Vector2.zero)
+        if (slope.IsGround && Managers.Input.move != Vector2.zero)
         {
             ChangeState(State.Locomotion);
         }
 
-        if (slope.IsGround && input.jump)
+        if (slope.IsGround && Managers.Input.jump)
         {
             prepareJumpTimeoutDelta = prepareJumpTimeout;
             jumpTimeoutDelta = jumpTimeout;
@@ -138,7 +132,7 @@ public class HorseMove : MonoBehaviour
         }
         else
         {
-            input.jump = false;
+            Managers.Input.jump = false;
         }
     }
 
@@ -156,7 +150,7 @@ public class HorseMove : MonoBehaviour
         camRight.y = 0;
         camRight.Normalize();
 
-        Vector3 inputDir = input.move.y * camForward + input.move.x * camRight;
+        Vector3 inputDir = Managers.Input.move.y * camForward + Managers.Input.move.x * camRight;
         inputDir.Normalize();
 
         float targetAngle = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg;
@@ -166,9 +160,9 @@ public class HorseMove : MonoBehaviour
         if (180.0f < Mathf.Abs(targetAngle - forward)) horizontal *= -1.0f;
         horizontal = Mathf.Clamp(horizontal, -1.0f, 1.0f);
 
-        float targetSpeed = input.sprint ? 4.0f : 2.0f;
+        float targetSpeed = Managers.Input.sprint ? 4.0f : 2.0f;
 
-        if (input.move == Vector2.zero)
+        if (Managers.Input.move == Vector2.zero)
         {
             targetSpeed = 0.0f;
         }
@@ -180,7 +174,7 @@ public class HorseMove : MonoBehaviour
 
         if(4.0f - 0.2f < vertical) 
         {
-            if (0.0f < inputDir.magnitude && input.sprint)
+            if (0.0f < inputDir.magnitude && Managers.Input.sprint)
             {
                 vertical += Time.deltaTime * 0.2f * (1.0f - Mathf.Abs(horizontal) * 2.0f);
             }
@@ -192,7 +186,7 @@ public class HorseMove : MonoBehaviour
 
         vertical = Mathf.Clamp(vertical, 0.0f, 5.0f);
 
-        if (slope.IsGround && input.move == Vector2.zero && vertical < 0.1f)
+        if (slope.IsGround && Managers.Input.move == Vector2.zero && vertical < 0.1f)
         {
             vertical = 0.0f;
 
@@ -215,7 +209,7 @@ public class HorseMove : MonoBehaviour
             fallTimeoutDelta = fallTimeout;
         }
 
-        if (slope.IsGround && input.jump)
+        if (slope.IsGround && Managers.Input.jump)
         {
             jumpTimeoutDelta = jumpTimeout;
             prepareJumpTimeoutDelta = prepareJumpTimeout;
@@ -233,7 +227,7 @@ public class HorseMove : MonoBehaviour
     private void JumpUpdate()
     {
         slope.canRotate = false;
-        input.jump = false;
+        Managers.Input.jump = false;
 
         jumpTimeoutDelta -= Time.deltaTime;
         prepareJumpTimeoutDelta -= Time.deltaTime;

@@ -13,7 +13,7 @@ public class AimTarget : MonoBehaviour
     private float offset = 0.0f;
     private float angle = 0.0f;
 
-    private void Update()
+    private void LateUpdate()
     {
         if (target != null)
         {
@@ -27,7 +27,7 @@ public class AimTarget : MonoBehaviour
             targetPos = Camera.main.transform.position + Camera.main.transform.forward * distance + offset * Vector3.up;
         }
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, 5.0f * Time.deltaTime);
+        transform.position = targetPos;
     }
 
     public void SetAngle(float angle)

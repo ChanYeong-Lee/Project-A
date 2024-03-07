@@ -4,6 +4,7 @@ public class Horse : MonoBehaviour
 {
     [SerializeField] private Transform[] mountPointIKs;
     [SerializeField] private Transform mountPoint;
+    [SerializeField] private GameObject headAimTarget;
 
     public enum MountIK
     {
@@ -15,4 +16,5 @@ public class Horse : MonoBehaviour
         
     public Transform[] MountPointIKs => mountPointIKs;
     public Transform MountPoint => mountPoint;
+    public GameObject HeadAimTarget => headAimTarget;
 }

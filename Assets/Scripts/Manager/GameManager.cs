@@ -43,6 +43,7 @@ public class GameManager
     private GameObject player;
     private GameObject horse;
     private CameraController cam;
+    private AimTarget aimTarget;
 
     public GameObject Player { get => player; set => player = value; }
     public GameObject Horse { get => horse; set => horse = value; }

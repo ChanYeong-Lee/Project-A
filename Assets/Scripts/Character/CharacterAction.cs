@@ -6,6 +6,7 @@ public class CharacterAction : MonoBehaviour
     [SerializeField] private Rig bodyAimRig;
     //[SerializeField] private Rig bowPosRig;
     [SerializeField] private Rig mountHeadAimRig;
+
     //[SerializeField] private TwoBoneIKConstraint bowPosIK;
     //[SerializeField] private Transform bowPosTarget;
     //[SerializeField] private Transform bowPosDefaultTarget;
@@ -50,7 +51,7 @@ public class CharacterAction : MonoBehaviour
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 1.0f, ref bodyAimRigVelocity, 0.2f);
             //bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.0f, ref bowPosRigVelocity, 0.2f);
-            if (isMount)
+            if (mount.State == CharacterMount.MountState.Mount)
             {
                 mountHeadAimRig.weight = Mathf.SmoothDamp(mountHeadAimRig.weight, 0.0f, ref mountHeadAimRigVelocity, 0.2f);
             }
@@ -63,7 +64,7 @@ public class CharacterAction : MonoBehaviour
         {
             bodyAimRig.weight = Mathf.SmoothDamp(bodyAimRig.weight, 0.0f, ref bodyAimRigVelocity, 0.2f);
             //bowPosRig.weight = Mathf.SmoothDamp(bowPosRig.weight, 0.75f, ref bowPosRigVelocity, 0.2f);
-            if (isMount)
+            if (mount.State == CharacterMount.MountState.Mount)
             {
                 mountHeadAimRig.weight = Mathf.SmoothDamp(mountHeadAimRig.weight, 1.0f, ref mountHeadAimRigVelocity, 0.2f);
             }
@@ -76,16 +77,16 @@ public class CharacterAction : MonoBehaviour
         //bowPosTarget.position = isMount ? bowPosMountTarget.position : bowPosDefaultTarget.position;
         //bowPosTarget.rotation = isMount ? bowPosMountTarget.rotation : bowPosDefaultTarget.rotation;
 
-        // TODO : UI 인벤토리 확인을 위해 잠시 주석 처리
-        // if (Input.GetKeyDown(KeyCode.F))
-        // {
-        //     isMount = !isMount;
-        //     animator.SetBool("Mount", isMount);
-        //     animator.SetTrigger("MountTrigger");
-        //     if (isMount)
-        //     {
-        //         mount.StartMount();
-        //     }
-        // }
+        //TODO : UI 인벤토리 확인을 위해 잠시 주석 처리
+        //if (Managers.Input.hKey)
+        //{
+        //    isMount = !isMount;
+        //    animator.SetBool("Mount", isMount);
+        //    animator.SetTrigger("MountTrigger");
+        //    if (isMount)
+        //    {
+        //        mount.StartMount();
+        //    }
+        //}
     }
 }

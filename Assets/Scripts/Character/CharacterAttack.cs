@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Security.Claims;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -41,15 +42,11 @@ public class CharacterAttack : MonoBehaviour
     // Properties
     public AttackState State => state;
     public Define.AttributeType ArrowAttribute => arrowAttribute;
+    public Arrow Arrow => arrow;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        aimTarget.transform.parent = null;
     }
 
     private void Update()
@@ -58,6 +55,8 @@ public class CharacterAttack : MonoBehaviour
         CheckTarget();
         UpdateAimTarget();
         CheckArrow();
+        CheckChangeArrow();
+        UpdateHUD();
 
         switch (state)
         {
@@ -77,10 +76,11 @@ public class CharacterAttack : MonoBehaviour
     {
         if (arrow.ArrowData.Attribute != attribute)
         {
-            Arrow newArrow = GenerateArrow(attribute);
+            arrowAttribute = attribute;
 
+            Arrow newArrow = GenerateArrow(attribute);
             newArrow.transform.parent = arrow.transform.parent;
-            newArrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            newArrow.transform.position = arrow.transform.position;
 
             Managers.Pool.Push(arrow.gameObject);
             arrow = newArrow;
@@ -141,19 +141,40 @@ public class CharacterAttack : MonoBehaviour
         }
     }
 
-    
+    private void CheckChangeArrow()
+    {
+        if (Managers.Input.rightClick)
+        {
+            Managers.UI.HUD.GetComponentInChildren<HUDUI>().TurnOnArrowSelector();
+        }
+    }
+
     // 화살 생성
     private Arrow GenerateArrow(Define.AttributeType attribute)
     {
-        Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == this.arrowAttribute);
+        Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == attribute);
         Arrow arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
         arrow.transform.parent = quiver;
         arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         arrow.gameObject.SetActive(true);
+        
+        print($"Generate {attribute.ToString()} arrow");
 
         return arrow;
     }
-
+    private void UpdateHUD()
+    {
+        //TODO : HUD update
+        Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetChargedAmount(chargedAmount);
+        if (target != null)
+        {
+            Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetTarget(target.transform);
+        }
+        else
+        {
+            Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetTarget(null);
+        }
+    }
 
     private void WaitUpdate()
     {
@@ -169,10 +190,10 @@ public class CharacterAttack : MonoBehaviour
             state = AttackState.Aiming;
         }
     }
+ 
 
     private void AimingUpdate()
     {
-        releaseTimeoutDelta = releaseTimeout;
 
         if (equipArrow == false /*&& Vector3.Distance(arrow.transform.position, arrowPos.transform.position) < 10.0f*/)
         {
@@ -185,13 +206,14 @@ public class CharacterAttack : MonoBehaviour
         chargedAmount += Time.deltaTime / chargeTime;
         chargedAmount = Mathf.Clamp(chargedAmount, 0.0f, 1.0f);
 
-        //TODO : HUD update
+        
 
         if (prepared == false)
         {
             arrow.transform.parent = quiver;
             arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
+            releaseTimeoutDelta = releaseTimeout;
             state = AttackState.Wait;
         }
 
@@ -206,7 +228,8 @@ public class CharacterAttack : MonoBehaviour
                 arrow.transform.parent = quiver;
                 arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             }
-
+            
+            releaseTimeoutDelta = releaseTimeout;
             state = AttackState.Wait;
         }
     }

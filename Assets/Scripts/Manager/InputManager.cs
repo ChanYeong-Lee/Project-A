@@ -27,6 +27,12 @@ public class InputManager : MonoBehaviour
     public bool tab;
     public bool esc;
 
+
+    private void Update()
+    {
+        print(hKey);
+    }
+
     public void OnMove(InputValue value)
     {
         move = value.Get<Vector2>().normalized;

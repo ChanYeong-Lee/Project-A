@@ -20,8 +20,8 @@ public class CharacterMount : MonoBehaviour
     private Coroutine actionCoroutine;
 
     [SerializeField] private Horse horse;
+
     [SerializeField] private Rig mountRig;
-    
     [SerializeField] private TwoBoneIKConstraint leftFootIK;
     [SerializeField] private TwoBoneIKConstraint rightFootIK;
 
@@ -43,8 +43,18 @@ public class CharacterMount : MonoBehaviour
         switch (state)
         {
             case MountState.DisMount:
+                if (Managers.Input.hKey)
+                {
+                    StartMount();
+                    Managers.Input.hKey = false;
+                }
                 break;
             case MountState.Mount:
+                if (Managers.Input.hKey)
+                {
+                    StartDisMount();
+                    Managers.Input.hKey = false;
+                }
                 break;
             default:
                 break;
@@ -65,14 +75,16 @@ public class CharacterMount : MonoBehaviour
     public void StartMount()
     {
         if (actionCoroutine != null) return;
-
+        
+        animator.SetBool("Mount", true);
         actionCoroutine = StartCoroutine(MountCoroutine());
     }
 
     public void StartDisMount()
     {
         if (actionCoroutine != null) return;
-
+        
+        animator.SetBool("Mount", false);
         actionCoroutine = StartCoroutine(MountCoroutine());
     }
 
@@ -128,8 +140,7 @@ public class CharacterMount : MonoBehaviour
     {
         state = MountState.DisMounting;
 
-        characterController.enabled = true;
-        transform.parent = null;
+    
 
         float ratio = 0.0f;
         
@@ -165,6 +176,9 @@ public class CharacterMount : MonoBehaviour
         }
 
         move.SetMount(false);
+
+        characterController.enabled = true;
+        transform.parent = null;
 
         horse.GetComponent<HorseMove>().enabled = false;
         horse.gameObject.SetActive(false);
