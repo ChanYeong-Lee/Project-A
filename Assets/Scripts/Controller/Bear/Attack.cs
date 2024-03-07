@@ -40,22 +40,14 @@ namespace BearController
                 anim.SetInteger("IDInt", idInt);
                 anim.SetBool("Attack", true);
             }
-            else if (angleToTarget is > 150 or < -150)
-            {
-                anim.SetBool("Attack", true);
-                anim.SetInteger("IDInt", 4);
-                Debug.Log("back attack");
-            }
         }
 
         public override void Transition()
         {
-            if (target is null)
+            if (target == null)
                 ChangeState(State.Idle);
             
             // TODO : Return 상태 추가하면 바꾸기
-            // if (distanceToTarget > bear.Data.TrackingDistance) 
-            //     ChangeState(State.Patrol);
             if (distanceToTarget > bear.Data.TrackingDistance) 
                 ChangeState(State.Idle);
 
@@ -65,6 +57,7 @@ namespace BearController
 
         public override void Exit()
         {
+            attackCooldown = bear.Data.AttackCooldown;
             anim.SetBool("Attack", false);
         }
     }

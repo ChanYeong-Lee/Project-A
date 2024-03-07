@@ -491,7 +491,11 @@ MonoBehaviour:
     m_Bits: 129
   state: 0
   distance: 0
-  angle: 0
+  slopeAngle: 0
+  angleToTarget: 0
+  traceAngle: 0
+  rootMotion: {x: 0, y: 0, z: 0}
+  rootRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &5056597504326659983
 Animator:
   serializedVersion: 5
@@ -504,7 +508,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 95788e7260b93224e9cfd19cc653a6bc, type: 3}
   m_Controller: {fileID: 9100000, guid: 3a3acea5c7303a541abb762ae1c3023e, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

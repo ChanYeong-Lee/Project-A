@@ -106,5 +106,7 @@ public class GameManager
         player.transform.rotation = Quaternion.Euler(0, 30, 0);
         horse.transform.position = new Vector3(-235, 2, -227);
         horse.transform.rotation = Quaternion.Euler(0, 145, 0);
+
+        inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
     }
 }

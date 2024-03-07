@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 140092305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -190, y: 1.19, z: -262}
+  m_LocalPosition: {x: 1.8, y: 6.8, z: -81.2}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 552061061}
   - component: {fileID: 552061060}
   - component: {fileID: 552061059}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 608629997}
   - component: {fileID: 608629996}
   - component: {fileID: 608629995}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,25 +452,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear Polar
       objectReference: {fileID: 0}
-    - target: {fileID: 5056597504326659983, guid: e4a1457f5a972c24c946367046a49e49,
-        type: 3}
-      propertyPath: m_UpdateMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.2
+      value: -5.276078
       objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 16.19
       objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -141
+      value: -114.0363
       objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
@@ -512,9 +507,18 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 140092309}
+    - target: {fileID: 8199589838623144631, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: detection.m_Bits
+      value: 137
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1616012884}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
 --- !u!1 &660979642
@@ -647,7 +651,7 @@ GameObject:
   - component: {fileID: 778503013}
   - component: {fileID: 778503012}
   - component: {fileID: 778503011}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +738,7 @@ Transform:
   m_GameObject: {fileID: 778503010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.3, y: 1.19, z: 8.28}
+  m_LocalPosition: {x: -7.23, y: 18.07, z: -83.07}
   m_LocalScale: {x: 20, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -752,7 +756,7 @@ GameObject:
   - component: {fileID: 1165489331}
   - component: {fileID: 1165489330}
   - component: {fileID: 1165489329}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +862,7 @@ GameObject:
   - component: {fileID: 1212006845}
   - component: {fileID: 1212006844}
   - component: {fileID: 1212006843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,8 +949,8 @@ Transform:
   m_GameObject: {fileID: 1212006842}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.61, y: 1.19, z: 0}
-  m_LocalScale: {x: 20, y: 3, z: 1}
+  m_LocalPosition: {x: -6.7, y: 1.19, z: -111.5}
+  m_LocalScale: {x: 20, y: 30, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1037,12 +1041,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616012881}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34974802, y: -0.0036370163, z: 0.0017179064, w: 0.93683517}
-  m_LocalPosition: {x: 0.14861059, y: 16.990208, z: -19.867853}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.190059, y: 0.15885106, z: -0.031179128, w: -0.96833456}
+  m_LocalPosition: {x: 5.1668944, y: 10.721643, z: -17.261475}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1788194133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1616012885
 MonoBehaviour:
@@ -1088,6 +1092,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!4 &1788194133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
+    type: 3}
+  m_PrefabInstance: {fileID: 622877054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1838669185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1110,7 @@ GameObject:
   - component: {fileID: 1838669188}
   - component: {fileID: 1838669187}
   - component: {fileID: 1838669186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1354,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1616012884}
   - {fileID: 660979644}
   - {fileID: 552061062}
   - {fileID: 1165489332}

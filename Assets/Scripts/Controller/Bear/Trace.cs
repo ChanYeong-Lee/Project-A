@@ -9,7 +9,6 @@ namespace BearController
         
         public override void Enter()
         {
-            attackCooldown = bear.Data.AttackCooldown;
             bear.state = State.Trace;
         }
 
@@ -29,22 +28,50 @@ namespace BearController
         public override void FixedUpdate()
         {
             base.FixedUpdate();
+
+            if (false == canMove)
+                return;
             
             // 각도 조절
-            FixedHorizontal(bear.traceAngle);
+            bear.traceAngle = 30;
+            FixedHorizontal(30);
+            MoreSpeed(false);
             
-            MoreSpeed();
             anim.SetFloat("Vertical", Mathf.Lerp(anim.GetFloat("Vertical"), vertical, Time.fixedDeltaTime));
         }
 
         public override void Transition()
         {
-            // if (distanceToTarget < bear.Data.AttackRange && attackCooldown < 0) 
-            //     ChangeState(State.Attack);
+            if (bear.CurrentStat.HealthPoint < bear.Data.Stats[bear.CurrentLevel].HealthPoint / 2)
+            {
+                // 피에 따른 상태 변화
+            }
+
+            if (randTime < 0)
+            {
+                State randState = (State)Random.Range(0, (int)State.Dead);
+                switch (randState)
+                {
+                    case State.PowerTrace:
+                        ChangeState(State.PowerTrace);
+                        break;
+                    case State.Rush:
+                        if (rushCooldown < 0)
+                        {
+                            ChangeState(State.Rush);
+                        }
+                        break;
+                    // case State.Prowl:
+                    //     ChangeState(State.Prowl);
+                    //     break;
+                }
+
+                // 상태 유지 시간
+                randTime = Random.Range(1f, 2f);
+            }
             
-            // if (distanceToTarget > 100) 
-            //     ChangeState(State.Patrol);
-            
+            if (distanceToTarget < bear.Data.AttackRange && attackCooldown < 0) 
+                ChangeState(State.Attack);
         }
     }
 }

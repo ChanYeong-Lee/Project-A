@@ -6,6 +6,8 @@ public class Define
     // 열거형(Enum)
     // 정리
 
+    // 기본 화살 데이터 주소 값
+    public const string DefaultArrowDataPath = "ScriptableObject/Item/Arrow/Arrow";
     // 레시피 데이터 주소 값
     public const string RecipeDataPath = "ScriptableObject/Recipe/";
 
@@ -67,11 +69,13 @@ public class Define
     public enum BearState
     {
         Idle,
-        // Patrol,
-        // Run,
-        TakeAttack,
         Trace,
+        PowerTrace,
+        Rush,
+        Prowl,
+        TakeAttack,
         Attack,
+        
         Return,
         Dead,
     }
