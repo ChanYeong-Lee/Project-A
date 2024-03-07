@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // TEST CODE
+        // TODO : TEST CODE
         if (Input.GetKeyDown(KeyCode.F5))
         {
             GainExp(7);
@@ -55,5 +55,15 @@ public class Player : MonoBehaviour
             currentExp = exp;
             currentStat = new Stat(data.Stats.Find(stat => stat.Level == currentLevel));
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (currentStat.HealthPoint <= 0)
+        {
+            // 플레이어 사망 처리
+        }
+
+        currentStat.HealthPoint -= damage - currentStat.Defence;
     }
 }

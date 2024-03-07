@@ -5,12 +5,13 @@ namespace MooseController
 {
     public class AttackState : MooseState
     {
+        private int count;
         public AttackState(Creature owner) : base(owner) { }
 
         public override void Enter()
         {
             isChangedState = false;
-            
+            count = 0;
             Debug.Log("attack");
             moose.state = State.Attack;
         }
@@ -20,7 +21,9 @@ namespace MooseController
             base.Update();
             
             // TODO : 공격 로직
-
+            Collider[] colliders = new Collider[1];
+            count = Physics.OverlapBoxNonAlloc(moose.Eyes.transform.position, new Vector3(moose.Data.AttackRange, 1, 1), colliders,
+                Quaternion.identity, LayerMask.NameToLayer("Player"));
         }
 
         public override void FixedUpdate()
@@ -63,6 +66,9 @@ namespace MooseController
         public override void Exit()
         {
             anim.SetBool("Attack", false);
+            
+            if (count == 1) 
+                target.gameObject.GetComponent<Player>().TakeDamage(moose.CurrentStat.Attack);
         }
     }
 }

@@ -105,6 +105,7 @@ public class Arrow : Item
             yield return null;
         }
 
+        target.Monster.TakeDamage(ArrowData);
         Managers.Pool.Push(gameObject);
     }
  

@@ -44,36 +44,20 @@ public class Moose : Monster
         return base.Farming(out farmingType);
     }
 
-    private void OnCollisionEnter(Collision other)
+    public override void TakeDamage(ArrowData arrowData)
     {
-        if (other.gameObject.CompareTag("Arrow"))
+        if (currentStat.HealthPoint <= 0)
+            return;
+        
+        // 데미지 공식
+        receivedDamage = arrowData.ArrowTrueDamage + (arrowData.ArrowDamage - currentStat.Defence > 0
+            ? arrowData.ArrowDamage - currentStat.Defence
+            : 0);
+
+        if (state != State.Dead)
         {
-            if (currentStat.HealthPoint <= 0)
-                return;
-            
-            var arrow = other.gameObject.GetComponent<Arrow>();
-            
-            // 데미지 공식
-            receivedDamage = arrow.ArrowData.ArrowTrueDamage + (arrow.ArrowData.ArrowDamage - currentStat.Defence > 0
-                ? arrow.ArrowData.ArrowDamage - currentStat.Defence
-                : 0);
-
-            if (state != State.Dead)
-            {
-                target = Managers.Game.Player.transform;
-                stateMachine.ChangeState(State.TakeAttack);
-            }
-
-            // TODO : 플레이어 공격 및 화살 발사 끝나면 수정 필요
-            Managers.Pool.Push(other.gameObject);
+            target = Managers.Game.Player.transform;
+            stateMachine.ChangeState(State.TakeAttack);
         }
-
-        // TODO : 이걸로 부위별 공격 데미지 계산하면 될듯
-        // foreach (ContactPoint point in other.contacts)
-        // {
-        //     var o = point.otherCollider.gameObject;
-        //
-        //     Debug.Log($"{o.gameObject.name}");
-        // }
     }
 }
