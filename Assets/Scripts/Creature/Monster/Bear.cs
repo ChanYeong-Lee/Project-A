@@ -29,10 +29,11 @@ public class Bear : Monster
     {
         base.Init();
         stateMachine.AddState(State.Idle, new IdleState(this));
-        // stateMachine.AddState(State.Patrol, new PatrolState(this));
-        // stateMachine.AddState(State.Run, new RunState(this));
-        stateMachine.AddState(State.TakeAttack, new TakeAttackState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
+        stateMachine.AddState(State.PowerTrace, new PowerTraceState(this));
+        stateMachine.AddState(State.Rush, new RushState(this));
+        
+        stateMachine.AddState(State.TakeAttack, new TakeAttackState(this));
         stateMachine.AddState(State.Attack, new AttackState(this));
         stateMachine.AddState(State.Dead, new DeadState(this));
         stateMachine.InitState(State.Idle);

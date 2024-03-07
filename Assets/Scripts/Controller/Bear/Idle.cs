@@ -11,7 +11,7 @@ namespace BearController
             // 인스펙터 확인용 코드
             bear.state = State.Idle;
 
-            RandVariable(1f, 5f, 0);
+            // RandVariable(1f, 5f, 0);
             anim.SetBool("Stand", true);
             // Debug.Log("IDLE");
         }
@@ -23,8 +23,8 @@ namespace BearController
             anim.SetInteger("IDInt", idInt);
             
             
-            if (randTime < 0) 
-                RandVariable(1f,2f, 0.9f);
+            // if (randTime < 0) 
+            //     RandVariable(1f,2f, 0.9f);
         }
 
         public override void Transition()
