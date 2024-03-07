@@ -1,5 +1,7 @@
 using BearController;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using State = Define.BearState;
 
 public class Bear : Monster
@@ -13,8 +15,11 @@ public class Bear : Monster
     // 인스펙터 확인용
     public State state;
     public float distance;
-    public float angle;
-    
+    public float slopeAngle;
+    public float angleToTarget;
+    public float traceAngle;
+    public Vector3 rootMotion;
+    public Quaternion rootRotation;
     public Transform Eyes => eyes;
     public Transform Body => body;
     public LayerMask Detection => detection;
@@ -57,6 +62,7 @@ public class Bear : Monster
             Managers.Pool.Push(other.gameObject);
         }
 
+  
         // TODO : 이걸로 부위별 공격 데미지 계산하면 될듯
         // foreach (ContactPoint point in other.contacts)
         // {
@@ -64,5 +70,11 @@ public class Bear : Monster
         //
         //     Debug.Log($"{o.gameObject.name}");
         // }
+    }
+    
+    private void OnAnimatorMove()
+    {
+        rootMotion += anim.deltaPosition;
+        rootRotation *= anim.deltaRotation;
     }
 }

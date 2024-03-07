@@ -34,10 +34,10 @@ MonoBehaviour:
     healthPoint: 100
     attack: 20
     defence: 0
-  attackRange: 5
+  attackRange: 10
   attackCooldown: 3
   isAggressive: 1
-  viewDistance: 10
-  trackingDistance: 50
+  viewDistance: 1000
+  trackingDistance: 10000
   dropItem: {fileID: 11400000, guid: b86d809377e8aad42a51d90a1e0c6630, type: 2}
   dropExpList: 030000000300000005000000050000000a000000

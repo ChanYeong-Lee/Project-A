@@ -8,9 +8,11 @@ namespace BearController
     {
 
         protected Bear bear => monster as Bear;
-        
+
         protected float randTime;
+
         protected bool isChangedState;
+
         // protected bool isUnderAttack;
         protected float attackCooldown;
         protected float vertical;
@@ -19,23 +21,28 @@ namespace BearController
 
         protected float distanceToTarget;
         protected float angleToTarget;
-        
-        public BearState(Creature owner) : base(owner) { }
+
+        protected float moreSpeed = 1.0f;
+            
+        public BearState(Creature owner) : base(owner)
+        {
+        }
 
         public override void Update()
         {
-            randTime -= Time.deltaTime;            
+            randTime -= Time.deltaTime;
             attackCooldown -= Time.deltaTime;
+            bear.angleToTarget = angleToTarget;
             
             if (target != null)
             {
                 distanceToTarget = Vector3.Distance(target.transform.position, bear.transform.position);
                 angleToTarget = Vector3.SignedAngle(bear.transform.forward,
-                    target.transform.position - bear.transform.position, Vector3.up);            
+                    target.transform.position - bear.transform.position, Vector3.up);
             }
             else
             {
-                distanceToTarget = bear.Data.TrackingDistance * 2; 
+                distanceToTarget = bear.Data.TrackingDistance * 2;
             }
         }
 
@@ -44,14 +51,27 @@ namespace BearController
             if (bear.state == State.Idle)
                 return;
             
-            if (Physics.Raycast(bear.Body.transform.position, Vector3.down, out var hit))
+
+            if (Physics.Raycast(bear.Body.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity))
             {
                 Vector3 normal = hit.normal;
+                
                 var angle = Vector3.SignedAngle(bear.Body.transform.forward, normal, bear.Body.transform.right) + 90;
+                bear.transform.position += bear.rootMotion;
+                // bear.transform.rotation *= Quaternion.Euler(angle - bear.transform.rotation.x, bear.rootRotation.eulerAngles.y, 0.0f);
+            
+                bear.rootMotion = Vector3.zero;
+                bear.rootRotation = Quaternion.identity;
 
-                bear.angle = angle;
+                bear.slopeAngle = angle;
                 bear.transform.localRotation = Quaternion.Slerp(bear.transform.localRotation,
-                    Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 100 + bear.transform.rotation.eulerAngles.y, 0), Time.fixedDeltaTime);
+                    Quaternion.Euler(angle, anim.GetFloat("Horizontal") * 180.0f + bear.transform.rotation.eulerAngles.y,
+                        0), Time.fixedDeltaTime);
+            }
+            else
+            {
+                bear.rootMotion = Vector3.zero;
+                bear.rootRotation = Quaternion.identity;
             }
 
             // isUnderAttack = anim.GetBool("Damaged");
@@ -72,12 +92,29 @@ namespace BearController
         {
             if (distanceToTarget < 2)
                 return;
-            
-            if (angleToTarget  < angle && angleToTarget > -angle)
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), 0, Time.fixedDeltaTime));
+
+            float angleCoefficient = (Mathf.Abs(angleToTarget) - angle) / 180.0f;
+
+            if (angleToTarget <= angle && angleToTarget >= -angle)
+                anim.SetFloat("Horizontal", 0,0.25f, Time.deltaTime);
             else if (angleToTarget > angle)
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), horizontal, Time.fixedDeltaTime));
-            else if (angleToTarget < -angle) 
-                anim.SetFloat("Horizontal", Mathf.Lerp(anim.GetFloat("Horizontal"), -horizontal, Time.fixedDeltaTime));
-        }    }
+                anim.SetFloat("Horizontal", Mathf.Lerp(0, horizontal, angleCoefficient), 0.25f, Time.deltaTime);
+            else if (angleToTarget < -angle)
+                anim.SetFloat("Horizontal", Mathf.Lerp(0,  -horizontal, angleCoefficient), 0.25f, Time.deltaTime);
+        }
+
+        protected void MoreSpeed()
+        {
+            if (2.9f < anim.GetFloat("Vertical"))
+            {
+                moreSpeed += Time.fixedDeltaTime / 10.0f;
+                moreSpeed = Mathf.Clamp(moreSpeed, 1.0f, 1.5f);
+            }
+            else
+            {
+                moreSpeed = Mathf.Lerp(moreSpeed, 1.0f, Time.fixedDeltaTime);
+            }
+            anim.SetFloat("MoreSpeed", moreSpeed);
+        }
+    }
 }

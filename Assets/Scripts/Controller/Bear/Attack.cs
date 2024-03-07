@@ -30,7 +30,7 @@ namespace BearController
             if (anim.GetBool("Attack")) 
                 isChangedState = true;
             
-            FixedHorizontal(30, 1);
+            // FixedHorizontal(30, 1);
 
             if (isChangedState) 
                 return;
