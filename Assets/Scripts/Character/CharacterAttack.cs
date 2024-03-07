@@ -51,7 +51,7 @@ public class CharacterAttack : MonoBehaviour
 
     private void Start()
     {
-        Managers.UI.HUD.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
+        Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
     }
 
     private void Update()
@@ -88,7 +88,7 @@ public class CharacterAttack : MonoBehaviour
             newArrow.transform.position = arrow.transform.position;
 
             Managers.Pool.Push(arrow.gameObject);
-            Managers.UI.HUD.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
+            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
             arrow = newArrow;
         }
     }
@@ -151,7 +151,7 @@ public class CharacterAttack : MonoBehaviour
     {
         if (Managers.Input.rightClick)
         {
-            Managers.UI.HUD.GetComponentInChildren<HUDUI>().TurnOnArrowSelector();
+            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().TurnOnArrowSelector();
         }
     }
 
@@ -171,14 +171,14 @@ public class CharacterAttack : MonoBehaviour
     private void UpdateHUD()
     {
         //TODO : HUD update
-        Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetChargedAmount(chargedAmount);
+        Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetChargedAmount(chargedAmount);
         if (target != null)
         {
-            Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetTarget(target.transform);
+            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetTarget(target.transform);
         }
         else
         {
-            Managers.UI.HUD.GetComponentInChildren<HUDUI>().AimUI.SetTarget(null);
+            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetTarget(null);
         }
     }
 

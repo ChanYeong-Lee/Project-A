@@ -5,11 +5,17 @@ public class UIManager
     private bool uiOpen;
     public bool UIOpen => uiOpen;
     
-    private GameObject hud;
-    private GameObject mainUI;
+    private GameObject hudCanvas;
+    private GameObject mainCanvas;
 
-    public GameObject HUD { get => hud; set => hud = value; }
-    public GameObject MainUI { get => mainUI; set => mainUI = value; }
+    public GameObject HUDCanvas { get => hudCanvas; set => hudCanvas = value; }
+    public GameObject MainCanvas { get => mainCanvas; set => mainCanvas = value; }
+
+    private HUDUI hudUI;
+    private MainUI mainUI;
+
+    public HUDUI HUDUI => hudUI;
+    public MainUI MainUI => mainUI;
 
     public void Init()
     {
@@ -26,27 +32,29 @@ public class UIManager
     private void CreateGameUI()
     {
         // HUD
-        if (hud == null)
+        if (hudCanvas == null)
         {
             GameObject go = GameObject.Find("HUDCanvas");
-            hud = go == null ? Managers.Resource.Instantiate("Prefabs/UI/HUDCanvas") : go;
+            hudCanvas = go == null ? Managers.Resource.Instantiate("Prefabs/UI/HUDCanvas") : go;
+            hudUI = hudCanvas.GetComponentInChildren<HUDUI>(true);
         }
         
         // MainCanvas
-        if (mainUI == null)
+        if (mainCanvas == null)
         {
             GameObject go = GameObject.Find("MainCanvas");
-            hud = go == null ? Managers.Resource.Instantiate("Prefabs/UI/MainCanvas") : go;
+            mainCanvas = go == null ? Managers.Resource.Instantiate("Prefabs/UI/MainCanvas") : go;
+            mainUI = hudCanvas.GetComponentInChildren<MainUI>(true);
         }
     }
 
     public void OpenMainUI()
     {
-        mainUI.GetComponentInChildren<MainUI>(true).gameObject.SetActive(true);
+        mainUI.gameObject.SetActive(true);
     }
 
     public void CloseMainUI()
     {
-        mainUI.GetComponentInChildren<MainUI>(true).gameObject.SetActive(false);
+        mainUI.gameObject.SetActive(false);
     }
 }

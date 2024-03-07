@@ -70,13 +70,13 @@ public class QuestLogUI : MonoBehaviour
 
         // initialize the first selected button if not already so that it's
         // always the top button
-        if (firstSelectedButton == null)
-        {
-            firstSelectedButton = questLogButton.button;
-        }
+        //if (firstSelectedButton == null)
+        //{
+        //    firstSelectedButton = questLogButton.button;
+        //}
 
         // set the button color based on quest state
-        questLogButton.SetState(quest.state);
+        //questLogButton.SetState(quest.state);
     }
 
     private void SetQuestLogInfo(Quest quest)
