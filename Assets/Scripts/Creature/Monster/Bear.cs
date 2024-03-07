@@ -73,9 +73,9 @@ public class Bear : Monster
         // }
     }
     
-    private void OnAnimatorMove()
-    {
-        rootMotion += anim.deltaPosition;
-        rootRotation *= anim.deltaRotation;
-    }
+    // private void OnAnimatorMove()
+    // {
+    //     rootMotion += anim.deltaPosition;
+    //     rootRotation *= anim.deltaRotation;
+    // }
 }

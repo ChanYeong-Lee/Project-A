@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private int currentExp;
 
     public PlayerData Data => data;
+    public Stat CurrentStat => currentStat;
     public int CurrentLevel => currentLevel;
     public int CurrentExp => currentExp;
 

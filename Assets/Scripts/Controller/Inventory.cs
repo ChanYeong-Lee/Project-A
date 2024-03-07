@@ -7,6 +7,22 @@ public class Inventory : MonoBehaviour
     private Dictionary<ItemData, int> itemDataDic = new Dictionary<ItemData, int>();
     public Dictionary<ItemData, int> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
 
+    public bool TryUseItem(ItemData itemData, int count = 1)
+    {
+        if (!itemDataDic.ContainsKey(itemData))
+            return false;
+
+        if (itemDataDic[itemData] == -1)
+            return true;
+        
+        if (count > itemDataDic[itemData])
+            return false;
+
+        itemDataDic[itemData] -= count;
+        
+        return true;
+    }
+    
     // æ∆¿Ã≈€ »πµÊ ∏ﬁº“µÂ
     public bool TryGainItem(ItemData itemData, int count = 1)
     {

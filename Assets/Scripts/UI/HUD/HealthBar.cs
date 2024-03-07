@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player player;
+
+    private void Start()
     {
-        
+        player = Managers.Game.Player.GetComponent<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        var rate = (float)player.CurrentStat.HealthPoint /
+                   player.Data.Stats.Find(stat => stat.Level == player.CurrentLevel).HealthPoint;
+        images["FillAmount"].fillAmount = rate;
     }
 }

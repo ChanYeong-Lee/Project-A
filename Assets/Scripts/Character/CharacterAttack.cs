@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Security.Claims;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -51,7 +52,7 @@ public class CharacterAttack : MonoBehaviour
 
     private void Start()
     {
-        Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
+        Managers.UI.HUDUI.ArrowPanel.ChangeAttribute(arrowAttribute);
     }
 
     private void Update()
@@ -88,7 +89,7 @@ public class CharacterAttack : MonoBehaviour
             newArrow.transform.position = arrow.transform.position;
 
             Managers.Pool.Push(arrow.gameObject);
-            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().ArrowPanel.ChangeAttribute(arrowAttribute);
+            Managers.UI.HUDUI.ArrowPanel.ChangeAttribute(arrowAttribute);
             arrow = newArrow;
         }
     }
@@ -158,6 +159,15 @@ public class CharacterAttack : MonoBehaviour
     // 화살 생성
     private Arrow GenerateArrow(Define.AttributeType attribute)
     {
+        var arrowData = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair => pair.Key.ItemType == Define.ItemType.Arrow &&
+            ((ArrowData)pair.Key).Attribute == attribute);
+
+        if (arrowData.Value <= 0)
+        {
+            attribute = Define.AttributeType.Default;
+            arrowAttribute = attribute;
+        }
+        
         Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == attribute);
         Arrow arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
         arrow.transform.parent = quiver;
@@ -171,14 +181,14 @@ public class CharacterAttack : MonoBehaviour
     private void UpdateHUD()
     {
         //TODO : HUD update
-        Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetChargedAmount(chargedAmount);
+        Managers.UI.HUDUI.AimUI.SetChargedAmount(chargedAmount);
         if (target != null)
         {
-            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetTarget(target.transform);
+            Managers.UI.HUDUI.AimUI.SetTarget(target.transform);
         }
         else
         {
-            Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().AimUI.SetTarget(null);
+            Managers.UI.HUDUI.AimUI.SetTarget(null);
         }
     }
 
@@ -242,12 +252,12 @@ public class CharacterAttack : MonoBehaviour
 
     private void ReleaseArrow()
     {
-        if (target != null)
+        if (target != null && Managers.Game.Inventory.TryUseItem(arrow.ArrowData))
         {
             arrow.transform.parent = null;
             arrow.Shot(target);
             arrow = null;
-
+            Managers.UI.HUDUI.ArrowPanel.ChangeAttribute(arrowAttribute);
             animator.SetTrigger("Release");
         }
         else

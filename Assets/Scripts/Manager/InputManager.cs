@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        print(hKey);
+        // print(hKey);
     }
 
     public void OnMove(InputValue value)

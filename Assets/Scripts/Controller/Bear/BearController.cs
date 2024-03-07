@@ -131,7 +131,7 @@ namespace BearController
         {
             bool col = IsCollision();
             bool fall = IsFalling();
-            Debug.Log($"Can Move = {canMove}, IsCollision = {col}, IsFalling = {fall}");
+            // Debug.Log($"Can Move = {canMove}, IsCollision = {col}, IsFalling = {fall}");
             return !(IsCollision() || IsFalling());
         }
         

@@ -622,6 +622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8415211545413155648}
   - component: {fileID: 6961085429654128129}
+  - component: {fileID: 5766664444690949279}
   m_Layer: 6
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -667,6 +668,19 @@ CapsuleCollider:
   m_Height: 2.55
   m_Direction: 2
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &5766664444690949279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280129819572737021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4304bdb64fa06704bbef2d92409646e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &2373375370616587110
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,10 +27,8 @@ public class CharacterFarming : MonoBehaviour
 
     private void Update()
     {
-        // ��ȣ�ۿ�
         if (Input.GetKey(KeyCode.F))
         {
-            Debug.Log("F �Է�");
             Farming();
         }
 
@@ -39,7 +37,6 @@ public class CharacterFarming : MonoBehaviour
             farmingTime = 0;
         }
 
-        // ��ĳ��
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartCoroutine(Scanning());
@@ -56,10 +53,8 @@ public class CharacterFarming : MonoBehaviour
             Collider other = detectedColliders[i];
             
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponent<IFarmable>().Farming(out var farmingType);
-            // �ڽĿ�
             // Dictionary<FarmingItemData, int> dataDic = other.GetComponentInParent<IFarmable>().Farming(out var farmingType);
 
-            // ������ Ȯ�� ����, ��Ȯ�� �׽�Ʈ �ʿ�
             Dictionary<FarmingItemData, int> dataDic = new Dictionary<FarmingItemData, int>();
 
             dataDic = other.gameObject.layer == LayerMask.NameToLayer("Enemy")
@@ -71,7 +66,7 @@ public class CharacterFarming : MonoBehaviour
 
             float farmingTime = GetComponent<Player>().Data.FarmingTime;
 
-            // �Ĺ� ���� �ִϸ��̼��̳� ��Ÿ ��� ����ġ ��
+            // ??? ???? ?????????? ??? ??? ????? ??
             switch (farmingType)
             {
                 case Define.FarmingType.None:
