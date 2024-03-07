@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class UIQuestMenu : UISlot 
+public class UIQuestMenu : ContentElement 
 {
     private Inventory inventory;
     private UISlot slotPrefab;
@@ -16,7 +16,7 @@ public class UIQuestMenu : UISlot
 
     private void OnEnable()
     {
-       // questInfoList = Managers.Data.questSoList;
+       
     }
 
 }
