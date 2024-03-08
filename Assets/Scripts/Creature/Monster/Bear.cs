@@ -1,15 +1,39 @@
 using BearController;
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 using State = Define.BearState;
+
+
+
+[Serializable]
+public class CoolDown
+{
+    public State state;
+    public float cooldown;
+    public float cooldownDelta;
+}
+
 
 public class Bear : Monster
 {
     [SerializeField] private Transform eyes;
     [SerializeField] private Transform body;
-    [SerializeField] private LayerMask detection;
-    
+    [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private AnimationCurve upwardCurve;
+    [SerializeField] private AnimationCurve downwardCurve;
+    [SerializeField] private float faceCheck = 0.0f;
+
+    [SerializeField] private List<CoolDown> cools;
+
+    private Transform moveTarget;
+
+    private NavMeshAgent agent;
+
     private int receivedDamage;
     
     // 인스펙터 확인용
@@ -18,64 +42,64 @@ public class Bear : Monster
     public float slopeAngle;
     public float angleToTarget;
     public float traceAngle;
-    public Vector3 rootMotion;
-    public Quaternion rootRotation;
+
+    public NavMeshAgent Agent => agent;
     public Transform Eyes => eyes;
     public Transform Body => body;
-    public LayerMask Detection => detection;
+    public AnimationCurve UpwardCurve => upwardCurve;
+    public AnimationCurve DownwardCurve => downwardCurve;
+    public LayerMask GroundLayer => groundLayer;
     public int ReceivedDamage => receivedDamage;
+    public float FaceCheck => faceCheck;
+    public Transform MoveTarget => moveTarget;
+
+    private void OnValidate()
+    {
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();   
+        }
+    }
 
     public override void Init()
     {
         base.Init();
+
+        agent = GetComponent<NavMeshAgent>();
+        moveTarget = new GameObject("MoveTarget").transform;
+
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
-        stateMachine.AddState(State.PowerTrace, new PowerTraceState(this));
         stateMachine.AddState(State.Rush, new RushState(this));
         
-        stateMachine.AddState(State.TakeAttack, new TakeAttackState(this));
-        stateMachine.AddState(State.Attack, new AttackState(this));
-        stateMachine.AddState(State.Dead, new DeadState(this));
         stateMachine.InitState(State.Idle);
     }
 
-    private void OnCollisionEnter(Collision other)
+    public override void TakeDamage(ArrowData arrowData)
     {
-        if (other.gameObject.CompareTag("Arrow"))
+        if (currentStat.HealthPoint <= 0)
+            return;
+
+        // 데미지 공식
+        receivedDamage = arrowData.ArrowTrueDamage + (arrowData.ArrowDamage - currentStat.Defence > 0
+            ? arrowData.ArrowDamage - currentStat.Defence
+            : 0);
+
+        if (state != State.Dead)
         {
-            if (currentStat.HealthPoint <= 0)
-                return;
-            
-            var arrow = other.gameObject.GetComponent<Arrow>();
-            
-            // 데미지 공식
-            receivedDamage = arrow.ArrowData.ArrowTrueDamage + (arrow.ArrowData.ArrowDamage - currentStat.Defence > 0
-                ? arrow.ArrowData.ArrowDamage - currentStat.Defence
-                : 0);
-
-            if (state != State.Dead)
-            {
-                target = Managers.Game.Player.transform;
-                stateMachine.ChangeState(State.TakeAttack);
-            }
-
-            // TODO : 플레이어 공격 및 화살 발사 끝나면 수정 필요
-            Managers.Pool.Push(other.gameObject);
+            target = Managers.Game.Player.transform;
+            stateMachine.ChangeState(State.TakeAttack);
         }
-
-  
-        // TODO : 이걸로 부위별 공격 데미지 계산하면 될듯
-        // foreach (ContactPoint point in other.contacts)
-        // {
-        //     var o = point.otherCollider.gameObject;
-        //
-        //     Debug.Log($"{o.gameObject.name}");
-        // }
     }
-    
-    // private void OnAnimatorMove()
-    // {
-    //     rootMotion += anim.deltaPosition;
-    //     rootRotation *= anim.deltaRotation;
-    // }
+
+    private void OnDrawGizmos()
+    {
+        if (agent.hasPath)
+        {
+            for (int i = 0; i < agent.path.corners.Length - 1; i++)
+            {
+                Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.blue);
+            }
+        }
+    }
 }

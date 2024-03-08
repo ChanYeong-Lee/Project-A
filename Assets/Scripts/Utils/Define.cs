@@ -75,7 +75,7 @@ public class Define
         Prowl,
         TakeAttack,
         Attack,
-        
+        Roar,
         Return,
         Dead,
     }
