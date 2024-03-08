@@ -40,9 +40,13 @@ public class UIQuestMenu : ContentElement
 
     private void CreateQuestSlot()
     {
-        foreach (UISlot slot in slots)
+        if(slots.Count < 1)
         {
-            Managers.Pool.Push(slot.gameObject);
+            foreach (UISlot slot in slots)
+            {
+
+                Managers.Pool.Push(slot.gameObject);
+            }
         }
         slots.Clear();
         int i = 0;

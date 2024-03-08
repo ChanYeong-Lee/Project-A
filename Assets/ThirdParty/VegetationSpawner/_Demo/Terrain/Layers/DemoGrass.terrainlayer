@@ -8,9 +8,9 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: DemoGrass
   m_DiffuseTexture: {fileID: 2800000, guid: f00f0bf16d663754e92bc8e8c50cdd60, type: 3}
-  m_NormalMapTexture: {fileID: 0}
-  m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 2, y: 2}
+  m_NormalMapTexture: {fileID: 2800000, guid: 4387287f95253734fa097e6a5c53e13d, type: 3}
+  m_MaskMapTexture: {fileID: 2800000, guid: 2513543b2c91f7c4097d7b4a24626f63, type: 3}
+  m_TileSize: {x: 5, y: 5}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
