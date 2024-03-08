@@ -66,4 +66,9 @@ public class Player : MonoBehaviour
 
         currentStat.HealthPoint -= damage - currentStat.Defence;
     }
+
+    public void UseItem()
+    {
+        
+    }
 }

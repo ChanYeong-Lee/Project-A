@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,6 +29,11 @@ public class MainUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
+    }
+
     public void SelectMenu(MenuType menuType)
     {
         currentMenu = menuType;
@@ -35,6 +41,12 @@ public class MainUI : MonoBehaviour
         tab.SelectMenu(menuType);
         content.SelectMenu(menuType);
         navigation.SelectMenu(menuType);
+    }
+
+    private void OnDisable()
+    {
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
+
     }
 }
 

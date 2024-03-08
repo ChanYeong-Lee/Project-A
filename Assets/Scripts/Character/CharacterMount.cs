@@ -85,15 +85,19 @@ public class CharacterMount : MonoBehaviour
         if (actionCoroutine != null) return;
         
         animator.SetBool("Mount", false);
-        actionCoroutine = StartCoroutine(MountCoroutine());
+        animator.SetTrigger("DisMount");
+        actionCoroutine = StartCoroutine(DisMountCoroutine());
     }
 
     private IEnumerator MountCoroutine()
     {
         state = MountState.Mounting;
 
-        horse.transform.position = transform.position + transform.right * 5.0f;
         horse.gameObject.SetActive(true);
+        
+        horse.transform.position = transform.position + transform.forward;
+        horse.transform.rotation = transform.rotation * Quaternion.Euler(0.0f, -90.0f,0.0f);
+
 
         characterController.enabled = false;
         transform.parent = horse.MountPoint;
@@ -139,15 +143,12 @@ public class CharacterMount : MonoBehaviour
     private IEnumerator DisMountCoroutine()
     {
         state = MountState.DisMounting;
-
-    
-
         float ratio = 0.0f;
         
         Vector3 originPos = transform.position;
         Quaternion originRot = transform.rotation;
 
-        Vector3 targetPos = horse.transform.position + horse.transform.right * (-5.0f);
+        Vector3 targetPos = horse.transform.position + horse.transform.right * (-1.0f);
         Quaternion targetRot = horse.transform.rotation * Quaternion.Euler(0.0f, 90.0f, 0.0f);
 
         while (true)
@@ -160,11 +161,6 @@ public class CharacterMount : MonoBehaviour
             transform.position = Vector3.Lerp(originPos, targetPos, ratio);
             transform.rotation = Quaternion.Slerp(originRot, targetRot, ratio);
 
-            leftFootIK.data.target.position = leftFootIK.data.tip.position;
-            leftFootIK.data.hint.position = leftFootIK.data.mid.position;
-            rightFootIK.data.target.position = rightFootIK.data.tip.position;
-            rightFootIK.data.hint.position = rightFootIK.data.mid.position;
-
             mountRig.weight = 1.0f - ratio;
 
             yield return null;
@@ -174,7 +170,12 @@ public class CharacterMount : MonoBehaviour
                 break;
             }
         }
-
+        
+        leftFootIK.data.target.position = leftFootIK.data.tip.position;
+        leftFootIK.data.hint.position = leftFootIK.data.mid.position;
+        rightFootIK.data.target.position = rightFootIK.data.tip.position;
+        rightFootIK.data.hint.position = rightFootIK.data.mid.position;
+        
         move.SetMount(false);
 
         characterController.enabled = true;

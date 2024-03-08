@@ -71,7 +71,7 @@ public class UIInventory : ContentElement
             slot.Images["Icon"].sprite = slot.ItemData.Icon;
             slot.Texts["NameText"].text = $"{item.Key.ItemName}";
             slot.Texts["TypeText"].text = $"{item.Key.ItemTypeName}";
-            slot.Texts["AmountText"].text = $"{item.Value}";
+            slot.Texts["AmountText"].text = $"{inventory.GetItemCount(item.Key)}";
         }
         
         if (slots.Count == 0)
@@ -86,7 +86,7 @@ public class UIInventory : ContentElement
             return;
         
         images["IconImage"].sprite = slot.ItemData.Icon;
-        texts["AmountLabelText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.ItemData, 0)}";
+        texts["AmountLabelText"].text = $"{inventory.GetItemCount(slot.ItemData)}";
         texts["NameText"].text = $"{slot.ItemData.ItemName}";
         texts["DescriptionText"].text = $"{slot.ItemData.Description}";
         texts["TypeText"].text = $"{slot.ItemData.ItemTypeName}";

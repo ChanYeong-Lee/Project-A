@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -7,6 +8,7 @@ public class Inventory : MonoBehaviour
     private Dictionary<ItemData, int> itemDataDic = new Dictionary<ItemData, int>();
     public Dictionary<ItemData, int> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
 
+    // 아이템 사용
     public bool TryUseItem(ItemData itemData, int count = 1)
     {
         if (!itemDataDic.ContainsKey(itemData))
@@ -60,5 +62,24 @@ public class Inventory : MonoBehaviour
         {
             CraftingItem(recipeData);
         }
+    }
+
+    // 아이템 개수 가져오기
+    public int GetItemCount(ItemData itemData)
+    {
+        if (itemData == null || !itemDataDic.ContainsKey(itemData))
+            return 0;
+
+        if (itemDataDic[itemData] == -1)
+            return 999;
+
+        return itemDataDic[itemData];
+    }
+    
+    public int GetItemCount(string id)
+    {
+        var item = itemDataDic.FirstOrDefault(itemData => itemData.Key.ItemID == id);
+
+        return GetItemCount(item.Key);
     }
 }

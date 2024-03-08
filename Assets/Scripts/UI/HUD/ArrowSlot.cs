@@ -39,6 +39,7 @@ public class ArrowSlot : UIBase
         }
     }
 
+    
     public void FocusSlot(bool focus)
     {
         if (focus)

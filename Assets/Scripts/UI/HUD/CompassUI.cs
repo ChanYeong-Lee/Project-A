@@ -61,5 +61,6 @@ public class CompassUI : MonoBehaviour
 
         return angle;
     }
+    
 }
 

@@ -18,5 +18,5 @@ MonoBehaviour:
   itemType: 2
   price: 0
   description: "\uB300\uD615 \uD3EC\uC158\nhp 100 \uD68C\uBCF5"
-  icon: {fileID: 21300000, guid: daa35851de4828c459655dedb343bff1, type: 3}
+  icon: {fileID: 21300000, guid: e45baea88023dac49a7fa6355ddb576a, type: 3}
   healingPoint: 100

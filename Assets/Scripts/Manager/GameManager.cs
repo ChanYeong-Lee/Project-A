@@ -53,9 +53,10 @@ public class GameManager
     
     // Monster
     private MonsterSpawner monsterSpawner;
+    private Monster monster;
 
     public MonsterSpawner MonsterSpawner { get => monsterSpawner; set => monsterSpawner = value; }
-    
+    public Monster Monster => monster;
     
     public void Init()
     {
@@ -108,5 +109,20 @@ public class GameManager
         horse.transform.rotation = Quaternion.Euler(0, 145, 0);
 
         inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
+    }
+
+    public void EnterBossMonsterStage()
+    {
+        // TODO : 보스 몬스터 트리거 작동하면 monster에 보스 넣어주기
+        // monster =
+
+        Managers.UI.HUDUI.BossHealthBar.gameObject.SetActive(true);
+    }
+
+    public void ExitBossMonsterStage()
+    {
+        monster = null;
+        
+        Managers.UI.HUDUI.BossHealthBar.gameObject.SetActive(false);
     }
 }

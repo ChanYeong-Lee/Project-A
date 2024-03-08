@@ -82,18 +82,29 @@ public class Arrow : Item
 
         trail.enabled = true;
         float distance = Vector3.Distance(arrowHead.position, target.transform.position);
-
+        float lifeTime = 10.0f;
         while (true)
         {
+            lifeTime -= Time.deltaTime;
             if (Vector3.Distance(target.transform.position, arrowHead.position) < 1.0f)
             {
-                onShotEnd?.Invoke();    
+                onShotEnd?.Invoke();
+                target.Monster.TakeDamage(ArrowData);
                 break;
             }
 
-            if (Physics.Raycast(arrowHead.position, transform.forward, 1.0f))
+            if (Physics.Raycast(arrowHead.position, transform.forward, out RaycastHit hit, 1.0f))
             {
                 onShotEnd?.Invoke();
+                if (hit.collider.TryGetComponent(out AttackPoint attackPoint))
+                {
+                    attackPoint.Monster.TakeDamage(ArrowData);
+                }
+                break;
+            }
+
+            if (lifeTime < 0.0f)
+            {
                 break;
             }
 
@@ -105,13 +116,6 @@ public class Arrow : Item
             yield return null;
         }
 
-        target.Monster.TakeDamage(ArrowData);
-        Managers.Pool.Push(gameObject);
-    }
- 
-    private void OnCollisionEnter(Collision collision)
-    {
-        onShotEnd?.Invoke();
         Managers.Pool.Push(gameObject);
     }
 }

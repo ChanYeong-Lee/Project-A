@@ -47,4 +47,5 @@ public class AimUI : UIBase
     {
         this.chargedAmount = chargedAmount;
     }
+    
 }
