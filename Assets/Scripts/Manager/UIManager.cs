@@ -44,7 +44,7 @@ public class UIManager
         {
             GameObject go = GameObject.Find("MainCanvas");
             mainCanvas = go == null ? Managers.Resource.Instantiate("Prefabs/UI/MainCanvas") : go;
-            mainUI = hudCanvas.GetComponentInChildren<MainUI>(true);
+            mainUI = mainCanvas.GetComponentInChildren<MainUI>(true);
         }
     }
 

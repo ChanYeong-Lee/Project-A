@@ -5,7 +5,11 @@ using QuestState = Define.QuestState;
 
 public class QuestManager : MonoBehaviour
 {
-    private Dictionary<string, Quest> questDic = new();
+    public static QuestManager Instance { get; private set; }
+
+    public Dictionary<string, Quest> questDic = new();
+
+    public Dictionary<string, Quest> QuestDic { get => questDic; set => questDic = value; }
 
     private int currentPlayerLevel = 1;
 
@@ -15,11 +19,27 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         questDic = CreateQuestDic();
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one Game Events Manager in the scene.");
+        }
+        Instance = this;
 
     }
 
-    private void OnEnable()
+    private void Start()
     {
+        //Broadcast the initial state of all quests on startup
+        foreach (Quest quest in questDic.Values)
+        {
+            //initialize any loaded quest steps
+            if (quest.state == QuestState.InProgress)
+            {
+                quest.InstantiateCurrentQuestStep(this.transform);
+            }
+            // broadcast the initial state of all quest on startup
+            GameEventsManager.Instance.questEvents.QuestStateChange(quest);
+        }
         GameEventsManager.Instance.questEvents.onStartQuest += StartQuest;
         GameEventsManager.Instance.questEvents.onAdvanceQuestStep += AdvanceQuest;
         GameEventsManager.Instance.questEvents.onCompleteQuest += CompleteQuest;
@@ -28,6 +48,10 @@ public class QuestManager : MonoBehaviour
 
         //TODO: player level changed method and then add
         GameEventsManager.Instance.playerEvents.onPlayerLevelChanged += PlayerLevelChanged;
+    }
+    private void OnEnable()
+    {
+
     }
 
     private void OnDisable()
@@ -39,21 +63,6 @@ public class QuestManager : MonoBehaviour
         GameEventsManager.Instance.questEvents.onQuestStepStateChange -= QuestStepStateChange;
 
         GameEventsManager.Instance.playerEvents.onPlayerLevelChanged -= PlayerLevelChanged;
-    }
-
-    private void Start()
-    {
-        //Broadcast the initial state of all quests on startup
-        foreach(Quest quest in questDic.Values)
-        {
-            //initialize any loaded quest steps
-            if(quest.state == QuestState.InProgress)
-            {
-                quest.InstantiateCurrentQuestStep(this.transform);
-            }
-            // broadcast the initial state of all quest on startup
-            GameEventsManager.Instance.questEvents.QuestStateChange(quest);
-        }
     }
 
     private void Update()
@@ -82,7 +91,7 @@ public class QuestManager : MonoBehaviour
             //    Debug.Log($"StepState : {stepState.state}");
             //}
         }
-       
+
     }
 
     private Dictionary<string, Quest> CreateQuestDic()
@@ -98,6 +107,7 @@ public class QuestManager : MonoBehaviour
                 Debug.LogWarning("Duplicate ID found when creating quest map: " + questInfoSo.id);
             }
             idToQuestDic.Add(questInfoSo.id, LoadQuest(questInfoSo));
+
             Debug.Log($"Quest : {questInfoSo.questName} Added in Dictionary Successfully");
         }
         return idToQuestDic;
@@ -112,9 +122,9 @@ public class QuestManager : MonoBehaviour
         }
 
         //Check quest any other prerequisites for completion
-        foreach(QuestInfoSo qiSO in quest.questInfo.questPrerequisites)
+        foreach (QuestInfoSo qiSO in quest.questInfo.questPrerequisites)
         {
-            if (GetQuestByID(qiSO.id).state != Define.QuestState.Finished)
+            if (GetQuestByID(qiSO.id).state != QuestState.Finished)
             {
                 meetsRequirement = false;
             }
@@ -171,14 +181,14 @@ public class QuestManager : MonoBehaviour
         {
             ChangeQuestState(quest.questInfo.id, QuestState.CanFinish);
         }
-       
+
     }
     private void CompleteQuest(string id)
     {
         Quest quest = GetQuestByID(id);
         ClaimRewards(quest);
         ChangeQuestState(quest.questInfo.id, QuestState.Finished);
-       
+
     }
 
     private void ClaimRewards(Quest quest)

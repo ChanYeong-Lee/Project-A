@@ -23,22 +23,16 @@ public class QuestPoint : MonoBehaviour
     {
         questId = questForPoint.id;
 
-        //start¿¡¼­ ÇÏ¸é µÇ°í enable¿¡¼­ÇÏ¸é null¶ä.... ÇÏ....~~
-        Debug.Log($"°×¸Þ : {GameEventsManager.Instance}");
-        Debug.Log($"ÄùÀÌ : {GameEventsManager.Instance.questEvents}");
-        Debug.Log($"Äù¾Æ :{questId}");
-        Debug.Log($"ÄùÆú¾Æ : {questForPoint}");
+
         GameEventsManager.Instance.questEvents.onQuestStateChange += QuestStateChange;
-        GameEventsManager.Instance.inputEvents.onSubmitPressed += SubmitPressed;
     }
     private void OnEnable()
     {
-        
+
     }
     private void OnDisable()
     {
         GameEventsManager.Instance.questEvents.onQuestStateChange -= QuestStateChange;
-        GameEventsManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +40,9 @@ public class QuestPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsNear = true;
-      
+            SubmitPressed();
+
+
         }
     }
 

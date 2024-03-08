@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1087553621361340374}
   - component: {fileID: 3070682074895829897}
   - component: {fileID: 90676074720145662}
-  - component: {fileID: 4381426103840505514}
+  - component: {fileID: 3801434600298980479}
   m_Layer: 5
   m_Name: QuestSlot
   m_TagString: Untagged
@@ -186,10 +186,10 @@ RectTransform:
   - {fileID: 27182342207861885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 138.67477}
+  m_SizeDelta: {x: 0, y: -277.3495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3070682074895829897
 CanvasRenderer:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4381426103840505514
+--- !u!114 &3801434600298980479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2447721906552805699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebe507c7e367cb4497810b000c80247, type: 3}
+  m_Script: {fileID: 11500000, guid: 602d03deae354dd58f72c6d4878286f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4646077719258412170
