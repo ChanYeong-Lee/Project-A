@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace MerchantController
 {
     public class IdleState : MerchantState
     {
+
+       
+        
         float waitDelay = 2.5f;
         float literalDelay = 2.5f;
         public IdleState(Creature owner) : base(owner) { }
@@ -18,6 +22,7 @@ namespace MerchantController
             Debug.Log("IdleState Enter");
             Owner.state = State.Idle;
             Owner.DisableAgentMovement();
+           
         }
 
         public override void Update()
@@ -87,6 +92,9 @@ namespace MerchantController
         }
         public void CheckProximityAndChangeState()
         {
+            if (!Managers.Game.Player.GetComponent<CharacterInteraction>().Interaction)
+                return;
+            
             float distance = Vector3.Distance(Owner.transform.position, Owner.target.transform.position);
             if (distance <= 2.5f)
             {
@@ -94,6 +102,7 @@ namespace MerchantController
             }
         }
 
+        
 
     }
 }

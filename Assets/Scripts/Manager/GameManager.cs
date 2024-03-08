@@ -125,4 +125,10 @@ public class GameManager
         
         Managers.UI.HUDUI.BossHealthBar.gameObject.SetActive(false);
     }
+
+    public void GameOver()
+    {
+        Managers.UI.HUDUI.GameOverUI.SetActive(true);
+        Managers.Game.IsPause = true;
+    }
 }

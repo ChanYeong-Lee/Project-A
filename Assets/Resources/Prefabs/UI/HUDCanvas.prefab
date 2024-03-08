@@ -389,7 +389,7 @@ MonoBehaviour:
   aimUI: {fileID: 2090367373468309062}
   itemPanel: {fileID: 1529083485896613141}
   healthBar: {fileID: 6637203526438862938}
-  bossHelathBar: {fileID: 3220790683522232917}
+  bossHealthBar: {fileID: 0}
   compass: {fileID: 8384744874542927786}
   gameOverUI: {fileID: 1967917955971800130}
   arrowSelector: {fileID: 509522145368710121}
@@ -8029,7 +8029,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2047
 --- !u!1 &8815917841661564137
 GameObject:
   m_ObjectHideFlags: 0

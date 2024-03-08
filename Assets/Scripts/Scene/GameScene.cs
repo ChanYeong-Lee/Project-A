@@ -15,6 +15,6 @@ public class GameScene : MonoBehaviour
 
     private void Update()
     {
-        Managers.Game.GameSpeed = gameSpeed;
+        // Managers.Game.GameSpeed = gameSpeed;
     }
 }

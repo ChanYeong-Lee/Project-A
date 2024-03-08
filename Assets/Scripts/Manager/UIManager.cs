@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UIManager
 {
-    private bool uiOpen;
-    public bool UIOpen => uiOpen;
+    private bool isOpenedUI;
+    public bool IsOpenedUI => isOpenedUI;
     
     private GameObject hudCanvas;
     private GameObject mainCanvas;
@@ -51,10 +51,12 @@ public class UIManager
     public void OpenMainUI()
     {
         mainUI.gameObject.SetActive(true);
+        isOpenedUI = true;
     }
 
     public void CloseMainUI()
     {
         mainUI.gameObject.SetActive(false);
+        isOpenedUI = false;
     }
 }

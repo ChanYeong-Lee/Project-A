@@ -21,6 +21,9 @@ public class UIQuestMenu : ContentElement
     {
         UpdateQuestMenu();
         GameEventsManager.Instance.questEvents.onQuestStateChange += QuestStateChange;
+    
+        selectedSlot = content.transform.GetComponentInChildren<UISlot>();
+        selectedSlot.ChangeAlpha(1f);
     }
 
     private void OnDisable()
@@ -40,11 +43,11 @@ public class UIQuestMenu : ContentElement
 
     private void CreateQuestSlot()
     {
-        foreach (UISlot slot in slots)
-        {
+        foreach (UISlot slot in slots) 
             Managers.Pool.Push(slot.gameObject);
-        }
+        
         slots.Clear();
+        
         int i = 0;
         foreach (Quest quest in QuestManager.Instance.QuestDic.Values)
         {
@@ -55,8 +58,6 @@ public class UIQuestMenu : ContentElement
             slots.Add(slot);
             UpdateSlot(slot, quest);
         }
-
-        selectedSlot = content.transform.GetComponentInChildren<UISlot>();
     }
     public void UpdateSlot(UISlot slot, Quest quest)
     {
