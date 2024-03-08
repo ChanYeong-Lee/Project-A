@@ -38,7 +38,12 @@ public class CharacterInteraction : MonoBehaviour
 
         if (Managers.Input.eKey)
         {
+            interaction = true;
             Farming();
+        }
+        else
+        {
+            interaction = false;
         }
 
         if (Input.GetKeyUp(KeyCode.F))
@@ -53,7 +58,7 @@ public class CharacterInteraction : MonoBehaviour
         }
     }
 
-    private void Farming()
+    public void Farming()
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
         int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);

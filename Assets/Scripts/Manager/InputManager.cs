@@ -1,15 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-// This script acts as a proxy for the PlayerInput component
-// such that the input events the game needs to proces will 
-// be sent through the GameEventManager. This lets any other
-// script in the project easily subscribe to an input action
-// without having to deal with the PlayerInput component directly.
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
+    private StarterAssets input;
+    
     public Vector2 move;
     public Vector2 look;
     public Vector2 mousePos;
@@ -18,6 +15,7 @@ public class InputManager : MonoBehaviour
     public bool leftClick;
     public bool rightClick;
     public bool hKey;
+    
     public bool eKey;
     public bool iKey;
     public bool cKey;
@@ -27,6 +25,16 @@ public class InputManager : MonoBehaviour
     public bool tab;
     public bool esc;
 
+    private void Awake()
+    {
+        input = new StarterAssets();
+        input.Player.EKey.started += _ => Managers.Game.Player.GetComponent<CharacterInteraction>().Farming();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
 
     private void Update()
     {
@@ -76,8 +84,6 @@ public class InputManager : MonoBehaviour
     public void OnEKey(InputValue value)
     {
         eKey = value.isPressed;
-        
-        
     }
     
     public void OnIKey(InputValue value)
@@ -193,5 +199,6 @@ public class InputManager : MonoBehaviour
     {
         tab = value.isPressed;
         print(value.isPressed);
+        // Managers.UI.MainUI.SelectMenu((Managers.UI.MainUI.CurrentMenu + 1) / M);
     }
 }
