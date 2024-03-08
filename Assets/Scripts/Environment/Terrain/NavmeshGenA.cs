@@ -12,21 +12,20 @@ IF THIS IS STILL TO SLOW:
 
 */
 
+
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 /** If this script seems to take forever, CHECK THE LAYERS YOUR NAV AGENT IS USING and filter out all the crap you don't need */
 [RequireComponent(typeof(NavMeshSurface))]
 public class NavMeshGenA : MonoBehaviour
 
 {
-    public Button button;
-
     Terrain terrain;
     TerrainData terrainData;
     Vector3 terrainPos;
@@ -46,7 +45,8 @@ public class NavMeshGenA : MonoBehaviour
     {
     }
 
-    public void GenMeshes()
+    [Button("Generate NavAreas")]
+    void GenMeshes()
     {
         terrain = GetComponent<Terrain>();
         terrainData = terrain.terrainData;
@@ -141,7 +141,7 @@ public class NavMeshGenA : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError(e.ToString());
+
                 }
             }
         }
