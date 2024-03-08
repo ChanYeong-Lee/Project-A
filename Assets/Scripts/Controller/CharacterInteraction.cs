@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterFarming : MonoBehaviour
+public class CharacterInteraction : MonoBehaviour
 {
     [SerializeField] private LayerMask gatheringLayerMask; 
     [SerializeField] private GameObject scannerPrefab;
@@ -14,6 +14,9 @@ public class CharacterFarming : MonoBehaviour
     private float farmingTime = 0;
     private float durationTime = 10;
     private float scannerSize = 500;
+    private bool interaction;
+
+    public bool Interaction => interaction;
 
     private void Awake()
     {
@@ -29,11 +32,18 @@ public class CharacterFarming : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F))
         {
+            interaction = true;
+            Farming();
+        }
+
+        if (Managers.Input.eKey)
+        {
             Farming();
         }
 
         if (Input.GetKeyUp(KeyCode.F))
         {
+            interaction = false;
             farmingTime = 0;
         }
 
@@ -47,7 +57,7 @@ public class CharacterFarming : MonoBehaviour
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
         int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
-
+        
         for (int i = 0; i < detectCount; i++)
         {
             Collider other = detectedColliders[i];

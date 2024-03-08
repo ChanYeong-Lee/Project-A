@@ -22,7 +22,7 @@ public class AnimationHelper
     {
         while (0.25f < Vector2.Distance(rect.position, target))
         {
-            rect.position = Vector2.Lerp(rect.position, target, velocity * Time.deltaTime);
+            rect.position = Vector2.Lerp(rect.position, target, velocity * Time.unscaledDeltaTime);
             yield return null;
         }
 

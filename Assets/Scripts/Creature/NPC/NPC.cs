@@ -8,6 +8,7 @@ public abstract class NPC : Creature
 {
     protected NPCData npcData;
     public GameObject target;
+    
 
     public override void Init()
     {

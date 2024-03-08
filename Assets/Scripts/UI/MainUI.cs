@@ -21,6 +21,8 @@ public class MainUI : MonoBehaviour
 
     private MenuType currentMenu;
 
+    public MenuType CurrentMenu => currentMenu;
+
     private void Start()
     {
         foreach (TabElement element in tab.Tabs)
@@ -34,6 +36,16 @@ public class MainUI : MonoBehaviour
         Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
         Managers.Game.IsPause = true;
     }
+
+    public void OpenMainUI(MenuType menuType)
+    {
+        currentMenu = menuType;
+        
+        tab.OpenMenu(menuType);
+        content.SelectMenu(menuType);
+        navigation.SelectMenu(menuType);
+    }
+    
 
     public void SelectMenu(MenuType menuType)
     {

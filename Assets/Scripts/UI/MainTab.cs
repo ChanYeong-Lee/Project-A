@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,14 @@ public class MainTab : MonoBehaviour
     private Coroutine IndicatorAnimationCoroutine;
 
     public List<TabElement> Tabs => tabs;
+
+    public void OpenMenu(MenuType menuType)
+    {
+        TabElement tab = tabs.Find((element) => element.Type == menuType);
+        if (tab == null) return;
+
+        indicator.position = tab.Rect.position + offset;
+    }
 
     public void SelectMenu(MenuType menuType)
     {
