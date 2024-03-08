@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UISlot : UIBase, IPointerClickHandler
 {
@@ -28,18 +29,39 @@ public class UISlot : UIBase, IPointerClickHandler
     {
         switch (slotType)
         {
-            case SlotType.InventoryMenu:
-                transform.GetComponentInParent<UIInventory>().SelectSlot = this;
+            case SlotType.InventoryMenu: 
+                transform.GetComponentInParent<UIInventory>().SelectedSlot.ChangeAlpha(0.2f);
+                transform.GetComponentInParent<UIInventory>().SelectedSlot = this;
+                ChangeAlpha(1f);
                 break;
             case SlotType.CraftMenu:
-                transform.GetComponentInParent<UICraftMenu>().SelectSlot = this;
+                transform.GetComponentInParent<UICraftMenu>().SelectedSlot.ChangeAlpha(0.2f);
+                transform.GetComponentInParent<UICraftMenu>().SelectedSlot = this;
                 break;
             case SlotType.QuestMenu:
+                transform.GetComponentInParent<UIQuestMenu>().SelectedSlot.ChangeAlpha(0.2f);
                 transform.GetComponentInParent<UIQuestMenu>().SelectedSlot = this;
                 break;
         }
+        
+        ChangeAlpha(1f);
+    }
+    
+    public void ChangeAlpha(float alpha)
+    {
+        Color color = GetComponent<Image>().color;
+        color = ColorHelper.SetColorAlpha(color, alpha);
+        
+        GetComponent<Image>().color = color;
+    }
+
+    private void OnDisable()
+    {
+        ChangeAlpha(0.2f);
     }
 }
+
+
 
 public enum SlotType
 {

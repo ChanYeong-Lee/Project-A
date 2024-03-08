@@ -32,6 +32,7 @@ public class MainUI : MonoBehaviour
     private void OnEnable()
     {
         Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
+        Managers.Game.IsPause = true;
     }
 
     public void SelectMenu(MenuType menuType)
@@ -46,7 +47,7 @@ public class MainUI : MonoBehaviour
     private void OnDisable()
     {
         Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
-
+        Managers.Game.IsPause = false;
     }
 }
 

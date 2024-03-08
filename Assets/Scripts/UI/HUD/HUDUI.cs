@@ -17,6 +17,7 @@ public class HUDUI : MonoBehaviour
     public AimUI AimUI => aimUI;
     public ArrowPanel ArrowPanel => arrowPanel;
     public HealthBar BossHealthBar => bossHealthBar;
+    public GameObject GameOverUI => gameOverUI;
 
     public void TurnOnArrowSelector()
     {

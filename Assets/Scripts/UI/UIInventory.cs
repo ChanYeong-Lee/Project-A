@@ -16,13 +16,13 @@ public class UIInventory : ContentElement
     private UISlot selectedSlot;
     private UISlot focusedSlot;
 
-    public UISlot SelectSlot { get => selectedSlot; set => selectedSlot = value; }
+    public UISlot SelectedSlot { get => selectedSlot; set => selectedSlot = value; }
 
     protected override void Awake()
     {
         base.Awake();
         
-        if (inventory == null) 
+        if (inventory == null)
             inventory = Managers.Game.Inventory;
         
         BindButtons();
@@ -78,6 +78,7 @@ public class UIInventory : ContentElement
             return;
         
         selectedSlot = content.transform.GetComponentInChildren<UISlot>();
+        selectedSlot.ChangeAlpha(1f);
     }
 
     private void UpdateItemInfo(UISlot slot)

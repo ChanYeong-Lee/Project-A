@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         if (currentStat.HealthPoint <= 0)
         {
             // 플레이어 사망 처리
+            Managers.Game.GameOver();
         }
 
         currentStat.HealthPoint -= damage - currentStat.Defence;

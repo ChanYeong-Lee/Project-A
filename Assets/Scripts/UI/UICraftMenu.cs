@@ -27,7 +27,7 @@ public class UICraftMenu : ContentElement
     private UISlot prevSelectedSlot;
     private int currentCraftAmount;
     
-    public UISlot SelectSlot { get => selectedSlot; set => selectedSlot = value; }
+    public UISlot SelectedSlot { get => selectedSlot; set => selectedSlot = value; }
 
     protected override void Awake()
     {
@@ -109,6 +109,7 @@ public class UICraftMenu : ContentElement
         }
         
         selectedSlot = content.transform.GetComponentInChildren<UISlot>();
+        selectedSlot.ChangeAlpha(1f);
     }
     
     // 제작 아이템 슬롯 업데이트 메소드

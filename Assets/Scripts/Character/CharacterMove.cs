@@ -76,6 +76,8 @@ public class CharacterMove : MonoBehaviour
     public bool IsMount => isMount;
     public bool IsAim => isAim;
 
+    public bool LockCameraPosition { get => lockCameraPosition; set => lockCameraPosition = value; }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
