@@ -47,6 +47,7 @@ public class Managers : MonoBehaviour
     private ResourceManager resource = new ResourceManager();
     private UIManager ui = new UIManager();
     private DataManager data = new DataManager();
+    private SoundManager sound = new SoundManager();
     private InputManager input;
     private CursorManager cursor;
 
@@ -56,6 +57,7 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource => Instance?.resource;
     public static UIManager UI => Instance?.ui;
     public static DataManager Data => Instance?.data;
+    public static SoundManager Sound => Instance?.sound;
     public static InputManager Input => Instance?.input;
     public static CursorManager Cursor => Instance?.cursor;
 

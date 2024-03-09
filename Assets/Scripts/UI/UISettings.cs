@@ -17,4 +17,6 @@ public class UISettings : ContentElement
         });
         buttons["Exit"].onClick.AddListener(() => Managers.Game.ExitGame());
     }
+    
+    // TODO : 사운드 설정 받기
 }
