@@ -17,6 +17,7 @@ public class GameScene : MonoBehaviour
         Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
         Managers.Game.PlayerSettings();
         Managers.Game.IsPause = false;
+        Managers.Input.Input.Enable();
     }
 
     private void Update()

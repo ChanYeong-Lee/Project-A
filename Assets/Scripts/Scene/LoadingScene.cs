@@ -7,5 +7,6 @@ public class LoadingScene : MonoBehaviour
     {
         Managers.UI.CreateLoadingUI();
         StartCoroutine(Managers.Scene.LoadSceneAsync(Define.SceneType.GameScene));
+        Managers.Input.Input.Disable();
     }
 }

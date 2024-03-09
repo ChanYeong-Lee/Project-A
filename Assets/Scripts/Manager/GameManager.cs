@@ -51,7 +51,6 @@ public class GameManager
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public GameObject Horse { get => horse; set => horse = value; }
     public CameraController Cam { get => cam; set => cam = value; }
-    public Material FullScreenHP { get => fullScreenHP; set => fullScreenHP = value; }
     
     // Monster
     private MonsterSpawner monsterSpawner;
@@ -64,7 +63,6 @@ public class GameManager
     {
         CreatePlayer();
         CreateMonster();
-        fullScreenHP = Managers.Resource.Load<Material>("Shaders/FullScreenHP");
         ChangeFullScreen(100);
     }
     
@@ -117,6 +115,9 @@ public class GameManager
 
     public void ChangeFullScreen(float value)
     {
+        if (fullScreenHP == null) 
+            fullScreenHP = Managers.Resource.Load<Material>("Shaders/FullScreenHP");
+        
         fullScreenHP.SetFloat("_VignettePower", value);
     }
     

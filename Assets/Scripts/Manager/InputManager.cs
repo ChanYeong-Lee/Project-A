@@ -21,7 +21,8 @@ public class InputManager : MonoBehaviour
     private bool isInteracting;
     private float moveUI;
     private float sortingMoveUI;
-    
+
+    public StarterAssets Input => input;
     public bool IsInteracting => isInteracting;
     public float MoveUI => moveUI;
     public float SortingMoveUI => sortingMoveUI;
@@ -181,14 +182,6 @@ public class InputManager : MonoBehaviour
         input.Player.Tab.Enable();
         input.Player.UIMove.Enable();
         input.Player.UISortingMove.Enable();
-
-        input.Player.Move.Disable();
-        input.Player.Look.Disable();
-        input.Player.Jump.Disable();
-        input.Player.Sprint.Disable();
-        input.Player.LeftClick.Disable();
-        input.Player.RightClick.Disable();
-        input.Player.HKey.Disable();
     }
 
     public void CloseUI()
@@ -196,14 +189,6 @@ public class InputManager : MonoBehaviour
         input.Player.Tab.Disable();
         input.Player.UIMove.Disable();
         input.Player.UISortingMove.Disable();
-
-        input.Player.Move.Enable();
-        input.Player.Look.Enable();
-        input.Player.Jump.Enable();
-        input.Player.Sprint.Enable();
-        input.Player.LeftClick.Enable();
-        input.Player.RightClick.Enable();
-        input.Player.HKey.Enable();
     }
     
     #region MyRegion
