@@ -11,12 +11,10 @@ namespace BearController
 
         public override void Enter()
         {
-            StopMove();
         }
 
         public override void Update() 
         {
-            Debug.Log(rushCooldown);
         }
 
         public override void Exit() { }

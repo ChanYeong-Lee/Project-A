@@ -13,9 +13,14 @@ public class TestNavMeshBuilder : MonoBehaviour
         surface = GetComponent<NavMeshSurface>();
     }
 
+    private void Start()
+    {
+        surface.BuildNavMesh();
+    }
+
     private void Update()
     {
-        if (50.0f < Vector3.Distance(transform.position, target.position))
+        if (100.0f < Vector3.Distance(transform.position, target.position))
         {
             transform.position = target.position;
             surface.BuildNavMesh();

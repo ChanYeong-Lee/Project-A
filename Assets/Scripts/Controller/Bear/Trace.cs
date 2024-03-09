@@ -11,16 +11,14 @@ namespace BearController
         {
             bear.state = State.Trace;
 
-            StartMove();
             velocity = 2.0f;
-            ChangeDirectMode(DirectMode.FastDirection);
+            ChangeDirectMode(DirectMode.Manual);
         }
 
         public override void Update()
         {
             base.Update();
             SetMoveTargetPos(target.position);
-            Debug.Log($"Trace = rush : {rushCooldown}");
 
             // 거리에 따른 속도값 조절 필요
             //if (distanceToTarget > bear.Data.AttackRange)
@@ -41,10 +39,6 @@ namespace BearController
         {
             //if (distanceToTarget < bear.Data.AttackRange && attackCooldown < 0) 
             //    ChangeState(State.Attack);
-            if (rushCooldown < 0.0f)
-            {
-                ChangeState(State.Rush);
-            }
         }
     }
 }

@@ -7,17 +7,6 @@ using UnityEngine.AI;
 using UnityEngine.Serialization;
 using State = Define.BearState;
 
-
-
-[Serializable]
-public class CoolDown
-{
-    public State state;
-    public float cooldown;
-    public float cooldownDelta;
-}
-
-
 public class Bear : Monster
 {
     [SerializeField] private Transform eyes;
@@ -28,9 +17,10 @@ public class Bear : Monster
     [SerializeField] private AnimationCurve downwardCurve;
     [SerializeField] private float faceCheck = 0.0f;
 
-    [SerializeField] private List<CoolDown> cools;
+    [SerializeField] private List<State> stateTable;
+    [SerializeField] [Range(-1.0f, 3.0f)] private float velocity;
 
-    private Transform moveTarget;
+    [SerializeField] private Transform moveTarget;
 
     private NavMeshAgent agent;
 
@@ -42,6 +32,7 @@ public class Bear : Monster
     public float slopeAngle;
     public float angleToTarget;
     public float traceAngle;
+    public float Velocity => velocity;
 
     public NavMeshAgent Agent => agent;
     public Transform Eyes => eyes;
@@ -52,7 +43,7 @@ public class Bear : Monster
     public int ReceivedDamage => receivedDamage;
     public float FaceCheck => faceCheck;
     public Transform MoveTarget => moveTarget;
-
+    public List<State> StateTable => stateTable;
     private void OnValidate()
     {
         if (agent == null)
@@ -66,11 +57,14 @@ public class Bear : Monster
         base.Init();
 
         agent = GetComponent<NavMeshAgent>();
-        moveTarget = new GameObject("MoveTarget").transform;
+        agent.updateUpAxis = false;
+
+        //moveTarget = new GameObject("MoveTarget").transform;
 
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Rush, new RushState(this));
+        stateMachine.AddState(State.Prowl, new ProwlState(this));
         
         stateMachine.InitState(State.Idle);
     }

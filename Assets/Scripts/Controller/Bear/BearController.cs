@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using MonsterController;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -12,8 +13,8 @@ namespace BearController
     {
         protected enum DirectMode
         {
-            FastDirection,
-            KeepMoving,
+            Auto,
+            Manual,
         }
 
         protected DirectMode directMode;
@@ -24,13 +25,19 @@ namespace BearController
         protected bool isChangedState;
 
         protected float attackCooldown = 3.0f;
-        protected float rushCooldown = 10.0f;
-        protected float roarCooldown = 200.0f;
         
         protected float velocity;
+        protected float angularVelocity;
+
+        protected float horizontal;
+        protected float vertical;
+
         protected int idInt;
 
-        protected float distanceToTarget;
+        protected float distToMoveTarget;
+        protected float distToTarget;
+
+        protected float angleToMoveTarget;
         protected float angleToTarget;
 
         protected float moreSpeed = 1.0f;
@@ -41,54 +48,37 @@ namespace BearController
 
         public override void Update()
         {
-            attackCooldown -= Time.deltaTime;
-            rushCooldown -= Time.deltaTime;
-            roarCooldown -= Time.deltaTime;
-
-            bear.angleToTarget = angleToTarget;
+            bear.angleToTarget = angleToMoveTarget;
 
             Move();
 
+            distToMoveTarget = Vector3.Distance(bear.MoveTarget.position, bear.transform.position);
+            angleToMoveTarget = Vector3.SignedAngle(bear.transform.forward, bear.MoveTarget.position - bear.transform.position, Vector3.up);
+
             if (target != null)
             {
-                distanceToTarget = Vector3.Distance(bear.MoveTarget.position, bear.transform.position);
-                angleToTarget = Vector3.SignedAngle(bear.transform.forward, bear.MoveTarget.position - bear.transform.position, Vector3.up);
-            }
-            else
-            {
-                distanceToTarget = bear.Data.TrackingDistance * 2;
+                distToTarget = Vector3.Distance(target.position, bear.transform.position);
+                angleToTarget = Vector3.SignedAngle(target.forward, bear.MoveTarget.position - bear.transform.position, Vector3.up);
             }
         }
 
         public override void FixedUpdate()
         {
-            if (bear.state == State.Idle)
-                return;
+            Vector3 origin = bear.transform.position;
 
-            if (Physics.Raycast(bear.Body.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity))
+            int groundLayerIndex = LayerMask.NameToLayer("Ground");
+            int layerMask = (1 << groundLayerIndex);
+
+            RaycastHit slopeHit;
+
+            if (Physics.Raycast(origin + Vector3.up, Vector3.down, out slopeHit, 100.0f, layerMask))
             {
-                Vector3 normal = hit.normal;
+                Debug.DrawLine(origin + Vector3.up, slopeHit.point, Color.red);
 
-                var angle = Vector3.SignedAngle(bear.Body.transform.forward, normal, bear.Body.transform.right) + 90;
+                Quaternion targetRot = Quaternion.FromToRotation(bear.transform.up, slopeHit.normal) * bear.transform.rotation;
 
-                bear.slopeAngle = angle;
-                bear.transform.localRotation = Quaternion.Slerp(bear.transform.localRotation,
-                    Quaternion.Euler(angle, bear.transform.eulerAngles.y, 0), Time.fixedDeltaTime);
+                bear.transform.rotation = Quaternion.Lerp(bear.transform.rotation, targetRot, Time.deltaTime * 10.0f);
             }
-
-        }
-
-
-        // 움직임 멈춤 Enter에서 쓰세요
-        protected void StopMove()
-        {
-            bear.Agent.isStopped = true;
-        }
-
-        // 움직임 시작 Enter에서 쓰세요
-        protected void StartMove()
-        {
-            bear.Agent.isStopped = false;
         }
 
         // 움직임 모드 Enter에서 쓰세요
@@ -103,14 +93,12 @@ namespace BearController
         protected void SetMoveTargetPos(Vector3 pos)
         {
             bear.MoveTarget.position = pos;
+            bear.Agent.SetDestination(bear.MoveTarget.position);
         }
-
 
         // MoveTarget으로 움직임 (Update에서 실행 중)
         private void Move()
         {
-            bear.Agent.destination = bear.MoveTarget.position;
-
             if (bear.Agent.hasPath)
             {
                 if (bear.Agent.isOnOffMeshLink)
@@ -130,20 +118,30 @@ namespace BearController
                     Vector3 animDir = bear.transform.InverseTransformDirection(dir);
                     bool isFacingMoveDirection = bear.FaceCheck < Vector3.Dot(dir, bear.transform.forward);
 
-                    bear.Anim.SetFloat("Horizontal", animDir.x * 2.0f, 0.25f, Time.deltaTime);
 
+                    float temphorizontal = Mathf.Atan2(animDir.x, animDir.z) / Mathf.PI * 2.0f;
+                    horizontal = animDir.x * 2.0f;
+
+                    Debug.Log($"temp = {temphorizontal}, horizontal = {horizontal}");
+                    vertical = isFacingMoveDirection ? animDir.z * velocity : 0.0f;
+                    
                     switch (directMode)
                     {
-                        case DirectMode.FastDirection:
-                            bear.Anim.SetFloat("Vertical", isFacingMoveDirection ? animDir.z * velocity : 0.0f, 0.25f, Time.deltaTime);
+                        case DirectMode.Auto:
+                            bear.Anim.SetFloat("Vertical", vertical, 0.25f, Time.deltaTime);
+                            bear.Anim.SetFloat("Horizontal", horizontal, 0.25f, Time.deltaTime);
                             break;
-                        case DirectMode.KeepMoving:
+                        case DirectMode.Manual:
                             bear.Anim.SetFloat("Vertical", velocity, 0.25f, Time.deltaTime);
+                            bear.Anim.SetFloat("Horizontal", angularVelocity, 0.25f, Time.deltaTime);
                             break;
                     }
                     
-
-                    if (Vector3.Distance(bear.transform.position, bear.Agent.destination) < bear.Agent.radius)
+                    //if (Vector3.Distance(bear.transform.position, bear.Agent.destination) < bear.Agent.radius)
+                    //{
+                    //    bear.Agent.ResetPath();
+                    //}
+                    if (bear.Agent.remainingDistance < 5.0f)
                     {
                         bear.Agent.ResetPath();
                     }
