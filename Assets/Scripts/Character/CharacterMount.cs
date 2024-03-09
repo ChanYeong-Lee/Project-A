@@ -85,7 +85,7 @@ public class CharacterMount : MonoBehaviour
         if (actionCoroutine != null) return;
         
         animator.SetBool("Mount", false);
-        animator.SetTrigger("DisMount");
+        animator.SetTrigger("Dismount");
         actionCoroutine = StartCoroutine(DisMountCoroutine());
     }
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LoadingUI : UIBase
 {
-    public float loadingAmount;
-    
+    private float loadingAmount;
+    public float LoadingAmount { get => loadingAmount; set => loadingAmount = value; }
+
     protected override void Awake()
     {
         base.Awake();

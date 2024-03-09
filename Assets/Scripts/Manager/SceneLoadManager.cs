@@ -23,7 +23,7 @@ public class SceneLoadManager
         {
             // 로딩 상태를 표시할 수도 있음 (예: 로딩 바 갱신)
             float progress = Mathf.Clamp01(operation.progress / 0.9f); // 로딩 완료가 0.9로 간주
-            Managers.UI.LoadingUI.loadingAmount = progress;
+            Managers.UI.LoadingUI.LoadingAmount = progress;
             Debug.Log($"{progress}");
             // 로딩이 완료될 때까지 대기
             yield return null;

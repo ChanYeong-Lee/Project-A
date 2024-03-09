@@ -174,7 +174,7 @@ public class CharacterMove : MonoBehaviour
 
         Vector3 inputDirection = new Vector3(Managers.Input.move.x, 0.0f, Managers.Input.move.y).normalized;
 
-        if (Managers.Input.move != Vector2.zero)
+        if (Managers.Input.move != Vector2.zero && !Managers.UI.IsOpenedUI)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);

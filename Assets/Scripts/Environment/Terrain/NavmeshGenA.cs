@@ -141,11 +141,11 @@ public class NavMeshGenA : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-
+                    // ignored
                 }
             }
         }
-    escape:
+        escape:
         //
         if (includeTrees)
         {
