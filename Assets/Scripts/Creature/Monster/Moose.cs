@@ -44,7 +44,7 @@ public class Moose : Monster
         return base.Farming(out farmingType);
     }
 
-    public override void TakeDamage(ArrowData arrowData)
+    public override void TakeDamage(ArrowData arrowData, AttackPointType a)
     {
         if (currentStat.HealthPoint <= 0)
             return;

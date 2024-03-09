@@ -1,10 +1,7 @@
 using BearController;
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using State = Define.BearState;
 
 public class Bear : Monster
@@ -15,40 +12,46 @@ public class Bear : Monster
 
     [SerializeField] private AnimationCurve upwardCurve;
     [SerializeField] private AnimationCurve downwardCurve;
-    [SerializeField] private float faceCheck = 0.0f;
-
-    [SerializeField] private List<State> stateTable;
-    [SerializeField] [Range(-1.0f, 3.0f)] private float velocity;
 
     [SerializeField] private Transform moveTarget;
 
+    [HideInInspector] public float roarCooldown = 200.0f;
+    [HideInInspector] public float roarCooldownDelta = 0.0f;
+
+    [HideInInspector] public float attackCooldown = 3.0f;
+    [HideInInspector] public float attackCooldownDelta = 0.0f;
+
+    [HideInInspector] public State lastState;
+
+    [SerializeField] private AudioClip roarClip;
     private NavMeshAgent agent;
+    private AudioSource source;
 
     private int receivedDamage;
     
+    public float decreaseVelocityRate = 0.0f;
+
     // 인스펙터 확인용
     public State state;
-    public float distance;
-    public float slopeAngle;
-    public float angleToTarget;
-    public float traceAngle;
-    public float Velocity => velocity;
 
     public NavMeshAgent Agent => agent;
     public Transform Eyes => eyes;
     public Transform Body => body;
+    public Transform MoveTarget => moveTarget;
     public AnimationCurve UpwardCurve => upwardCurve;
     public AnimationCurve DownwardCurve => downwardCurve;
     public LayerMask GroundLayer => groundLayer;
     public int ReceivedDamage => receivedDamage;
-    public float FaceCheck => faceCheck;
-    public Transform MoveTarget => moveTarget;
-    public List<State> StateTable => stateTable;
+
     private void OnValidate()
     {
         if (agent == null)
         {
             agent = GetComponent<NavMeshAgent>();   
+        }
+        if (source == null)
+        {
+            source = GetComponent<AudioSource>();
         }
     }
 
@@ -62,14 +65,30 @@ public class Bear : Monster
         //moveTarget = new GameObject("MoveTarget").transform;
 
         stateMachine.AddState(State.Idle, new IdleState(this));
+        stateMachine.AddState(State.Think, new ThinkState(this));
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Rush, new RushState(this));
         stateMachine.AddState(State.Prowl, new ProwlState(this));
+        stateMachine.AddState(State.Attack, new AttackState(this));
+        stateMachine.AddState(State.Roar, new RoarState(this));
+        stateMachine.AddState(State.Dead, new DeadState(this));
         
         stateMachine.InitState(State.Idle);
     }
 
-    public override void TakeDamage(ArrowData arrowData)
+    private void Update()
+    {
+        roarCooldownDelta -= Time.deltaTime;
+        attackCooldownDelta -= Time.deltaTime;
+    }
+
+    private void OnEnable()
+    {
+        roarCooldownDelta = 0.0f;
+        attackCooldownDelta = 0.0f;
+    }
+
+    public override void TakeDamage(ArrowData arrowData, AttackPointType attakcPointType)
     {
         if (currentStat.HealthPoint <= 0)
             return;
@@ -79,10 +98,30 @@ public class Bear : Monster
             ? arrowData.ArrowDamage - currentStat.Defence
             : 0);
 
-        if (state != State.Dead)
+        switch (attakcPointType)
         {
-            target = Managers.Game.Player.transform;
-            stateMachine.ChangeState(State.TakeAttack);
+            case AttackPointType.Default:
+                break;
+            case AttackPointType.Legs:
+                if (DecreasCoroutine != null)
+                {
+                    StopCoroutine(DecreasCoroutine);
+                }
+                DecreasCoroutine = StartCoroutine(DecreaseVelocityCoroutine());
+                Debug.Log("LEGSHOT!");
+                break;
+            case AttackPointType.Head:
+                int addDamage = (int)(receivedDamage * 0.25f);
+                receivedDamage += addDamage;
+                Debug.Log("HEADSHOT!");
+                break;
+        }
+
+        currentStat.HealthPoint -= receivedDamage;
+
+        if (currentStat.HealthPoint < 0.0f)
+        {
+            stateMachine.ChangeState(State.Dead);
         }
     }
 
@@ -95,5 +134,26 @@ public class Bear : Monster
                 Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.blue);
             }
         }
+    }
+
+    public void PlaySound(string clip)
+    {
+        source.PlayOneShot(roarClip);
+    }
+
+    public void StartBossFight()
+    {
+        target = Managers.Game.Player.transform;
+        moveTarget.parent = target;
+        moveTarget.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+    }
+
+    private Coroutine DecreasCoroutine;
+
+    private IEnumerator DecreaseVelocityCoroutine()
+    {
+        decreaseVelocityRate = 0.25f;
+        yield return new WaitForSeconds(10.0f);
+        decreaseVelocityRate = 0.0f;
     }
 }

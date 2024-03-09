@@ -89,18 +89,17 @@ public class Arrow : Item
             if (Vector3.Distance(target.transform.position, arrowHead.position) < 1.0f)
             {
                 onShotEnd?.Invoke();
-                target.Monster.TakeDamage(ArrowData);
+                target.Monster.TakeDamage(ArrowData, target.Type);
                 break;
             }
 
             if (Physics.Raycast(arrowHead.position, transform.forward, out RaycastHit hit, 1.0f))
             {
-                onShotEnd?.Invoke();
-                if (hit.collider.TryGetComponent(out AttackPoint attackPoint))
+                if (hit.collider.isTrigger == false)
                 {
-                    attackPoint.Monster.TakeDamage(ArrowData);
+                    onShotEnd?.Invoke();
+                    break;
                 }
-                break;
             }
 
             if (lifeTime < 0.0f)

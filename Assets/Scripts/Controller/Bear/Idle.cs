@@ -9,20 +9,26 @@ namespace BearController
         public IdleState(Creature owner) : base(owner) { }
 
         private float waitTime = 5.0f;
-        private float waitTimeDelta = 0.0f;
+
+        private Vector3 origin = Vector3.zero;
         private Vector3 dest = Vector3.zero;
+        private float radius = 150.0f;
 
         public override void Enter()
         {
+            origin = bear.transform.position;
+
             bear.state = State.Idle;
-            velocity = 1.0f;
-            ChangeDirectMode(DirectMode.Manual);
+            
+            ChangeDirectMode(DirectMode.Auto);
+            velocity = Random.Range(1.0f, 2.0f);
 
             dest = bear.transform.position + GRV;
-            waitTimeDelta = waitTime;
+            waitTime = Random.Range(2.0f, 5.0f);
 
             bear.Agent.SetDestination(dest);
         }
+
         public override void Exit()
         {
             bear.Agent.ResetPath();
@@ -34,14 +40,18 @@ namespace BearController
 
             if (bear.Agent.remainingDistance < 5.0f)
             {
-                waitTimeDelta -= Time.deltaTime;
+                waitTime -= Time.deltaTime;
                 bear.Agent.ResetPath();
 
-                if (waitTimeDelta < 0.0f)
+                if (waitTime < 0.0f)
                 {
-                    waitTimeDelta = waitTime;
-                    dest = bear.transform.position + GRV;
+                    do
+                    {
+                        dest = bear.transform.position + GRV;
+                    } while (radius < Vector3.Distance(origin, dest));
+
                     bear.Agent.SetDestination(dest);
+                    waitTime = Random.Range(2.0f, 5.0f);
                 }
             }
         }
@@ -50,16 +60,14 @@ namespace BearController
         {
             if (target != null)
             {
-                ChangeState(State.Trace);
+                ChangeState(State.Think);
             }
-
-            ChangeState(State.Rush);
         }
 
         private Vector3 GRV => GenerateRandomVector();
         private Vector3 GenerateRandomVector()
         {
-            float randomFloat = Random.Range(50.0f, 100.0f);
+            float randomFloat = Random.Range(30.0f, 50.0f);
             Vector2 randomVec = Random.insideUnitCircle;
             
             randomVec.Normalize();

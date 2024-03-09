@@ -69,14 +69,12 @@ public class Define
     public enum BearState
     {
         Idle,
+        Think,
         Trace,
-        PowerTrace,
         Rush,
         Prowl,
-        TakeAttack,
         Attack,
         Roar,
-        Return,
         Dead,
     }
     

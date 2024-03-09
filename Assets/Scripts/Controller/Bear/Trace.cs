@@ -6,39 +6,36 @@ namespace BearController
     public class TraceState : BearState
     {
         public TraceState(Creature owner) : base(owner) { }
-        
+
+        private float traceTime = 0.0f;
+
         public override void Enter()
         {
             bear.state = State.Trace;
-
-            velocity = 2.0f;
-            ChangeDirectMode(DirectMode.Manual);
+            ChangeDirectMode(DirectMode.Auto);
+            traceTime = Random.Range(5.0f, 10.0f);
+            velocity = Random.Range(2.5f, 3.0f);
         }
 
         public override void Update()
         {
             base.Update();
-            SetMoveTargetPos(target.position);
-
-            // 거리에 따른 속도값 조절 필요
-            //if (distanceToTarget > bear.Data.AttackRange)
-            //    velocity = 3.0f;
-            //else if (distanceToTarget > bear.Data.AttackRange / 2)
-            //    velocity = distanceToTarget / 2;
-            //else
-            //    velocity = 0;
+            bear.Agent.SetDestination(bear.MoveTarget.position);
         }
 
-        public override void FixedUpdate()
+        public override void Exit()
         {
-            base.FixedUpdate();
-
+            bear.lastState = State.Trace;
         }
 
         public override void Transition()
         {
-            //if (distanceToTarget < bear.Data.AttackRange && attackCooldown < 0) 
-            //    ChangeState(State.Attack);
+            AttackTransition();
+
+            if (traceTime < 0.0f)
+            {
+                ChangeState(State.Think);
+            }
         }
     }
 }

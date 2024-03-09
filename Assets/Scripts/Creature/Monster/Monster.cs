@@ -33,7 +33,7 @@ public abstract class Monster : Creature, IFarmable
         return data.DropItem.GetDropItem();
     }
     
-    public virtual void TakeDamage(ArrowData arrowData) { }
+    public virtual void TakeDamage(ArrowData arrowData, AttackPointType attackPointType) { }
 }
 
 // MonsterState도 길어지면 새 스크립트로 분리
