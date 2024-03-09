@@ -31,6 +31,21 @@ public class Player : MonoBehaviour
         {
             GainExp(55);
         }
+        
+        var rate = (float)currentStat.HealthPoint / data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint;
+
+        switch (rate)
+        {
+            case <= 0.1f:
+                Managers.Game.ChangeFullScreen(3);
+                break;
+            case <= 0.2f:
+                Managers.Game.ChangeFullScreen(5);
+                break;
+            default:
+                Managers.Game.ChangeFullScreen(100);
+                break;
+        }
     }
 
     public void GainExp(int exp)
@@ -65,7 +80,7 @@ public class Player : MonoBehaviour
             // 플레이어 사망 처리
             Managers.Game.GameOver();
         }
-
+        
         currentStat.HealthPoint -= damage - currentStat.Defence;
     }
     

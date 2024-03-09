@@ -1674,6 +1674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534817435683890475}
   - component: {fileID: 1277792134869566100}
+  - component: {fileID: 1575174622690669412}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -1711,6 +1712,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967917955971800130}
   m_CullTransparentMesh: 1
+--- !u!114 &1575174622690669412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967917955971800130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2821f777285f13249a372e3394487433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2156602403750484711
 GameObject:
   m_ObjectHideFlags: 0

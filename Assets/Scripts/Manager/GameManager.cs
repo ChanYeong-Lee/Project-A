@@ -45,11 +45,13 @@ public class GameManager
     private GameObject horse;
     private CameraController cam;
     private AimTarget aimTarget;
+    private Material fullScreenHP;
 
     public GameObject Player { get => player; set => player = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public GameObject Horse { get => horse; set => horse = value; }
     public CameraController Cam { get => cam; set => cam = value; }
+    public Material FullScreenHP { get => fullScreenHP; set => fullScreenHP = value; }
     
     // Monster
     private MonsterSpawner monsterSpawner;
@@ -62,6 +64,8 @@ public class GameManager
     {
         CreatePlayer();
         CreateMonster();
+        fullScreenHP = Managers.Resource.Load<Material>("Shaders/FullScreenHP");
+        ChangeFullScreen(100);
     }
     
     private void CreatePlayer()
@@ -111,6 +115,11 @@ public class GameManager
         inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
     }
 
+    public void ChangeFullScreen(float value)
+    {
+        fullScreenHP.SetFloat("_VignettePower", value);
+    }
+    
     public void EnterBossMonsterStage()
     {
         // TODO : 보스 몬스터 트리거 작동하면 monster에 보스 넣어주기
@@ -128,6 +137,7 @@ public class GameManager
 
     public void GameOver()
     {
+        ChangeFullScreen(100);
         Managers.UI.HUDUI.GameOverUI.SetActive(true);
         Managers.Game.IsPause = true;
     }
