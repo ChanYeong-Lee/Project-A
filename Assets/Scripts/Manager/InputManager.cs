@@ -171,10 +171,16 @@ public class InputManager : MonoBehaviour
         input.Player.UIMove.Disable();
     }
 
+    public void StopInputKey()
+    {
+        input.Disable();
+    }
+
     public void OpenUI()
     {
         input.Player.Tab.Enable();
         input.Player.UIMove.Enable();
+        input.Player.UISortingMove.Enable();
 
         input.Player.Move.Disable();
         input.Player.Look.Disable();
@@ -189,6 +195,7 @@ public class InputManager : MonoBehaviour
     {
         input.Player.Tab.Disable();
         input.Player.UIMove.Disable();
+        input.Player.UISortingMove.Disable();
 
         input.Player.Move.Enable();
         input.Player.Look.Enable();

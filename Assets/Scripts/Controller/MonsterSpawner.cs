@@ -88,6 +88,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             go.transform.position = pos;
             go.transform.rotation = Quaternion.identity;
+            go.GetComponent<Monster>().ReSpawn();
         }
     }
     

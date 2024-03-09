@@ -28,7 +28,7 @@ public class UICraftMenu : ContentElement
     private Button selectedSortingButton;
     private UISlot prevSelectedSlot;
     private int currentCraftAmount;
-    
+
     public UISlot SelectedSlot { get => selectedSlot; set => selectedSlot = value; }
 
     protected override void Awake()
@@ -58,16 +58,16 @@ public class UICraftMenu : ContentElement
             UpdateCraftItemInfo(selectedSlot);
       
         // 아이템 제작 키 입력 체크
-        if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectedSlot.ItemData) > 0)
-        {
-            Debug.Log("제작");
-            inventory.CraftingItem(FindItemRecipe(selectedSlot.ItemData), currentCraftAmount);
-
-            foreach (UISlot slot in slots) 
-                UpdateSlot(slot);
-        
-            ChangeCraftAmount();
-        }
+        // if (Input.GetKeyDown(KeyCode.F) && CraftableAmount(selectedSlot.ItemData) > 0)
+        // {
+        //     Debug.Log("제작");
+        //     inventory.CraftingItem(FindItemRecipe(selectedSlot.ItemData), currentCraftAmount);
+        //
+        //     foreach (UISlot slot in slots) 
+        //         UpdateSlot(slot);
+        //
+        //     ChangeCraftAmount();
+        // }
     }
 
     private void BindButtons()
@@ -215,7 +215,6 @@ public class UICraftMenu : ContentElement
     public void ChangeSelectedSlot(float value)
     {
         int i = slots.IndexOf(selectedSlot);
-
         if (i == -1)
             return;
         

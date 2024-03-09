@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         {
             exp -= data.ExpList[currentLevel - 1];
             currentLevel++;
+            Managers.UI.HUDUI.LevelPanelUI.UpdateLevel(currentLevel);
             CheckLevel(exp);
         }
         else

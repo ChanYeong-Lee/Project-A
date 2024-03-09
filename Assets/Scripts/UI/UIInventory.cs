@@ -25,7 +25,7 @@ public class UIInventory : ContentElement
         
         if (inventory == null)
             inventory = Managers.Game.Inventory;
-        
+
         BindButtons();
     }
 
