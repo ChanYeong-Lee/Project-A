@@ -1432,6 +1432,7 @@ MonoBehaviour:
   detection:
     serializedVersion: 2
     m_Bits: 129
+  attackPoint: {fileID: 5766664444690949279}
   state: 0
   distance: 0
   angle: 0

@@ -45,6 +45,7 @@ public class GameManager
     private GameObject horse;
     private CameraController cam;
     private AimTarget aimTarget;
+    private Material fullScreenHP;
 
     public GameObject Player { get => player; set => player = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
@@ -62,6 +63,7 @@ public class GameManager
     {
         CreatePlayer();
         CreateMonster();
+        ChangeFullScreen(100);
     }
     
     private void CreatePlayer()
@@ -93,7 +95,7 @@ public class GameManager
         }
         
         // 생성될 위치 입력
-        PlayerSettings();
+        // PlayerSettings();
     }
 
     private void CreateMonster()
@@ -101,7 +103,7 @@ public class GameManager
         monsterSpawner = Managers.Resource.Instantiate("Prefabs/Monster/Monster Spawner").GetComponent<MonsterSpawner>();
     }
 
-    private void PlayerSettings()
+    public void PlayerSettings()
     {
         player.transform.position = new Vector3(-240, 0.5f, -241);
         player.transform.rotation = Quaternion.Euler(0, 30, 0);
@@ -111,6 +113,14 @@ public class GameManager
         inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
     }
 
+    public void ChangeFullScreen(float value)
+    {
+        if (fullScreenHP == null) 
+            fullScreenHP = Managers.Resource.Load<Material>("Shaders/FullScreenHP");
+        
+        fullScreenHP.SetFloat("_VignettePower", value);
+    }
+    
     public void EnterBossMonsterStage()
     {
         // TODO : 보스 몬스터 트리거 작동하면 monster에 보스 넣어주기
@@ -128,7 +138,19 @@ public class GameManager
 
     public void GameOver()
     {
+        ChangeFullScreen(100);
         Managers.UI.HUDUI.GameOverUI.SetActive(true);
         Managers.Game.IsPause = true;
+    }
+    
+    public void ExitGame()
+    {
+        Managers.Clear();
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

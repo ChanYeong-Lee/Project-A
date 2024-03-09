@@ -27,6 +27,11 @@ public class UISlot : UIBase, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        ChangeSelectedSlot();
+    }
+
+    public void ChangeSelectedSlot()
+    {
         switch (slotType)
         {
             case SlotType.InventoryMenu: 

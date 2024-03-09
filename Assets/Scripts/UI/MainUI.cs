@@ -6,11 +6,11 @@ using UnityEngine;
 
 public enum MenuType
 {
-    Inventory,
-    Crafting,
-    Map,
-    Settings,
-    Quest
+    Inventory = 0,
+    Crafting = 1,
+    Quest = 2,
+    Map = 3,
+    Settings = 4,
 }
 
 public class MainUI : MonoBehaviour
@@ -31,12 +31,6 @@ public class MainUI : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
-        Managers.Game.IsPause = true;
-    }
-
     public void OpenMainUI(MenuType menuType)
     {
         currentMenu = menuType;
@@ -46,7 +40,6 @@ public class MainUI : MonoBehaviour
         navigation.SelectMenu(menuType);
     }
     
-
     public void SelectMenu(MenuType menuType)
     {
         currentMenu = menuType;
@@ -54,12 +47,6 @@ public class MainUI : MonoBehaviour
         tab.SelectMenu(menuType);
         content.SelectMenu(menuType);
         navigation.SelectMenu(menuType);
-    }
-
-    private void OnDisable()
-    {
-        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
-        Managers.Game.IsPause = false;
     }
 }
 

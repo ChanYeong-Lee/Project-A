@@ -12,6 +12,7 @@ public class Moose : Monster
     [SerializeField] private Transform eyes;
     [SerializeField] private Transform body;
     [SerializeField] private LayerMask detection;
+    [SerializeField] private AttackPoint attackPoint;
     
     private int receivedDamage;
     
@@ -28,6 +29,7 @@ public class Moose : Monster
     public override void Init()
     {
         base.Init();
+        
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Patrol, new PatrolState(this));
         stateMachine.AddState(State.Run, new RunState(this));
@@ -35,9 +37,11 @@ public class Moose : Monster
         stateMachine.AddState(State.Trace, new TraceState(this));
         stateMachine.AddState(State.Attack, new AttackState(this));
         stateMachine.AddState(State.Dead, new DeadState(this));
+        
         stateMachine.InitState(State.Idle);
+        GetComponentInChildren<AttackPoint>().gameObject.SetActive(true);
     }
-
+    
     public override Dictionary<FarmingItemData, int> Farming(out Define.FarmingType farmingType)
     {
         Debug.Log("파밍 중");
@@ -59,5 +63,12 @@ public class Moose : Monster
             target = Managers.Game.Player.transform;
             stateMachine.ChangeState(State.TakeAttack);
         }
+    }
+
+    public override void ReSpawn()
+    {
+        stateMachine.InitState(State.Idle);
+        attackPoint.gameObject.SetActive(true);
+        currentStat = new Stat(creatureData.Stats.Find(stat => stat.Level == currentLevel));
     }
 }

@@ -16,6 +16,7 @@ namespace MooseController
         
             // TODO : 경험치 획득 - 
             target.GetComponent<Player>().GainExp(moose.Data.DropExpList[moose.CurrentLevel - 1]);
+            moose.GetComponentInChildren<AttackPoint>().gameObject.SetActive(false);
         }
 
         public override void Update() { }

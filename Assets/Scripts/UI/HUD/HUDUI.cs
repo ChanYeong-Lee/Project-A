@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class HUDUI : MonoBehaviour
 {
+    [SerializeField] private LevelPanelUI levelPanelUI;
     [SerializeField] private AimUI aimUI;
     [SerializeField] private ItemPanel itemPanel;
     [SerializeField] private HealthBar healthBar;
@@ -14,6 +15,7 @@ public class HUDUI : MonoBehaviour
     [SerializeField] private ArrowSelector arrowSelector;
     [SerializeField] private ArrowPanel arrowPanel;
 
+    public LevelPanelUI LevelPanelUI => levelPanelUI;
     public AimUI AimUI => aimUI;
     public ArrowPanel ArrowPanel => arrowPanel;
     public HealthBar BossHealthBar => bossHealthBar;

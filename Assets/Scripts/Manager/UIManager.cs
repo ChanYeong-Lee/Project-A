@@ -13,9 +13,11 @@ public class UIManager
 
     private HUDUI hudUI;
     private MainUI mainUI;
+    public LoadingUI loadingUI;
 
     public HUDUI HUDUI => hudUI;
     public MainUI MainUI => mainUI;
+    public LoadingUI LoadingUI => loadingUI;
 
     public void Init()
     {
@@ -29,6 +31,11 @@ public class UIManager
             Managers.Resource.Instantiate("Prefabs/UI/EventSystem");
     }
 
+    public void CreateTitleUI()
+    {
+        
+    }
+    
     private void CreateGameUI()
     {
         // HUD
@@ -48,15 +55,32 @@ public class UIManager
         }
     }
 
+    public void CreateLoadingUI()
+    {
+        if (loadingUI == null)
+        {
+            GameObject go = GameObject.Find("HUDCanvas");
+            loadingUI = (go == null ? Managers.Resource.Instantiate("Prefabs/UI/loadingUI") : go)
+                .GetComponent<LoadingUI>();
+        }
+    }
+
     public void OpenMainUI()
     {
         mainUI.gameObject.SetActive(true);
         isOpenedUI = true;
+        Managers.Game.IsPause = true;
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
+        Managers.Input.OpenUI();
     }
 
     public void CloseMainUI()
     {
         mainUI.gameObject.SetActive(false);
         isOpenedUI = false;
+        Managers.Game.IsPause = false;
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
+        Managers.Input.CloseUI();
+        
     }
 }

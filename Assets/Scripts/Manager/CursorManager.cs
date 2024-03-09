@@ -22,12 +22,14 @@ public class CursorManager : MonoBehaviour
                 case CursorState.OnGame:
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
-                    Managers.Game.Player.GetComponent<CharacterMove>().LockCameraPosition = false;
+                    if (Managers.Game.Player != null)
+                        Managers.Game.Player.GetComponent<CharacterMove>().LockCameraPosition = false;
                     break;
                 case CursorState.UI:
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Confined;
-                    Managers.Game.Player.GetComponent<CharacterMove>().LockCameraPosition = true;
+                    if (Managers.Game.Player != null)
+                        Managers.Game.Player.GetComponent<CharacterMove>().LockCameraPosition = true;
                     break;
             }
         }

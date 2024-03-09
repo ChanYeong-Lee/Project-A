@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Bear AC.controller.meta
 guid: 3b7a19aacb280d2439f3e3fea88d4ef1
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
+========
+guid: 4fe38ce0f656c494db169c7165ad7cb0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> inputmanager:Assets/Resources/Shaders/FullScreenHP.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

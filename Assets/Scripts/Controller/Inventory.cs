@@ -82,4 +82,11 @@ public class Inventory : MonoBehaviour
 
         return GetItemCount(item.Key);
     }
+
+    public ItemData FindItemData(string id)
+    {
+        var item = itemDataDic.FirstOrDefault(itemData => itemData.Key.ItemID == id);
+
+        return itemDataDic.ContainsKey(item.Key) ? item.Key : null;
+    }
 }

@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UISettings : ContentElement
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
+        base.Awake();
         
+        buttons["Back"].onClick.AddListener(() => Managers.UI.CloseMainUI());
+        buttons["Title"].onClick.AddListener(() =>
+        {
+            Managers.Clear();
+            Managers.Scene.LoadScene(Define.SceneType.TitleScene);
+        });
+        buttons["Exit"].onClick.AddListener(() => Managers.Game.ExitGame());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+    // TODO : 사운드 설정 받기
 }

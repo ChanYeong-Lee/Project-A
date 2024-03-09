@@ -31,6 +31,21 @@ public class Player : MonoBehaviour
         {
             GainExp(55);
         }
+        
+        var rate = (float)currentStat.HealthPoint / data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint;
+
+        switch (rate)
+        {
+            case <= 0.1f:
+                Managers.Game.ChangeFullScreen(3);
+                break;
+            case <= 0.2f:
+                Managers.Game.ChangeFullScreen(5);
+                break;
+            default:
+                Managers.Game.ChangeFullScreen(100);
+                break;
+        }
     }
 
     public void GainExp(int exp)
@@ -48,6 +63,7 @@ public class Player : MonoBehaviour
         {
             exp -= data.ExpList[currentLevel - 1];
             currentLevel++;
+            Managers.UI.HUDUI.LevelPanelUI.UpdateLevel(currentLevel);
             CheckLevel(exp);
         }
         else
@@ -64,12 +80,15 @@ public class Player : MonoBehaviour
             // 플레이어 사망 처리
             Managers.Game.GameOver();
         }
-
+        
         currentStat.HealthPoint -= damage - currentStat.Defence;
     }
-
-    public void UseItem()
+    
+    public void UsePotion(PotionData itemData)
     {
+        currentStat.HealthPoint += Managers.Game.Inventory.TryUseItem(itemData) ? itemData.HealingPoint : 0;
         
+        if (currentStat.HealthPoint > data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint) 
+            currentStat.HealthPoint = data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint;
     }
 }

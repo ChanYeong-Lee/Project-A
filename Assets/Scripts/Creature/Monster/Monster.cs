@@ -34,6 +34,7 @@ public abstract class Monster : Creature, IFarmable
     }
     
     public virtual void TakeDamage(ArrowData arrowData, AttackPointType attackPointType) { }
+    public virtual void ReSpawn() { }
 }
 
 // MonsterState도 길어지면 새 스크립트로 분리

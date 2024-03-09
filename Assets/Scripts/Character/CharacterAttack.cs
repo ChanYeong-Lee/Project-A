@@ -150,7 +150,7 @@ public class CharacterAttack : MonoBehaviour
 
     private void CheckChangeArrow()
     {
-        if (Managers.Input.rightClick)
+        if (Managers.Input.rightClick && !Managers.UI.IsOpenedUI && Managers.Game.Player.GetComponent<Player>().CurrentStat.HealthPoint > 0)
         {
             Managers.UI.HUDCanvas.GetComponentInChildren<HUDUI>().TurnOnArrowSelector();
         }

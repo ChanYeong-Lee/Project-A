@@ -14,10 +14,7 @@ public class CharacterInteraction : MonoBehaviour
     private float farmingTime = 0;
     private float durationTime = 10;
     private float scannerSize = 500;
-    private bool interaction;
-
-    public bool Interaction => interaction;
-
+    
     private void Awake()
     {
         detectedColliders = new Collider[1];
@@ -30,35 +27,18 @@ public class CharacterInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F))
-        {
-            interaction = true;
+        if (Managers.Input.IsInteracting)
             Farming();
-        }
-
-        if (Managers.Input.eKey)
-        {
-            interaction = true;
-            Farming();
-        }
         else
-        {
-            interaction = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            interaction = false;
             farmingTime = 0;
-        }
-
+        
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartCoroutine(Scanning());
         }
     }
 
-    public void Farming()
+    private void Farming()
     {
         Vector3 center = transform.TransformPoint(new Vector3(0, 1, 1));
         int detectCount = Physics.OverlapSphereNonAlloc(center, 1, detectedColliders, gatheringLayerMask);
@@ -81,7 +61,7 @@ public class CharacterInteraction : MonoBehaviour
 
             float farmingTime = GetComponent<Player>().Data.FarmingTime;
 
-            // ??? ???? ?????????? ??? ??? ????? ??
+            // 파밍 애니메이션
             switch (farmingType)
             {
                 case Define.FarmingType.None:
