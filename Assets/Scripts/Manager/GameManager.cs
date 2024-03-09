@@ -93,7 +93,7 @@ public class GameManager
         }
         
         // 생성될 위치 입력
-        PlayerSettings();
+        // PlayerSettings();
     }
 
     private void CreateMonster()
@@ -101,7 +101,7 @@ public class GameManager
         monsterSpawner = Managers.Resource.Instantiate("Prefabs/Monster/Monster Spawner").GetComponent<MonsterSpawner>();
     }
 
-    private void PlayerSettings()
+    public void PlayerSettings()
     {
         player.transform.position = new Vector3(-240, 0.5f, -241);
         player.transform.rotation = Quaternion.Euler(0, 30, 0);

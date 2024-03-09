@@ -13,9 +13,11 @@ public class UIManager
 
     private HUDUI hudUI;
     private MainUI mainUI;
+    public LoadingUI loadingUI;
 
     public HUDUI HUDUI => hudUI;
     public MainUI MainUI => mainUI;
+    public LoadingUI LoadingUI => loadingUI;
 
     public void Init()
     {
@@ -50,6 +52,16 @@ public class UIManager
             GameObject go = GameObject.Find("MainCanvas");
             mainCanvas = go == null ? Managers.Resource.Instantiate("Prefabs/UI/MainCanvas") : go;
             mainUI = mainCanvas.GetComponentInChildren<MainUI>(true);
+        }
+    }
+
+    public void CreateLoadingUI()
+    {
+        if (loadingUI == null)
+        {
+            GameObject go = GameObject.Find("HUDCanvas");
+            loadingUI = (go == null ? Managers.Resource.Instantiate("Prefabs/UI/loadingUI") : go)
+                .GetComponent<LoadingUI>();
         }
     }
 

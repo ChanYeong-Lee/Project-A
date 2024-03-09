@@ -10,6 +10,11 @@ public class UISettings : ContentElement
         base.Awake();
         
         buttons["Back"].onClick.AddListener(() => Managers.UI.CloseMainUI());
+        buttons["Title"].onClick.AddListener(() =>
+        {
+            Managers.Clear();
+            Managers.Scene.LoadScene(Define.SceneType.TitleScene);
+        });
         buttons["Exit"].onClick.AddListener(() => Managers.Game.ExitGame());
     }
 }

@@ -19,6 +19,7 @@ public class Define
     public enum SceneType
     {
         TitleScene,     // ·Îºñ ¾À
+        LoadingScene,   // ·Îµù ¾À
         GameScene,      // °ÔÀÓ ¾À
     }
     

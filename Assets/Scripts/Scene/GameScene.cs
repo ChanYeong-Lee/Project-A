@@ -10,7 +10,13 @@ public class GameScene : MonoBehaviour
         Managers.Game.Init();
         Managers.Data.Init();
         Managers.UI.Init();
+    }
+
+    private void Start()
+    {
         Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
+        Managers.Game.PlayerSettings();
+        Managers.Game.IsPause = false;
     }
 
     private void Update()
