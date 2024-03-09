@@ -76,4 +76,9 @@ public class Managers : MonoBehaviour
 
         //UI.Init();
     }
+
+    public static void Clear()
+    {
+        Pool.Clear();
+    }
 }

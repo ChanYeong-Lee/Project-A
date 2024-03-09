@@ -29,6 +29,11 @@ public class UIManager
             Managers.Resource.Instantiate("Prefabs/UI/EventSystem");
     }
 
+    public void CreateTitleUI()
+    {
+        
+    }
+    
     private void CreateGameUI()
     {
         // HUD

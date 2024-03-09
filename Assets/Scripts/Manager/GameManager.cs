@@ -131,4 +131,15 @@ public class GameManager
         Managers.UI.HUDUI.GameOverUI.SetActive(true);
         Managers.Game.IsPause = true;
     }
+    
+    public void ExitGame()
+    {
+        Managers.Clear();
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

@@ -18,7 +18,7 @@ public class Define
 
     public enum SceneType
     {
-        LobbyScene,     // ∑Œ∫Ò æ¿
+        TitleScene,     // ∑Œ∫Ò æ¿
         GameScene,      // ∞‘¿” æ¿
     }
     
