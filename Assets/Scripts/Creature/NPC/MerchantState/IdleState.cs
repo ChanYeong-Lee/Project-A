@@ -92,7 +92,7 @@ namespace MerchantController
         }
         public void CheckProximityAndChangeState()
         {
-            if (!Managers.Game.Player.GetComponent<CharacterInteraction>().Interaction)
+            if (!Managers.Input.IsInteracting)
                 return;
             
             float distance = Vector3.Distance(Owner.transform.position, Owner.target.transform.position);

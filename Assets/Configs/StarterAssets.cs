@@ -100,54 +100,9 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""EKey"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""87ecbdc6-fcdc-473d-9c07-46c1a8ddcda7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""IKey"",
-                    ""type"": ""Button"",
-                    ""id"": ""7645fc6f-2ce8-4ea7-bc91-4dd1bb8bcae5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CKey"",
-                    ""type"": ""Button"",
-                    ""id"": ""930b8052-26d2-4104-806e-10b78d962aa4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ESC"",
-                    ""type"": ""Button"",
-                    ""id"": ""666ac034-3a57-4d8f-be73-cba089c84056"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""QKey"",
-                    ""type"": ""Button"",
-                    ""id"": ""11136b8c-1d99-42a5-aae2-82ed11f6fa0c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MKey"",
-                    ""type"": ""Button"",
-                    ""id"": ""07fef3c5-c0d7-4f86-b379-1f193308be16"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -164,8 +119,98 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Tab"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""1a165d76-70cf-4535-8cd1-3d04239ca3fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""7645fc6f-2ce8-4ea7-bc91-4dd1bb8bcae5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Craft"",
+                    ""type"": ""Button"",
+                    ""id"": ""930b8052-26d2-4104-806e-10b78d962aa4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quest"",
+                    ""type"": ""Button"",
+                    ""id"": ""11136b8c-1d99-42a5-aae2-82ed11f6fa0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""07fef3c5-c0d7-4f86-b379-1f193308be16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""666ac034-3a57-4d8f-be73-cba089c84056"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemQuickSlot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""1220fb04-4f82-4571-aede-085703ddb4c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemQuickSlot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b2d07ab-01e2-4a24-9efc-ff49ede7e5b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemQuickSlot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""39d4df52-9049-4ff2-8ff9-ac8e56a33e70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""2eba6e9c-3c44-48f7-bddd-871aa3c3bdfa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UISortingMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""625139ab-2e9c-41b2-a374-cb444355d7dd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -400,62 +445,7 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""29954d1d-406b-42e2-97ca-11b24ebdee68"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""IKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""21f66a5c-dd39-4f22-b23b-7b568796f06f"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cee2b792-e3b7-41fe-bc12-d24cd8968dc9"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ESC"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8ca2b99-4657-4bf9-9f3e-7afa095518ac"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""QKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3be57309-029f-4074-bfdb-aeb89189f514"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MKey"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -480,6 +470,160 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
                     ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29954d1d-406b-42e2-97ca-11b24ebdee68"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21f66a5c-dd39-4f22-b23b-7b568796f06f"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Craft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8ca2b99-4657-4bf9-9f3e-7afa095518ac"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3be57309-029f-4074-bfdb-aeb89189f514"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cee2b792-e3b7-41fe-bc12-d24cd8968dc9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""299742b0-dc9b-43fc-b127-8e8265ca1f50"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemQuickSlot1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b0cc763a-4cb6-4fc8-b1eb-c44dca46b866"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemQuickSlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b90b1f6-3942-41f2-950a-9fb173c1dfc6"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemQuickSlot3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""7db6c7d9-50c3-4aa4-8e96-8010eed21476"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""Hold(duration=0.005)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c4c96556-6a3c-490a-8524-d8be6e909b25"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f39bf78d-ce12-4dbb-bbf7-f2c25711e09f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""05151ab5-d856-4147-88b3-cac7cb5a0d96"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""Hold(duration=0.005)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UISortingMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0afc8abf-27c7-48eb-b90f-402857970794"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UISortingMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ae11aed3-91e6-44ba-98d0-4406a8d4a9e3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UISortingMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -544,14 +688,19 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
         m_Player_HKey = m_Player.FindAction("HKey", throwIfNotFound: true);
-        m_Player_EKey = m_Player.FindAction("EKey", throwIfNotFound: true);
-        m_Player_IKey = m_Player.FindAction("IKey", throwIfNotFound: true);
-        m_Player_CKey = m_Player.FindAction("CKey", throwIfNotFound: true);
-        m_Player_ESC = m_Player.FindAction("ESC", throwIfNotFound: true);
-        m_Player_QKey = m_Player.FindAction("QKey", throwIfNotFound: true);
-        m_Player_MKey = m_Player.FindAction("MKey", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_Enter = m_Player.FindAction("Enter", throwIfNotFound: true);
         m_Player_Tab = m_Player.FindAction("Tab", throwIfNotFound: true);
+        m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
+        m_Player_Quest = m_Player.FindAction("Quest", throwIfNotFound: true);
+        m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
+        m_Player_ESC = m_Player.FindAction("ESC", throwIfNotFound: true);
+        m_Player_ItemQuickSlot1 = m_Player.FindAction("ItemQuickSlot1", throwIfNotFound: true);
+        m_Player_ItemQuickSlot2 = m_Player.FindAction("ItemQuickSlot2", throwIfNotFound: true);
+        m_Player_ItemQuickSlot3 = m_Player.FindAction("ItemQuickSlot3", throwIfNotFound: true);
+        m_Player_UIMove = m_Player.FindAction("UIMove", throwIfNotFound: true);
+        m_Player_UISortingMove = m_Player.FindAction("UISortingMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -621,14 +770,19 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_MousePos;
     private readonly InputAction m_Player_HKey;
-    private readonly InputAction m_Player_EKey;
-    private readonly InputAction m_Player_IKey;
-    private readonly InputAction m_Player_CKey;
-    private readonly InputAction m_Player_ESC;
-    private readonly InputAction m_Player_QKey;
-    private readonly InputAction m_Player_MKey;
+    private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_Enter;
     private readonly InputAction m_Player_Tab;
+    private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_Craft;
+    private readonly InputAction m_Player_Quest;
+    private readonly InputAction m_Player_Map;
+    private readonly InputAction m_Player_ESC;
+    private readonly InputAction m_Player_ItemQuickSlot1;
+    private readonly InputAction m_Player_ItemQuickSlot2;
+    private readonly InputAction m_Player_ItemQuickSlot3;
+    private readonly InputAction m_Player_UIMove;
+    private readonly InputAction m_Player_UISortingMove;
     public struct PlayerActions
     {
         private @StarterAssets m_Wrapper;
@@ -641,14 +795,19 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
         public InputAction @HKey => m_Wrapper.m_Player_HKey;
-        public InputAction @EKey => m_Wrapper.m_Player_EKey;
-        public InputAction @IKey => m_Wrapper.m_Player_IKey;
-        public InputAction @CKey => m_Wrapper.m_Player_CKey;
-        public InputAction @ESC => m_Wrapper.m_Player_ESC;
-        public InputAction @QKey => m_Wrapper.m_Player_QKey;
-        public InputAction @MKey => m_Wrapper.m_Player_MKey;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @Enter => m_Wrapper.m_Player_Enter;
         public InputAction @Tab => m_Wrapper.m_Player_Tab;
+        public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @Craft => m_Wrapper.m_Player_Craft;
+        public InputAction @Quest => m_Wrapper.m_Player_Quest;
+        public InputAction @Map => m_Wrapper.m_Player_Map;
+        public InputAction @ESC => m_Wrapper.m_Player_ESC;
+        public InputAction @ItemQuickSlot1 => m_Wrapper.m_Player_ItemQuickSlot1;
+        public InputAction @ItemQuickSlot2 => m_Wrapper.m_Player_ItemQuickSlot2;
+        public InputAction @ItemQuickSlot3 => m_Wrapper.m_Player_ItemQuickSlot3;
+        public InputAction @UIMove => m_Wrapper.m_Player_UIMove;
+        public InputAction @UISortingMove => m_Wrapper.m_Player_UISortingMove;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -682,30 +841,45 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
             @HKey.started += instance.OnHKey;
             @HKey.performed += instance.OnHKey;
             @HKey.canceled += instance.OnHKey;
-            @EKey.started += instance.OnEKey;
-            @EKey.performed += instance.OnEKey;
-            @EKey.canceled += instance.OnEKey;
-            @IKey.started += instance.OnIKey;
-            @IKey.performed += instance.OnIKey;
-            @IKey.canceled += instance.OnIKey;
-            @CKey.started += instance.OnCKey;
-            @CKey.performed += instance.OnCKey;
-            @CKey.canceled += instance.OnCKey;
-            @ESC.started += instance.OnESC;
-            @ESC.performed += instance.OnESC;
-            @ESC.canceled += instance.OnESC;
-            @QKey.started += instance.OnQKey;
-            @QKey.performed += instance.OnQKey;
-            @QKey.canceled += instance.OnQKey;
-            @MKey.started += instance.OnMKey;
-            @MKey.performed += instance.OnMKey;
-            @MKey.canceled += instance.OnMKey;
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
             @Enter.started += instance.OnEnter;
             @Enter.performed += instance.OnEnter;
             @Enter.canceled += instance.OnEnter;
             @Tab.started += instance.OnTab;
             @Tab.performed += instance.OnTab;
             @Tab.canceled += instance.OnTab;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
+            @Craft.started += instance.OnCraft;
+            @Craft.performed += instance.OnCraft;
+            @Craft.canceled += instance.OnCraft;
+            @Quest.started += instance.OnQuest;
+            @Quest.performed += instance.OnQuest;
+            @Quest.canceled += instance.OnQuest;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
+            @ESC.started += instance.OnESC;
+            @ESC.performed += instance.OnESC;
+            @ESC.canceled += instance.OnESC;
+            @ItemQuickSlot1.started += instance.OnItemQuickSlot1;
+            @ItemQuickSlot1.performed += instance.OnItemQuickSlot1;
+            @ItemQuickSlot1.canceled += instance.OnItemQuickSlot1;
+            @ItemQuickSlot2.started += instance.OnItemQuickSlot2;
+            @ItemQuickSlot2.performed += instance.OnItemQuickSlot2;
+            @ItemQuickSlot2.canceled += instance.OnItemQuickSlot2;
+            @ItemQuickSlot3.started += instance.OnItemQuickSlot3;
+            @ItemQuickSlot3.performed += instance.OnItemQuickSlot3;
+            @ItemQuickSlot3.canceled += instance.OnItemQuickSlot3;
+            @UIMove.started += instance.OnUIMove;
+            @UIMove.performed += instance.OnUIMove;
+            @UIMove.canceled += instance.OnUIMove;
+            @UISortingMove.started += instance.OnUISortingMove;
+            @UISortingMove.performed += instance.OnUISortingMove;
+            @UISortingMove.canceled += instance.OnUISortingMove;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -734,30 +908,45 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
             @HKey.started -= instance.OnHKey;
             @HKey.performed -= instance.OnHKey;
             @HKey.canceled -= instance.OnHKey;
-            @EKey.started -= instance.OnEKey;
-            @EKey.performed -= instance.OnEKey;
-            @EKey.canceled -= instance.OnEKey;
-            @IKey.started -= instance.OnIKey;
-            @IKey.performed -= instance.OnIKey;
-            @IKey.canceled -= instance.OnIKey;
-            @CKey.started -= instance.OnCKey;
-            @CKey.performed -= instance.OnCKey;
-            @CKey.canceled -= instance.OnCKey;
-            @ESC.started -= instance.OnESC;
-            @ESC.performed -= instance.OnESC;
-            @ESC.canceled -= instance.OnESC;
-            @QKey.started -= instance.OnQKey;
-            @QKey.performed -= instance.OnQKey;
-            @QKey.canceled -= instance.OnQKey;
-            @MKey.started -= instance.OnMKey;
-            @MKey.performed -= instance.OnMKey;
-            @MKey.canceled -= instance.OnMKey;
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
             @Enter.started -= instance.OnEnter;
             @Enter.performed -= instance.OnEnter;
             @Enter.canceled -= instance.OnEnter;
             @Tab.started -= instance.OnTab;
             @Tab.performed -= instance.OnTab;
             @Tab.canceled -= instance.OnTab;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
+            @Craft.started -= instance.OnCraft;
+            @Craft.performed -= instance.OnCraft;
+            @Craft.canceled -= instance.OnCraft;
+            @Quest.started -= instance.OnQuest;
+            @Quest.performed -= instance.OnQuest;
+            @Quest.canceled -= instance.OnQuest;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
+            @ESC.started -= instance.OnESC;
+            @ESC.performed -= instance.OnESC;
+            @ESC.canceled -= instance.OnESC;
+            @ItemQuickSlot1.started -= instance.OnItemQuickSlot1;
+            @ItemQuickSlot1.performed -= instance.OnItemQuickSlot1;
+            @ItemQuickSlot1.canceled -= instance.OnItemQuickSlot1;
+            @ItemQuickSlot2.started -= instance.OnItemQuickSlot2;
+            @ItemQuickSlot2.performed -= instance.OnItemQuickSlot2;
+            @ItemQuickSlot2.canceled -= instance.OnItemQuickSlot2;
+            @ItemQuickSlot3.started -= instance.OnItemQuickSlot3;
+            @ItemQuickSlot3.performed -= instance.OnItemQuickSlot3;
+            @ItemQuickSlot3.canceled -= instance.OnItemQuickSlot3;
+            @UIMove.started -= instance.OnUIMove;
+            @UIMove.performed -= instance.OnUIMove;
+            @UIMove.canceled -= instance.OnUIMove;
+            @UISortingMove.started -= instance.OnUISortingMove;
+            @UISortingMove.performed -= instance.OnUISortingMove;
+            @UISortingMove.canceled -= instance.OnUISortingMove;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -821,13 +1010,18 @@ public partial class @StarterAssets: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnHKey(InputAction.CallbackContext context);
-        void OnEKey(InputAction.CallbackContext context);
-        void OnIKey(InputAction.CallbackContext context);
-        void OnCKey(InputAction.CallbackContext context);
-        void OnESC(InputAction.CallbackContext context);
-        void OnQKey(InputAction.CallbackContext context);
-        void OnMKey(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
         void OnEnter(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
+        void OnCraft(InputAction.CallbackContext context);
+        void OnQuest(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
+        void OnItemQuickSlot1(InputAction.CallbackContext context);
+        void OnItemQuickSlot2(InputAction.CallbackContext context);
+        void OnItemQuickSlot3(InputAction.CallbackContext context);
+        void OnUIMove(InputAction.CallbackContext context);
+        void OnUISortingMove(InputAction.CallbackContext context);
     }
 }

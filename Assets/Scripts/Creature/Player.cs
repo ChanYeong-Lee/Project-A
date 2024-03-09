@@ -67,9 +67,12 @@ public class Player : MonoBehaviour
 
         currentStat.HealthPoint -= damage - currentStat.Defence;
     }
-
-    public void UseItem()
+    
+    public void UsePotion(PotionData itemData)
     {
+        currentStat.HealthPoint += Managers.Game.Inventory.TryUseItem(itemData) ? itemData.HealingPoint : 0;
         
+        if (currentStat.HealthPoint > data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint) 
+            currentStat.HealthPoint = data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint;
     }
 }

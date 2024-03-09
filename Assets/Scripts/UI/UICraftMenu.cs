@@ -6,6 +6,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class UICraftMenu : ContentElement
 {
@@ -24,6 +25,7 @@ public class UICraftMenu : ContentElement
     private Inventory inventory;
     private UISlot slotPrefab;
     private UISlot selectedSlot;
+    private Button selectedSortingButton;
     private UISlot prevSelectedSlot;
     private int currentCraftAmount;
     
@@ -44,10 +46,14 @@ public class UICraftMenu : ContentElement
     private void OnEnable()
     {
         UpdateCraft();
+        selectedSortingButton = buttons["All"];
     }
     
     private void Update()
     {
+        ChangeSelectedSlot(Managers.Input.MoveUI);
+        ChangeSortingSlot(Managers.Input.SortingMoveUI);
+        
         if (prevSelectedSlot != selectedSlot)
             UpdateCraftItemInfo(selectedSlot);
       
@@ -66,9 +72,21 @@ public class UICraftMenu : ContentElement
 
     private void BindButtons()
     {
-        buttons["All"].onClick.AddListener(() => UpdateCraft(Define.ItemType.None));
-        buttons["Arrows"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Arrow));
-        buttons["Consumptions"].onClick.AddListener(() => UpdateCraft(Define.ItemType.Consumption));
+        buttons["All"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["All"];
+            UpdateCraft(Define.ItemType.None);
+        });
+        buttons["Arrows"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["Arrows"];
+            UpdateCraft(Define.ItemType.Arrow);
+        });
+        buttons["Consumptions"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["Consumptions"];
+            UpdateCraft(Define.ItemType.Consumption);
+        });
         buttons["UpButton"].onClick.AddListener(() => ChangeCraftAmount(CraftAmountButton.Up));
         buttons["DownButton"].onClick.AddListener(() => ChangeCraftAmount(CraftAmountButton.Down));
         buttons["CraftButton"].onClick.AddListener(() =>
@@ -192,5 +210,62 @@ public class UICraftMenu : ContentElement
         texts["CraftAmountText"].text = $"{craftAmount}";
         
         currentCraftAmount = craftAmount;
+    }
+
+    public void ChangeSelectedSlot(float value)
+    {
+        int i = slots.IndexOf(selectedSlot);
+
+        if (i == -1)
+            return;
+        
+        if (value > 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[(i + 1) % slots.Count];
+        }
+        else if (value < 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[i - 1 < 0 ? slots.Count - 1 : i - 1];
+        }
+        else
+            return;
+        
+        selectedSlot.ChangeAlpha(1f);
+    }
+
+    public void ChangeSortingSlot(float value)
+    {
+        if (value < 0)
+        {
+            if (selectedSortingButton == buttons["All"])
+            {
+                buttons["Arrows"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Arrows"])
+            {
+                buttons["Consumptions"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Consumptions"])
+            {
+                buttons["All"].onClick.Invoke();
+            }
+        }
+        else if (value > 0)
+        {
+            if (selectedSortingButton == buttons["All"])
+            {
+                buttons["Consumptions"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Arrows"])
+            {
+                buttons["All"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Consumptions"])
+            {
+                buttons["Arrows"].onClick.Invoke();
+            }
+        }
     }
 }

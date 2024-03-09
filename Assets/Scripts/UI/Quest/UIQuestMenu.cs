@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,12 @@ public class UIQuestMenu : ContentElement
         base.Awake();
         CreateQuestSlot();
     }
+
+    private void Update()
+    {
+        ChangeSelectedSlot(Managers.Input.MoveUI);
+    }
+
     private void InitQuests()
     {
 
@@ -59,6 +66,7 @@ public class UIQuestMenu : ContentElement
             UpdateSlot(slot, quest);
         }
     }
+    
     public void UpdateSlot(UISlot slot, Quest quest)
     {
         slot.Texts["NameText"].text = ($"{quest.questInfo.questName}");
@@ -89,9 +97,7 @@ public class UIQuestMenu : ContentElement
     {
 
     }
-
-
-
+    
     //Instruction에 넣을 정보들
     private void SetQuestInfo(Quest quest)
     {
@@ -113,5 +119,29 @@ public class UIQuestMenu : ContentElement
         // rewards
         texts["GoldLabelText"].text = ($"{quest.questInfo.goldReward}");
         texts["ExpLabelText"].text = ($"{quest.questInfo.expReward}");
+    }
+    
+    public void ChangeSelectedSlot(float value)
+    {
+        int i = slots.IndexOf(selectedSlot);
+
+        if (i == -1)
+            return;
+        
+        
+        if (value > 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[(i + 1) % slots.Count];
+        }
+        else if (value < 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[i - 1 < 0 ? slots.Count - 1 : i - 1];
+        }
+        else
+            return;
+        
+        selectedSlot.ChangeAlpha(1f);
     }
 }

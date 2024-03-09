@@ -52,11 +52,18 @@ public class UIManager
     {
         mainUI.gameObject.SetActive(true);
         isOpenedUI = true;
+        Managers.Game.IsPause = true;
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
+        Managers.Input.OpenUI();
     }
 
     public void CloseMainUI()
     {
         mainUI.gameObject.SetActive(false);
         isOpenedUI = false;
+        Managers.Game.IsPause = false;
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
+        Managers.Input.CloseUI();
+        
     }
 }

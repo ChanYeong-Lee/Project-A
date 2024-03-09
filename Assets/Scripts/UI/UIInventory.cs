@@ -15,6 +15,7 @@ public class UIInventory : ContentElement
     private UISlot slotPrefab;
     private UISlot selectedSlot;
     private UISlot focusedSlot;
+    private Button selectedSortingButton;
 
     public UISlot SelectedSlot { get => selectedSlot; set => selectedSlot = value; }
 
@@ -31,19 +32,38 @@ public class UIInventory : ContentElement
     private void OnEnable()
     {
         UpdateInventory();
+        selectedSortingButton = buttons["All"];
     }
 
     private void Update()
     {
+        ChangeSelectedSlot(Managers.Input.MoveUI);
+        ChangeSortingSlot(Managers.Input.SortingMoveUI);
         UpdateItemInfo(selectedSlot);
     }
 
     private void BindButtons()
     {
-        buttons["All"].onClick.AddListener(() => UpdateInventory(Define.ItemType.None));
-        buttons["Arrows"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Arrow));
-        buttons["Consumptions"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Consumption));
-        buttons["Ingredients"].onClick.AddListener(() => UpdateInventory(Define.ItemType.Ingredients));
+        buttons["All"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["All"];
+            UpdateInventory(Define.ItemType.None);
+        });
+        buttons["Arrows"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["Arrows"];
+            UpdateInventory(Define.ItemType.Arrow);
+        });
+        buttons["Consumptions"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["Consumptions"];
+            UpdateInventory(Define.ItemType.Consumption);
+        });
+        buttons["Ingredients"].onClick.AddListener(() =>
+        {
+            selectedSortingButton = buttons["Ingredients"];
+            UpdateInventory(Define.ItemType.Ingredients);
+        });
     }
 
     // 정렬할 itemType을 넣으면 정렬
@@ -91,5 +111,70 @@ public class UIInventory : ContentElement
         texts["NameText"].text = $"{slot.ItemData.ItemName}";
         texts["DescriptionText"].text = $"{slot.ItemData.Description}";
         texts["TypeText"].text = $"{slot.ItemData.ItemTypeName}";
+    }
+    
+    public void ChangeSelectedSlot(float value)
+    {
+        int i = slots.IndexOf(selectedSlot);
+
+        if (i == -1)
+            return;
+        
+        if (value > 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[(i + 1) % slots.Count];
+        }
+        else if (value < 0)
+        {
+            selectedSlot.ChangeAlpha(0.2f);
+            selectedSlot = slots[i - 1 < 0 ? slots.Count - 1 : i - 1];
+        }
+        else
+            return;
+        
+        selectedSlot.ChangeAlpha(1f);
+    }
+    
+    public void ChangeSortingSlot(float value)
+    {
+        if (value < 0)
+        {
+            if (selectedSortingButton == buttons["All"])
+            {
+                buttons["Arrows"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Arrows"])
+            {
+                buttons["Consumptions"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Consumptions"])
+            {
+                buttons["Ingredients"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Ingredients"])
+            {
+                buttons["All"].onClick.Invoke();
+            }
+        }
+        else if (value > 0)
+        {
+            if (selectedSortingButton == buttons["All"])
+            {
+                buttons["Ingredients"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Arrows"])
+            {
+                buttons["All"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Consumptions"])
+            {
+                buttons["Arrows"].onClick.Invoke();
+            }
+            else if (selectedSortingButton == buttons["Ingredients"])
+            {
+                buttons["Consumptions"].onClick.Invoke();
+            }
+        }
     }
 }

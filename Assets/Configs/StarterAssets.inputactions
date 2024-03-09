@@ -78,54 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "EKey",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "87ecbdc6-fcdc-473d-9c07-46c1a8ddcda7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "IKey",
-                    "type": "Button",
-                    "id": "7645fc6f-2ce8-4ea7-bc91-4dd1bb8bcae5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CKey",
-                    "type": "Button",
-                    "id": "930b8052-26d2-4104-806e-10b78d962aa4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ESC",
-                    "type": "Button",
-                    "id": "666ac034-3a57-4d8f-be73-cba089c84056",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "QKey",
-                    "type": "Button",
-                    "id": "11136b8c-1d99-42a5-aae2-82ed11f6fa0c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MKey",
-                    "type": "Button",
-                    "id": "07fef3c5-c0d7-4f86-b379-1f193308be16",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -142,8 +97,98 @@
                 },
                 {
                     "name": "Tab",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "1a165d76-70cf-4535-8cd1-3d04239ca3fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "7645fc6f-2ce8-4ea7-bc91-4dd1bb8bcae5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Craft",
+                    "type": "Button",
+                    "id": "930b8052-26d2-4104-806e-10b78d962aa4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quest",
+                    "type": "Button",
+                    "id": "11136b8c-1d99-42a5-aae2-82ed11f6fa0c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "07fef3c5-c0d7-4f86-b379-1f193308be16",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ESC",
+                    "type": "Button",
+                    "id": "666ac034-3a57-4d8f-be73-cba089c84056",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemQuickSlot1",
+                    "type": "Button",
+                    "id": "1220fb04-4f82-4571-aede-085703ddb4c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemQuickSlot2",
+                    "type": "Button",
+                    "id": "7b2d07ab-01e2-4a24-9efc-ff49ede7e5b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemQuickSlot3",
+                    "type": "Button",
+                    "id": "39d4df52-9049-4ff2-8ff9-ac8e56a33e70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UIMove",
+                    "type": "Button",
+                    "id": "2eba6e9c-3c44-48f7-bddd-871aa3c3bdfa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UISortingMove",
+                    "type": "Button",
+                    "id": "625139ab-2e9c-41b2-a374-cb444355d7dd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -378,62 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "29954d1d-406b-42e2-97ca-11b24ebdee68",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "IKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "21f66a5c-dd39-4f22-b23b-7b568796f06f",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cee2b792-e3b7-41fe-bc12-d24cd8968dc9",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ESC",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d8ca2b99-4657-4bf9-9f3e-7afa095518ac",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "QKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3be57309-029f-4074-bfdb-aeb89189f514",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MKey",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -458,6 +448,160 @@
                     "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29954d1d-406b-42e2-97ca-11b24ebdee68",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21f66a5c-dd39-4f22-b23b-7b568796f06f",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Craft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8ca2b99-4657-4bf9-9f3e-7afa095518ac",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3be57309-029f-4074-bfdb-aeb89189f514",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cee2b792-e3b7-41fe-bc12-d24cd8968dc9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ESC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "299742b0-dc9b-43fc-b127-8e8265ca1f50",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemQuickSlot1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0cc763a-4cb6-4fc8-b1eb-c44dca46b866",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemQuickSlot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b90b1f6-3942-41f2-950a-9fb173c1dfc6",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemQuickSlot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "7db6c7d9-50c3-4aa4-8e96-8010eed21476",
+                    "path": "1DAxis",
+                    "interactions": "Hold(duration=0.005)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c4c96556-6a3c-490a-8524-d8be6e909b25",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "f39bf78d-ce12-4dbb-bbf7-f2c25711e09f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "05151ab5-d856-4147-88b3-cac7cb5a0d96",
+                    "path": "1DAxis",
+                    "interactions": "Hold(duration=0.005)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UISortingMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "0afc8abf-27c7-48eb-b90f-402857970794",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UISortingMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ae11aed3-91e6-44ba-98d0-4406a8d4a9e3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UISortingMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
