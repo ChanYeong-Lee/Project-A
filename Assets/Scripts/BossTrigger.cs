@@ -7,12 +7,17 @@ public class BossTrigger : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera vCam;
     [SerializeField] private GameObject cart;
+    private Monster boss;
+
+    private void Awake()
+    {
+        boss = GetComponentInParent<Monster>(); 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<TestTargetMove>().SetTarget();
             StartCoroutine(CameraCoroutine());
             Destroy(GetComponent<BoxCollider>());
         }
@@ -34,6 +39,9 @@ public class BossTrigger : MonoBehaviour
 
             yield return null;
         }
+        
+        Managers.Game.EnterBossMonsterStage(boss);
+
         Destroy(vCam.gameObject);
         Destroy(cart.gameObject);
         Destroy(gameObject);

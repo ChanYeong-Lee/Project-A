@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,6 +136,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 5192844789080341873, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7691174342590472547, guid: e4a1457f5a972c24c946367046a49e49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,8 +211,21 @@ PrefabInstance:
       propertyPath: moveTarget
       value: 
       objectReference: {fileID: 1111146881}
+    - target: {fileID: 8828737838593740122, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: cart
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828737838593740122, guid: e4a1457f5a972c24c946367046a49e49,
+        type: 3}
+      propertyPath: vCam
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6334975205845576249, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
+    - {fileID: 7458859742720100685, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
+    - {fileID: 2161250580387151292, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a1457f5a972c24c946367046a49e49, type: 3}
@@ -1200,7 +1233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672717259}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08303958, y: 1e-45, z: -0, w: 0.99654627}
+  m_LocalRotation: {x: -0.08303958, y: -1e-45, z: -0, w: 0.99654627}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -52,7 +52,7 @@ public class HorseSlope : MonoBehaviour
     public bool IsGround => isGround;
 
     public bool canRotate;
-
+    public LayerMask GroundLayers => groundLayers;
     
 
     private Vector3 p1 = Vector3.zero;

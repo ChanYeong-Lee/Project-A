@@ -25,15 +25,16 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _EMISSION
   m_InvalidKeywords:
   - _FLIPBOOKBLENDING_OFF
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - GRABPASS
   m_LockedProperties: 
@@ -92,7 +93,7 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _AlphaMultiply: 0.5
-    - _AlphaToMask: 0
+    - _AlphaToMask: 1
     - _AnimationSpeed: 22
     - _Blend: 0
     - _BlendOp: 0
@@ -141,7 +142,7 @@ Material:
     - _BaseColor: {r: 1.216786, g: 1.1658211, b: 1.1212269, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1.216786, g: 1.1658211, b: 1.1212269, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

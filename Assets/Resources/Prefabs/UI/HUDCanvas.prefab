@@ -391,7 +391,7 @@ MonoBehaviour:
   aimUI: {fileID: 2090367373468309062}
   itemPanel: {fileID: 1529083485896613141}
   healthBar: {fileID: 6637203526438862938}
-  bossHealthBar: {fileID: 0}
+  bossHealthBar: {fileID: 3220790683522232917}
   compass: {fileID: 8384744874542927786}
   gameOverUI: {fileID: 1967917955971800130}
   arrowSelector: {fileID: 509522145368710121}

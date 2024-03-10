@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using State = Define.BearState;
 
@@ -36,7 +37,10 @@ namespace BearController
 
                 if (Mathf.Abs(Vector3.Dot(lookAt, bear.transform.forward)) < 0.9f)
                 {
-                    bear.transform.rotation = Quaternion.Lerp(bear.transform.rotation, Quaternion.LookRotation(lookAt, bear.transform.up), 10.0f * Time.deltaTime);
+                    if (lookAt != Vector3.zero)
+                    {
+                        bear.transform.rotation = Quaternion.Lerp(bear.transform.rotation, Quaternion.LookRotation(lookAt, bear.transform.up), 10.0f * Time.deltaTime);
+                    }
 
                     velocity = 0.0f;
                     angularVelocity = horizontal;
@@ -66,8 +70,9 @@ namespace BearController
                 }
 
                 Collider[] colliders = new Collider[1];
-                count = Physics.OverlapBoxNonAlloc(bear.Eyes.transform.position, new Vector3(bear.Data.AttackRange, 1, 1), colliders,
-                    Quaternion.identity, LayerMask.NameToLayer("Player"));
+                count = Physics.OverlapBoxNonAlloc(bear.transform.position, Vector3.one * bear.Data.AttackRange, colliders,
+                    Quaternion.identity, 1 << LayerMask.NameToLayer("Player"));
+                if (colliders[0] != null) Debug.Log(colliders[0].name);
                 velocity = 0.0f;
                 angularVelocity = 0.0f;
             }
