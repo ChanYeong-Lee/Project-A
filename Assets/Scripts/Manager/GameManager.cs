@@ -47,6 +47,8 @@ public class GameManager
     private AimTarget aimTarget;
     private Material fullScreenHP;
 
+    public Bear bear;
+
     public GameObject Player { get => player; set => player = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public GameObject Horse { get => horse; set => horse = value; }
@@ -101,6 +103,7 @@ public class GameManager
     private void CreateMonster()
     {
         monsterSpawner = Managers.Resource.Instantiate("Prefabs/Monster/Monster Spawner").GetComponent<MonsterSpawner>();
+        bear = GameObject.FindObjectOfType<Bear>();
     }
 
     public void PlayerSettings()

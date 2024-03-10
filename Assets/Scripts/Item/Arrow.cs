@@ -11,7 +11,6 @@ public class Arrow : Item
     [SerializeField] protected Transform arrowHead;
     public ArrowData ArrowData => data as ArrowData;
     protected Coroutine shotCoroutine;
-    protected CapsuleCollider col;
 
     [SerializeField] protected GameObject[] explosionParticle;
     [SerializeField] protected GameObject[] trailParticle;
@@ -30,7 +29,6 @@ public class Arrow : Item
 
     protected virtual void Awake()
     {
-        col = GetComponent<CapsuleCollider>();
 
         foreach (GameObject gameObject in explosionParticle)
         {

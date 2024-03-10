@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scenes/GameScene.unity.meta
-guid: 602fc20e6b33e194484774685e250e9e
-========
-guid: b80f3927569f81741b4ad7fc426b63b9
-folderAsset: yes
->>>>>>>> origin/test-quest:Assets/Resources/ScriptableObject/Quest/VisitUnknownWord.meta
+guid: ab442f4658ee1974195d979719af6eef
+timeCreated: 1496400892
+licenseType: Store
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

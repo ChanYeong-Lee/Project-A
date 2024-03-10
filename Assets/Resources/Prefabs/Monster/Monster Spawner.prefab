@@ -50,6 +50,6 @@ MonoBehaviour:
   - {fileID: 5488465847894699506, guid: 1dbbd93a843636a419bdf30740d05808, type: 3}
   spawnCount: 0a000000050000000a000000
   spawnPosition:
-  - {x: -105, y: 3, z: 95}
+  - {x: 311, y: 0, z: -80}
   - {x: 245, y: 3, z: 171}
   - {x: 236, y: 70, z: 658}

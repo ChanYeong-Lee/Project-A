@@ -41,7 +41,9 @@ public class CursorManager : MonoBehaviour
 
     public void ChangeCursorState(CursorState state)
     {
+       
         this.state = state;
+        print($" Cursor state : {state}");
         OnApplicationFocus(true);
     }
 }

@@ -98,12 +98,16 @@ public class UIManager
 
     public void OpenDialogUI()
     {
+        
         uiDialog.gameObject.SetActive(true);
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
         isOpenedUI = true;
     }
     public void CloseDialogUI()
     {
+       
         uiDialog.gameObject.SetActive(false);
+        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.OnGame);
         isOpenedUI = false;
     }
 

@@ -9,7 +9,7 @@ public class DialogSystem : UIBase
     public DialogData[] dialogDatas;
 
     public int currentSpeakerIndex = 0;
-    public int currentDialogIndex = 0;
+    public int currentDialogIndex = -1;
     private float typingSpeed = 0.1f;
 
     private bool isFirst = true;
@@ -25,9 +25,16 @@ public class DialogSystem : UIBase
        // BindDialog(currentSpeakerIndex, false) ;
         buttons["ArrowButton"].onClick.AddListener(() => SkipOrNextDialog());
         UpdateDialog();
-        Managers.Cursor.ChangeCursorState(CursorManager.CursorState.UI);
+       
     }
-
+    private void Update()
+    {
+       
+        if(currentSpeakerIndex > dialogDatas.Length)
+        {
+            Managers.UI.CloseDialogUI();
+        }
+    }
     private void BindDialog(int currentSpeakerIndex, bool visible)
     {
         if (visible && currentSpeakerIndex+1 < dialogDatas.Count())
@@ -55,14 +62,13 @@ public class DialogSystem : UIBase
         // 대사 분기가 시작될 때 1회만 호출
         if (isFirst == true)
         {
-
+            
             // 자동 재생(isAutoStart=true)으로 설정되어 있으면 첫 번째 대사 재생
             if (isAutoStart) SetNextDialog();
 
             isFirst = false;
         }
-
-        if (Input.GetMouseButton(0))
+        if (Managers.Input.leftClick)
         {
             // 텍스트 타이핑 효과를 재생중일때 마우스 왼쪽 클릭하면 타이핑 효과 종료
             if (isTypingEffect == true)
@@ -74,10 +80,10 @@ public class DialogSystem : UIBase
                 texts["DialogText"].text = dialogDatas[currentSpeakerIndex].dialog;
                 // 대사가 완료되었을 때 출력되는 커서 활성화
                 buttons["ArrowButton"].gameObject.SetActive(true);
-
-                return false;
             }
         }
+
+
 
         return false;
     }

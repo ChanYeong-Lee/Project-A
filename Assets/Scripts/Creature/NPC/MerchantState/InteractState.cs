@@ -25,10 +25,7 @@ namespace MerchantController
                 {
                     Open();
                 }
-                if (false == isToggle)
-                {
-                    Close();
-                }
+               
 
             }
         }

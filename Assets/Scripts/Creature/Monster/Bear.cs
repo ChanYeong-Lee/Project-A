@@ -1,4 +1,5 @@
 using BearController;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -42,6 +43,10 @@ public class Bear : Monster
     public AnimationCurve DownwardCurve => downwardCurve;
     public LayerMask GroundLayer => groundLayer;
     public int ReceivedDamage => receivedDamage;
+
+
+    public Action onKill;
+
 
     private void OnValidate()
     {

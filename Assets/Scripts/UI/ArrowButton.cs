@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ArrowBlink : MonoBehaviour
 {
     [SerializeField]
-    private float fadeTime; 
+    private float fadeTime = 1f; 
     private Image fadeImage;  
 
     private void Awake()

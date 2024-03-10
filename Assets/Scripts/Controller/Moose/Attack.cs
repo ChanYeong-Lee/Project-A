@@ -19,11 +19,17 @@ namespace MooseController
         public override void Update()
         {
             base.Update();
-            
+
             // TODO : 공격 로직
-            Collider[] colliders = new Collider[1];
-            count = Physics.OverlapBoxNonAlloc(moose.Eyes.transform.position, new Vector3(moose.Data.AttackRange, 1, 1), colliders,
-                Quaternion.identity, LayerMask.NameToLayer("Player"));
+            var overlapBox = Physics.OverlapBox(moose.Eyes.transform.position, new Vector3(moose.Data.AttackRange / 2, moose.Data.AttackRange / 2, moose.Data.AttackRange / 2));
+
+            foreach (Collider collider in overlapBox)
+            {
+                if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    count = 1;
+                }
+            }
         }
 
         public override void FixedUpdate()

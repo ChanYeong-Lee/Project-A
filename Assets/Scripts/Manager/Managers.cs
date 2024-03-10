@@ -64,6 +64,7 @@ public class Managers : MonoBehaviour
 
     private void Awake()
     {
+        Screen.SetResolution(1920, 1080, Game.IsFullScreenMode);
         input = resource.Instantiate("Prefabs/Managers/InputManager", transform).GetComponent<InputManager>();
         input.name = "InputManager";
 

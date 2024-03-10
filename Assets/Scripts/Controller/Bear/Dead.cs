@@ -12,19 +12,17 @@ namespace BearController
         public override void Enter()
         {
             bear.state = State.Dead;
-            
+            Managers.Game.ExitBossMonsterStage();
 
             anim.CrossFade("Dead", 0.2f);
 
             ChangeDirectMode(DirectMode.Manual);
             velocity = 0.0f;
             angularVelocity = 0.0f;
-            GameEventsManager.Instance.miscEvents.onKillCount += KillCount;
+            bear.onKill?.Invoke();
+            
         }
 
-        private void KillCount(int count)
-        {
-            count = 1;
-        }
+       
     }
 }

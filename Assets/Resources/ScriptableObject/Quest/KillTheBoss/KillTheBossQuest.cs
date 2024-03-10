@@ -7,22 +7,21 @@ public class KillTheBossQuest : QuestStep
     private int killCount = 0;
     private int completeCount = 1;
 
-   
-
-    private void OneEnable()
+    private void Start()
     {
-        GameEventsManager.Instance.miscEvents.onKillCount += BossKilled;
+        Managers.Game.bear.onKill += BossKilled;
     }
+    
     private void OnDisable()
     {
-        GameEventsManager.Instance.miscEvents.onKillCount -= BossKilled;
+        Managers.Game.bear.onKill -= BossKilled;
     }
 
-    private void BossKilled(int count)
+    private void BossKilled()
     {
         if(killCount < completeCount)
         {
-            killCount += count;
+            killCount++;
         }
 
         if (killCount == completeCount)
