@@ -4295,7 +4295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2565900439846440421
 Transform:
   m_ObjectHideFlags: 0
@@ -5177,9 +5177,18 @@ MonoBehaviour:
   bottomClamp: -30
   cameraAngleOverride: 0
   lockCameraPosition: 0
-  landingAudioClip: {fileID: 8300000, guid: 47e7b6f7e3e27e942b73e1d3efa55647, type: 3}
+  landingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   footstepAudioClips:
-  - {fileID: 8300000, guid: 50ef9e51d993734499f3ba55391226ec, type: 3}
+  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
+  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
+  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
+  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
+  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
+  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
+  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
+  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
+  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   footstepAudioVolume: 0.5
 --- !u!114 &7550656658948513200
 MonoBehaviour:
@@ -6908,6 +6917,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8439845424918123830, guid: d4b14a8d4ba8721449c5a12c307a1de3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8480618360107467002, guid: d4b14a8d4ba8721449c5a12c307a1de3,
         type: 3}
       propertyPath: m_Name
@@ -7093,6 +7107,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5672949056973486620}
     m_Modifications:
+    - target: {fileID: 4337155173019161990, guid: 279d60eae7b0f514b899ea27dc47e249,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5468584107310082424, guid: 279d60eae7b0f514b899ea27dc47e249,
         type: 3}
       propertyPath: m_Name

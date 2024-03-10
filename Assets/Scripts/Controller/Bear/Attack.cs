@@ -66,7 +66,7 @@ namespace BearController
                 }
 
                 Collider[] colliders = new Collider[1];
-                count = Physics.OverlapBoxNonAlloc(bear.Eyes.transform.position, new Vector3(bear.Data.AttackRange, 1, 1), colliders,
+                count = Physics.OverlapBoxNonAlloc(bear.transform.position, Vector3.one * bear.Data.AttackRange, colliders,
                     Quaternion.identity, LayerMask.NameToLayer("Player"));
                 velocity = 0.0f;
                 angularVelocity = 0.0f;

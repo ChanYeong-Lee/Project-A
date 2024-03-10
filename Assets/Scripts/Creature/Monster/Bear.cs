@@ -138,7 +138,7 @@ public class Bear : Monster
 
     public void PlaySound(string clip)
     {
-        source.PlayOneShot(roarClip);
+        source.PlayOneShot(roarClip, 0.7f);
     }
 
     public void StartBossFight()

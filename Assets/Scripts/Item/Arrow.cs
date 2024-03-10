@@ -67,6 +67,7 @@ public class Arrow : Item
         if (shotCoroutine != null)
         {
             StopCoroutine(shotCoroutine);
+            shotCoroutine = null;
         }
     }
 
@@ -93,10 +94,15 @@ public class Arrow : Item
                 break;
             }
 
-            if (Physics.Raycast(arrowHead.position, transform.forward, out RaycastHit hit, 1.0f))
+            if (Physics.Raycast(arrowHead.position, transform.forward, out RaycastHit hit, 0.25f))
             {
                 if (hit.collider.isTrigger == false)
                 {
+                    Monster newTarget = hit.collider.GetComponentInParent<Monster>();
+                    if (newTarget != null)
+                    {
+                        newTarget.TakeDamage(ArrowData, AttackPointType.Default);
+                    }
                     onShotEnd?.Invoke();
                     break;
                 }
@@ -115,6 +121,8 @@ public class Arrow : Item
             yield return null;
         }
 
+        trail.enabled = false;
+        shotCoroutine = null;
         Managers.Pool.Push(gameObject);
     }
 }

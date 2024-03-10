@@ -109,6 +109,7 @@ public class GameManager
         player.transform.rotation = Quaternion.Euler(0, 30, 0);
         horse.transform.position = new Vector3(-235, 2, -227);
         horse.transform.rotation = Quaternion.Euler(0, 145, 0);
+        horse.SetActive(false);
 
         inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
     }
@@ -121,8 +122,10 @@ public class GameManager
         fullScreenHP.SetFloat("_VignettePower", value);
     }
     
-    public void EnterBossMonsterStage()
+    public void EnterBossMonsterStage(Monster boss)
     {
+        monster = boss;
+        boss.GetComponent<Bear>().StartBossFight();
         // TODO : 보스 몬스터 트리거 작동하면 monster에 보스 넣어주기
         // monster =
 

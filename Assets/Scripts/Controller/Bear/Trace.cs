@@ -14,7 +14,7 @@ namespace BearController
             bear.state = State.Trace;
             ChangeDirectMode(DirectMode.Auto);
             traceTime = Random.Range(5.0f, 10.0f);
-            velocity = Random.Range(2.5f, 3.0f);
+            velocity = 3.0f;
         }
 
         public override void Update()

@@ -17,7 +17,7 @@ namespace BearController
             prowlTime = Random.Range(2.0f, 7.0f);
             ChangeDirectMode(DirectMode.Manual);
 
-            velocity = Random.Range(2.0f, 3.0f);
+            velocity = Random.Range(2.5f, 3.0f);
         }
 
         public override void Update()
