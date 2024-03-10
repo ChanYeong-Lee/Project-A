@@ -24,6 +24,7 @@ public class CharacterMount : MonoBehaviour
     [SerializeField] private Rig mountRig;
     [SerializeField] private TwoBoneIKConstraint leftFootIK;
     [SerializeField] private TwoBoneIKConstraint rightFootIK;
+    [SerializeField] private AnimationCurve disMountCurve;
 
     private CharacterMove move;
     private Animator animator;
@@ -116,12 +117,12 @@ public class CharacterMount : MonoBehaviour
             transform.position = Vector3.Lerp(originPos, horse.MountPoint.position, ratio);
             transform.rotation = Quaternion.Slerp(originRot, horse.MountPoint.rotation, ratio);
 
-            leftFootIK.data.target.position = horse.MountPointIKs[(int)Horse.MountIK.LeftFoot].position;
-            leftFootIK.data.hint.position = horse.MountPointIKs[(int)Horse.MountIK.LeftKnee].position;
-            rightFootIK.data.target.position = horse.MountPointIKs[(int)Horse.MountIK.RightFoot].position;
-            rightFootIK.data.hint.position = horse.MountPointIKs[(int)Horse.MountIK.RightKnee].position;
+            //leftFootIK.data.target.position = horse.MountPointIKs[(int)Horse.MountIK.LeftFoot].position;
+            //leftFootIK.data.hint.position = horse.MountPointIKs[(int)Horse.MountIK.LeftKnee].position;
+            //rightFootIK.data.target.position = horse.MountPointIKs[(int)Horse.MountIK.RightFoot].position;
+            //rightFootIK.data.hint.position = horse.MountPointIKs[(int)Horse.MountIK.RightKnee].position;
 
-            mountRig.weight = ratio;
+            //mountRig.weight = ratio;
 
             yield return null;
 
@@ -158,7 +159,7 @@ public class CharacterMount : MonoBehaviour
                 ratio += Time.deltaTime / mountTime;
             }
 
-            transform.position = Vector3.Lerp(originPos, targetPos, ratio);
+            transform.position = Vector3.Lerp(originPos, targetPos, disMountCurve.Evaluate(ratio));
             transform.rotation = Quaternion.Slerp(originRot, targetRot, ratio);
 
             mountRig.weight = 1.0f - ratio;
@@ -175,7 +176,9 @@ public class CharacterMount : MonoBehaviour
         leftFootIK.data.hint.position = leftFootIK.data.mid.position;
         rightFootIK.data.target.position = rightFootIK.data.tip.position;
         rightFootIK.data.hint.position = rightFootIK.data.mid.position;
-        
+
+        mountRig.weight = 0.0f;
+
         move.SetMount(false);
 
         characterController.enabled = true;
