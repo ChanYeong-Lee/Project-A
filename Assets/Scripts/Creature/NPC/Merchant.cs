@@ -35,6 +35,8 @@ public class Merchant : NPC
     [HideInInspector] public Collider interactibleCollider;
     public Collider[] nearbyColliders;
 
+    [SerializeField] public DialogSystem dialogSystem1;
+
 
     [Header("RunAwawy 상태 관련 자료")]
     public List<Transform> safezones;
@@ -71,6 +73,7 @@ public class Merchant : NPC
         anim = GetComponent<Animator>();
         col = GetComponentInChildren<CapsuleCollider>();
         interactibleCollider = GetComponentInChildren<CapsuleCollider>();
+        dialogSystem1 = GetComponent<DialogSystem>();
         triangulation = NavMesh.CalculateTriangulation();
 
         stateMachine.AddState(State.Idle, new IdleState(this));

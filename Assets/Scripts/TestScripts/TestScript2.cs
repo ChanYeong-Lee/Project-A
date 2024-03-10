@@ -29,8 +29,8 @@ public class TestScript2 : MonoBehaviour
    
     public void Open()
     {
-        
-        Managers.UI.OpenMainUI();
+
+        Managers.UI.OpenDialogUI();
     }
     public void press()
     {
