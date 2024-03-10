@@ -83,13 +83,6 @@ public class QuestManager : MonoBehaviour
         foreach (Quest quest in questDic.Values)
         {
             SaveQuest(quest);
-            //QuestData questData = quest.GetQuestData();
-            //Debug.Log($"State : {questData.state}");
-            //Debug.Log($"index : {questData.questStepIndex}");
-            //foreach (QuestStepState stepState in questData.questStepStates)
-            //{
-            //    Debug.Log($"StepState : {stepState.state}");
-            //}
         }
 
     }
