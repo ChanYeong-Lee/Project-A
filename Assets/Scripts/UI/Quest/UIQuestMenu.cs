@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UIQuestMenu : ContentElement
 {
@@ -20,7 +21,7 @@ public class UIQuestMenu : ContentElement
 
     private void OnEnable()
     {
-        UpdateQuestMenu();
+       // UpdateQuestMenu();
         GameEventsManager.Instance.questEvents.onQuestStateChange += QuestStateChange;
     
         selectedSlot = content.transform.GetComponentInChildren<UISlot>();
@@ -41,13 +42,10 @@ public class UIQuestMenu : ContentElement
     private void Update()
     {
         ChangeSelectedSlot(Managers.Input.MoveUI);
-    }
+        OnSelect();
 
-    private void InitQuests()
-    {
 
     }
-
     private void CreateQuestSlot()
     {
         foreach (UISlot slot in slots) 
@@ -61,7 +59,6 @@ public class UIQuestMenu : ContentElement
             UISlot slot = Managers.Resource.Instantiate("Prefabs/UI/QuestSlot", content, true).GetComponent<UISlot>();
             slot.transform.SetSiblingIndex(i++);
             slot.SlotType = SlotType.QuestMenu;
-            Debug.Log($" 퀘스트 슬록슬롯 추가 : {slot.name}");
             slots.Add(slot);
             UpdateSlot(slot, quest);
         }
@@ -71,23 +68,7 @@ public class UIQuestMenu : ContentElement
     {
         slot.Texts["NameText"].text = ($"{quest.questInfo.questName}");
     }
-
-    private void UpdateQuestMenu()
-    {
-        //TODO: 퀘스트 상태 업데이트 될때마다 호출
-        foreach (Quest quest in QuestManager.Instance.QuestDic.Values)
-        {
-            SetQuestInfo(quest);
-        }
-    }
-    private void UpdateQuestInfo()
-    {
-        //TODO: 퀘스트 슬록 마우스 클릭 입력받을때 Info 업데이트
-    }
-    private void QuestLogTogglePressed()
-    {
-
-    }
+   
     private void QuestStateChange(Quest quest)
     {
         SetQuestInfo(quest);
@@ -95,14 +76,21 @@ public class UIQuestMenu : ContentElement
 
     private void OnSelect()
     {
-
+        string qName = selectedSlot.Texts["NameText"].text;
+        foreach (Quest q in QuestManager.Instance.QuestDic.Values)
+        {
+            if(q.questInfo.questName == qName)
+            {
+                SetQuestInfo(q);
+            }
+        }
     }
-    
+
     //Instruction에 넣을 정보들
     private void SetQuestInfo(Quest quest)
     {
         // quest name
-
+      
         texts["NameText"].text = quest.questInfo.questName;
 
         // status
@@ -124,6 +112,7 @@ public class UIQuestMenu : ContentElement
     public void ChangeSelectedSlot(float value)
     {
         int i = slots.IndexOf(selectedSlot);
+       
 
         if (i == -1)
             return;
@@ -143,5 +132,6 @@ public class UIQuestMenu : ContentElement
             return;
         
         selectedSlot.ChangeAlpha(1f);
+        
     }
 }

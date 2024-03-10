@@ -10,4 +10,14 @@ public class MiscEvents
             onWoodCollected(count);
         }
     }
+
+    public Action<int> onKillCount;
+    public void BossDead(int count)
+    {
+        if (onKillCount != null)
+        {
+            onKillCount(count);
+        }
+    }
+
 }

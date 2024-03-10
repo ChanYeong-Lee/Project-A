@@ -46,7 +46,7 @@ namespace MerchantController
         public void LookForNearbyTargets()
         {
             //TODO: NPC, Player, Enemy, 그리고 collectibleObject에 대한 처리
-            if (Owner.nearbyColliders.Count() == 0)
+            if (Owner.nearbyColliders.Count() == 1 || Owner.nearbyColliders.Contains(null))
             {
                 ChangeState(State.Wander);
                 return;

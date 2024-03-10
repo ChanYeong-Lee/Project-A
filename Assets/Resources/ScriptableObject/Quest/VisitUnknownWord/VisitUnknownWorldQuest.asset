@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: VisitUnknownWorldQuest
   questName: Advanture Start!
-  description: asdf
+  description: "\uACF3\uACF3\uC5D0 \uC228\uACA8\uC9C4 \uC7A5\uC18C\uB97C \uD0D0\uC0C9\uD574\uBCF4\uC138\uC694."
   isCompleted: 0
   requirementPlayerLevel: 1
   questPrerequisites: []

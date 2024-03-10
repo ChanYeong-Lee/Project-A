@@ -19,7 +19,7 @@ public class Merchant : NPC
     [SerializeField] public State state;
     [SerializeField] public NavMeshAgent agent;
     [HideInInspector] protected NavMeshTriangulation triangulation;
-
+    [SerializeField] private LookAt lookat;
 
     [Header("이동 관련 자료형")]
     [Space(2f)]
@@ -34,8 +34,6 @@ public class Merchant : NPC
     public LayerMask Interactable => interactable;
     [HideInInspector] public Collider interactibleCollider;
     public Collider[] nearbyColliders;
-
-    [SerializeField] public DialogSystem dialogSystem1;
 
 
     [Header("RunAwawy 상태 관련 자료")]
@@ -73,7 +71,6 @@ public class Merchant : NPC
         anim = GetComponent<Animator>();
         col = GetComponentInChildren<CapsuleCollider>();
         interactibleCollider = GetComponentInChildren<CapsuleCollider>();
-        dialogSystem1 = GetComponent<DialogSystem>();
         triangulation = NavMesh.CalculateTriangulation();
 
         stateMachine.AddState(State.Idle, new IdleState(this));
@@ -184,6 +181,8 @@ public class Merchant : NPC
             anim.SetBool("move", shouldMove);
             anim.SetFloat("velx", vel.x);
             anim.SetFloat("vely", vel.y);
+
+            lookat.lookAtTargetPosition = agent.steeringTarget + transform.forward;
         }
        
 

@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-// Sourced from: https://docs.unity3d.com/Manual/nav-CouplingAnimationAndNavigation.html
-// slightly modified
+
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
 public class LookAt : MonoBehaviour

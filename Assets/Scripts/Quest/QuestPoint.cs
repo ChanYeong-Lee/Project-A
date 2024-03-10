@@ -8,6 +8,7 @@ public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
     [SerializeField] private QuestInfoSo questForPoint;
+    [SerializeField] private Collider collider;
 
     public bool playerIsNear = false;
 
@@ -22,8 +23,7 @@ public class QuestPoint : MonoBehaviour
     private void Start()
     {
         questId = questForPoint.id;
-
-
+        collider = GetComponent<Collider>();
         GameEventsManager.Instance.questEvents.onQuestStateChange += QuestStateChange;
     }
     private void OnEnable()
@@ -41,7 +41,6 @@ public class QuestPoint : MonoBehaviour
         {
             playerIsNear = true;
             SubmitPressed();
-
 
         }
     }

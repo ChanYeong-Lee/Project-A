@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43def368b0ffc5e47b60805ccdaacc93, type: 3}
+  m_Name: KillTheBoss
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: KillTheBoss
+  questName: "\uBB34\uC2DC\uBB34\uC2DC\uD55C \uACF0"
+  description: "\uBCF4\uC2A4\uB97C \uC7A1\uC544\uC11C \uC138\uC0C1\uC744 \uAD6C\uD558\uC790!"
+  isCompleted: 0
+  requirementPlayerLevel: 0
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 1455180537836292526, guid: cce716fa29f90a147803e2ee371aa934, type: 3}
+  goldReward: 30
+  expReward: 30

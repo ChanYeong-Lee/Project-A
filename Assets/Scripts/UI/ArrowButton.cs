@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class ArrowBlink : MonoBehaviour
 {
     [SerializeField]
-    private float fadeTime; // 페이드 되는 시간
-    private Image fadeImage;    // 페이드 효과에 사용되는 Image UI
+    private float fadeTime; 
+    private Image fadeImage;  
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class ArrowBlink : MonoBehaviour
 
     private void OnEnable()
     {
-        // Fade 효과를 In -> Out 무한 반복한다.
+       
         StartCoroutine("FadeInOut");
     }
 
@@ -28,9 +28,9 @@ public class ArrowBlink : MonoBehaviour
     {
         while (true)
         {
-            yield return StartCoroutine(Fade(1, 0));    // Fade In
+            //yield return StartCoroutine(Fade(1, 0));   
 
-            yield return StartCoroutine(Fade(0, 1));    // Fade Out
+            yield return StartCoroutine(Fade(0, 1)); 
         }
     }
 

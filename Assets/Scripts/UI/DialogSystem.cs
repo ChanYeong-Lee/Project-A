@@ -34,7 +34,6 @@ public class DialogSystem : UIBase
         {
             texts["TextDialog"].text = dialogDatas[currentSpeakerIndex].dialog;
             texts["NameText"].text = dialogDatas[currentSpeakerIndex].name;
-
             texts["TextDialog"].gameObject.SetActive(visible);
             texts["NameText"].gameObject.SetActive(visible);
             buttons["ArrowButton"].gameObject.SetActive(false);
@@ -49,7 +48,6 @@ public class DialogSystem : UIBase
         if (currentSpeakerIndex + 1 > dialogDatas.Count())
         {
             Managers.UI.CloseDialogUI();
-          
         }
     }
     public bool UpdateDialog()
@@ -64,7 +62,7 @@ public class DialogSystem : UIBase
             isFirst = false;
         }
 
-        if (Input.GetKey("n"))
+        if (Input.GetMouseButton(0))
         {
             // 텍스트 타이핑 효과를 재생중일때 마우스 왼쪽 클릭하면 타이핑 효과 종료
             if (isTypingEffect == true)
@@ -79,18 +77,6 @@ public class DialogSystem : UIBase
 
                 return false;
             }
-
-            //// 대사가 남아있을 경우 다음 대사 진행
-            //if (dialogDatas[currentSpeakerIndex].dialog.Length > currentDialogIndex)
-            //{
-            //    SetNextDialog();
-            //}
-            //else
-            //{
-            //   //대화 관련 UI를 보이지 않게 비활성화
-            //    Managers.UI.CloseDialogUI();
-            //    return true;
-            //}
         }
 
         return false;
@@ -131,9 +117,6 @@ public class DialogSystem : UIBase
 
 
 }
-
-
-
 [Serializable]
 public struct DialogData
 {
