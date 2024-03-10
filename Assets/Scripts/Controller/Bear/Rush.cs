@@ -53,11 +53,11 @@ namespace BearController
                 Vector3 lookAt = (bear.Agent.steeringTarget - bear.transform.position).normalized;
                 if (lookAt != Vector3.zero)
                 {
-                    bear.transform.rotation = Quaternion.LookRotation(lookAt, bear.transform.up);
+                    bear.transform.rotation = Quaternion.Lerp(bear.transform.rotation, Quaternion.LookRotation(lookAt, bear.transform.up), Time.deltaTime);
                 }
 
                 velocity = 3.0f;
-                angularVelocity = 0.0f;
+                angularVelocity = Mathf.Lerp(angularVelocity, 0.0f, Time.deltaTime);
             }
         }
 
