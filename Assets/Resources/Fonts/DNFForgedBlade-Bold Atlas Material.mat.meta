@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Fonts/DNFForgedBlade-Bold Atlas Material.mat.meta
 guid: 3029a5a1a7e6c124391eaa98de0cf942
 NativeFormatImporter:
+========
+guid: 9c939b2b63a6d3d4da0ba035a54a7bb9
+PrefabImporter:
+>>>>>>>> origin/test-NavmeshMap:Assets/Resources/Prefabs/UI/DialogCanvas.prefab.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Shaders/FullScreenHP.mat.meta
 guid: 4fe38ce0f656c494db169c7165ad7cb0
 NativeFormatImporter:
+========
+guid: 1e0b157c438a4e5489b82b103b7c3c2c
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> origin/test-NavmeshMap:Assets/Resources/Prefabs/NPC.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

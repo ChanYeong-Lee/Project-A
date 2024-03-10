@@ -14,7 +14,6 @@ public class CursorManager : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        //TODO: Cursor 비활성화시켰음 나중에 주석처리 지워주기
         if (focus)
         {
             switch (state)
