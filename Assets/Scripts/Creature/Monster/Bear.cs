@@ -62,7 +62,7 @@ public class Bear : Monster
         agent = GetComponent<NavMeshAgent>();
         agent.updateUpAxis = false;
 
-        //moveTarget = new GameObject("MoveTarget").transform;
+        moveTarget = new GameObject("MoveTarget").transform;
 
         stateMachine.AddState(State.Idle, new IdleState(this));
         stateMachine.AddState(State.Think, new ThinkState(this));
