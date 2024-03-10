@@ -5171,7 +5171,7 @@ MonoBehaviour:
   groundRadius: 0.28
   groundLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 136
   camTarget: {fileID: 7169060635310199948}
   topClamp: 70
   bottomClamp: -30
