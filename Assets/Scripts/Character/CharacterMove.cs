@@ -148,7 +148,7 @@ public class CharacterMove : MonoBehaviour
         camTarget.transform.rotation = Quaternion.Euler(camTargetPitch + cameraAngleOverride, camTargetYaw, 0.0f);
     }
 
-    private void Move()
+     private void Move()
     {
         float targetSpeed = Managers.Input.sprint ? sprintSpeed : moveSpeed;
         if (Managers.Input.move == Vector2.zero) targetSpeed = 0.0f;

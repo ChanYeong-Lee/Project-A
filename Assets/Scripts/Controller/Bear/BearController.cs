@@ -119,10 +119,17 @@ namespace BearController
                     isOffMesh = false;
 
                     Vector3 dir = (bear.Agent.steeringTarget - bear.transform.position).normalized;
+                    // 월드 좌표에서 로컬 좌표로 변환 
                     Vector3 animDir = bear.transform.InverseTransformDirection(dir);
+                    // 이동할 백터의 z가 0 이하이면 타겟이 뒤에 있음
                     bool isFacingMoveDirection = 0.0f < Vector3.Dot(dir, bear.transform.forward);
 
+                    //  animDir이 0보다 크면 갈방향이 정면이면 실제 x 값 사용.
+                    //  틀리면 -2f - animDir.x 이면 왼쪽으로 뒤돌기. 2f - animDir.x일 경우 오른쪽으로 뒤돌기 
                     horizontal = 0.0f < animDir.z ? animDir.x : animDir.x < 0 ? -2.0f - animDir.x : 2.0f - animDir.x;
+                    
+                    //타겟이 뒤에 있으면 앞으로 가는 속도는 0. 뒤로 바로 돌기 위해서
+                    //타겟이 내 앞방향의 90도 내에 있을 경우 앞으로 가는 속도 그대로 사용
                     vertical = isFacingMoveDirection ? animDir.z * actualVelocity : 0.0f;
 
                     switch (directMode)
