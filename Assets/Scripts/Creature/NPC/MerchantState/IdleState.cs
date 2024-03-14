@@ -40,55 +40,51 @@ namespace MerchantController
         }
         public override void Exit()
         {
-
+            
         }
 
         public void LookForNearbyTargets()
         {
+          
             //TODO: NPC, Player, Enemy, 그리고 collectibleObject에 대한 처리
-            if (Owner.nearbyColliders.Count() == 1 || Owner.nearbyColliders.Contains(null))
+            if (Owner.nearbyColliders.Count() == 0 || Owner.nearbyColliders.Contains(null))
             {
+                
                 ChangeState(State.Wander);
                 return;
             }
             foreach (Collider col in Owner.nearbyColliders)
             {
-                if (col.gameObject.layer == LayerMask.NameToLayer("Player") /*9 PlayerLayer*/)
+                Debug.Log($"레이어 값 : {col.gameObject.layer}");
+                switch (col.gameObject.layer)
                 {
-                    //TODO: Look at Player 추가
-                    Owner.target = col.gameObject;
-                    Owner.DisableAgentMovement();
-                }
-                else if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") /*6 EnemyLayer*/)
-                {
-                    Owner.target = col.gameObject;
-                    ChangeState(State.RunAway);
-                }
-            }
-            /* 수정이 가능하다면 위 조건과 대체
-             if (Owner.nearbyColliders.Count() == 0) 
-  {
-      ChangeState(State.Wander);
-      return;
-  }
+                    case 9:
+                    //LayerMask.NameToLayer("Player"):
+                        //TODO: Look at Player 추가
+                        Owner.target = col.gameObject;
+                        Owner.DisableAgentMovement();
+                        break;
+                    case 6:
+                        Owner.target = col.gameObject;
+                        ChangeState(State.RunAway);
+                        break;
 
-  foreach (Collider col in Owner.nearbyColliders)
-  {
-      switch (col.gameObject.layer)
-      {
-          case LayerMask.NameToLayer("Player"):
-              // TODO: Look at Player 추가
-              Owner.target = col.gameObject;
-              Owner.DisableAgentMovement();
-              break;
-          case LayerMask.NameToLayer("Enemy"):
-              Owner.target = col.gameObject;
-              ChangeState(State.RunAway);
-              break;
-          // 다른 레이어에 대한 추가적인 case를 필요에 따라 추가하세요.
-      }
-  }
-             */
+
+                }
+
+                //if (col.gameObject.layer == LayerMask.NameToLayer("Player") /*9 PlayerLayer*/)
+                //{
+                //    //TODO: Look at Player 추가
+                //    Owner.target = col.gameObject;
+                //    Owner.DisableAgentMovement();
+                //}
+                //else if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") /*6 EnemyLayer*/)
+                //{
+                //    Owner.target = col.gameObject;
+                //    ChangeState(State.RunAway);
+                //}
+            }
+            
         }
         public void CheckProximityAndChangeState()
         {

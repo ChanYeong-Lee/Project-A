@@ -8,6 +8,9 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using State = Define.MerchantState;
 using MerchantController;
+using System.Linq;
+using UnityEngine.Rendering;
+using Sirenix.Utilities;
 
 
 [DisallowMultipleComponent]
@@ -19,7 +22,7 @@ public class Merchant : NPC
     [SerializeField] public State state;
     [SerializeField] public NavMeshAgent agent;
     [HideInInspector] protected NavMeshTriangulation triangulation;
-    [SerializeField] private LookAt lookat;
+    //[SerializeField] private LookAt lookat;
 
     [Header("이동 관련 자료형")]
     [Space(2f)]
@@ -104,7 +107,14 @@ public class Merchant : NPC
     {
         nearbyColliders = Physics.OverlapBox(transform.position + transform.up,
                           interactionBounds * 0.5f, transform.rotation, interactable);
+     if(nearbyColliders.Contains(interactibleCollider))
+        {
+            //nearbyColliders.Clear(nearbyColliders);
+        }
         
+      
+
+
     }
 
     private IEnumerator MoveToRandomPos()
@@ -182,7 +192,7 @@ public class Merchant : NPC
             anim.SetFloat("velx", vel.x);
             anim.SetFloat("vely", vel.y);
 
-            lookat.lookAtTargetPosition = agent.steeringTarget + transform.forward;
+            //lookat.lookAtTargetPosition = agent.steeringTarget + transform.forward;
         }
        
 
