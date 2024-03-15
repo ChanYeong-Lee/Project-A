@@ -12,6 +12,8 @@ public class Define
     public const string RecipeDataPath = "ScriptableObject/Recipe/";
 
     public const string questDataPath = "ScriptableObject/Quest/";
+
+    public const float FideLoadingTime = 5f;
     
     // Env 성장 시간 : 프래임 * 시간
     public const int GrowthTime = 60 * 10;

@@ -96,7 +96,7 @@ public class GameManager
                 .GetComponent<CameraController>();
         }
         
-        // »ý¼ºµÉ À§Ä¡ ÀÔ·Â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ô·ï¿½
         // PlayerSettings();
     }
 
@@ -129,7 +129,7 @@ public class GameManager
     {
         monster = boss;
         boss.GetComponent<Bear>().StartBossFight();
-        // TODO : º¸½º ¸ó½ºÅÍ Æ®¸®°Å ÀÛµ¿ÇÏ¸é monster¿¡ º¸½º ³Ö¾îÁÖ±â
+        // TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ï¸ï¿½ monsterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
         // monster =
 
         Managers.UI.HUDUI.BossHealthBar.gameObject.SetActive(true);

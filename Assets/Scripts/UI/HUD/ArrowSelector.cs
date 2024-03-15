@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ public class ArrowSelector : MonoBehaviour
     }
     private void OnEnable()
     {
+        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        transform.DOScale(new Vector3(1, 1, 1), 3);
         focusSlot = null;
     }
 
