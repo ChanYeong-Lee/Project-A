@@ -20,8 +20,8 @@ public class Arrow : Item
     protected Action onShotEnd;
 
 
-    // TODO : º¸½º ¸ó½ºÅÍ ¹× ¸ó½ºÅÍ ±¸Çö ÈÄ È¿°ú ¸Þ¼Òµå ±¸Çö ¿¹Á¤
-    // È­»ì È¿°ú ¹ßµ¿ ¸Þ¼Òµå
+    // TODO : ë³´ìŠ¤ ëª¬ìŠ¤í„° ë° ëª¬ìŠ¤í„° êµ¬í˜„ í›„ íš¨ê³¼ ë©”ì†Œë“œ êµ¬í˜„ ì˜ˆì •
+    // í™”ì‚´ íš¨ê³¼ ë°œë™ ë©”ì†Œë“œ
     public virtual void Attack()
     {
 
@@ -29,7 +29,6 @@ public class Arrow : Item
 
     protected virtual void Awake()
     {
-
         foreach (GameObject gameObject in explosionParticle)
         {
             onShotEnd += () =>
@@ -82,6 +81,7 @@ public class Arrow : Item
         trail.enabled = true;
         float distance = Vector3.Distance(arrowHead.position, target.transform.position);
         float lifeTime = 10.0f;
+        
         while (true)
         {
             lifeTime -= Time.deltaTime;
@@ -97,19 +97,17 @@ public class Arrow : Item
                 if (hit.collider.isTrigger == false)
                 {
                     Monster newTarget = hit.collider.GetComponentInParent<Monster>();
-                    if (newTarget != null)
-                    {
+                    
+                    if (newTarget != null) 
                         newTarget.TakeDamage(ArrowData, AttackPointType.Default);
-                    }
+                    
                     onShotEnd?.Invoke();
                     break;
                 }
             }
 
             if (lifeTime < 0.0f)
-            {
                 break;
-            }
 
             onShot?.Invoke();
 

@@ -2,57 +2,58 @@ using System;
 
 public class Define
 {
-    // »ó¼ö(const)
-    // ¿­°ÅÇü(Enum)
-    // Á¤¸®
+    // ìƒìˆ˜(const)
+    public const float MinSceneLoadingTime = 5f;
+    // ì—´ê±°í˜•(Enum)
+    // ì •ë¦¬
 
-    // ±âº» È­»ì µ¥ÀÌÅÍ ÁÖ¼Ò °ª
+    // ê¸°ë³¸ í™”ì‚´ ë°ì´í„° ì£¼ì†Œ ê°’
     public const string DefaultArrowDataPath = "ScriptableObject/Item/Arrow/Arrow";
-    // ·¹½ÃÇÇ µ¥ÀÌÅÍ ÁÖ¼Ò °ª
+    // ë ˆì‹œí”¼ ë°ì´í„° ì£¼ì†Œ ê°’
     public const string RecipeDataPath = "ScriptableObject/Recipe/";
 
     public const string questDataPath = "ScriptableObject/Quest/";
     
-    // Env ¼ºÀå ½Ã°£ : ÇÁ·¡ÀÓ * ½Ã°£
+    // Env ì„±ì¥ ì‹œê°„ : í”„ë˜ì„ * ì‹œê°„
     public const int GrowthTime = 60 * 10;
 
     public enum SceneType
     {
-        TitleScene,     // ·Îºñ ¾À
-        LoadingScene,   // ·Îµù ¾À
-        GameScene,      // °ÔÀÓ ¾À
+        TitleScene,     // ë¡œë¹„ ì”¬
+        LoadingScene,   // ë¡œë”© ì”¬
+        GameScene,      // ê²Œì„ ì”¬
     }
     
-    // ¾ÆÀÌÅÛ
+    // ì•„ì´í…œ
     public enum ItemType
     {
         None,           //
-        Arrow,          // È­»ì ¾ÆÀÌÅÛ
-        Consumption,    // ¼Ò¸ğ ¾ÆÀÌÅÛ
-        Ingredients,    // Àç·á ¾ÆÀÌÅÛ
+        Arrow,          // í™”ì‚´ ì•„ì´í…œ
+        Consumption,    // ì†Œëª¨ ì•„ì´í…œ
+        Ingredients,    // ì¬ë£Œ ì•„ì´í…œ
         Etc
     }
     
-    // È­»ì ¼Ó¼º
+    // í™”ì‚´ ì†ì„±
     public enum AttributeType
     {
-        Default,           // ±âº»
-        Bomb,           // ÆøÅº - ´Ù¸®(ÇÏ´ÜºÎ) ºÎÀ§ Å¸°İ½Ã ÀÌµ¿ ÁßÁö, ÆÈ(»ó´ÜºÎ) ºÎÀ§ Å¸°İ½Ã °ø°İ ÁßÁö
-        Electric,       // Àü±â - ¸ğµç ºÎÀ§ ÀüºÎ Å¸°İ½Ã ÀÏ½Ã ¸¶ºñ
-        Fire,           // ºÒ - µµÆ® µ¥¹ÌÁö, º¸½º¿¡ µû¶ó ³»¼º À¯¹« Â÷ÀÌ
-        Glue,            // ²öÀû²öÀû - ´Ù¸®(ÇÏ´ÜºÎ) ºÎÀ§ Å¸°İ½Ã ÀÌµ¿¼Óµµ °¨¼Ò, ÆÈ(»ó´ÜºÎ) ºÎÀ§ Å¸°İ½Ã °ø°İ¼Óµµ °¨¼Ò 
-        Light,          // ºû - ´« ºÎÀ§ Å¸°İ½Ã ÀÏÁ¤ ½Ã°£µ¿¾È ÃßÀû Å¸ÄÏ ³õÄ§
-        Poison,         // µ¶ - µµÆ® µ¥¹ÌÁö, º¸½º¿¡ µû¶ó ³»¼º À¯¹« Â÷ÀÌ
+        Default,           // ê¸°ë³¸
+        Bomb,           // í­íƒ„ - ë‹¤ë¦¬(í•˜ë‹¨ë¶€) ë¶€ìœ„ íƒ€ê²©ì‹œ ì´ë™ ì¤‘ì§€, íŒ”(ìƒë‹¨ë¶€) ë¶€ìœ„ íƒ€ê²©ì‹œ ê³µê²© ì¤‘ì§€
+        Electric,       // ì „ê¸° - ëª¨ë“  ë¶€ìœ„ ì „ë¶€ íƒ€ê²©ì‹œ ì¼ì‹œ ë§ˆë¹„
+        Fire,           // ë¶ˆ - ë„íŠ¸ ë°ë¯¸ì§€, ë³´ìŠ¤ì— ë”°ë¼ ë‚´ì„± ìœ ë¬´ ì°¨ì´
+        Glue,            // ëˆì ëˆì  - ë‹¤ë¦¬(í•˜ë‹¨ë¶€) ë¶€ìœ„ íƒ€ê²©ì‹œ ì´ë™ì†ë„ ê°ì†Œ, íŒ”(ìƒë‹¨ë¶€) ë¶€ìœ„ íƒ€ê²©ì‹œ ê³µê²©ì†ë„ ê°ì†Œ 
+        Light,          // ë¹› - ëˆˆ ë¶€ìœ„ íƒ€ê²©ì‹œ ì¼ì • ì‹œê°„ë™ì•ˆ ì¶”ì  íƒ€ì¼“ ë†“ì¹¨
+        Poison,         // ë… - ë„íŠ¸ ë°ë¯¸ì§€, ë³´ìŠ¤ì— ë”°ë¼ ë‚´ì„± ìœ ë¬´ ì°¨ì´
     }
     
-    // ÆÄ¹Ö Å¸ÀÔ
+    // íŒŒë° íƒ€ì…
     public enum FarmingType
     {
-        None,           // ±âº»
-        Gathering,      // Ã¤Áı
-        Felling,        // ¹ú¸ñ
-        Mining,         // Ã¤±¤
-        Dismantling     // ºĞÇØ(¸ó½ºÅÍ Ã¤Áı)
+        None,           // ê¸°ë³¸
+        Gathering,      // ì±„ì§‘
+        Felling,        // ë²Œëª©
+        Mining,         // ì±„ê´‘
+        Dismantling     // ë¶„í•´(ëª¬ìŠ¤í„° ì±„ì§‘)
     }
     
     // Moose State

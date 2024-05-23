@@ -15,22 +15,37 @@ public class SceneLoadManager
 
     public IEnumerator LoadSceneAsync(Define.SceneType sceneType)
     {
-        // 씬을 비동기로 로드
+        yield return null;
+        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneType.ToString());
+        float loadingTime = Define.MinSceneLoadingTime;
+        float progress = 0f;
+        
+        operation.allowSceneActivation = false;
 
-        // 로딩이 완료될 때까지 대기
         while (!operation.isDone)
         {
-            // 로딩 상태를 표시할 수도 있음 (예: 로딩 바 갱신)
-            float progress = Mathf.Clamp01(operation.progress / 0.9f); // 로딩 완료가 0.9로 간주
-            Managers.UI.LoadingUI.LoadingAmount = progress;
-            Debug.Log($"{progress}");
-            // 로딩이 완료될 때까지 대기
             yield return null;
-        }
+            loadingTime -= Time.fixedDeltaTime;
+            Managers.UI.LoadingUI.LoadingAmount = progress;
 
-        // 로딩 화면을 비활성화
-        Managers.UI.LoadingUI.gameObject.SetActive(false);
+            if (operation.progress < 0.9f)
+            {
+                progress = Mathf.Clamp01(operation.progress);
+            }
+            else switch (loadingTime)
+            {
+                case > 0f:
+                    progress = operation.progress + (Define.MinSceneLoadingTime - loadingTime) / Define.MinSceneLoadingTime * 0.1f; 
+                    break;
+                case < 0f:
+                    progress = Mathf.Clamp01(operation.progress / 0.9f);
+                    yield return null;
+                    loadingTime = Define.MinSceneLoadingTime;
+                    operation.allowSceneActivation = true;
+                    break;
+            }
+        }
     }
     
     public void Clear()

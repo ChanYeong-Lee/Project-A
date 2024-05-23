@@ -8,35 +8,30 @@ public class Managers : MonoBehaviour
 {
     #region ΩÃ±€≈Ê
 
-    private static Managers instance;
+    private static Managers _instance;
+    private static bool _isQuitting;
 
     public static Managers Instance
     {
         get
         {
             Init();
-
-            return instance;
+            return _instance;
         }
     }
 
     private static void Init()
     {
-        if (instance == null)
+        if (!_isQuitting && _instance == null)
         {
             GameObject go = GameObject.Find("Managers");
-
-            if (go == null)
-            {
+            
+            if (go == null) 
                 go = new GameObject("Managers");
-                go.AddComponent<Managers>();
-            }
 
             DontDestroyOnLoad(go);
-            instance = go.GetComponent<Managers>();
+            _instance = go.GetOrAddComponent<Managers>();
         }
-
-        
     }
 
     #endregion
@@ -83,5 +78,11 @@ public class Managers : MonoBehaviour
     public static void Clear()
     {
         Pool.Clear();
+    }
+    
+    private void OnApplicationQuit()
+    {
+        Clear();
+        _isQuitting = true;
     }
 }

@@ -8,7 +8,7 @@ public class ContentElement : UIBase
     private RectTransform rect;
 
     public MenuType Type => type;
-    public RectTransform Rect => Rect;
+    public RectTransform Rect => rect;
     
     private void Awake()
     {

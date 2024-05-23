@@ -39,14 +39,13 @@ public class EnvSpawner : MonoBehaviour
 
         return go;
     }
-    
-    public IEnumerator CoRespawn(Environment env)
+
+    private IEnumerator CoRespawn(Environment env)
     {
         var scale = env.transform.lossyScale;
         yield return new WaitForSeconds(env.EnvData.RespawnTime);
         
         var go = Spawn(env);
-        
         
         for (int i = 1; i <= Define.GrowthTime; i++)
         {
