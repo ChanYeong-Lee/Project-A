@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using MonsterController;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
@@ -48,13 +49,12 @@ namespace BearController
 
             distance = Vector3.Distance(bear.MoveTarget.position, bear.transform.position);
             angle = Vector3.SignedAngle(bear.transform.forward, bear.MoveTarget.position - bear.transform.position, Vector3.up);
-
         }
 
-        public override void FixedUpdate()
-        {
-            CheckSlope();
-        }
+        //private void OnAnimatorMove()
+        //{
+        //    CheckSlope();
+        //}
 
         protected void AttackTransition()
         {

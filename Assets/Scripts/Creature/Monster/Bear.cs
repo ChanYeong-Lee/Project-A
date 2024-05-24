@@ -44,9 +44,7 @@ public class Bear : Monster
     public LayerMask GroundLayer => groundLayer;
     public int ReceivedDamage => receivedDamage;
 
-
     public Action onKill;
-
 
     private void OnValidate()
     {
@@ -85,6 +83,40 @@ public class Bear : Monster
     {
         roarCooldownDelta -= Time.deltaTime;
         attackCooldownDelta -= Time.deltaTime;
+
+        transform.position += rootMotion;
+        transform.rotation *= rootRotation;
+
+        rootMotion = Vector3.zero;
+        rootRotation = Quaternion.identity;
+    }
+
+    private Vector3 rootMotion;
+    private Quaternion rootRotation;
+
+    private void OnAnimatorMove()
+    {
+        rootMotion += anim.deltaPosition;
+        rootRotation *= anim.deltaRotation;
+
+        CheckSlope();
+    }
+
+    private void CheckSlope()
+    {
+        Vector3 origin = transform.position;
+
+        //int groundLayerIndex = LayerMask.NameToLayer("Ground");
+        //int layerMask = (1 << groundLayerIndex);
+
+        RaycastHit slopeHit;
+
+        if (Physics.Raycast(origin + Vector3.up, Vector3.down, out slopeHit, 100.0f, GroundLayer))
+        {
+            Debug.DrawLine(origin + Vector3.up, slopeHit.point + Vector3.down, Color.red);
+            Quaternion targetRot = Quaternion.FromToRotation(transform.up, slopeHit.normal) * transform.rotation;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * 1.0f);
+        }
     }
 
     private void OnEnable()

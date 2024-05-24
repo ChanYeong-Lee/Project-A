@@ -198,8 +198,6 @@ public class HorseSlope : MonoBehaviour
         }
     }
 
-    
-
     private void CheckSlope()
     {
         if (Physics.Raycast(transform.position + transform.forward * 1.2f+ Vector3.up, Vector3.down, out RaycastHit frontRightHit2, Mathf.Infinity, groundLayers))
