@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObject/Item Data/Item")]
-public class ItemData : ScriptableObject
+public class Item : ScriptableObject
 {
     [Header("Item Info")] 
     [SerializeField] protected string id;

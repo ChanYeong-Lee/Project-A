@@ -40,15 +40,15 @@ public class InputManager : MonoBehaviour
         // Item Quick Slot
         input.Player.ItemQuickSlot1.performed += _ =>
             Managers.Game.Player.GetComponent<Player>()
-                .UsePotion((PotionData)Managers.Game.Inventory.FindItemData("SmallPotion"));
+                .UsePotion((Potion)Managers.Game.Inventory.FindItemData("SmallPotion"));
 
         input.Player.ItemQuickSlot2.performed += _ =>
             Managers.Game.Player.GetComponent<Player>()
-                .UsePotion((PotionData)Managers.Game.Inventory.FindItemData("MediumPotion"));
+                .UsePotion((Potion)Managers.Game.Inventory.FindItemData("MediumPotion"));
 
         input.Player.ItemQuickSlot3.performed += _ =>
             Managers.Game.Player.GetComponent<Player>()
-                .UsePotion((PotionData)Managers.Game.Inventory.FindItemData("LargePotion"));
+                .UsePotion((Potion)Managers.Game.Inventory.FindItemData("LargePotion"));
 
         // UI
         // Inventory
@@ -154,12 +154,12 @@ public class InputManager : MonoBehaviour
             Managers.UI.MainUI.SelectMenu((MenuType)(((int)Managers.UI.MainUI.CurrentMenu + 1) %
                                                      Enum.GetValues(typeof(MenuType)).Length));
 
-        // UI Move - »óÇÏ ½½·Ô ¼±ÅÃ
+        // UI Move - ìƒí•˜ ìŠ¬ë¡¯ ì„ íƒ
         input.Player.UIMove.started += context => moveUI = context.ReadValue<float>();
         input.Player.UIMove.performed += context => moveUI = 0;
         input.Player.UIMove.canceled += _ => moveUI = 0;
         
-        // UI Move - ÁÂ¿ì Á¤·Ä ¹öÆ° ¼±ÅÃ
+        // UI Move - ì¢Œìš° ì •ë ¬ ë²„íŠ¼ ì„ íƒ
         input.Player.UISortingMove.started += context => sortingMoveUI = context.ReadValue<float>();
         input.Player.UISortingMove.performed += context => sortingMoveUI = 0;
         input.Player.UISortingMove.canceled += _ => sortingMoveUI = 0;
@@ -249,7 +249,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    // Å° ¹ÙÀÎµù ¹Ù²Ù±â
+    // í‚¤ ë°”ì¸ë”© ë°”ê¾¸ê¸°
     private void ChangeKeyBinding(InputAction action)
     {
         input.Disable();

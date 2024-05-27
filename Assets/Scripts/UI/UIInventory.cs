@@ -86,9 +86,9 @@ public class UIInventory : ContentElement
             slot.transform.SetSiblingIndex(i++);
             slot.SlotType = SlotType.InventoryMenu;
             slots.Add(slot);
-            slot.ItemData = item.Key;
+            slot.Item = item.Key;
             
-            slot.Images["Icon"].sprite = slot.ItemData.Icon;
+            slot.Images["Icon"].sprite = slot.Item.Icon;
             slot.Texts["NameText"].text = $"{item.Key.ItemName}";
             slot.Texts["TypeText"].text = $"{item.Key.ItemTypeName}";
             slot.Texts["AmountText"].text = $"{inventory.GetItemCount(item.Key)}";
@@ -106,11 +106,11 @@ public class UIInventory : ContentElement
         if (slot == null)
             return;
         
-        images["IconImage"].sprite = slot.ItemData.Icon;
-        texts["AmountLabelText"].text = $"{inventory.GetItemCount(slot.ItemData)}";
-        texts["NameText"].text = $"{slot.ItemData.ItemName}";
-        texts["DescriptionText"].text = $"{slot.ItemData.Description}";
-        texts["TypeText"].text = $"{slot.ItemData.ItemTypeName}";
+        images["IconImage"].sprite = slot.Item.Icon;
+        texts["AmountLabelText"].text = $"{inventory.GetItemCount(slot.Item)}";
+        texts["NameText"].text = $"{slot.Item.ItemName}";
+        texts["DescriptionText"].text = $"{slot.Item.Description}";
+        texts["TypeText"].text = $"{slot.Item.ItemTypeName}";
     }
     
     public void ChangeSelectedSlot(float value)

@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class QuantifiedItem : MonoBehaviour
 {
-    [SerializeField] protected ItemData data;
+    [SerializeField] protected Item data;
     [SerializeField] protected int count;
     
-    public ItemData Data => data;
+    public Item Data => data;
     public int Count { get => count; set => count = value; }
-    
 }

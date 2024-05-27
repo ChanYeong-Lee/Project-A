@@ -8,7 +8,7 @@ public class TestScript : MonoBehaviour
 {
     private Inventory inventory;
     
-    public List<ItemData> itemList;
+    public List<Item> itemList;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F2))
         {
             Debug.Log("인벤 아이템 체크");
-            foreach (KeyValuePair<ItemData, int> item in inventory.ItemDataDic)
+            foreach (KeyValuePair<Item, int> item in inventory.ItemDataDic)
             {
                 Debug.Log($"{item.Key.ItemName} : {item.Value}");
             }

@@ -19,13 +19,13 @@ public class ArrowPanel : UIBase
     public void ChangeAttribute(Define.AttributeType attribute)
     {
         var arrowData = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair => pair.Key.ItemType == Define.ItemType.Arrow &&
-            ((ArrowData)pair.Key).Attribute == attribute);
+            ((Arrow)pair.Key).Attribute == attribute);
 
         if (arrowData.Value <= 0)
         {
             images["ArrowImage(Default)"].sprite = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair => pair.Value == -1).Key.Icon;
-            texts["ArrowNameText"].text = "±âº»È­»ì";
-            texts["ArrowAmountText"].text = "¡Ä";
+            texts["ArrowNameText"].text = "ê¸°ë³¸í™”ì‚´";
+            texts["ArrowAmountText"].text = "âˆž";
         }
         else
         {
@@ -45,11 +45,11 @@ public class ArrowPanel : UIBase
         //
         //         if (i == 0)
         //         {
-        //             texts["ArrowAmountText"].text = "¡Ä";
+        //             texts["ArrowAmountText"].text = "âˆž";
         //         }
         //         else
         //         {
-        //             texts["ArrowAmountText"].text = $"{itemData.Value}°³";
+        //             texts["ArrowAmountText"].text = $"{itemData.Value}ê°œ";
         //             texts["ArrowNameText"].text = itemData.Key.ItemName;
         //         }
         //     }

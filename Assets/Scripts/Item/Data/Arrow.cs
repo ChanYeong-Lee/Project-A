@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Arrow", menuName = "ScriptableObject/Item Data/Arrow")]
-public class ArrowData : ItemData
+public class Arrow : Item
 {
     [Space(10)]
     [Header("Arrow Info")]

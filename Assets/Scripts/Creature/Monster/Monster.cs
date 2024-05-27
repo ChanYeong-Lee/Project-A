@@ -33,7 +33,7 @@ public abstract class Monster : Creature, IFarmable
         return data.DropItem.GetDropItem();
     }
     
-    public virtual void TakeDamage(ArrowData arrowData, AttackPointType attackPointType) { }
+    public virtual void TakeDamage(Arrow arrow, AttackPointType attackPointType) { }
     public virtual void ReSpawn() { }
 }
 

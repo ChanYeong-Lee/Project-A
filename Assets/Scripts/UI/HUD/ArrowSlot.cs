@@ -13,7 +13,7 @@ public class ArrowSlot : UIBase
     {
         var itemData = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair =>
             pair.Key.ItemType == Define.ItemType.Arrow &&
-            ((ArrowData)pair.Key).Attribute == attribute);
+            ((Arrow)pair.Key).Attribute == attribute);
         
         UpdateArrowSlot(itemData.Value);
     }
@@ -23,19 +23,19 @@ public class ArrowSlot : UIBase
         if (attribute == Define.AttributeType.Default)
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 1.0f);
-            texts["AmountText"].text = "¡Ä";
+            texts["AmountText"].text = "âˆž";
             return;
         }
         
         if (amount == 0)
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 0.2f);
-            texts["AmountText"].text = $"{amount}°³";
+            texts["AmountText"].text = $"{amount}ê°œ";
         }
         else
         {
             images["ArrowImage"].color = ColorHelper.SetColorAlpha(images["ArrowImage"].color, 1.0f);
-            texts["AmountText"].text = $"{amount}°³";
+            texts["AmountText"].text = $"{amount}ê°œ";
         }
     }
 

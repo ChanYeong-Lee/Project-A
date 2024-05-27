@@ -32,7 +32,7 @@ public class Bear : Monster
     
     public float decreaseVelocityRate = 0.0f;
 
-    // ÀÎ½ºÆåÅÍ È®ÀÎ¿ë
+    // ì¸ìŠ¤íŽ™í„° í™•ì¸ìš©
     public State state;
 
     public NavMeshAgent Agent => agent;
@@ -93,14 +93,14 @@ public class Bear : Monster
         attackCooldownDelta = 0.0f;
     }
 
-    public override void TakeDamage(ArrowData arrowData, AttackPointType attakcPointType)
+    public override void TakeDamage(Arrow arrow, AttackPointType attakcPointType)
     {
         if (currentStat.HealthPoint <= 0)
             return;
 
-        // µ¥¹ÌÁö °ø½Ä
-        receivedDamage = arrowData.ArrowTrueDamage + (arrowData.ArrowDamage - currentStat.Defence > 0
-            ? arrowData.ArrowDamage - currentStat.Defence
+        // ë°ë¯¸ì§€ ê³µì‹
+        receivedDamage = arrow.ArrowTrueDamage + (arrow.ArrowDamage - currentStat.Defence > 0
+            ? arrow.ArrowDamage - currentStat.Defence
             : 0);
 
         switch (attakcPointType)

@@ -48,14 +48,14 @@ public class Moose : Monster
         return base.Farming(out farmingType);
     }
 
-    public override void TakeDamage(ArrowData arrowData, AttackPointType a)
+    public override void TakeDamage(Arrow arrow, AttackPointType a)
     {
         if (currentStat.HealthPoint <= 0)
             return;
         
         // 데미지 공식
-        receivedDamage = arrowData.ArrowTrueDamage + (arrowData.ArrowDamage - currentStat.Defence > 0
-            ? arrowData.ArrowDamage - currentStat.Defence
+        receivedDamage = arrow.ArrowTrueDamage + (arrow.ArrowDamage - currentStat.Defence > 0
+            ? arrow.ArrowDamage - currentStat.Defence
             : 0);
 
         if (state != State.Dead)

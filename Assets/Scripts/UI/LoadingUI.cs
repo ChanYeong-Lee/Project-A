@@ -12,10 +12,12 @@ public class LoadingUI : UIBase
         base.Awake();
 
         images["FillImage"].fillAmount = 0;
+        texts["LoadingText"].text = "0 / 100%";
     }
 
     private void Update()
     {
         images["FillImage"].fillAmount = loadingAmount;
+        texts["LoadingText"].text = $"{(int)(loadingAmount * 100)} / 100%";
     }
 }

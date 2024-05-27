@@ -60,9 +60,7 @@ public class EnvSpawner : MonoBehaviour
     public void Despawn(Environment env)
     {
         env.IsFarmable = false;
-
         Managers.Pool.Push(env.gameObject);
-
         StartCoroutine(CoRespawn(env));
     }
 }

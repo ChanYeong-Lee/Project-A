@@ -77,16 +77,16 @@ public class Player : MonoBehaviour
     {
         if (currentStat.HealthPoint <= 0)
         {
-            // ÇÃ·¹ÀÌ¾î »ç¸Á Ã³¸®
+            // í”Œë ˆì´ì–´ ì‚¬ë§ ì²˜ë¦¬
             Managers.Game.GameOver();
         }
         
         currentStat.HealthPoint -= damage - currentStat.Defence;
     }
     
-    public void UsePotion(PotionData itemData)
+    public void UsePotion(Potion item)
     {
-        currentStat.HealthPoint += Managers.Game.Inventory.TryUseItem(itemData) ? itemData.HealingPoint : 0;
+        currentStat.HealthPoint += Managers.Game.Inventory.TryUseItem(item) ? item.HealingPoint : 0;
         
         if (currentStat.HealthPoint > data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint) 
             currentStat.HealthPoint = data.Stats.Find(stat => stat.Level == currentLevel).HealthPoint;

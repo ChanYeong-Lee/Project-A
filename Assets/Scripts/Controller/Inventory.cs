@@ -5,42 +5,42 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<ItemData, int> itemDataDic = new Dictionary<ItemData, int>();
-    public Dictionary<ItemData, int> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
+    private Dictionary<Item, int> itemDataDic = new Dictionary<Item, int>();
+    public Dictionary<Item, int> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
 
-    // ¾ÆÀÌÅÛ »ç¿ë
-    public bool TryUseItem(ItemData itemData, int count = 1)
+    // ì•„ì´í…œ ì‚¬ìš©
+    public bool TryUseItem(Item item, int count = 1)
     {
-        if (!itemDataDic.ContainsKey(itemData))
+        if (!itemDataDic.ContainsKey(item))
             return false;
 
-        if (itemDataDic[itemData] == -1)
+        if (itemDataDic[item] == -1)
             return true;
         
-        if (count > itemDataDic[itemData])
+        if (count > itemDataDic[item])
             return false;
 
-        itemDataDic[itemData] -= count;
+        itemDataDic[item] -= count;
         
         return true;
     }
     
-    // ¾ÆÀÌÅÛ È¹µæ ¸Ş¼Òµå
-    public bool TryGainItem(ItemData itemData, int count = 1)
+    // ì•„ì´í…œ íšë“ ë©”ì†Œë“œ
+    public bool TryGainItem(Item item, int count = 1)
     {
-        if (itemData == null)
+        if (item == null)
             return false;
         
-        if (!itemDataDic.TryAdd(itemData, count))
-            itemDataDic[itemData] += count;
+        if (!itemDataDic.TryAdd(item, count))
+            itemDataDic[item] += count;
 
         return true;
     }
 
-    // ¾ÆÀÌÅÛ Á¦ÀÛ ¸Ş¼Òµå
+    // ì•„ì´í…œ ì œì‘ ë©”ì†Œë“œ
     public void CraftingItem(ItemRecipeData recipeData)
     {
-        if (TryGainItem(recipeData.ItemData, recipeData.ItemCount))
+        if (TryGainItem(recipeData.Item, recipeData.ItemCount))
         {
             for (int i = 0; i < recipeData.CraftItemData.Count; i++)
             {
@@ -64,16 +64,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // ¾ÆÀÌÅÛ °³¼ö °¡Á®¿À±â
-    public int GetItemCount(ItemData itemData)
+    // ì•„ì´í…œ ê°œìˆ˜ ê°€ì ¸ì˜¤ê¸°
+    public int GetItemCount(Item item)
     {
-        if (itemData == null || !itemDataDic.ContainsKey(itemData))
+        if (item == null || !itemDataDic.ContainsKey(item))
             return 0;
 
-        if (itemDataDic[itemData] == -1)
+        if (itemDataDic[item] == -1)
             return 999;
 
-        return itemDataDic[itemData];
+        return itemDataDic[item];
     }
     
     public int GetItemCount(string id)
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
         return GetItemCount(item.Key);
     }
 
-    public ItemData FindItemData(string id)
+    public Item FindItemData(string id)
     {
         var item = itemDataDic.FirstOrDefault(itemData => itemData.Key.ItemID == id);
 

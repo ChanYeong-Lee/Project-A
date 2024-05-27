@@ -13,10 +13,21 @@ MonoBehaviour:
   m_Name: Medium Potion Recipe
   m_EditorClassIdentifier: 
   itemID: 0
-  itemData: {fileID: 11400000, guid: 184751871cc0b72498b108850c0a4f4c, type: 2}
+  item: {fileID: 11400000, guid: 184751871cc0b72498b108850c0a4f4c, type: 2}
   itemCount: 1
   craftItemID: 
-  craftItemData:
+  craftItem:
   - {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
   - {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
   craftItemCount: 0200000003000000
+  itemData:
+    ID: 0
+    Item: {fileID: 11400000, guid: 184751871cc0b72498b108850c0a4f4c, type: 2}
+    Count: 1
+  craftItemData2:
+  - ID: 0
+    Item: {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
+    Count: 2
+  - ID: 0
+    Item: {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
+    Count: 3

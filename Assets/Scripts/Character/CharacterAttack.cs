@@ -24,12 +24,12 @@ public class CharacterAttack : MonoBehaviour
     [SerializeField] private Define.AttributeType arrowAttribute;
     [SerializeField] private Transform arrowPos;
     [SerializeField] private Transform quiver;
-    [SerializeField] private List<Arrow> arrowPrefabs;
+    [SerializeField] private List<ArrowAction> arrowPrefabs;
     [SerializeField] private float chargeTime = 2.0f;
     
     [SerializeField] private AimTarget aimTarget;
 
-    private Arrow arrow;
+    private ArrowAction arrowAction;
     private Animator animator;
     private AttackPoint target;
 
@@ -43,7 +43,7 @@ public class CharacterAttack : MonoBehaviour
     // Properties
     public AttackState State => state;
     public Define.AttributeType ArrowAttribute => arrowAttribute;
-    public Arrow Arrow => arrow;
+    public ArrowAction ArrowAction => arrowAction;
 
     private void Awake()
     {
@@ -77,24 +77,24 @@ public class CharacterAttack : MonoBehaviour
         animator.SetInteger("AimState", (int)state);
     }
 
-    // È­»ì ¹Ù²Ù±â
+    // í™”ì‚´ ë°”ê¾¸ê¸°
     public void ChangeArrow(Define.AttributeType attribute)
     {
-        if (arrow.ArrowData.Attribute != attribute)
+        if (arrowAction.Arrow.Attribute != attribute)
         {
             arrowAttribute = attribute;
 
-            Arrow newArrow = GenerateArrow(attribute);
-            newArrow.transform.parent = arrow.transform.parent;
-            newArrow.transform.position = arrow.transform.position;
+            ArrowAction newArrowAction = GenerateArrow(attribute);
+            newArrowAction.transform.parent = arrowAction.transform.parent;
+            newArrowAction.transform.position = arrowAction.transform.position;
 
-            Managers.Pool.Push(arrow.gameObject);
+            Managers.Pool.Push(arrowAction.gameObject);
             Managers.UI.HUDUI.ArrowPanel.ChangeAttribute(arrowAttribute);
-            arrow = newArrow;
+            arrowAction = newArrowAction;
         }
     }
 
-    // °ø°Ý °¡´É »óÅÂÀÎÁö È®ÀÎ
+    // ê³µê²© ê°€ëŠ¥ ìƒíƒœì¸ì§€ í™•ì¸
     private void CheckPrepared()
     {
         Vector3 aimForward = aimTarget.transform.position - transform.position;
@@ -109,7 +109,7 @@ public class CharacterAttack : MonoBehaviour
         prepared = forwardCheck && timeCheck;
     }
 
-    // Å¸°Ù ÀÖ´ÂÁö È®ÀÎ
+    // íƒ€ê²Ÿ ìžˆëŠ”ì§€ í™•ì¸
     private void CheckTarget()
     {
         target = null;
@@ -123,7 +123,7 @@ public class CharacterAttack : MonoBehaviour
         }
     }
 
-    // Á¶ÁØÁ¡ ¾÷µ¥ÀÌÆ®
+    // ì¡°ì¤€ì  ì—…ë°ì´íŠ¸
     private void UpdateAimTarget()
     {
         if (target != null)
@@ -139,12 +139,12 @@ public class CharacterAttack : MonoBehaviour
         aimTarget.SetAngle(offset);
     }
 
-    // È­»ìÀÌ ÀÖ´ÂÁö È®ÀÎ
+    // í™”ì‚´ì´ ìžˆëŠ”ì§€ í™•ì¸
     private void CheckArrow()
     {
-        if (arrow == null)
+        if (arrowAction == null)
         {
-            arrow = GenerateArrow(arrowAttribute);
+            arrowAction = GenerateArrow(arrowAttribute);
         }
     }
 
@@ -156,11 +156,11 @@ public class CharacterAttack : MonoBehaviour
         }
     }
 
-    // È­»ì »ý¼º
-    private Arrow GenerateArrow(Define.AttributeType attribute)
+    // í™”ì‚´ ìƒì„±
+    private ArrowAction GenerateArrow(Define.AttributeType attribute)
     {
         var arrowData = Managers.Game.Inventory.ItemDataDic.FirstOrDefault(pair => pair.Key.ItemType == Define.ItemType.Arrow &&
-            ((ArrowData)pair.Key).Attribute == attribute);
+            ((Arrow)pair.Key).Attribute == attribute);
 
         if (arrowData.Value <= 0)
         {
@@ -168,15 +168,15 @@ public class CharacterAttack : MonoBehaviour
             arrowAttribute = attribute;
         }
         
-        Arrow arrowPrefab = arrowPrefabs.Find((a) => a.ArrowData.Attribute == attribute);
-        Arrow arrow = Managers.Pool.Pop(arrowPrefab.gameObject).GetComponent<Arrow>();
-        arrow.transform.parent = quiver;
-        arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        arrow.gameObject.SetActive(true);
+        ArrowAction arrowActionPrefab = arrowPrefabs.Find((a) => a.Arrow.Attribute == attribute);
+        ArrowAction arrowAction = Managers.Pool.Pop(arrowActionPrefab.gameObject).GetComponent<ArrowAction>();
+        arrowAction.transform.parent = quiver;
+        arrowAction.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        arrowAction.gameObject.SetActive(true);
         
         print($"Generate {attribute.ToString()} arrow");
 
-        return arrow;
+        return arrowAction;
     }
     private void UpdateHUD()
     {
@@ -213,11 +213,11 @@ public class CharacterAttack : MonoBehaviour
 
         if (equipArrow == false /*&& Vector3.Distance(arrow.transform.position, arrowPos.transform.position) < 10.0f*/)
         {
-            arrow.transform.parent = arrowPos;
-            arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            arrowAction.transform.parent = arrowPos;
+            arrowAction.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
-        equipArrow = arrow.transform.parent == arrowPos;
+        equipArrow = arrowAction.transform.parent == arrowPos;
 
         chargedAmount += Time.deltaTime / chargeTime;
         chargedAmount = Mathf.Clamp(chargedAmount, 0.0f, 1.0f);
@@ -226,8 +226,8 @@ public class CharacterAttack : MonoBehaviour
 
         if (prepared == false)
         {
-            arrow.transform.parent = quiver;
-            arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            arrowAction.transform.parent = quiver;
+            arrowAction.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             releaseTimeoutDelta = releaseTimeout;
             state = AttackState.Wait;
@@ -241,8 +241,8 @@ public class CharacterAttack : MonoBehaviour
             }
             else
             {
-                arrow.transform.parent = quiver;
-                arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                arrowAction.transform.parent = quiver;
+                arrowAction.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             }
             
             releaseTimeoutDelta = releaseTimeout;
@@ -252,18 +252,18 @@ public class CharacterAttack : MonoBehaviour
 
     private void ReleaseArrow()
     {
-        if (target != null && Managers.Game.Inventory.TryUseItem(arrow.ArrowData))
+        if (target != null && Managers.Game.Inventory.TryUseItem(arrowAction.Arrow))
         {
-            arrow.transform.parent = null;
-            arrow.Shot(target);
-            arrow = null;
+            arrowAction.transform.parent = null;
+            arrowAction.Shot(target);
+            arrowAction = null;
             Managers.UI.HUDUI.ArrowPanel.ChangeAttribute(arrowAttribute);
             animator.SetTrigger("Release");
         }
         else
         {
-            arrow.transform.parent = quiver;
-            arrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            arrowAction.transform.parent = quiver;
+            arrowAction.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
 
-public class Arrow : Item
+public class ArrowAction : QuantifiedItem
 {
     [SerializeField] protected float moveSpeed = 30.0f;
     [SerializeField] protected TrailRenderer trail;
     [SerializeField] protected Transform arrowHead;
-    public ArrowData ArrowData => data as ArrowData;
+    public Arrow Arrow => data as Arrow;
     protected Coroutine shotCoroutine;
 
     [SerializeField] protected GameObject[] explosionParticle;
@@ -88,7 +88,7 @@ public class Arrow : Item
             if (Vector3.Distance(target.transform.position, arrowHead.position) < 1.0f)
             {
                 onShotEnd?.Invoke();
-                target.Monster.TakeDamage(ArrowData, target.Type);
+                target.Monster.TakeDamage(Arrow, target.Type);
                 break;
             }
 
@@ -99,7 +99,7 @@ public class Arrow : Item
                     Monster newTarget = hit.collider.GetComponentInParent<Monster>();
                     
                     if (newTarget != null) 
-                        newTarget.TakeDamage(ArrowData, AttackPointType.Default);
+                        newTarget.TakeDamage(Arrow, AttackPointType.Default);
                     
                     onShotEnd?.Invoke();
                     break;

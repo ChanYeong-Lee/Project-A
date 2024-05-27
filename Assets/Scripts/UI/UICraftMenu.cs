@@ -92,7 +92,7 @@ public class UICraftMenu : ContentElement
         buttons["CraftButton"].onClick.AddListener(() =>
         {
             Debug.Log("제작");
-            inventory.CraftingItem(FindItemRecipe(selectedSlot.ItemData), currentCraftAmount);
+            inventory.CraftingItem(FindItemRecipe(selectedSlot.Item), currentCraftAmount);
             
             foreach (UISlot slot in slots) 
                 UpdateSlot(slot);
@@ -113,14 +113,14 @@ public class UICraftMenu : ContentElement
         int i = 0;
         foreach (var recipeData in recipeDataList)
         {
-            if (itemType != Define.ItemType.None && itemType != recipeData.ItemData.ItemType)
+            if (itemType != Define.ItemType.None && itemType != recipeData.Item.ItemType)
                 continue;
             
             var slot = Managers.Resource.Instantiate("Prefabs/UI/CraftSlot", content, true).GetComponent<UISlot>();
 
             slot.transform.SetSiblingIndex(i++);
             slot.SlotType = SlotType.CraftMenu;
-            slot.ItemData = recipeData.ItemData;
+            slot.Item = recipeData.Item;
             slots.Add(slot);
 
             UpdateSlot(slot);
@@ -133,13 +133,13 @@ public class UICraftMenu : ContentElement
     // 제작 아이템 슬롯 업데이트 메소드
     private void UpdateSlot(UISlot slot)
     {
-        var craftableAmount = CraftableAmount(slot.ItemData);
+        var craftableAmount = CraftableAmount(slot.Item);
 
-        slot.Images["Icon"].sprite = slot.ItemData.Icon;
-        slot.Texts["NameText"].text = $"{slot.ItemData.ItemName}";
+        slot.Images["Icon"].sprite = slot.Item.Icon;
+        slot.Texts["NameText"].text = $"{slot.Item.ItemName}";
         slot.Texts["CraftableAmountText"].text = $"{craftableAmount}";
         // 보유하고 있는 아이템 개수
-        slot.Texts["AmountText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.ItemData, 0)}";
+        slot.Texts["AmountText"].text = $"{inventory.ItemDataDic.GetValueOrDefault(slot.Item, 0)}";
     }
         
     // 제작 아이템 정보창 업데이트 메소드
@@ -147,12 +147,12 @@ public class UICraftMenu : ContentElement
     {
         prevSelectedSlot = selectedSlot;
         
-        var recipeData = FindItemRecipe(slot.ItemData);
+        var recipeData = FindItemRecipe(slot.Item);
 
-        images["IconImage"].sprite = slot.ItemData.Icon;
-        texts["NameText"].text = $"{slot.ItemData.ItemName}";
+        images["IconImage"].sprite = slot.Item.Icon;
+        texts["NameText"].text = $"{slot.Item.ItemName}";
         texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
-        texts["DescriptionText"].text = $"{slot.ItemData.Description}";
+        texts["DescriptionText"].text = $"{slot.Item.Description}";
         
         for (var i = 0; i < recipeData.CraftItemData.Count; i++)
         {
@@ -163,17 +163,17 @@ public class UICraftMenu : ContentElement
         ChangeCraftAmount();
     }
     
-    private ItemRecipeData FindItemRecipe(ItemData itemData)
+    private ItemRecipeData FindItemRecipe(Item item)
     {
-        var recipeData = recipeDataList.Find(recipe => itemData == recipe.ItemData);
+        var recipeData = recipeDataList.Find(recipe => item == recipe.Item);
 
         return recipeData == null ? null : recipeData;
     }
     
     // 제작 가능한 아이템 확인 메소드
-    private int CraftableAmount(ItemData itemData)
+    private int CraftableAmount(Item item)
     {
-        var recipeData = FindItemRecipe(itemData);
+        var recipeData = FindItemRecipe(item);
         List<int> craftableAmountList = new List<int>();
         
         for (int i = 0; i < recipeData.CraftItemData.Count; i++) 
@@ -200,7 +200,7 @@ public class UICraftMenu : ContentElement
                 break;
         }
         
-        int maxAmount = CraftableAmount(selectedSlot.ItemData);
+        int maxAmount = CraftableAmount(selectedSlot.Item);
         
         if (craftAmount < 0) 
             craftAmount = 0;

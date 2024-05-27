@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Potion", menuName = "ScriptableObject/Item Data/Potion")]
-public class PotionData : ItemData
+public class Potion : Item
 {
     [SerializeField] private int healingPoint;
     

@@ -96,7 +96,7 @@ public class GameManager
                 .GetComponent<CameraController>();
         }
         
-        // »ı¼ºµÉ À§Ä¡ ÀÔ·Â
+        // ìƒì„±ë  ìœ„ì¹˜ ì…ë ¥
         // PlayerSettings();
     }
 
@@ -114,7 +114,7 @@ public class GameManager
         horse.transform.rotation = Quaternion.Euler(0, 145, 0);
         horse.SetActive(false);
 
-        inventory.ItemDataDic.Add(Managers.Resource.Load<ArrowData>(Define.DefaultArrowDataPath), -1);
+        inventory.ItemDataDic.Add(Managers.Resource.Load<Arrow>(Define.DefaultArrowDataPath), -1);
     }
 
     public void ChangeFullScreen(float value)
@@ -129,7 +129,7 @@ public class GameManager
     {
         monster = boss;
         boss.GetComponent<Bear>().StartBossFight();
-        // TODO : º¸½º ¸ó½ºÅÍ Æ®¸®°Å ÀÛµ¿ÇÏ¸é monster¿¡ º¸½º ³Ö¾îÁÖ±â
+        // TODO : ë³´ìŠ¤ ëª¬ìŠ¤í„° íŠ¸ë¦¬ê±° ì‘ë™í•˜ë©´ monsterì— ë³´ìŠ¤ ë„£ì–´ì£¼ê¸°
         // monster =
 
         Managers.UI.HUDUI.BossHealthBar.gameObject.SetActive(true);
