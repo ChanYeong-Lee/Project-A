@@ -12,26 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca62ddad78224bb4b26809d6039ab807, type: 3}
   m_Name: Large Potion Recipe
   m_EditorClassIdentifier: 
-  itemID: 0
-  item: {fileID: 11400000, guid: 06c341f791d12854ba523b76ea871974, type: 2}
-  itemCount: 1
-  craftItemID: 
-  craftItemData:
-  - {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
-  - {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
-  - {fileID: 11400000, guid: d154c5242ac17cd4f948ade8630fa671, type: 2}
-  craftItemCount: 030000000500000001000000
   itemData:
-    ID: 0
     Item: {fileID: 11400000, guid: 06c341f791d12854ba523b76ea871974, type: 2}
     Count: 1
-  craftItemData2:
-  - ID: 0
-    Item: {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
+  craftItemData:
+  - Item: {fileID: 11400000, guid: 4c0bfcd149f439c48ba81483e125c05a, type: 2}
     Count: 3
-  - ID: 0
-    Item: {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
+  - Item: {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
     Count: 5
-  - ID: 0
-    Item: {fileID: 11400000, guid: d154c5242ac17cd4f948ade8630fa671, type: 2}
+  - Item: {fileID: 11400000, guid: d154c5242ac17cd4f948ade8630fa671, type: 2}
     Count: 1
