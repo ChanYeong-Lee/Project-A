@@ -40,14 +40,14 @@ public class Inventory : MonoBehaviour
     // 아이템 제작 메소드
     public void CraftingItem(ItemRecipeData recipeData)
     {
-        if (TryGainItem(recipeData.Item, recipeData.ItemCount))
+        if (TryGainItem(recipeData.ItemData.Item, recipeData.ItemData.Count))
         {
             for (int i = 0; i < recipeData.CraftItemData.Count; i++)
             {
-                itemDataDic[recipeData.CraftItemData[i]] -= recipeData.CraftItemCount[i];
-                if (itemDataDic[recipeData.CraftItemData[i]] <= 0)
+                itemDataDic[recipeData.CraftItemData[i].Item] -= recipeData.CraftItemData[i].Count;
+                if (itemDataDic[recipeData.CraftItemData[i].Item] <= 0)
                 {
-                    itemDataDic.Remove(recipeData.CraftItemData[i]);
+                    itemDataDic.Remove(recipeData.CraftItemData[i].Item);
                 }
             }
         }

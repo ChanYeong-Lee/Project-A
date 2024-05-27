@@ -113,14 +113,14 @@ public class UICraftMenu : ContentElement
         int i = 0;
         foreach (var recipeData in recipeDataList)
         {
-            if (itemType != Define.ItemType.None && itemType != recipeData.Item.ItemType)
+            if (itemType != Define.ItemType.None && itemType != recipeData.ItemData.Item.ItemType)
                 continue;
             
             var slot = Managers.Resource.Instantiate("Prefabs/UI/CraftSlot", content, true).GetComponent<UISlot>();
 
             slot.transform.SetSiblingIndex(i++);
             slot.SlotType = SlotType.CraftMenu;
-            slot.Item = recipeData.Item;
+            slot.Item = recipeData.ItemData.Item;
             slots.Add(slot);
 
             UpdateSlot(slot);
@@ -151,13 +151,13 @@ public class UICraftMenu : ContentElement
 
         images["IconImage"].sprite = slot.Item.Icon;
         texts["NameText"].text = $"{slot.Item.ItemName}";
-        texts["AmountLabelText"].text = $"{recipeData.ItemCount}";
+        texts["AmountLabelText"].text = $"{recipeData.ItemData.Count}";
         texts["DescriptionText"].text = $"{slot.Item.Description}";
         
         for (var i = 0; i < recipeData.CraftItemData.Count; i++)
         {
-            images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Icon;
-            texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemCount[i]}";
+            images[$"IconImage{i}"].sprite = recipeData.CraftItemData[i].Item.Icon;
+            texts[$"AmountLabelText{i}"].text = $"{recipeData.CraftItemData[i].Count}";
         }
 
         ChangeCraftAmount();
@@ -165,7 +165,7 @@ public class UICraftMenu : ContentElement
     
     private ItemRecipeData FindItemRecipe(Item item)
     {
-        var recipeData = recipeDataList.Find(recipe => item == recipe.Item);
+        var recipeData = recipeDataList.Find(recipe => item == recipe.ItemData.Item);
 
         return recipeData == null ? null : recipeData;
     }
@@ -177,7 +177,7 @@ public class UICraftMenu : ContentElement
         List<int> craftableAmountList = new List<int>();
         
         for (int i = 0; i < recipeData.CraftItemData.Count; i++) 
-            craftableAmountList.Add(inventory.ItemDataDic.GetValueOrDefault(recipeData.CraftItemData[i], 0) / recipeData.CraftItemCount[i]);
+            craftableAmountList.Add(inventory.ItemDataDic.GetValueOrDefault(recipeData.CraftItemData[i].Item, 0) / recipeData.CraftItemData[i].Count);
 
         return craftableAmountList.Min();
     }
