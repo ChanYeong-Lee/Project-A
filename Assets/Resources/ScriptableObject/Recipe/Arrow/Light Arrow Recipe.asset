@@ -13,11 +13,25 @@ MonoBehaviour:
   m_Name: Light Arrow Recipe
   m_EditorClassIdentifier: 
   itemID: 1002
-  itemData: {fileID: 11400000, guid: 34efda9555c20b242b6fa563ff8fc43e, type: 2}
+  item: {fileID: 11400000, guid: 34efda9555c20b242b6fa563ff8fc43e, type: 2}
   itemCount: 3
   craftItemID: e903000069000000
-  craftItemData:
+  craftItem:
   - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
   - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
   - {fileID: 11400000, guid: 2cceb512279fea14fb9e7c5309762c22, type: 2}
   craftItemCount: 030000000300000001000000
+  itemData:
+    ID: 0
+    Item: {fileID: 11400000, guid: 34efda9555c20b242b6fa563ff8fc43e, type: 2}
+    Count: 3
+  craftItemData2:
+  - ID: 0
+    Item: {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+    Count: 3
+  - ID: 0
+    Item: {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
+    Count: 3
+  - ID: 0
+    Item: {fileID: 11400000, guid: 2cceb512279fea14fb9e7c5309762c22, type: 2}
+    Count: 1

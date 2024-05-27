@@ -13,11 +13,25 @@ MonoBehaviour:
   m_Name: Electric Arrow Recipe
   m_EditorClassIdentifier: 
   itemID: 1003
-  itemData: {fileID: 11400000, guid: f2e776c079cc62441a41afe8ad7e2c44, type: 2}
+  item: {fileID: 11400000, guid: f2e776c079cc62441a41afe8ad7e2c44, type: 2}
   itemCount: 3
   craftItemID: e903000065000000
-  craftItemData:
+  craftItem:
   - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
   - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
   - {fileID: 11400000, guid: 6c5d867534e62b643a5823ba58d1271e, type: 2}
   craftItemCount: 030000000300000001000000
+  itemData:
+    ID: 0
+    Item: {fileID: 11400000, guid: f2e776c079cc62441a41afe8ad7e2c44, type: 2}
+    Count: 3
+  craftItemData2:
+  - ID: 0
+    Item: {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+    Count: 3
+  - ID: 0
+    Item: {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
+    Count: 3
+  - ID: 0
+    Item: {fileID: 11400000, guid: 6c5d867534e62b643a5823ba58d1271e, type: 2}
+    Count: 1
