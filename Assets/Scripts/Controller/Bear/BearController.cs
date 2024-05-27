@@ -51,10 +51,10 @@ namespace BearController
             angle = Vector3.SignedAngle(bear.transform.forward, bear.MoveTarget.position - bear.transform.position, Vector3.up);
         }
 
-        //private void OnAnimatorMove()
-        //{
-        //    CheckSlope();
-        //}
+        public override void FixedUpdate()
+        {
+            //CheckSlope();
+        }
 
         protected void AttackTransition()
         {

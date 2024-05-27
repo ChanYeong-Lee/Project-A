@@ -84,23 +84,23 @@ public class Bear : Monster
         roarCooldownDelta -= Time.deltaTime;
         attackCooldownDelta -= Time.deltaTime;
 
-        transform.position += rootMotion;
-        transform.rotation *= rootRotation;
+        //transform.position += rootMotion;
+        //transform.rotation *= rootRotation;
 
-        rootMotion = Vector3.zero;
-        rootRotation = Quaternion.identity;
+        //rootMotion = Vector3.zero;
+        //rootRotation = Quaternion.identity;
     }
 
     private Vector3 rootMotion;
     private Quaternion rootRotation;
 
-    private void OnAnimatorMove()
-    {
-        rootMotion += anim.deltaPosition;
-        rootRotation *= anim.deltaRotation;
+    //private void OnAnimatorMove()
+    //{
+    //    rootMotion += anim.deltaPosition;
+    //    rootRotation *= anim.deltaRotation;
 
-        CheckSlope();
-    }
+    //    CheckSlope();
+    //}
 
     private void CheckSlope()
     {
