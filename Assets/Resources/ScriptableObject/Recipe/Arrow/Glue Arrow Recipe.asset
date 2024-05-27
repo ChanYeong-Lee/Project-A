@@ -12,26 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca62ddad78224bb4b26809d6039ab807, type: 3}
   m_Name: Glue Arrow Recipe
   m_EditorClassIdentifier: 
-  itemID: 1004
-  item: {fileID: 11400000, guid: b4017128345b35b4ebc1c4b09fa09e38, type: 2}
-  itemCount: 3
-  craftItemID: e903000068000000
-  craftItem:
-  - {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
-  - {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
-  - {fileID: 11400000, guid: efe456e6055cada4a9ee26fb50b2bf56, type: 2}
-  craftItemCount: 030000000300000001000000
   itemData:
-    ID: 0
     Item: {fileID: 11400000, guid: b4017128345b35b4ebc1c4b09fa09e38, type: 2}
     Count: 3
-  craftItemData2:
-  - ID: 0
-    Item: {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
+  craftItemData:
+  - Item: {fileID: 11400000, guid: fceaf658b54ca134eb92a6f5eee81e5f, type: 2}
     Count: 3
-  - ID: 0
-    Item: {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
+  - Item: {fileID: 11400000, guid: 060471218f4b0e84faebce976befca04, type: 2}
     Count: 3
-  - ID: 0
-    Item: {fileID: 11400000, guid: efe456e6055cada4a9ee26fb50b2bf56, type: 2}
+  - Item: {fileID: 11400000, guid: 64ecf3b4d1e14ee4bb17782f89acc680, type: 2}
     Count: 1
