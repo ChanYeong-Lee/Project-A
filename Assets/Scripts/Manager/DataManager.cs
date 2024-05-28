@@ -11,11 +11,16 @@ public class DataManager
 
     public void Init()
     {
+        Clear();
         recipeDataList.AddRange(Managers.Resource.LoadAll<ItemRecipeData>(Define.RecipeDataPath+"Arrow"));
         recipeDataList.AddRange(Managers.Resource.LoadAll<ItemRecipeData>(Define.RecipeDataPath+"Potion"));
         //TODO: QuestManager의 데이터를 불러올지 아래처럼 Load할지 정할 것
         //questSoList.AddRange(Managers.Resource.LoadAll<QuestInfoSo>(Define.questDataPath+"CollectibleWood"));
         //questSoList.AddRange(Managers.Resource.LoadAll<QuestInfoSo>(Define.questDataPath+"VisitUnknowWorld"));
     }
-    
+
+    public void Clear()
+    {
+        recipeDataList.Clear();
+    }
 }

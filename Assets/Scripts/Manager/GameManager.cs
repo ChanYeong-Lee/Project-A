@@ -6,7 +6,7 @@ public class GameManager
     // Game System
     private bool isUI;
     private bool isPause;
-    private bool isFullScreen;
+    private bool isFullScreen = true;
     private float gameSpeed;
     
     public bool IsPause
