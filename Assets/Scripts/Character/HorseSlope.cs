@@ -200,14 +200,14 @@ public class HorseSlope : MonoBehaviour
 
     private void CheckSlope()
     {
-        if (Physics.Raycast(transform.position + transform.forward * 1.2f+ Vector3.up, Vector3.down, out RaycastHit frontRightHit2, Mathf.Infinity, groundLayers))
+        if (Physics.Raycast(transform.position + transform.forward * 1.2f+ Vector3.up, Vector3.down, out RaycastHit frontHit, Mathf.Infinity, groundLayers))
         {
-            p1 = frontRightHit2.point;
+            p1 = frontHit.point;
         }
 
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit rearLeftHit2, Mathf.Infinity, groundLayers))
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit rearHit, Mathf.Infinity, groundLayers))
         {
-            p2 = rearLeftHit2.point;
+            p2 = rearHit.point;
         }
 
         Vector3 forward = transform.forward;
@@ -216,16 +216,18 @@ public class HorseSlope : MonoBehaviour
 
         float deltaX = Vector3.Dot(forward, p1 - p2);
         float deltaY = p1.y - p2.y;
+
         if (isGround)
         {
             pitch = Mathf.Atan2(deltaY, deltaX) * Mathf.Rad2Deg;
         }
-        else if(posHeight < 0.5f)
-        {
-            //pitch -= 40.0f * Time.deltaTime;
-        }
         pitch = Mathf.Clamp(pitch, -40.0f, 40.0f);
     }
+
+        //else if(posHeight < 0.5f)
+        //{
+        //    //pitch -= 40.0f * Time.deltaTime;
+        //}
 
     private bool CheckHoeIsGround(Transform hoePos, out RaycastHit hit)
     {
